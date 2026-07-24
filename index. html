@@ -8,51 +8,8 @@
 </head>
 <body>
 
-<header>
-  <h1>🐯 CAWNPORE TIGERS XI</h1>
-  <p>Together We Roar, Together We Win</p>
-</header>
-
-<main>
-
-<section>
-<h2>👑 Team Owner</h2>
-<p><strong>Anuj Gupta</strong></p>
-</section>
-
-<section>
-<h2>🏏 Team Players</h2>
-
-<div class="player">1. ANNA</div>
-<div class="player">2. PURAN S. BISHT</div>
-<div class="player">3. SACHIN</div>
-<div class="player">4. ANUPAM</div>
-<div class="player">5. SANYAM</div>
-<div class="player">6. DEEPAK</div>
-<div class="player">7. RAJEEV</div>
-<div class="player">8. AZFAR</div>
-<div class="player">9. AMIT</div>
-<div class="player">10. VINAY</div>
-<div class="player">11. PRAVEEN</div>
-<div class="player">12. KAMAL</div>
-<div class="player">13. JISHAN</div>
-<div class="player">14. ANUJ GOEL</div>
-
-</section>
-
-<section>
-<h2>🏆 About Team</h2>
-<p>
-CAWNPORE TIGERS XI is a passionate cricket team committed to discipline,
-sportsmanship and excellence.
-</p>
-</section>
-
-</main>
-
-<footer>
-<p>© 2026 CAWNPORE TIGERS XI</p>
-</footer>
+<h1>🐯 CAWNPORE TIGERS XI</h1>
+<p>Together We Roar, Together We Win</p>
 
 </body>
 </html>
