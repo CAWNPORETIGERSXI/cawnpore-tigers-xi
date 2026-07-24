@@ -1,36 +1,38 @@
-
 body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#111;
-    color:white;
-    text-align:center;
+margin:0;
+font-family:Arial,sans-serif;
+background:#111;
+color:#fff;
+text-align:center;
 }
 
 header{
-    background:orange;
-    color:black;
-    padding:30px;
+background:#ff8800;
+padding:30px;
+color:#000;
+}
+
+main{
+padding:20px;
 }
 
 section{
-    padding:20px;
+margin:20px auto;
+max-width:700px;
+background:#222;
+padding:20px;
+border-radius:10px;
 }
 
-ul{
-    list-style:none;
-    padding:0;
-}
-
-li{
-    background:#222;
-    margin:8px auto;
-    width:250px;
-    padding:10px;
-    border-radius:8px;
+.player{
+background:#333;
+margin:8px;
+padding:12px;
+border-radius:8px;
 }
 
 footer{
-    background:#000;
-    padding:15px;
+background:#000;
+padding:15px;
+margin-top:20px;
 }
