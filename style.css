@@ -1,39 +1,63 @@
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#111;
-color:#ffff;
-text-align:center;
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#111;
+    color:#fff;
+    text-align:center;
 }
-
 
 header{
-background:#ff8800;
-padding:30px;
-color:#0000;
+    background:#ff8800;
+    color:#000;
+    padding:40px 20px;
 }
 
-main{
-padding:20px;
+header h1{
+    margin:0;
+    font-size:38px;
+}
+
+header p{
+    margin-top:10px;
+    font-size:18px;
 }
 
 section{
-margin:20px auto;
-max-width:700px;
-background:#222;
-padding:20px;
-border-radius:10px;
+    width:90%;
+    max-width:800px;
+    margin:25px auto;
+    background:#222;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 0 12px rgba(255,136,0,0.4);
 }
 
-.player{
-background:#333;
-margin:8px;
-padding:12px;
-border-radius:8px;
+h2{
+    color:#ff8800;
+}
+
+ul{
+    list-style:none;
+    padding:0;
+}
+
+li{
+    background:#333;
+    margin:10px 0;
+    padding:12px;
+    border-radius:8px;
+    transition:0.3s;
+}
+
+li:hover{
+    background:#ff8800;
+    color:#000;
 }
 
 footer{
-background:#000;
-padding:15px;
-margin-top:20px;
+    margin-top:30px;
+    background:#000;
+    color:#fff;
+    padding:20px;
+    font-size:14px;
 }
