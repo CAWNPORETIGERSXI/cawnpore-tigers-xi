@@ -61,3 +61,20 @@ footer{
     padding:20px;
     font-size:14px;
 }
+nav{
+  background:#111;
+  padding:15px;
+  text-align:center;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  margin:0 15px;
+  font-size:18px;
+  font-weight:bold;
+}
+
+nav a:hover{
+  color:orange;
+}
