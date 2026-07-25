@@ -248,3 +248,8 @@ margin:8px 0;
 text-decoration:none;
 color:inherit;
 }
+.player-link{
+text-decoration:none;
+color:inherit;
+display:inline-block;
+}
