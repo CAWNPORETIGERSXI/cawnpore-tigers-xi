@@ -122,3 +122,57 @@ transform:scale(1.05);
 background:orange;
 color:black;
 }
+.hero{
+height:90vh;
+background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),url("Image.jpg");
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+.hero-text h1{
+font-size:50px;
+color:#fff;
+margin-bottom:15px;
+}
+
+.hero-text p{
+font-size:22px;
+color:#ffcc66;
+margin-bottom:30px;
+}
+
+.btn,.btn2{
+display:inline-block;
+padding:14px 28px;
+margin:10px;
+border-radius:30px;
+text-decoration:none;
+font-weight:bold;
+transition:.3s;
+}
+
+.btn{
+background:#ff8800;
+color:#000;
+}
+
+.btn2{
+background:transparent;
+border:2px solid #fff;
+color:#fff;
+}
+
+.btn:hover{
+background:#fff;
+}
+
+.btn2:hover{
+background:#ff8800;
+border-color:#ff8800;
+color:#000;
+}
