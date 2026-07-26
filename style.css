@@ -367,3 +367,13 @@ flex-wrap:wrap;
 .btn:hover{
     background:#ff6600;
 }
+.jersey-img{
+    width:100%;
+    max-width:600px;
+    height:auto;
+    display:block;
+    margin:30px auto;
+    border-radius:15px;
+    border:4px solid #ff8800;
+    box-shadow:0 0 25px rgba(255,136,0,0.6);
+}
