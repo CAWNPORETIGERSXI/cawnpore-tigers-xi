@@ -404,3 +404,54 @@ flex-wrap:wrap;
 .gallery img:hover{
     transform:scale(1.03);
 }
+/* Matches Page */
+
+table{
+    width:90%;
+    margin:30px auto;
+    border-collapse:collapse;
+    background:#111;
+    color:white;
+    text-align:center;
+}
+
+table th{
+    background:#ff8800;
+    color:black;
+    padding:12px;
+    font-size:18px;
+}
+
+table td{
+    padding:12px;
+    border:1px solid #ff8800;
+}
+
+
+table tr:hover{
+    background:#ff8800;
+    color:black;
+    cursor:pointer;
+}
+
+
+.summary-box{
+
+    width:85%;
+    margin:30px auto;
+    background:#111;
+    color:white;
+    padding:25px;
+    border-radius:15px;
+    border:2px solid #ff8800;
+    text-align:center;
+
+}
+
+
+.summary-box h2,
+.summary-box h3{
+
+    color:#ff8800;
+
+}
