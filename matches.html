@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CAWNPORE TIGERS XI - Matches</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>🏏 CAWNPORE TIGERS XI</h1>
+<h2>Total Matches</h2>
+</header>
+
+
+<table border="1" width="100%">
+
+<tr>
+<th>Sr. No.</th>
+<th>Date</th>
+<th>Vs.</th>
+<th>Overs</th>
+<th>Result</th>
+</tr>
+
+
+<tr onclick="showSummary()">
+<td>1</td>
+<td>26 June 2026</td>
+<td>MSS Youth XI</td>
+<td>T20</td>
+<td>Won</td>
+</tr>
+
+
+<tr onclick="showSummary()">
+<td>2</td>
+<td>Coming Soon</td>
+<td>Opponent</td>
+<td>T20</td>
+<td>-</td>
+</tr>
+
+
+</table>
+
+
+<script>
+
+function showSummary(){
+
+let choice = confirm(
+"Do you want to see match summary?"
+);
+
+if(choice){
+window.location.href="match-summary.html";
+}
+
+}
+
+</script>
+
+
+</body>
+</html>
