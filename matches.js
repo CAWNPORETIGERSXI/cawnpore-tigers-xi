@@ -33,7 +33,12 @@ const matches = [
  date: "10/06/2026",
  opponent: "County Stars",
  overs: "20",
- result: "Won by 7 wickets"
+ result: "Won by 7 wickets",
+ venue: "EVEREST CRICKET GROUND",
+ playerOfMatch: "PURAN",
+ bestBatter: "JISHAN",
+ bestBowler: "PRAVEEN",
+ summaryImage: "match6-summary.jpg"
 },
 {
  date: "06/06/2026",
