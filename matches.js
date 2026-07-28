@@ -1,5 +1,7 @@
 const matches = [
+
   {
+    id: 1,
     date: "18/06/2025",
     opponent: "DAU XI",
     venue: "Ramkali Stadium, Shuklaganj",
@@ -18,6 +20,7 @@ const matches = [
   },
 
   {
+    id: 2,
     date: "29/06/2025",
     opponent: "DAU XI",
     venue: "Ramkali Stadium, Shuklaganj",
@@ -31,12 +34,7 @@ const matches = [
     bestBowler: "Vivek Dwivedi",
     highlights: [],
     photos: []
-  }
-];
-const matches = [
-  // Match 1
-
-  // Match 2
+  },
 
   {
     id: 3,
@@ -48,9 +46,11 @@ const matches = [
     teamScore: "112/10 (19.3 Overs)",
     opponentScore: "179/3 (22 Overs)",
     result: "Lost by 67 Runs",
-    playerOfMatch: "Saurabh",
+    playerOfTheMatch: "Saurabh",
     bestBatter: "Swastick",
-    bestBowler: "Saurabh"
+    bestBowler: "Saurabh",
+    highlights: [],
+    photos: []
   },
 
   {
@@ -63,10 +63,11 @@ const matches = [
     teamScore: "151/6 (21.2 Overs)",
     opponentScore: "150/10 (23 Overs)",
     result: "Won by 4 Wickets",
-    playerOfMatch: "Naveen",
+    playerOfTheMatch: "Naveen",
     bestBatter: "Amit",
-    bestBowler: "Naveen"
+    bestBowler: "Naveen",
+    highlights: [],
+    photos: []
   }
 
-  // Match 5...
 ];
