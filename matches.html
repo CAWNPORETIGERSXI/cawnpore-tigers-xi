@@ -1,134 +1,67 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>CAWNPORE TIGERS XI - Matches</title>
-<link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-<header>
-<h1>🏏 CAWNPORE TIGERS XI</h1>
-<h2>Total Matches</h2>
-</header>
-
-
-<table border="1" width="100%">
-
-<tr>
-<th>Sr. No.</th>
-<th>Date</th>
-<th>Vs.</th>
-<th>Overs</th>
-<th>Result</th>
-</tr>
-
-
-<tr onclick="showSummary()">
-<td>1</td>
-<td>26 June 2026</td>
-<td>MSS Youth XI</td>
-<td>T20</td>
-<td>Won</td>
-</tr>
-
-
-<tr onclick="showSummary()">
-<td>2</td>
-<td>Coming Soon</td>
-<td>Opponent</td>
-<td>T20</td>
-<td>-</td>
-</tr>
-
-
-</table>
-
-
-<script>
-
-function showSummary(){
-
-let choice = confirm(
-"Do you want to see match summary?"
-);
-
-if(choice){
-window.location.href="match-summary.html";
-}
-
-}
-
-</script>
-
-
-</body>
-</html>
-<!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CAWNPORE TIGERS XI - Matches</title>
 
-<title>CAWNPORE TIGERS XI - Matches</title>
-
-<link rel="stylesheet" href="style.css">
-
-<script src="matches.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="matches.js"></script>
 </head>
 
 <body>
 
-<header>
-<h1>🏏 CAWNPORE TIGERS XI</h1>
-<h2>Total Matches</h2>
-</header>
+  <header>
+    <h1>🏏 CAWNPORE TIGERS XI</h1>
+    <h2>Total Matches</h2>
+  </header>
 
-<table border="1" width="100%">
-<thead>
-<tr>
-<th>Sr. No.</th>
-<th>Date</th>
-<th>Vs.</th>
-<th>Overs</th>
-<th>Result</th>
-</tr>
-</thead>
+  <table border="1" width="100%">
+    <thead>
+      <tr>
+        <th>Sr. No.</th>
+        <th>Date</th>
+        <th>Vs.</th>
+        <th>Overs</th>
+        <th>Result</th>
+      </tr>
+    </thead>
 
-<tbody id="matchTable">
-</tbody>
+    <tbody id="matchTable">
+    </tbody>
+  </table>
 
-</table>
+  <script>
 
-<script>
+    const table = document.getElementById("matchTable");
 
-const table = document.getElementById("matchTable");
+    matches.forEach((match, index) => {
 
-matches.forEach((match, index) => {
+      table.innerHTML += `
+      <tr onclick="openMatch(${index})">
+        <td>${index + 1}</td>
+        <td>${match.date}</td>
+        <td>${match.opponent}</td>
+        <td>${match.overs}</td>
+        <td>${match.result}</td>
+      </tr>
+      `;
 
-table.innerHTML += `
-<tr onclick="openMatch(${index})">
-<td>${index + 1}</td>
-<td>${match.date}</td>
-<td>${match.opponent}</td>
-<td>${match.overs}</td>
-<td>${match.result}</td>
-</tr>
-`;
+    });
 
-});
+    function openMatch(index) {
 
-function openMatch(index){
+      let choice = confirm("Do you want to see Match Summary?");
 
-let choice = confirm("Do you want to see Match Summary?");
+      if (choice) {
+        window.location.href = "match.html?match=" + index;
+      }
 
-if(choice){
-window.location.href = "match.html?match=" + index;
-}
+    }
 
-}
-
-</script>
+  </script>
 
 </body>
+
 </html>
