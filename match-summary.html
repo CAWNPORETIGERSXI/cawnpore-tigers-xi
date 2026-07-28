@@ -6,6 +6,8 @@
 
 <link rel="stylesheet" href="style.css">
 
+<script src="matches.js"></script>
+
 </head>
 
 <body>
@@ -18,46 +20,61 @@
 </header>
 
 
-<div class="summary-box">
+<div class="summary-box" id="summaryBox">
 
-<h2>CAWNPORE TIGERS XI vs MSS Youth XI</h2>
+</div>
 
-<p><b>Date:</b> 26 June 2026</p>
 
-<p><b>Format:</b> T20</p>
+<script>
 
-<p><b>Result:</b> 🏆 CAWNPORE TIGERS XI Won</p>
+let params = new URLSearchParams(window.location.search);
+
+let id = Number(params.get("id"));
+
+let match = matches[id - 1];
+
+
+let box = document.getElementById("summaryBox");
+
+
+box.innerHTML = `
+
+<h2>CAWNPORE TIGERS XI vs ${match.opponent}</h2>
+
+<p><b>Date:</b> ${match.date}</p>
+
+<p><b>Venue:</b> ${match.venue || "N/A"}</p>
+
+<p><b>Overs:</b> ${match.overs}</p>
+
+<p><b>Result:</b> ${match.result}</p>
 
 
 <hr>
-
-
-<h3>🏏 Batting Performance</h3>
-
-<p>Jishan - 114 Runs (68 Balls)</p>
-
-<p>Amit - 44 Runs (26 Balls)</p>
-
-<p>Anuj Goel - 15 Runs (9 Balls)</p>
-
-
-<hr>
-
-
-<h3>🎯 Bowling Performance</h3>
-
-<p>Deepak Pandey - 4 Overs | 32 Runs | 3 Wickets</p>
-
-
-<hr>
-
 
 <h3>⭐ Player of the Match</h3>
 
-<p>Jishan - 114 Runs</p>
+<p>${match.playerOfMatch || "N/A"}</p>
 
 
-</div>
+<h3>🔥 Best Batter</h3>
+
+<p>${match.bestBatter || "N/A"}</p>
+
+
+<h3>🎯 Best Bowler</h3>
+
+<p>${match.bestBowler || "N/A"}</p>
+
+
+${match.summaryImage ? 
+`<img src="${match.summaryImage}" width="100%">`
+: ""}
+
+
+`;
+
+</script>
 
 
 </body>
