@@ -56,7 +56,13 @@ const matches = [
  date: "17/05/2026",
  opponent: "Kanpur Cricket Warriors",
  overs: "25",
- result: "Won by 6 wickets"
+ result: "Won by 6 wickets",
+ venue: "Narayana Ground",
+ playerOfMatch: "Pawan",
+ bestBatter: "Dainy",
+ bestBowler: "Piyush",
+ summaryImage: "match9-summary.jpg",
+ summary: "Kanpur Cricket Warriors XI posted a competitive total. Cawnpore Tigers XI chased the target confidently with an explosive innings from Pawan (42 off 17). Anuj Goel also played a valuable knock as Cawnpore Tigers XI secured a 6-wicket victory."
 },
 {
  date: "02/03/2026",
