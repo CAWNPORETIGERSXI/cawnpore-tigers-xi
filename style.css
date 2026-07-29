@@ -455,3 +455,17 @@ table tr:hover{
     color:#ff8800;
 
 }
+.tournament-logo{
+    text-align:center;
+    margin:20px 0;
+}
+
+.tournament-logo img{
+    width:140px;
+    height:140px;
+    object-fit:contain;
+    border-radius:50%;
+    border:3px solid orange;
+    background:#fff;
+    padding:8px;
+}
