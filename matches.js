@@ -74,7 +74,12 @@ const matches = [
  date: "20/10/2025",
  opponent: "Team Diamond",
  overs: "25",
- result: "Won by 4 wickets"
+ result: "Won by 4 wickets",
+ venue: "Rastriya Ground",
+ playerOfMatch: "NAVEEN",
+ bestBatter: "AMIT",
+ bestBowler: "ANNA",
+ summaryImage: "match11-summary.jpg"
 },
 {
  date: "12/10/2025",
