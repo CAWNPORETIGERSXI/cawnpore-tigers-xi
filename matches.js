@@ -1,102 +1,131 @@
 const matches = [
+
 {
- date: "19/07/2026",
- opponent: "Madhyamik Lions",
- overs: "25",
- result: "Won by 2 wickets"
-},
-{
- date: "26/06/2026",
- opponent: "MSS Youth Star",
- overs: "25",
- result: "Lost by 7 wickets"
-},
-{
- date: "20/06/2026",
- opponent: "Strike Squad XI",
- overs: "25",
- result: "Lost by 4 wickets"
-},
-{
- date: "18/06/2026",
- opponent: "MSS Youth Star XI",
- overs: "25",
- result: "Won by 6 wickets"
-},
-{
- date: "13/06/2026",
- opponent: "Strike Squad XI",
- overs: "25",
- result: "Abandoned due to rain"
-},
-{
- date: "10/06/2026",
- opponent: "County Stars",
+ date: "18/06/2025",
+ opponent: "DAU XI",
  overs: "20",
- result: "Won by 7 wickets",
- venue: "EVEREST CRICKET GROUND",
- playerOfMatch: "PURAN",
- bestBatter: "JISHAN",
- bestBowler: "PRAVEEN",
- summaryImage: "match6-summary.jpg"
+ result: "Abandoned due to heat",
+ venue: "RAMKALI STADIUM"
 },
+
 {
- date: "06/06/2026",
- opponent: "Strike Squad",
- overs: "20",
- result: "Lost by 9 runs"
+ date: "29/06/2025",
+ opponent: "DAU XI",
+ overs: "18",
+ result: "CAWNPORE TIGERS XI WON BY 50 RUNS",
+ venue: "RAMKALI STADIUM"
 },
+
 {
- date: "03/06/2026",
- opponent: "Madhyamik Lions",
- overs: "20",
- result: "Won by 1 wicket"
+ date: "12/10/2025",
+ opponent: "WE XI",
+ overs: "22",
+ result: "WE XI WON BY 67 RUNS",
+ venue: "DIVERAITY STADIUM"
 },
-{
- date: "17/05/2026",
- opponent: "Kanpur Cricket Warriors",
- overs: "25",
- result: "Won by 6 wickets",
- venue: "Narayana Ground",
- playerOfMatch: "Pawan",
- bestBatter: "Dainy",
- bestBowler: "Piyush",
- summaryImage: "match9-summary.jpg",
- summary: "Kanpur Cricket Warriors XI posted a competitive total. Cawnpore Tigers XI chased the target confidently with an explosive innings from Pawan (42 off 17). Anuj Goel also played a valuable knock as Cawnpore Tigers XI secured a 6-wicket victory."
-},
-{
- date: "02/03/2026",
- opponent: "Unnao Panthers",
- overs: "25",
- result: "Won by 6 wickets"
-},
+
 {
  date: "20/10/2025",
- opponent: "Team Diamond",
+ opponent: "TEAM DIAMOND XI",
  overs: "25",
- result: "Won by 4 wickets",
- venue: "Rastriya Ground",
+ result: "CAWNPORE TIGERS XI WON BY 4 WICKETS",
+ venue: "RASTRIYA STADIUM",
  playerOfMatch: "NAVEEN",
  bestBatter: "AMIT",
  bestBowler: "ANNA",
  summaryImage: "match11-summary.jpg"
 },
+
 {
- date: "12/10/2025",
- opponent: "WE XI",
- overs: "22",
- result: "Lost by 67 runs"
+ date: "02/03/2026",
+ opponent: "UNNAO PANTHERS",
+ overs: "25",
+ result: "CAWNPORE TIGERS XI WON BY 6 WICKETS",
+ venue: "RAMKALI STADIUM"
 },
+
 {
- date: "29/06/2025",
- opponent: "DAU XI",
- overs: "18",
- result: "Won by 50 runs"
+ date: "17/05/2026",
+ opponent: "KANPUR WARRIOR XI",
+ overs: "25",
+ result: "CAWNPORE TIGERS XI WON BY 6 WICKETS",
+ venue: "NARAYAN STADIUM"
 },
+
 {
- date: "18/06/2025",
- opponent: "DAU XI",
+ date: "03/06/2026",
+ opponent: "MADHYAMIK LIONS",
  overs: "20",
- result: "Abandoned due to heat"
+ result: "CAWNPORE TIGERS XI WON BY 1 WICKET",
+ venue: "GEMS STADIUM"
+},
+
+{
+ date: "06/06/2026",
+ opponent: "STRIKE SQUAD XI",
+ overs: "20",
+ result: "CAWNPORE TIGERS XI LOST BY 9 RUNS",
+ venue: "EVEREST CRICKET STADIUM"
+},
+
+{
+ date: "10/06/2026",
+ opponent: "COUNTY STARS XI",
+ overs: "20",
+ result: "CAWNPORE TIGERS XI WON BY 7 WICKETS",
+ venue: "SCG STADIUM",
+ playerOfMatch: "PURAN",
+ bestBatter: "JISHAN",
+ bestBowler: "PRAVEEN",
+ summaryImage: "match6-summary.jpg"
+},
+
+{
+ date: "13/06/2026",
+ opponent: "STRIKE SQUAD XI",
+ overs: "25",
+ result: "MATCH ABANDONED DUE TO RAIN",
+ venue: "SCG STADIUM"
+},
+
+{
+ date: "18/06/2026",
+ opponent: "MSS YOUTH XI",
+ overs: "25",
+ result: "CAWNPORE TIGERS XI WON BY 6 WICKETS",
+ venue: "EVEREST STADIUM"
+},
+
+{
+ date: "20/06/2026",
+ opponent: "STRIKE SQUAD XI",
+ overs: "25",
+ result: "CAWNPORE TIGERS XI LOST BY 4 WICKETS",
+ venue: "EVEREST STADIUM"
+},
+
+{
+ date: "26/06/2026",
+ opponent: "MSS YOUTH XI",
+ overs: "25",
+ result: "CAWNPORE TIGERS XI LOST BY 7 WICKETS",
+ venue: "EVEREST STADIUM"
+},
+
+{
+ date: "19/07/2026",
+ opponent: "MADHYAMIK LIONS XI",
+ overs: "25",
+ result: "CAWNPORE TIGERS XI WON BY 2 WICKETS",
+ venue: "RAMKALI STADIUM"
+},
+
+{
+ date: "02/08/2026",
+ opponent: "COUNTY STARS XI",
+ overs: "25",
+ result: "",
+ venue: "RAMKALI STADIUM"
 }
+
 ];
