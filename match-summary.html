@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Match Summary - CAWNPORE TIGERS XI</title>
 
@@ -13,78 +16,68 @@
 <body>
 
 <header>
-
 <h1>🏏 CAWNPORE TIGERS XI</h1>
 <h2>Match Summary</h2>
-
 </header>
 
-
-<div class="summary-box" id="summaryBox">
-
-</div>
-
+<div class="summary-box" id="summaryBox"></div>
 
 <script>
 
-let params = new URLSearchParams(window.location.search);
+const params = new URLSearchParams(window.location.search);
+const id = Number(params.get("id"));
+const match = matches[id - 1];
 
-let id = Number(params.get("id"));
+const box = document.getElementById("summaryBox");
 
-let match = matches[id - 1];
+if(!match){
 
+box.innerHTML="<h2>Match Not Found!</h2>";
 
-let box = document.getElementById("summaryBox");
+}else{
 
-
-box.innerHTML = `
+box.innerHTML=`
 
 <h2>CAWNPORE TIGERS XI vs ${match.opponent}</h2>
 
-<p><b>Date:</b> ${match.date}</p>
+<p><b>Date :</b> ${match.date}</p>
 
-<p><b>Venue:</b> ${match.venue || "N/A"}</p>
+<p><b>Venue :</b> ${match.venue || "N/A"}</p>
 
-<p><b>Overs:</b> ${match.overs}</p>
+<p><b>Overs :</b> ${match.overs}</p>
 
-<p><b>Result:</b> ${match.result}</p>
-
+<p><b>Result :</b> ${match.result}</p>
 
 <hr>
 
 <h3>⭐ Player of the Match</h3>
-
 <p>${match.playerOfMatch || "N/A"}</p>
 
-
 <h3>🔥 Best Batter</h3>
-
 <p>${match.bestBatter || "N/A"}</p>
 
-
 <h3>🎯 Best Bowler</h3>
-
 <p>${match.bestBowler || "N/A"}</p>
 
-
 ${match.summaryImage ? `
+
 <hr>
 
 <h3>📸 Match Summary</h3>
 
-<img src="images/${match.summaryImage}"
+<img src="${match.summaryImage}"
 style="width:100%;
-border-radius:10px;
 border:3px solid orange;
+border-radius:10px;
 margin-top:10px;">
 
 ` : ""}
 
-
 `;
 
-</script>
+}
 
+</script>
 
 </body>
 </html>
