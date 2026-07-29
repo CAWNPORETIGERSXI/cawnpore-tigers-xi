@@ -67,9 +67,18 @@ box.innerHTML = `
 <p>${match.bestBowler || "N/A"}</p>
 
 
-${match.summaryImage ? 
-`<img src="${match.summaryImage}" width="100%">`
-: ""}
+${match.summaryImage ? `
+<hr>
+
+<h3>📸 Match Summary</h3>
+
+<img src="images/${match.summaryImage}"
+style="width:100%;
+border-radius:10px;
+border:3px solid orange;
+margin-top:10px;">
+
+` : ""}
 
 
 `;
