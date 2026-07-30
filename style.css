@@ -611,3 +611,76 @@ table tr:hover{
     margin:0;
     font-size:28px;
 }
+/* ==========================
+   Tournament Banner
+========================== */
+
+.tournament-banner{
+    position:relative;
+    width:95%;
+    max-width:900px;
+    margin:20px auto;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+}
+
+.tournament-banner img{
+    width:100%;
+    display:block;
+}
+
+.status{
+    position:absolute;
+    top:15px;
+    left:15px;
+    background:#16a34a;
+    color:#fff;
+    padding:8px 16px;
+    border-radius:30px;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.banner-overlay{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    padding:25px;
+    background:linear-gradient(transparent,rgba(0,0,0,.9));
+}
+
+.banner-overlay h1{
+    color:#fff;
+    margin:0;
+    font-size:30px;
+    font-weight:bold;
+}
+
+.banner-overlay h2{
+    color:#FFD700;
+    margin:5px 0;
+    font-size:22px;
+}
+
+.banner-overlay p{
+    color:#fff;
+    margin:0;
+    font-size:16px;
+}
+
+.tournament-info{
+    width:95%;
+    max-width:900px;
+    margin:20px auto;
+    background:#fff;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.tournament-info h2{
+    margin-top:0;
+    color:#ff8800;
+}
