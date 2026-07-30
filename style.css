@@ -807,3 +807,23 @@ footer{
     margin-top:0;
     color:#ff8800;
 }
+.team-card {
+    background: linear-gradient(135deg,#111,#222);
+    border: 2px solid #ff8800;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 15px 0;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(255,136,0,0.5);
+}
+
+.team-card h3 {
+    color: #ff8800;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.team-card p {
+    color: white;
+    font-size: 16px;
+}
