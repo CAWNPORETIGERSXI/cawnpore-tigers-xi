@@ -549,3 +549,18 @@ table tr:hover{
     margin-top:15px;
     line-height:1.7;
 }
+.tournament-card{
+    position:relative;
+}
+
+.status{
+    position:absolute;
+    top:15px;
+    right:15px;
+    background:#28a745;
+    color:#fff;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
