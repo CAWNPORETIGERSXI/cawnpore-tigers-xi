@@ -344,3 +344,98 @@ tr:hover td{
 }
 
 .summary-box h2,
+/* =========================================
+   PART 3
+   TOURNAMENT • UTPL • RESPONSIVE
+========================================= */
+
+/* TOURNAMENT LIST */
+
+.tournament-list{
+    width:95%;
+    max-width:950px;
+    margin:30px auto;
+}
+
+.tournament-card{
+    position:relative;
+    display:block;
+    overflow:hidden;
+    border-radius:18px;
+    margin-bottom:25px;
+    text-decoration:none;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+    transition:.35s;
+}
+
+.tournament-card:hover{
+    transform:translateY(-6px);
+}
+
+.tournament-card img{
+    width:100%;
+    display:block;
+}
+
+/* STATUS BADGE */
+
+.status{
+    position:absolute;
+    top:15px;
+    left:15px;
+    background:#16a34a;
+    color:#fff;
+    padding:8px 18px;
+    border-radius:30px;
+    font-size:14px;
+    font-weight:bold;
+    z-index:5;
+}
+
+/* IMAGE OVERLAY */
+
+.overlay,
+.banner-overlay{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    padding:25px;
+    background:linear-gradient(to top,rgba(0,0,0,.92),transparent);
+}
+
+.overlay h2,
+.banner-overlay h1{
+    color:#fff;
+    margin:0;
+}
+
+.banner-overlay h2{
+    color:#ff8800;
+    margin:6px 0;
+}
+
+.banner-overlay p{
+    color:#ddd;
+}
+
+/* UTPL BANNER */
+
+.tournament-banner{
+    position:relative;
+    width:95%;
+    max-width:950px;
+    margin:25px auto;
+    overflow:hidden;
+    border-radius:18px;
+}
+
+.tournament-banner img{
+    width:100%;
+    display:block;
+}
+
+/* DETAILS CARD */
+
+.info-card{
+    width:95
