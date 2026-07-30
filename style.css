@@ -498,3 +498,54 @@ table tr:hover{
     margin-top:15px;
     line-height:1.7;
 }
+.live-tournament-box{
+    width:90%;
+    max-width:900px;
+    margin:20px auto;
+    padding:18px;
+    background:linear-gradient(90deg,#ff8c00,#ff6600);
+    color:#fff;
+    text-align:center;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.4);
+}
+
+.live-tournament-box h1{
+    margin:0;
+    font-size:32px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.live-tournament-box p{
+    margin-top:8px;
+    font-size:18px;
+}
+
+.tournament-card{
+    width:90%;
+    max-width:900px;
+    margin:20px auto;
+    background:#1b1b1b;
+    color:#fff;
+    border:2px solid #ff8c00;
+    border-radius:15px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 0 15px rgba(255,140,0,.4);
+}
+
+.tournament-card h2{
+    color:#ff8c00;
+    margin-bottom:15px;
+}
+
+.status.ongoing{
+    color:#00ff66;
+    font-weight:bold;
+}
+
+.description{
+    margin-top:15px;
+    line-height:1.7;
+}
