@@ -469,3 +469,32 @@ table tr:hover{
     background:#fff;
     padding:8px;
 }
+.tournament-card{
+    max-width:900px;
+    margin:20px auto;
+    background:#1b1b1b;
+    color:#fff;
+    border:2px solid orange;
+    border-radius:15px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 0 15px rgba(255,140,0,.4);
+}
+
+.tournament-card h2{
+    color:orange;
+    margin-bottom:15px;
+}
+
+.status{
+    font-weight:bold;
+}
+
+.ongoing{
+    color:#00ff66;
+}
+
+.description{
+    margin-top:15px;
+    line-height:1.7;
+}
