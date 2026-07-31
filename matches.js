@@ -117,7 +117,11 @@ const matches = [
  opponent: "MADHYAMIK LIONS XI",
  overs: "25",
  result: "CAWNPORE TIGERS XI WON BY 2 WICKETS",
- venue: "RAMKALI STADIUM"
+ venue: "RAMKALI STADIUM",
+ playerOfMatch: "JISHAN",
+ bestBatter: "JISHAN",
+ bestBowler: "DEEPAK",
+ summaryImage: "match14-summary.jpg"
 },
 
 {
