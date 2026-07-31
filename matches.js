@@ -124,14 +124,15 @@ const matches = [
  date: "02/08/2026",
  opponent: "COUNTY STARS XI",
  overs: "25",
- result: "",
+ result: "UPCOMING",
  venue: "RAMKALI STADIUM"
-}
+},
+
 {
  date: "09/08/2026",
  opponent: "THE ROYAL STARS",
  overs: "25",
- result: "",
+ result: "UPCOMING",
  venue: "RAMKALI STADIUM"
 },
 
@@ -139,7 +140,7 @@ const matches = [
  date: "16/08/2026",
  opponent: "MSS YOUTH STARS",
  overs: "25",
- result: "",
+ result: "UPCOMING",
  venue: "RAMKALI STADIUM"
 },
 
@@ -147,7 +148,7 @@ const matches = [
  date: "26/08/2026",
  opponent: "GAJRAJ LEGION",
  overs: "25",
- result: "",
+ result: "UPCOMING",
  venue: "RAMKALI STADIUM"
 },
 
@@ -155,7 +156,7 @@ const matches = [
  date: "30/08/2026",
  opponent: "WISHDOM WARRIOR",
  overs: "25",
- result: "",
+ result: "UPCOMING",
  venue: "RAMKALI STADIUM"
 }
 
