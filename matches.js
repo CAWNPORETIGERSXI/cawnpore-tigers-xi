@@ -127,5 +127,36 @@ const matches = [
  result: "",
  venue: "RAMKALI STADIUM"
 }
+{
+ date: "09/08/2026",
+ opponent: "THE ROYAL STARS",
+ overs: "25",
+ result: "",
+ venue: "RAMKALI STADIUM"
+},
+
+{
+ date: "16/08/2026",
+ opponent: "MSS YOUTH STARS",
+ overs: "25",
+ result: "",
+ venue: "RAMKALI STADIUM"
+},
+
+{
+ date: "26/08/2026",
+ opponent: "GAJRAJ LEGION",
+ overs: "25",
+ result: "",
+ venue: "RAMKALI STADIUM"
+},
+
+{
+ date: "30/08/2026",
+ opponent: "WISHDOM WARRIOR",
+ overs: "25",
+ result: "",
+ venue: "RAMKALI STADIUM"
+}
 
 ];
