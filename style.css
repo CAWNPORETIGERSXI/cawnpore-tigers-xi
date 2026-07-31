@@ -827,3 +827,29 @@ footer{
     color: white;
     font-size: 16px;
 }
+.fixture-table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+background:#111;
+}
+
+.fixture-table th{
+background:#ff8800;
+color:#fff;
+padding:12px;
+border:1px solid #444;
+text-align:center;
+}
+
+.fixture-table td{
+padding:12px;
+border:1px solid #333;
+text-align:center;
+color:#fff;
+}
+
+.fixture-table tr:hover{
+background:#222;
+cursor:pointer;
+}
