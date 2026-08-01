@@ -685,3 +685,1014 @@ nav a.active{
     margin-top:30px;
 
 }
+/* =========================================
+   CAWNPORE TIGERS XI
+   STYLE.CSS V2.0 - PART 3A
+   MATCHES + TABLES + SUMMARY
+=========================================*/
+
+/* =========================
+   MATCHES TABLE
+========================= */
+
+table{
+    width:100%;
+    margin:30px auto;
+    border-collapse:collapse;
+    overflow:hidden;
+    border-radius:16px;
+    background:#181818;
+    box-shadow:0 0 18px rgba(255,136,0,.18);
+}
+
+table th{
+    background:linear-gradient(90deg,#ff8800,#ff6a00);
+    color:#000;
+    padding:16px;
+    font-size:17px;
+    text-transform:uppercase;
+}
+
+table td{
+    padding:15px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    color:#fff;
+    transition:.30s;
+}
+
+table tr{
+    transition:.30s;
+}
+
+table tr:hover{
+    background:#262626;
+    transform:scale(1.01);
+    cursor:pointer;
+}
+
+/* =========================
+   RESULT COLORS
+========================= */
+
+.win{
+    color:#25d366;
+    font-weight:bold;
+}
+
+.loss{
+    color:#ff4d4d;
+    font-weight:bold;
+}
+
+.tie,
+.nr{
+    color:#ffd54f;
+    font-weight:bold;
+}
+
+/* =========================
+   MATCH SUMMARY
+========================= */
+
+.summary-box{
+
+    width:95%;
+    max-width:1000px;
+
+    margin:35px auto;
+
+    background:#1b1b1b;
+
+    border:2px solid var(--primary);
+
+    border-radius:18px;
+
+    padding:30px;
+
+    box-shadow:0 0 20px rgba(255,136,0,.25);
+
+}
+
+.summary-box h2{
+
+    color:var(--primary);
+
+    margin-bottom:20px;
+
+}
+
+.summary-box h3{
+
+    color:#ffd27a;
+
+    margin:20px 0 10px;
+
+}
+
+.summary-box p{
+
+    color:#ddd;
+
+    line-height:1.8;
+
+}
+
+/* =========================
+   MATCH IMAGE
+========================= */
+
+.summary-img{
+
+    width:100%;
+
+    border-radius:16px;
+
+    border:3px solid var(--primary);
+
+    margin-bottom:25px;
+
+    box-shadow:0 0 15px rgba(255,136,0,.35);
+
+}
+
+/* =========================
+   SCORE HIGHLIGHT
+========================= */
+
+.score-box{
+
+    background:#111;
+
+    border-left:6px solid var(--primary);
+
+    border-radius:10px;
+
+    padding:18px;
+
+    margin:20px 0;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    color:#fff;
+
+}
+/* =========================================
+   CAWNPORE TIGERS XI
+   STYLE.CSS V2.0 - PART 3B
+   JERSEY + FIXTURES + COMMON CARDS
+=========================================*/
+
+/* =========================
+   JERSEY PAGE
+========================= */
+
+.jersey-section{
+
+    width:95%;
+    max-width:1000px;
+
+    margin:40px auto;
+
+    background:#1b1b1b;
+
+    border:2px solid var(--primary);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:0 0 20px rgba(255,136,0,.25);
+
+}
+
+.jersey-img{
+
+    width:100%;
+    max-width:520px;
+
+    margin:25px auto;
+
+    border-radius:18px;
+
+    border:4px solid var(--primary);
+
+    box-shadow:0 0 18px rgba(255,136,0,.45);
+
+}
+
+.jersey-title{
+
+    color:var(--primary);
+
+    font-size:32px;
+
+    margin-bottom:15px;
+
+}
+
+.jersey-text{
+
+    color:#ddd;
+
+    line-height:1.8;
+
+    margin-top:10px;
+
+}
+
+/* =========================
+   FIXTURE TABLE
+========================= */
+
+.fixture-table{
+
+    width:100%;
+
+    margin-top:25px;
+
+    border-collapse:collapse;
+
+    background:#181818;
+
+    overflow:hidden;
+
+    border-radius:15px;
+
+}
+
+.fixture-table th{
+
+    background:var(--primary);
+
+    color:#000;
+
+    padding:14px;
+
+    font-size:16px;
+
+}
+
+.fixture-table td{
+
+    padding:14px;
+
+    text-align:center;
+
+    color:#fff;
+
+    border-bottom:1px solid #333;
+
+}
+
+.fixture-table tr:hover{
+
+    background:#252525;
+
+}
+
+/* =========================
+   COMMON INFO CARD
+========================= */
+
+.info-card{
+
+    background:#1c1c1c;
+
+    border:2px solid var(--primary);
+
+    border-radius:18px;
+
+    padding:22px;
+
+    margin:25px 0;
+
+    box-shadow:0 0 15px rgba(255,136,0,.18);
+
+}
+
+.info-card h3{
+
+    color:var(--primary);
+
+    margin-bottom:12px;
+
+}
+
+.info-card p{
+
+    color:#ddd;
+
+    line-height:1.7;
+
+}
+
+/* =========================
+   HIGHLIGHT BOX
+========================= */
+
+.highlight{
+
+    background:linear-gradient(90deg,#ff8800,#ff6600);
+
+    color:#000;
+
+    font-weight:bold;
+
+    padding:18px;
+
+    border-radius:14px;
+
+    margin:25px 0;
+
+    text-align:center;
+
+    box-shadow:0 6px 18px rgba(255,136,0,.35);
+
+}
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.section-title{
+
+    text-align:center;
+
+    color:var(--primary);
+
+    font-size:34px;
+
+    margin-bottom:25px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+}
+/* =========================================
+   CAWNPORE TIGERS XI
+   STYLE.CSS V2.0 - PART 4A
+   TOURNAMENT + SERIES + UTPL
+=========================================*/
+
+/* =========================
+   LIVE TOURNAMENT BANNER
+========================= */
+
+.live-banner{
+
+    width:95%;
+    max-width:1200px;
+
+    margin:30px auto;
+
+    padding:22px;
+
+    text-align:center;
+
+    color:#fff;
+
+    border-radius:18px;
+
+    background:linear-gradient(90deg,#ff8800,#ff5500);
+
+    box-shadow:0 8px 25px rgba(255,136,0,.35);
+
+}
+
+.live-banner h1{
+
+    font-size:34px;
+
+    margin-bottom:8px;
+
+}
+
+.live-banner p{
+
+    color:#fff;
+
+    font-size:18px;
+
+}
+
+/* =========================
+   TOURNAMENT GRID
+========================= */
+
+.tournament-list{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(330px,1fr));
+
+    gap:25px;
+
+    margin-top:35px;
+
+}
+
+/* =========================
+   TOURNAMENT CARD
+========================= */
+
+.tournament-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:20px;
+
+    background:#1b1b1b;
+
+    border:2px solid var(--primary);
+
+    transition:.35s;
+
+    box-shadow:0 0 18px rgba(255,136,0,.18);
+
+}
+
+.tournament-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 12px 25px rgba(255,136,0,.35);
+
+}
+
+.tournament-card img{
+
+    width:100%;
+
+    height:240px;
+
+    object-fit:cover;
+
+}
+
+/* =========================
+   STATUS BADGE
+========================= */
+
+.status{
+
+    position:absolute;
+
+    top:15px;
+
+    left:15px;
+
+    background:#16a34a;
+
+    color:#fff;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+}
+
+.status.completed{
+
+    background:#2563eb;
+
+}
+
+.status.upcoming{
+
+    background:#dc2626;
+
+}
+
+/* =========================
+   CARD OVERLAY
+========================= */
+
+.overlay{
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+    padding:22px;
+
+    background:linear-gradient(
+    transparent,
+    rgba(0,0,0,.92));
+
+}
+
+.overlay h2{
+
+    color:#fff;
+
+    margin-bottom:8px;
+
+}
+
+.overlay p{
+
+    color:#ddd;
+
+}
+/* =========================================
+   CAWNPORE TIGERS XI
+   STYLE.CSS V2.0 - PART 4B
+   UTPL DASHBOARD + SERIES
+========================================= */
+
+/* =========================
+   UTPL DASHBOARD
+========================= */
+
+.dashboard{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+
+    margin-top:30px;
+
+}
+
+/* Dashboard Card */
+
+.dash-card{
+
+    background:linear-gradient(180deg,#222,#161616);
+
+    border:2px solid var(--primary);
+
+    border-radius:18px;
+
+    padding:30px 20px;
+
+    text-align:center;
+
+    color:#fff;
+
+    transition:.35s;
+
+    box-shadow:0 0 15px rgba(255,136,0,.20);
+
+}
+
+.dash-card:hover{
+
+    transform:translateY(-10px);
+
+    background:var(--primary);
+
+    color:#000;
+
+    box-shadow:0 12px 25px rgba(255,136,0,.40);
+
+}
+
+.dash-card i{
+
+    font-size:42px;
+
+    margin-bottom:15px;
+
+    color:var(--primary);
+
+}
+
+.dash-card:hover i{
+
+    color:#000;
+
+}
+
+.dash-card h3{
+
+    margin-bottom:10px;
+
+    font-size:22px;
+
+}
+
+.dash-card p{
+
+    color:#ddd;
+
+}
+
+.dash-card:hover p{
+
+    color:#000;
+
+}
+
+/* =========================
+   SERIES SECTION
+========================= */
+
+.series-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+
+    gap:25px;
+
+    margin-top:30px;
+
+}
+
+/* Series Card */
+
+.series-card{
+
+    background:#1b1b1b;
+
+    border:2px solid var(--primary);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    transition:.35s;
+
+    box-shadow:0 0 15px rgba(255,136,0,.20);
+
+}
+
+.series-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 12px 25px rgba(255,136,0,.35);
+
+}
+
+.series-card img{
+
+    width:100%;
+
+    height:220px;
+
+    object-fit:cover;
+
+}
+
+.series-content{
+
+    padding:22px;
+
+}
+
+.series-content h2{
+
+    color:var(--primary);
+
+    margin-bottom:10px;
+
+}
+
+.series-content p{
+
+    color:#ddd;
+
+    line-height:1.7;
+
+}
+
+/* Series Button */
+
+.series-btn{
+
+    display:inline-block;
+
+    margin-top:18px;
+
+    padding:10px 20px;
+
+    background:var(--primary);
+
+    color:#000;
+
+    border-radius:10px;
+
+    font-weight:bold;
+
+    transition:.30s;
+
+}
+
+.series-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 8px 18px rgba(255,136,0,.35);
+
+}
+
+/* =========================
+   SECTION DIVIDER
+========================= */
+
+.divider{
+
+    width:120px;
+
+    height:4px;
+
+    background:var(--primary);
+
+    margin:20px auto 35px;
+
+    border-radius:20px;
+
+}
+/* =========================================
+   CAWNPORE TIGERS XI
+   STYLE.CSS V2.0 - PART 5
+   RESPONSIVE + FOOTER + UTILITIES
+========================================= */
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+    margin-top:50px;
+
+    background:#000;
+
+    color:#bbb;
+
+    text-align:center;
+
+    padding:35px 20px;
+
+    border-top:3px solid var(--primary);
+
+}
+
+footer h3{
+
+    color:var(--primary);
+
+    margin-bottom:12px;
+
+}
+
+footer p{
+
+    color:#aaa;
+
+    margin:8px 0;
+
+}
+
+/* =========================
+   SCROLL TO TOP
+========================= */
+
+#topBtn{
+
+    position:fixed;
+
+    right:20px;
+
+    bottom:20px;
+
+    width:50px;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    color:#000;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    display:none;
+
+    z-index:999;
+
+    box-shadow:0 0 15px rgba(255,136,0,.45);
+
+    transition:.30s;
+
+}
+
+#topBtn:hover{
+
+    transform:translateY(-5px);
+
+}
+
+/* =========================
+   FADE ANIMATION
+========================= */
+
+.fade-up{
+
+    animation:fadeUp .8s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(35px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* =========================
+   GLOW EFFECT
+========================= */
+
+.glow{
+
+    box-shadow:0 0 25px rgba(255,136,0,.45);
+
+}
+
+/* =========================
+   UTILITIES
+========================= */
+
+.text-center{
+
+    text-align:center;
+
+}
+
+.mt-20{
+
+    margin-top:20px;
+
+}
+
+.mt-30{
+
+    margin-top:30px;
+
+}
+
+.mt-40{
+
+    margin-top:40px;
+
+}
+
+.mb-20{
+
+    margin-bottom:20px;
+
+}
+
+.mb-30{
+
+    margin-bottom:30px;
+
+}
+
+.round{
+
+    border-radius:15px;
+
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:992px){
+
+    header h1{
+
+        font-size:34px;
+
+    }
+
+    .hero-text h1{
+
+        font-size:42px;
+
+    }
+
+    .hero-text p{
+
+        font-size:20px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    nav{
+
+        gap:8px;
+
+        padding:10px;
+
+    }
+
+    nav a{
+
+        font-size:14px;
+
+        padding:10px 14px;
+
+    }
+
+    header{
+
+        padding:25px 15px;
+
+    }
+
+    header h1{
+
+        font-size:28px;
+
+    }
+
+    .hero{
+
+        height:80vh;
+
+    }
+
+    .hero-text h1{
+
+        font-size:34px;
+
+    }
+
+    .hero-text p{
+
+        font-size:17px;
+
+    }
+
+    .btn,
+    .btn2{
+
+        display:block;
+
+        width:90%;
+
+        margin:12px auto;
+
+    }
+
+    .gallery{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .players{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .stats{
+
+        grid-template-columns:1fr 
