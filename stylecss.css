@@ -1757,3 +1757,37 @@ footer p{
     background:#ffd54f;
 
 }
+/* ===== PREMIUM MENU FIX ===== */
+
+.main-nav{
+    position:sticky;
+    top:0;
+    z-index:9999;
+    background:#111;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+    padding:10px;
+    border-bottom:2px solid #ff8800;
+}
+
+.main-nav a{
+    background:transparent;
+    color:#fff;
+    padding:10px 16px;
+    border-radius:12px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.main-nav a:hover{
+    background:#ff8800;
+    color:#000;
+}
+
+.main-nav a.active{
+    background:#ff8800;
+    color:#000;
+}
