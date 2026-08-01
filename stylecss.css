@@ -476,3 +476,212 @@ nav a.active{
     box-shadow:0 0 10px rgba(255,136,0,.35);
 
 }
+/* =========================================
+   CAWNPORE TIGERS XI
+   STYLE.CSS V2.0 - PART 2B
+   PROFILE + GALLERY + TEAM STATS
+=========================================*/
+
+/* =========================
+   PLAYER PROFILE
+========================= */
+
+.profile-card{
+
+    width:95%;
+    max-width:900px;
+
+    margin:40px auto;
+
+    background:linear-gradient(180deg,#1d1d1d,#111);
+
+    border:2px solid var(--primary);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:0 0 20px rgba(255,136,0,.25);
+
+}
+
+/* Player Photo */
+
+.profile-card img:not(.jersey-img){
+
+    width:190px;
+    height:190px;
+
+    margin:auto;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:5px solid var(--primary);
+
+    box-shadow:0 0 18px rgba(255,136,0,.40);
+
+}
+
+/* Name */
+
+.profile-card h2{
+
+    margin-top:20px;
+
+    color:var(--primary);
+
+    font-size:30px;
+
+}
+
+/* Details */
+
+.profile-card p{
+
+    margin-top:10px;
+
+    font-size:17px;
+
+    color:#ddd;
+
+}
+
+/* =========================
+   TEAM STATS
+========================= */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(180px,1fr));
+
+    gap:20px;
+
+    margin-top:30px;
+
+}
+
+/* Single Stat */
+
+.stat-card{
+
+    background:#1c1c1c;
+
+    border:2px solid var(--primary);
+
+    border-radius:18px;
+
+    padding:22px;
+
+    text-align:center;
+
+    transition:.35s;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-8px);
+
+    background:var(--primary);
+
+    color:#000;
+
+}
+
+.stat-card h3{
+
+    font-size:34px;
+
+    color:var(--primary);
+
+}
+
+.stat-card:hover h3{
+
+    color:#000;
+
+}
+
+.stat-card p{
+
+    margin-top:10px;
+
+    color:#ddd;
+
+}
+
+.stat-card:hover p{
+
+    color:#000;
+
+}
+
+/* =========================
+   IMAGE GALLERY
+========================= */
+
+.gallery{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(260px,1fr));
+
+    gap:20px;
+
+    margin-top:30px;
+
+}
+
+/* Gallery Image */
+
+.gallery img{
+
+    width:100%;
+
+    height:320px;
+
+    object-fit:cover;
+
+    border-radius:16px;
+
+    border:2px solid var(--primary);
+
+    transition:.35s;
+
+}
+
+/* Hover */
+
+.gallery img:hover{
+
+    transform:scale(1.05);
+
+    box-shadow:0 0 20px rgba(255,136,0,.45);
+
+}
+
+/* =========================
+   PLAYER NAVIGATION
+========================= */
+
+.player-nav{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:18px;
+
+    flex-wrap:wrap;
+
+    margin-top:30px;
+
+}
