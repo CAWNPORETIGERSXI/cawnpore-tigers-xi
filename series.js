@@ -59,3 +59,53 @@ match.summary=="#"
 `;
 
 });
+const matches = [
+
+{
+match:"Match 1",
+date:"18 June 2026",
+result:"Won by 6 Wickets",
+link:"match-summary.html?id=11"
+},
+
+{
+match:"Match 2",
+date:"26 June 2026",
+result:"Lost by 7 Wickets",
+link:"match-summary.html?id=13"
+},
+
+{
+match:"Match 3",
+date:"Coming Soon",
+result:"Upcoming",
+link:"#"
+}
+
+];
+
+let html="";
+
+matches.forEach(m=>{
+
+html+=`
+
+<div class="match-card">
+
+<h3>${m.match}</h3>
+
+<p><b>Date :</b> ${m.date}</p>
+
+<p><b>Result :</b> ${m.result}</p>
+
+<a class="match-btn" href="${m.link}">
+${m.link=="#"?"Coming Soon":"View Match"}
+</a>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("seriesMatches").innerHTML=html;
