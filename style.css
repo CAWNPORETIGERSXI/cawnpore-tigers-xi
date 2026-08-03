@@ -61,22 +61,31 @@ footer{
     padding:20px;
     font-size:14px;
 }
-nav{
-  background:#111;
-  padding:15px;
-  text-align:center;
+.main-nav{
+    background:#ff8800;
+    padding:15px 10px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
 }
 
-nav a{
-  color:white;
-  text-decoration:none;
-  margin:0 15px;
-  font-size:18px;
-  font-weight:bold;
+.main-nav a{
+    background:#222;
+    color:#fff;
+    text-decoration:none;
+    padding:10px 16px;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:bold;
+    transition:.3s;
 }
 
-nav a:hover{
-  color:orange;
+.main-nav a:hover,
+.main-nav a.active{
+    background:#fff;
+    color:#ff8800;
 }
 .gallery{
 display:flex;
