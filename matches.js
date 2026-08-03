@@ -124,14 +124,18 @@ const matches = [
  summaryImage: "match14-summary.jpg"
 },
 
-{
- date: "02/08/2026",
- opponent: "COUNTY STARS XI",
- overs: "25",
- result: "UPCOMING",
- venue: "RAMKALI STADIUM"
-},
 
+{
+date: "02/08/2026",
+opponent: "COUNTY STARS",
+overs: "25",
+result: "CAWNPORE TIGERS XI WON BY 2 WICKETS",
+venue: "RAMKALI STADIUM",
+playerOfMatch: "ANNA",
+bestBatter: "JISHAN",
+bestBowler: "VINAY",
+summaryImage: "match15-summary.jpg"
+},
 {
  date: "09/08/2026",
  opponent: "THE ROYAL STARS",
