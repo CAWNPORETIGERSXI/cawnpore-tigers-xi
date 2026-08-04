@@ -1,1 +1,103 @@
-. 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CAWNPORE TIGERS XI - Admin Panel</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+body{
+    background:#111;
+    color:#fff;
+    font-family:Arial,sans-serif;
+    margin:0;
+}
+
+.container{
+    max-width:900px;
+    margin:30px auto;
+    background:#1a1a1a;
+    padding:20px;
+    border-radius:15px;
+}
+
+h1{
+    text-align:center;
+    color:#ff9800;
+}
+
+input,textarea{
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+    background:#ff9800;
+    color:#fff;
+    font-size:18px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+button:hover{
+    background:#e68900;
+}
+
+#adminPanel{
+    display:none;
+}
+
+.success{
+    color:lime;
+    text-align:center;
+}
+
+.error{
+    color:red;
+    text-align:center;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🏏 CAWNPORE TIGERS XI</h1>
+
+<div id="loginBox">
+
+<h2>Admin Login</h2>
+
+<input type="email" id="email" placeholder="Admin Email">
+
+<input type="password" id="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<p id="loginMsg"></p>
+
+</div>
+
+<div id="adminPanel">
+
+<h2>Add Match</h2>
+
+<input type="text" id="title" placeholder="Match Title">
+
+<input type="text" id="date" placeholder="Match Date">
+
+<input type="text" id="opponent" placeholder="Opponent
