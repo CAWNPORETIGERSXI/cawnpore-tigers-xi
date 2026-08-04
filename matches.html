@@ -32,24 +32,6 @@
     </tbody>
   </table>
 
-  <script>
-
-    const table = document.getElementById("matchTable");
-
-    matches.forEach((match, index) => {
-
-      table.innerHTML += `
-      <tr onclick="openMatch(${index})">
-        <td>${index + 1}</td>
-        <td>${match.date}</td>
-        <td>${match.opponent}</td>
-        <td>${match.overs}</td>
-        <td>${match.result}</td>
-      </tr>
-      `;
-
-    <script type="module" src="matches.js"></script>
-
 </body>
 
 </html>
