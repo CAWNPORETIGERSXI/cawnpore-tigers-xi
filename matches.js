@@ -169,3 +169,6 @@ summaryImage: "match15-summary.jpg"
 }
 
 ];
+];
+
+export { matches };
