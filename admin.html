@@ -97,7 +97,31 @@ button:hover{
 <button onclick="saveMatch()">Save Match</button>
 
 <p id="saveMsg"></p>
+<hr style="margin:30px 0;border:1px solid #333;">
 
+<h2>Add Photos 📸</h2>
+
+<input type="file" id="photoFile" accept="image/*" multiple>
+
+<select id="photoCategory" style="
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:8px;
+font-size:16px;
+">
+
+<option value="Gallery">Gallery</option>
+<option value="Jersey Launch">Jersey Launch</option>
+<option value="Tournament">Tournament</option>
+<option value="Series">Series</option>
+<option value="Match Photos">Match Photos</option>
+
+</select>
+
+<button onclick="uploadPhoto()">Upload Photos</button>
+
+<p id="photoMsg"></p>
 </div>
 
 </div>
