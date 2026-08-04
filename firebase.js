@@ -4,6 +4,9 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/12.1.0/firebase
 
 import { getAuth } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
+import { getStorage } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js";
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyDqCbGl1R2JIcCVDKltft1jK06xW7AEMcY",
   authDomain: "cawnpore-tigers-xi.firebaseapp.com",
@@ -13,10 +16,15 @@ const firebaseConfig = {
   appId: "1:46209940725:web:5d0a4c0628de02fbc819bc"
 };
 
+
 const app = initializeApp(firebaseConfig);
+
 
 const db = getFirestore(app);
 
 const auth = getAuth(app);
 
-export { db, auth };
+const storage = getStorage(app);
+
+
+export { db, auth, storage };
