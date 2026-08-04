@@ -25,3 +25,32 @@ serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 import { matches } from "./matches.js";
+const uploadBtn = document.getElementById("uploadBtn");
+const status = document.getElementById("status");
+
+uploadBtn.addEventListener("click", async () => {
+
+  uploadBtn.disabled = true;
+  status.textContent = "Uploading matches...";
+
+  try {
+
+    for (const match of matches) {
+
+      await addDoc(collection(db, "matches"), {
+        ...match,
+        createdAt: serverTimestamp()
+      });
+
+    }
+
+    status.textContent = "✅ All matches uploaded successfully!";
+
+  } catch (error) {
+
+    console.error(error);
+    status.textContent = "❌ Upload failed!";
+
+  }
+
+});
