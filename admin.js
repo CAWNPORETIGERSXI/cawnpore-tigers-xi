@@ -47,15 +47,18 @@ const result = document.getElementById("result").value;
 
     try {
 
-        await addDoc(collection(db, "matches"), {
+       await addDoc(collection(db, "matches"), {
 
-            title,
-            date,
-            opponent,
-            result,
-            createdAt: new Date()
+    title,
+    date,
+    opponent,
+    playerOfMatch,
+    bestBatter,
+    bestBowler,
+    result,
+    createdAt: new Date()
 
-        });
+});
 
         document.getElementById("saveMsg").innerHTML =
         "<span class='success'>Match Saved Successfully 🏏</span>";
