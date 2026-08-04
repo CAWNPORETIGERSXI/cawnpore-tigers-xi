@@ -10,63 +10,47 @@
 
 <style>
 body{
+    margin:0;
     background:#111;
     color:#fff;
     font-family:Arial,sans-serif;
-    margin:0;
 }
-
 .container{
-    max-width:900px;
+    width:90%;
+    max-width:800px;
     margin:30px auto;
-    background:#1a1a1a;
+    background:#1b1b1b;
     padding:20px;
     border-radius:15px;
 }
-
-h1{
+h1,h2{
     text-align:center;
     color:#ff9800;
 }
-
 input,textarea{
     width:100%;
     padding:12px;
-    margin:8px 0;
+    margin:10px 0;
     border:none;
     border-radius:8px;
     font-size:16px;
+    box-sizing:border-box;
 }
-
 button{
     width:100%;
     padding:14px;
-    margin-top:10px;
+    background:#ff9800;
+    color:white;
     border:none;
     border-radius:8px;
-    background:#ff9800;
-    color:#fff;
     font-size:18px;
     cursor:pointer;
-    font-weight:bold;
 }
-
 button:hover{
     background:#e68900;
 }
-
 #adminPanel{
     display:none;
-}
-
-.success{
-    color:lime;
-    text-align:center;
-}
-
-.error{
-    color:red;
-    text-align:center;
 }
 </style>
 
@@ -100,4 +84,20 @@ button:hover{
 
 <input type="text" id="date" placeholder="Match Date">
 
-<input type="text" id="opponent" placeholder="Opponent
+<input type="text" id="opponent" placeholder="Opponent">
+
+<textarea id="result" placeholder="Match Result"></textarea>
+
+<button onclick="saveMatch()">Save Match</button>
+
+<p id="saveMsg"></p>
+
+</div>
+
+</div>
+
+<script type="module" src="firebase.js"></script>
+<script type="module" src="admin.js"></script>
+
+</body>
+</html>
