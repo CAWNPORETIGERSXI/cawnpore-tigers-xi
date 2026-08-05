@@ -1,4 +1,34 @@
-import { auth, db } from "./firebase.js";
+window.importOldMatches = async function () {
+
+const matches = [
+
+{title:"Match 1",date:"18/06/2025",opponent:"DAU XI",overs:"20",result:"ABANDONED DUE TO HEAT"},
+{title:"Match 2",date:"29/06/2025",opponent:"DAU XI",overs:"18",result:"CAWNPORE TIGERS XI WON BY 50 RUNS"},
+{title:"Match 3",date:"12/10/2025",opponent:"WE XI",overs:"22",result:"WE XI WON BY 67 RUNS"},
+{title:"Match 4",date:"20/10/2025",opponent:"TEAM DIAMOND",overs:"25",result:"CAWNPORE TIGERS XI WON BY 4 WICKETS"},
+{title:"Match 5",date:"02/03/2026",opponent:"UNNAO PANTHERS",overs:"25",result:"CAWNPORE TIGERS XI WON BY 6 WICKETS"},
+{title:"Match 6",date:"17/05/2026",opponent:"KANPUR CRICKET WARRIORS",overs:"25",result:"CAWNPORE TIGERS XI WON BY 6 WICKETS"},
+{title:"Match 7",date:"03/06/2026",opponent:"MADHYAMIK LIONS",overs:"20",result:"CAWNPORE TIGERS XI WON BY 1 WICKET"},
+{title:"Match 8",date:"06/06/2026",opponent:"STRIKE SQUAD XI",overs:"20",result:"CAWNPORE TIGERS XI LOST BY 9 RUNS"},
+{title:"Match 9",date:"10/06/2026",opponent:"COUNTY STARS",overs:"20",result:"CAWNPORE TIGERS XI WON BY 7 WICKETS"},
+{title:"Match 10",date:"13/06/2026",opponent:"STRIKE SQUAD XI",overs:"25",result:"ABANDONED DUE TO RAIN"},
+{title:"Match 11",date:"18/06/2026",opponent:"MSS YOUTH STAR XI",overs:"25",result:"CAWNPORE TIGERS XI WON BY 6 WICKETS"},
+{title:"Match 12",date:"20/06/2026",opponent:"STRIKE SQUAD XI",overs:"25",result:"CAWNPORE TIGERS XI LOST BY 4 WICKETS"},
+{title:"Match 13",date:"26/06/2026",opponent:"MSS YOUTH STAR",overs:"25",result:"CAWNPORE TIGERS XI LOST BY 7 WICKETS"},
+{title:"Match 14",date:"19/07/2026",opponent:"MADHYAMIK LIONS",overs:"25",result:"CAWNPORE TIGERS XI WON BY 2 WICKETS"}
+
+];
+
+for (const m of matches) {
+await addDoc(collection(db,"matches"),{
+...m,
+createdAt:new Date()
+});
+}
+
+alert("All Matches Imported Successfully");
+
+};import { auth, db } from "./firebase.js";
 
 import {
   signInWithEmailAndPassword
@@ -71,5 +101,36 @@ const result = document.getElementById("result").value;
         "<span class='error'>" + error.message + "</span>";
 
     }
+
+};
+window.importOldMatches = async function () {
+
+const matches = [
+
+{title:"Match 1",date:"18/06/2025",opponent:"DAU XI",overs:"20",result:"ABANDONED DUE TO HEAT"},
+{title:"Match 2",date:"29/06/2025",opponent:"DAU XI",overs:"18",result:"CAWNPORE TIGERS XI WON BY 50 RUNS"},
+{title:"Match 3",date:"12/10/2025",opponent:"WE XI",overs:"22",result:"WE XI WON BY 67 RUNS"},
+{title:"Match 4",date:"20/10/2025",opponent:"TEAM DIAMOND",overs:"25",result:"CAWNPORE TIGERS XI WON BY 4 WICKETS"},
+{title:"Match 5",date:"02/03/2026",opponent:"UNNAO PANTHERS",overs:"25",result:"CAWNPORE TIGERS XI WON BY 6 WICKETS"},
+{title:"Match 6",date:"17/05/2026",opponent:"KANPUR CRICKET WARRIORS",overs:"25",result:"CAWNPORE TIGERS XI WON BY 6 WICKETS"},
+{title:"Match 7",date:"03/06/2026",opponent:"MADHYAMIK LIONS",overs:"20",result:"CAWNPORE TIGERS XI WON BY 1 WICKET"},
+{title:"Match 8",date:"06/06/2026",opponent:"STRIKE SQUAD XI",overs:"20",result:"CAWNPORE TIGERS XI LOST BY 9 RUNS"},
+{title:"Match 9",date:"10/06/2026",opponent:"COUNTY STARS",overs:"20",result:"CAWNPORE TIGERS XI WON BY 7 WICKETS"},
+{title:"Match 10",date:"13/06/2026",opponent:"STRIKE SQUAD XI",overs:"25",result:"ABANDONED DUE TO RAIN"},
+{title:"Match 11",date:"18/06/2026",opponent:"MSS YOUTH STAR XI",overs:"25",result:"CAWNPORE TIGERS XI WON BY 6 WICKETS"},
+{title:"Match 12",date:"20/06/2026",opponent:"STRIKE SQUAD XI",overs:"25",result:"CAWNPORE TIGERS XI LOST BY 4 WICKETS"},
+{title:"Match 13",date:"26/06/2026",opponent:"MSS YOUTH STAR",overs:"25",result:"CAWNPORE TIGERS XI LOST BY 7 WICKETS"},
+{title:"Match 14",date:"19/07/2026",opponent:"MADHYAMIK LIONS",overs:"25",result:"CAWNPORE TIGERS XI WON BY 2 WICKETS"}
+
+];
+
+for (const m of matches) {
+await addDoc(collection(db,"matches"),{
+...m,
+createdAt:new Date()
+});
+}
+
+alert("All Matches Imported Successfully");
 
 };
