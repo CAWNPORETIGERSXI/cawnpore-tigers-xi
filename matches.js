@@ -20,7 +20,7 @@ async function loadMatches() {
     const m = doc.data();
 
     table.innerHTML += `
-      <tr onclick="window.open('https://cricheroes.com/', '_blank')">
+      <tr onclick="window.open('https://chshare.link/team/oACfCf', '_blank')">
         <td>${sr++}</td>
         <td>${m.date || ""}</td>
         <td>${m.opponent || ""}</td>
