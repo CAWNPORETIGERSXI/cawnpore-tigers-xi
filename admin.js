@@ -1,3 +1,4 @@
+alert("admin.js loaded");
 window.importOldMatches = async function () {
 
 const matches = [
