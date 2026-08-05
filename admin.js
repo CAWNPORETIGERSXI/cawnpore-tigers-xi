@@ -52,7 +52,8 @@ const result = document.getElementById("result").value;
 
     title,
     date,
-    opponent,
+    opponent, 
+    overs, 
     playerOfMatch,
     bestBatter,
     bestBowler,
