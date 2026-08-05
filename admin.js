@@ -47,6 +47,7 @@ window.saveMatch = async function () {
     const title = document.getElementById("title").value;
     const date = document.getElementById("date").value;
     const opponent = document.getElementById("opponent").value;
+const eventId = document.getElementById("eventId").value;
     const overs = document.getElementById("overs").value;
     const playerOfMatch = document.getElementById("playerOfMatch").value;
     const bestBatter = document.getElementById("bestBatter").value;
