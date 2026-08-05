@@ -58,7 +58,7 @@ const eventId = document.getElementById("eventId").value;
     try {
 
         await addDoc(collection(db,"matches"),{
-
+            eventId, 
             title,
             date,
             opponent,
