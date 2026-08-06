@@ -295,3 +295,18 @@ window.addSeries = async function () {
     document.getElementById("newSeries").value="";
 
 };
+// SHOW / HIDE EVENT LIST
+
+const eventType = document.getElementById("eventId");
+const eventNameBox = document.getElementById("eventNameBox");
+
+eventType.addEventListener("change", async () => {
+
+    if(eventType.value=="MAIN"){
+        eventNameBox.style.display="none";
+        return;
+    }
+
+    eventNameBox.style.display="block";
+
+});
