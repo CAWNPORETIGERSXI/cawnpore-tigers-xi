@@ -15,7 +15,7 @@ async function loadTournamentMatches() {
 
   const q = query(
     collection(db, "matches"),
-    where("eventId", "==", "TOURNAMENT")
+    where("eventId", "==", "VCCL_2026")
   );
 
   const snapshot = await getDocs(q);
