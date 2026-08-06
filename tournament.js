@@ -27,7 +27,7 @@ async function loadTournamentMatches() {
     const match = doc.data();
 
     table.innerHTML += `
-      <tr onclick="location.href='match-summary.html?id=${doc.id}'">
+      <tr onclick="window.location.href='https://chshare.link/team/oACfCf'">
         <td>${no++}</td>
         <td>${match.date || ""}</td>
         <td>${match.opponent || ""}</td>
