@@ -309,6 +309,14 @@ eventType.addEventListener("change", async () => {
 
     eventNameBox.style.display="block";
 
+    if(eventType.value=="TOURNAMENT"){
+        await loadEvents("TOURNAMENT");
+    }
+
+    if(eventType.value=="SERIES"){
+        await loadEvents("SERIES");
+    }
+
 });
 async function loadEvents(type){
 
