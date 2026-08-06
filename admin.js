@@ -49,8 +49,20 @@ window.login = async function () {
 window.saveMatch = async function () {
 
 
-    const title = document.getElementById("title").value;
-const eventId = document.getElementById("eventId").value;
+    const title = document.getElementById("title").value;c
+
+const eventType = document.getElementById("eventId").value;
+
+let eventId = "MAIN";
+
+if (eventType !== "MAIN") {
+    eventId = document.getElementById("eventName").value;
+
+    if (eventId === "") {
+        alert("Please select Tournament / Series");
+        return;
+    }
+}
     const date = document.getElementById("date").value;
     const opponent = document.getElementById("opponent").value;
 
