@@ -238,3 +238,57 @@ alert(error.message);
 
 
 };
+// ADD TOURNAMENT
+window.addTournament = async function () {
+
+    const name = document.getElementById("newTournament").value.trim();
+
+    if(name==""){
+        alert("Enter Tournament Name");
+        return;
+    }
+
+    const id = name.toUpperCase().replace(/\s+/g,"_");
+
+    await setDoc(doc(db,"events",id),{
+
+        eventId:id,
+        eventName:name,
+        eventType:"TOURNAMENT",
+        status:"ACTIVE"
+
+    });
+
+    alert("Tournament Added Successfully 🏆");
+
+    document.getElementById("newTournament").value="";
+
+};
+
+
+// ADD SERIES
+window.addSeries = async function () {
+
+    const name = document.getElementById("newSeries").value.trim();
+
+    if(name==""){
+        alert("Enter Series Name");
+        return;
+    }
+
+    const id = name.toUpperCase().replace(/\s+/g,"_");
+
+    await setDoc(doc(db,"events",id),{
+
+        eventId:id,
+        eventName:name,
+        eventType:"SERIES",
+        status:"ACTIVE"
+
+    });
+
+    alert("Series Added Successfully 🏏");
+
+    document.getElementById("newSeries").value="";
+
+};
