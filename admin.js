@@ -253,14 +253,23 @@ window.addTournament = async function () {
 
     const id = name.toUpperCase().replace(/\s+/g,"_");
 
-    await setDoc(doc(db,"events",id),{
+    const season = document.getElementById("tournamentSeason").value.trim();
+const format = document.getElementById("tournamentFormat").value.trim();
+const status = document.getElementById("tournamentStatus").value.trim();
 
-        eventId:id,
-        eventName:name,
-        eventType:"TOURNAMENT",
-        status:"ACTIVE"
+await setDoc(doc(db,"events",id),{
 
-    });
+    eventId: id,
+    eventName: name,
+    eventType: "TOURNAMENT",
+
+    season: season,
+    format: format,
+    status: status,
+
+    createdAt: new Date()
+
+});
 
     alert("Tournament Added Successfully 🏆");
 
