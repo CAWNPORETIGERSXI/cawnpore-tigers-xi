@@ -310,3 +310,29 @@ eventType.addEventListener("change", async () => {
     eventNameBox.style.display="block";
 
 });
+async function loadEvents(type){
+
+    const eventDropdown = document.getElementById("eventName");
+
+    eventDropdown.innerHTML =
+    '<option value="">Select Tournament / Series</option>';
+
+    const q = query(
+        collection(db,"events"),
+        where("eventType","==",type)
+    );
+
+    const snapshot = await getDocs(q);
+
+    snapshot.forEach((doc)=>{
+
+        const data = doc.data();
+
+        eventDropdown.innerHTML +=
+        `<option value="${data.eventId}">
+            ${data.eventName}
+        </option>`;
+
+    });
+
+}
