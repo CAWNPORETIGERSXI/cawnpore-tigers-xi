@@ -49,7 +49,7 @@ window.login = async function () {
 window.saveMatch = async function () {
 
 
-    const title = document.getElementById("title").value;c
+    const title = document.getElementById("title").value;
 
 const eventType = document.getElementById("eventId").value;
 
