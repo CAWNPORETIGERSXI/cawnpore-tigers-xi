@@ -36,3 +36,22 @@ window.login = async function () {
     }
 
 };
+// ==========================
+// DASHBOARD BUTTONS
+// ==========================
+
+const tournamentBtn = document.getElementById("tournamentBtn");
+const seriesBtn = document.getElementById("seriesBtn");
+const individualBtn = document.getElementById("individualBtn");
+
+tournamentBtn.onclick = function () {
+    alert("Tournament Module - Coming Next");
+};
+
+seriesBtn.onclick = function () {
+    alert("Series Module - Coming Next");
+};
+
+individualBtn.onclick = function () {
+    alert("Individual Matches Module - Coming Next");
+};
