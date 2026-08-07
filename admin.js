@@ -77,6 +77,7 @@ if (eventType !== "MAIN") {
 
         await addDoc(collection(db,"matches"),{
             eventId, 
+            eventType, 
             title,
             date,
             opponent,
