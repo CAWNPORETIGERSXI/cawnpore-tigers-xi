@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CAWNPORE TIGERS XI - Admin Panel</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+    margin:0;
+    background:#111;
+    color:white;
+    font-family:Arial,sans-serif;
+}
+
+.container{
+    width:90%;
+    max-width:700px;
+    margin:30px auto;
+    background:#1b1b1b;
+    padding:20px;
+    border-radius:15px;
+}
+
+h1,h2{
+    text-align:center;
+    color:#ff9800;
+}
+
+input,button{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    box-sizing:border-box;
+}
+
+button{
+    background:#ff9800;
+    color:white;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#e68900;
+}
+
+.page{
+    display:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🏏 CAWNPORE TIGERS XI</h1>
+
+<!-- LOGIN -->
+
+<div id="loginPage">
+
+<h2>Admin Login</h2>
+
+<input
+type="email"
+id="email"
+placeholder="Admin Email">
+
+<input
+type="password"
+id="password"
+placeholder="Password">
+
+<button onclick="login()">
+
+Login
+
+</button>
+
+<p id="loginMsg"></p>
+
+</div>
+
+<!-- DASHBOARD -->
+
+<div
+id="dashboardPage"
+class="page">
+
+<h2>Dashboard</h2>
+
+<button id="tournamentBtn">
+
+🏆 Tournament
+
+</button>
+
+<button id="seriesBtn">
+
+🏏 Series
+
+</button>
+
+<button id="individualBtn">
+
+📋 Individual Matches
+
+</button>
+
+</div>
+<!-- TOURNAMENT PAGE -->
+
+<div
+id="tournamentPage"
+class="page">
+
+<h2>🏆 Tournament</h2>
+
+<button id="addTournamentBtn">
+
+➕ Add Tournament
+
+</button>
+
+<div id="tournamentList">
+
+</div>
+
+<br>
+
+<button id="backFromTournament">
+
+⬅ Back
+
+</button>
+
+</div>
+
+
+<!-- SERIES PAGE -->
+
+<div
+id="seriesPage"
+class="page">
+
+<h2>🏏 Series</h2>
+
+<button id="addSeriesBtn">
+
+➕ Add Series
+
+</button>
+
+<div id="seriesList">
+
+</div>
+
+<br>
+
+<button id="backFromSeries">
+
+⬅ Back
+
+</button>
+
+</div>
+
+
+<!-- INDIVIDUAL MATCH PAGE -->
+
+<div
+id="individualPage"
+class="page">
+
+<h2>📋 Individual Matches</h2>
+
+<button id="addIndividualMatchBtn">
+
+➕ Add Match
+
+</button>
+
+<div id="individualMatchList">
+
+</div>
+
+<br>
+
+<button id="backFromIndividual">
+
+⬅ Back
+
+</button>
+
+</div>
+
+</div>
+
+<script type="module" src="firebase.js"></script>
+
+<script type="module" src="admin2.js"></script>
+
+</body>
+
+</html>
