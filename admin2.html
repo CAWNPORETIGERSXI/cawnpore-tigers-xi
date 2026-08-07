@@ -1,217 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
+import { auth } from "./firebase.js";
 
-<head>
+import {
+    signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+alert("admin2.js loaded");
 
-<title>CAWNPORE TIGERS XI - Admin Panel</title>
+// =========================
+// LOGIN
+// =========================
 
-<link rel="stylesheet" href="style.css">
+window.login = async function () {
 
-<style>
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
 
-body{
-    margin:0;
-    background:#111;
-    color:white;
-    font-family:Arial,sans-serif;
-}
+    if(email==="" || password===""){
+        alert("Enter Email & Password");
+        return;
+    }
 
-.container{
-    width:90%;
-    max-width:700px;
-    margin:30px auto;
-    background:#1b1b1b;
-    padding:20px;
-    border-radius:15px;
-}
+    try{
 
-h1,h2{
-    text-align:center;
-    color:#ff9800;
-}
+        await signInWithEmailAndPassword(auth,email,password);
 
-input,button{
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    border:none;
-    border-radius:8px;
-    font-size:16px;
-    box-sizing:border-box;
-}
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("dashboardPage").style.display = "block";
 
-button{
-    background:#ff9800;
-    color:white;
-    cursor:pointer;
-}
+    }
 
-button:hover{
-    background:#e68900;
-}
+    catch(error){
 
-.page{
-    display:none;
-}
+        alert(error.message);
 
-</style>
+    }
 
-</head>
+};
 
-<body>
+// =========================
+// ELEMENTS
+// =========================
 
-<div class="container">
+const dashboardPage = document.getElementById("dashboardPage");
+const tournamentPage = document.getElementById("tournamentPage");
+const seriesPage = document.getElementById("seriesPage");
+const individualPage = document.getElementById("individualPage");
 
-<h1>🏏 CAWNPORE TIGERS XI</h1>
+const tournamentBtn = document.getElementById("tournamentBtn");
+const seriesBtn = document.getElementById("seriesBtn");
+const individualBtn = document.getElementById("individualBtn");
 
-<!-- LOGIN -->
+const backFromTournament = document.getElementById("backFromTournament");
+const backFromSeries = document.getElementById("backFromSeries");
+const backFromIndividual = document.getElementById("backFromIndividual");
+// =========================
+// TOURNAMENT
+// =========================
 
-<div id="loginPage">
+tournamentBtn.onclick = function(){
 
-<h2>Admin Login</h2>
+    dashboardPage.style.display = "none";
+    tournamentPage.style.display = "block";
 
-<input
-type="email"
-id="email"
-placeholder="Admin Email">
+};
 
-<input
-type="password"
-id="password"
-placeholder="Password">
+// =========================
+// SERIES
+// =========================
 
-<button onclick="login()">
+seriesBtn.onclick = function(){
 
-Login
+    dashboardPage.style.display = "none";
+    seriesPage.style.display = "block";
 
-</button>
+};
 
-<p id="loginMsg"></p>
+// =========================
+// INDIVIDUAL MATCHES
+// =========================
 
-</div>
+individualBtn.onclick = function(){
 
-<!-- DASHBOARD -->
+    dashboardPage.style.display = "none";
+    individualPage.style.display = "block";
 
-<div
-id="dashboardPage"
-class="page">
+};
 
-<h2>Dashboard</h2>
+// =========================
+// BACK BUTTONS
+// =========================
 
-<button id="tournamentBtn">
+backFromTournament.onclick = function(){
 
-🏆 Tournament
+    tournamentPage.style.display = "none";
+    dashboardPage.style.display = "block";
 
-</button>
+};
 
-<button id="seriesBtn">
+backFromSeries.onclick = function(){
 
-🏏 Series
+    seriesPage.style.display = "none";
+    dashboardPage.style.display = "block";
 
-</button>
+};
 
-<button id="individualBtn">
+backFromIndividual.onclick = function(){
 
-📋 Individual Matches
+    individualPage.style.display = "none";
+    dashboardPage.style.display = "block";
 
-</button>
-
-</div>
-<!-- TOURNAMENT PAGE -->
-
-<div
-id="tournamentPage"
-class="page">
-
-<h2>🏆 Tournament</h2>
-
-<button id="addTournamentBtn">
-
-➕ Add Tournament
-
-</button>
-
-<div id="tournamentList">
-
-</div>
-
-<br>
-
-<button id="backFromTournament">
-
-⬅ Back
-
-</button>
-
-</div>
-
-
-<!-- SERIES PAGE -->
-
-<div
-id="seriesPage"
-class="page">
-
-<h2>🏏 Series</h2>
-
-<button id="addSeriesBtn">
-
-➕ Add Series
-
-</button>
-
-<div id="seriesList">
-
-</div>
-
-<br>
-
-<button id="backFromSeries">
-
-⬅ Back
-
-</button>
-
-</div>
-
-
-<!-- INDIVIDUAL MATCH PAGE -->
-
-<div
-id="individualPage"
-class="page">
-
-<h2>📋 Individual Matches</h2>
-
-<button id="addIndividualMatchBtn">
-
-➕ Add Match
-
-</button>
-
-<div id="individualMatchList">
-
-</div>
-
-<br>
-
-<button id="backFromIndividual">
-
-⬅ Back
-
-</button>
-
-</div>
-
-</div>
-
-<script type="module" src="firebase.js"></script>
-
-<script type="module" src="admin2.js"></script>
-
-</body>
-
-</html>
+};
