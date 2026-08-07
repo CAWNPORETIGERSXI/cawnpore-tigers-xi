@@ -410,3 +410,16 @@ async function loadEventsList(){
 }
 
 loadEventsList();
+window.deleteEvent = async function(id){
+
+    if(!confirm("Delete this event?")){
+        return;
+    }
+
+    await deleteDoc(doc(db,"events",id));
+
+    alert("Event Deleted ✅");
+
+    loadEventsList();
+
+};
