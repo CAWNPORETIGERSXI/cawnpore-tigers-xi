@@ -294,7 +294,7 @@ window.addTournament = async function () {
     document.getElementById("tournamentStatus").value="ACTIVE";
 
 };
-};
+
 
 
 // ADD SERIES
@@ -334,7 +334,7 @@ window.addSeries = async function () {
     document.getElementById("seriesStatus").value="ACTIVE";
 
 };
-};
+
 // SHOW / HIDE EVENT LIST
 
 const eventType = document.getElementById("eventId");
