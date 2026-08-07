@@ -383,3 +383,27 @@ async function loadEvents(type){
     });
 
 }
+async function loadEventsList(){
+
+    const list = document.getElementById("eventsList");
+
+    list.innerHTML = "";
+
+    const snapshot = await getDocs(collection(db,"events"));
+
+    snapshot.forEach((doc)=>{
+
+        const data = doc.data();
+
+        list.innerHTML += `
+        <div style="padding:10px;border:1px solid #444;margin:8px 0;border-radius:8px;">
+            <b>${data.eventName}</b><br>
+            ${data.eventType} | ${data.status}
+        </div>
+        `;
+
+    });
+
+}
+
+loadEventsList();
