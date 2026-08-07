@@ -292,6 +292,7 @@ await setDoc(doc(db,"events",id),{
 
 
 // ADD SERIES
+
 window.addSeries = async function () {
 
     const name = document.getElementById("newSeries").value.trim();
@@ -303,19 +304,30 @@ window.addSeries = async function () {
 
     const id = name.toUpperCase().replace(/\s+/g,"_");
 
+    const season = document.getElementById("seriesSeason").value.trim();
+    const format = document.getElementById("seriesFormat").value.trim();
+    const status = document.getElementById("seriesStatus").value;
+
     await setDoc(doc(db,"events",id),{
 
         eventId:id,
         eventName:name,
         eventType:"SERIES",
-        status:"ACTIVE"
+        season:season,
+        format:format,
+        status:status,
+        createdAt:new Date()
 
     });
 
     alert("Series Added Successfully 🏏");
 
     document.getElementById("newSeries").value="";
+    document.getElementById("seriesSeason").value="";
+    document.getElementById("seriesFormat").value="";
+    document.getElementById("seriesStatus").value="ACTIVE";
 
+};
 };
 // SHOW / HIDE EVENT LIST
 
