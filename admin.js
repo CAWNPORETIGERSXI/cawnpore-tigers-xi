@@ -255,6 +255,7 @@ alert(error.message);
 
 };
 // ADD TOURNAMENT
+
 window.addTournament = async function () {
 
     const name = document.getElementById("newTournament").value.trim();
@@ -267,27 +268,31 @@ window.addTournament = async function () {
     const id = name.toUpperCase().replace(/\s+/g,"_");
 
     const season = document.getElementById("tournamentSeason").value.trim();
-const format = document.getElementById("tournamentFormat").value.trim();
-const status = document.getElementById("tournamentStatus").value.trim();
+    const format = document.getElementById("tournamentFormat").value.trim();
+    const status = document.getElementById("tournamentStatus").value;
 
-await setDoc(doc(db,"events",id),{
+    await setDoc(doc(db,"events",id),{
 
-    eventId: id,
-    eventName: name,
-    eventType: "TOURNAMENT",
+        eventId: id,
+        eventName: name,
+        eventType: "TOURNAMENT",
 
-    season: season,
-    format: format,
-    status: status,
+        season: season,
+        format: format,
+        status: status,
 
-    createdAt: new Date()
+        createdAt: new Date()
 
-});
+    });
 
     alert("Tournament Added Successfully 🏆");
 
     document.getElementById("newTournament").value="";
+    document.getElementById("tournamentSeason").value="";
+    document.getElementById("tournamentFormat").value="";
+    document.getElementById("tournamentStatus").value="ACTIVE";
 
+};
 };
 
 
