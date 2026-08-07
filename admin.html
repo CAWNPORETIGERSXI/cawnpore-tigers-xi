@@ -77,91 +77,17 @@ button:hover{
 
 </div>
 
-<div id="adminPanel">
-<h2>🏆 Tournament & Series Management</h2>
-<input type="text" id="newTournament" placeholder="Tournament Name">
-<button
-<input type="text" id="newTournament" placeholder="Tournament Name">
+<div id="adminPanel" style="display:none;">
 
-<input type="text" id="tournamentSeason" placeholder="Season (2026)">
+<h2>Admin Dashboard</h2>
 
-<input type="text" id="tournamentFormat" placeholder="Format (T20, ODI, Test)">
+<button id="tournamentBtn">🏆 Tournament</button>
 
-<select id="tournamentStatus">
-    <option value="ACTIVE">ACTIVE</option>
-    <option value="UPCOMING">UPCOMING</option>
-    <option value="COMPLETED">COMPLETED</option>
-</select>
+<button id="seriesBtn">🏏 Series</button>
 
-<button onclick="addTournament()">Add Tournament</button>
- onclick="addTournament()">Add Tournament</button>
-
-<input type="text" id="newSeries" placeholder="Series Name">
-<button onclick="addSeries()">Add Series</button>
-<h3>Available Events</h3>
-<div id="eventsList"></div>
-<hr>
-<h2>Add Match</h2>
-
-<input type="text" id="title" placeholder="Match Title">
-<select id="eventId">
-    <option value="MAIN">Main Matches</option>
-    <option value="TOURNAMENT">Tournament Matches</option>
-    <option value="SERIES">Series Matches</option>
-</select>
-<div id="eventNameBox" style="display:none;">
-
-<select id="eventName">
-<option value="">Select Tournament / Series</option>
-</select>
+<button id="individualBtn">📋 Individual Matches</button>
 
 </div>
-<input type="text" id="date" placeholder="Match Date">
-
-<input type="text" id="opponent" placeholder="Opponent">
-
-<input type="text" id="overs" placeholder="Overs">
-<input type="text" id="playerOfMatch" placeholder="Player of the Match">
-
-
-<input type="text" id="bestBatter" placeholder="Best Batter">
-
-<input type="text" id="bestBowler" placeholder="Best Bowler">
-
-<textarea id="result" placeholder="Match Result"></textarea>
-
-<button onclick="saveMatch()">Save Match</button>
-<button onclick="importOldMatches()">Import 14 Matches</button>
-<p id="saveMsg"></p>
-<hr style="margin:30px 0;border:1px solid #333;">
-
-<h2>Add Photos 📸</h2>
-
-<input type="file" id="photoFile" accept="image/*" multiple>
-
-<select id="photoCategory" style="
-width:100%;
-padding:12px;
-margin:10px 0;
-border-radius:8px;
-font-size:16px;
-">
-
-<option value="Gallery">Gallery</option>
-<option value="Jersey Launch">Jersey Launch</option>
-<option value="Tournament">Tournament</option>
-<option value="Series">Series</option>
-<option value="Match Photos">Match Photos</option>
-
-</select>
-
-<button onclick="uploadPhoto()">Upload Photos</button>
-
-<p id="photoMsg"></p>
-</div>
-
-</div>
-
 <script type="module" src="firebase.js"></script>
 <script type="module" src="admin.js"></script>
 
