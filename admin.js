@@ -11,14 +11,17 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-// ==========================
+// ======================================================
 // LOGIN
-// ==========================
+// ======================================================
 
 window.login = async function () {
 
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
+    const email =
+        document.getElementById("email").value.trim();
+
+    const password =
+        document.getElementById("password").value;
 
     if (email === "" || password === "") {
         alert("Enter Email & Password");
@@ -34,6 +37,7 @@ window.login = async function () {
         );
 
         document.getElementById("loginBox").style.display = "none";
+
         document.getElementById("adminPanel").style.display = "block";
 
         loadEvents();
@@ -46,11 +50,13 @@ window.login = async function () {
 };
 
 
-// ==========================
+// ======================================================
 // ADD NEW EVENT
-// ==========================
+// ======================================================
 
-const saveEventBtn = document.getElementById("saveEventBtn");
+const saveEventBtn =
+    document.getElementById("saveEventBtn");
+
 
 saveEventBtn.onclick = async function () {
 
@@ -69,29 +75,43 @@ saveEventBtn.onclick = async function () {
         eventType === "" ||
         eventName === ""
     ) {
+
         alert("Please fill all Event details");
         return;
+
     }
 
 
     try {
 
-        await addDoc(collection(db, "events"), {
+        await addDoc(
+            collection(db, "events"),
+            {
 
-            eventId: eventId,
-            eventType: eventType,
-            eventName: eventName,
-            status: "Active"
+                eventId: eventId,
 
-        });
+                eventType: eventType,
+
+                eventName: eventName,
+
+                status: "Active"
+
+            }
+        );
+
 
         alert("Event saved successfully!");
 
+
         document.getElementById("eventId").value = "";
+
         document.getElementById("eventType").value = "";
+
         document.getElementById("eventName").value = "";
 
+
         loadEvents();
+
 
     } catch (error) {
 
@@ -103,47 +123,77 @@ saveEventBtn.onclick = async function () {
         );
 
     }
+
 };
 
 
-// ==========================
-// LOAD EVENTS
-// ==========================
+// ======================================================
+// LOAD EXISTING EVENTS
+// ======================================================
 
 async function loadEvents() {
 
     const eventList =
         document.getElementById("eventList");
 
+
+    if (!eventList) {
+        return;
+    }
+
+
     try {
 
         const snapshot =
-            await getDocs(collection(db, "events"));
+            await getDocs(
+                collection(db, "events")
+            );
+
 
         eventList.innerHTML = "";
 
+
         snapshot.forEach((doc) => {
 
-            const event = doc.data();
+            const event =
+                doc.data();
+
 
             const div =
                 document.createElement("div");
 
+
             div.className = "event-card";
 
+
             div.innerHTML = `
-                <strong>${event.eventName}</strong>
+
+                <strong>
+                    ${event.eventName || ""}
+                </strong>
+
                 <br>
-                Event ID: ${event.eventId}
+
+                Event ID:
+                ${event.eventId || ""}
+
                 <br>
-                Type: ${event.eventType}
+
+                Type:
+                ${event.eventType || ""}
+
                 <br>
-                Status: ${event.status}
+
+                Status:
+                ${event.status || ""}
+
             `;
+
 
             eventList.appendChild(div);
 
         });
+
 
     } catch (error) {
 
@@ -153,18 +203,20 @@ async function loadEvents() {
             "Error loading events.";
 
     }
+
 }
 
 
-// ==========================
-// ADD NEW MATCH
-// ==========================
+// ======================================================
+// ADD NEW MATCH - OPEN / CLOSE
+// ======================================================
 
 const addMatchBtn =
     document.getElementById("addMatchBtn");
 
 const matchForm =
     document.getElementById("matchForm");
+
 
 addMatchBtn.onclick = function () {
 
@@ -187,9 +239,9 @@ addMatchBtn.onclick = function () {
 };
 
 
-// ==========================
+// ======================================================
 // MATCH EVENT TYPE
-// ==========================
+// ======================================================
 
 const matchEventType =
     document.getElementById("matchEventType");
@@ -207,98 +259,458 @@ matchEventType.onchange = async function () {
         matchEventType.value;
 
 
-    // Individual Match
-    if (selectedType === "Individual Matches") {
+    // ------------------------------------------
+    // INDIVIDUAL MATCH
+    // ------------------------------------------
 
-        eventSelectBox.style.display = "none";
+    if (
+        selectedType ===
+        "Individual Matches"
+    ) {
 
-        eventSelect.innerHTML = "";
+        eventSelectBox.style.display =
+            "none";
+
+        eventSelect.innerHTML =
+            `<option value="">
+                Select Tournament / Series
+            </option>`;
 
         return;
+
     }
 
 
-    // Nothing selected
+    // ------------------------------------------
+    // NOTHING SELECTED
+    // ------------------------------------------
+
     if (
         selectedType !== "Tournament" &&
         selectedType !== "Series"
     ) {
 
-        eventSelectBox.style.display = "none";
+        eventSelectBox.style.display =
+            "none";
 
-        eventSelect.innerHTML = "";
+        eventSelect.innerHTML =
+            `<option value="">
+                Select Tournament / Series
+            </option>`;
 
         return;
+
     }
 
 
-    // Tournament / Series
-    eventSelectBox.style.display = "block";
+    // ------------------------------------------
+    // TOURNAMENT / SERIES
+    // ------------------------------------------
+
+    eventSelectBox.style.display =
+        "block";
 
 
     eventSelect.innerHTML =
-        `<option value="">Loading...</option>`;
+        `<option value="">
+            Loading...
+        </option>`;
 
 
     try {
 
         const snapshot =
-            await getDocs(collection(db, "events"));
+            await getDocs(
+                collection(db, "events")
+            );
 
 
         eventSelect.innerHTML = `
+
             <option value="">
                 Select ${selectedType}
             </option>
+
         `;
+
+
+        let found = false;
 
 
         snapshot.forEach((doc) => {
 
-            const event = doc.data();
+            const event =
+                doc.data();
 
 
-            if (event.eventType === selectedType) {
+            if (
+                event.eventType ===
+                selectedType
+            ) {
+
+                found = true;
+
 
                 const option =
                     document.createElement("option");
 
-                option.value = doc.id;
+
+                option.value =
+                    doc.id;
+
 
                 option.textContent =
                     event.eventName;
 
+
                 option.dataset.eventId =
                     event.eventId;
 
-                eventSelect.appendChild(option);
+
+                eventSelect.appendChild(
+                    option
+                );
 
             }
 
         });
 
 
+        if (!found) {
+
+            eventSelect.innerHTML = `
+
+                <option value="">
+                    No ${selectedType} found
+                </option>
+
+            `;
+
+        }
+
+
     } catch (error) {
 
         console.error(error);
 
+
         eventSelect.innerHTML = `
+
             <option value="">
                 Error loading events
             </option>
+
         `;
 
     }
 
 };
-// ==========================
-// SAVE MATCH TEST
-// ==========================
 
-const saveMatchBtn = document.getElementById("saveMatchBtn");
 
-saveMatchBtn.onclick = function () {
+// ======================================================
+// SAVE MATCH TO FIREBASE
+// ======================================================
 
-    alert("SAVE MATCH BUTTON WORKING");
+const saveMatchBtn =
+    document.getElementById("saveMatchBtn");
+
+
+saveMatchBtn.onclick = async function () {
+
+    // ------------------------------------------
+    // BASIC MATCH DETAILS
+    // ------------------------------------------
+
+    const matchId =
+        document.getElementById("matchId")
+        .value
+        .trim();
+
+
+    const eventType =
+        document.getElementById("matchEventType")
+        .value;
+
+
+    const matchDate =
+        document.getElementById("matchDate")
+        .value;
+
+
+    const matchPlace =
+        document.getElementById("matchPlace")
+        .value
+        .trim();
+
+
+    const opponent =
+        document.getElementById("opponent")
+        .value
+        .trim();
+
+
+    const overs =
+        document.getElementById("overs")
+        .value
+        .trim();
+
+
+    const result =
+        document.getElementById("result")
+        .value
+        .trim();
+
+
+    const playerOfMatch =
+        document.getElementById("playerOfMatch")
+        .value
+        .trim();
+
+
+    const bestBowler =
+        document.getElementById("bestBowler")
+        .value
+        .trim();
+
+
+    const bestBatter =
+        document.getElementById("bestBatter")
+        .value
+        .trim();
+
+
+    const fighterOfMatch =
+        document.getElementById("fighterOfMatch")
+        .value
+        .trim();
+
+
+    const cricHeroesLink =
+        document.getElementById("cricHeroesLink")
+        .value
+        .trim();
+
+
+    // ------------------------------------------
+    // EVENT INFORMATION
+    // ------------------------------------------
+
+    let eventId = "";
+
+    let eventName = "";
+
+
+    if (
+        eventType === "Tournament" ||
+        eventType === "Series"
+    ) {
+
+        const selectedOption =
+            eventSelect.options[
+                eventSelect.selectedIndex
+            ];
+
+
+        if (
+            !selectedOption ||
+            selectedOption.value === ""
+        ) {
+
+            alert(
+                "Please select " +
+                eventType
+            );
+
+            return;
+
+        }
+
+
+        eventId =
+            selectedOption.dataset.eventId ||
+            "";
+
+
+        eventName =
+            selectedOption.textContent.trim();
+
+    }
+
+
+    // ------------------------------------------
+    // REQUIRED FIELDS
+    // ------------------------------------------
+
+    if (matchId === "") {
+
+        alert("Please enter Match ID");
+        return;
+
+    }
+
+
+    if (eventType === "") {
+
+        alert("Please select Event Type");
+        return;
+
+    }
+
+
+    if (matchDate === "") {
+
+        alert("Please select Match Date");
+        return;
+
+    }
+
+
+    if (matchPlace === "") {
+
+        alert("Please enter Place");
+        return;
+
+    }
+
+
+    if (opponent === "") {
+
+        alert("Please enter Opponent");
+        return;
+
+    }
+
+
+    if (result === "") {
+
+        alert("Please enter Result");
+        return;
+
+    }
+
+
+    if (cricHeroesLink === "") {
+
+        alert("Please enter CricHeroes Link");
+        return;
+
+    }
+
+
+    // ------------------------------------------
+    // SAVE TO FIRESTORE
+    // ------------------------------------------
+
+    try {
+
+        await addDoc(
+            collection(db, "matches"),
+            {
+
+                matchId: matchId,
+
+                eventId: eventId,
+
+                eventType: eventType,
+
+                eventName: eventName,
+
+                matchDate: matchDate,
+
+                place: matchPlace,
+
+                opponent: opponent,
+
+                overs: overs,
+
+                result: result,
+
+                playerOfMatch:
+                    playerOfMatch,
+
+                bestBowler:
+                    bestBowler,
+
+                bestBatter:
+                    bestBatter,
+
+                fighterOfMatch:
+                    fighterOfMatch,
+
+                cricHeroesLink:
+                    cricHeroesLink
+
+            }
+        );
+
+
+        alert(
+            "Match saved successfully!"
+        );
+
+
+        // --------------------------------------
+        // CLEAR FORM
+        // --------------------------------------
+
+        document.getElementById("matchId")
+            .value = "";
+
+        document.getElementById("matchEventType")
+            .value = "";
+
+        document.getElementById("matchDate")
+            .value = "";
+
+        document.getElementById("matchPlace")
+            .value = "";
+
+        document.getElementById("opponent")
+            .value = "";
+
+        document.getElementById("overs")
+            .value = "";
+
+        document.getElementById("result")
+            .value = "";
+
+        document.getElementById("playerOfMatch")
+            .value = "";
+
+        document.getElementById("bestBowler")
+            .value = "";
+
+        document.getElementById("bestBatter")
+            .value = "";
+
+        document.getElementById("fighterOfMatch")
+            .value = "";
+
+        document.getElementById("cricHeroesLink")
+            .value = "";
+
+
+        eventSelectBox.style.display =
+            "none";
+
+
+        eventSelect.innerHTML = `
+            <option value="">
+                Select Tournament / Series
+            </option>
+        `;
+
+
+    } catch (error) {
+
+        console.error(error);
+
+
+        alert(
+            "Error saving match: " +
+            error.message
+        );
+
+    }
 
 };
