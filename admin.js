@@ -84,3 +84,46 @@ saveEventBtn.onclick = async function () {
     }
 
 };
+// ==========================
+// LOAD EVENTS
+// ==========================
+
+async function loadEvents() {
+
+    const eventList = document.getElementById("eventList");
+
+    try {
+
+        const snapshot = await getDocs(collection(db, "events"));
+
+        eventList.innerHTML = "";
+
+        snapshot.forEach((doc) => {
+
+            const event = doc.data();
+
+            const div = document.createElement("div");
+
+            div.innerHTML = `
+                <p>
+                    <strong>${event.eventName}</strong><br>
+                    Event ID: ${event.eventId}<br>
+                    Type: ${event.eventType}<br>
+                    Status: ${event.status}
+                </p>
+                <hr>
+            `;
+
+            eventList.appendChild(div);
+
+        });
+
+    } catch (error) {
+
+        console.error(error);
+        eventList.innerHTML = "Error loading events.";
+
+    }
+}
+
+loadEvents();
