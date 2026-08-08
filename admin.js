@@ -44,21 +44,44 @@ window.login = async function () {
 
 };
 // ==========================
-// DASHBOARD BUTTONS
+// ADD NEW EVENT
 // ==========================
 
-const tournamentBtn = document.getElementById("tournamentBtn");
-const seriesBtn = document.getElementById("seriesBtn");
-const individualBtn = document.getElementById("individualBtn");
+const saveEventBtn = document.getElementById("saveEventBtn");
 
-tournamentBtn.onclick = function () {
-    alert("Tournament Module - Coming Next");
-};
+saveEventBtn.onclick = async function () {
 
-seriesBtn.onclick = function () {
-    alert("Series Module - Coming Next");
-};
+    const eventId = document.getElementById("eventId").value.trim();
+    const eventType = document.getElementById("eventType").value;
+    const eventName = document.getElementById("eventName").value.trim();
 
-individualBtn.onclick = function () {
-    alert("Individual Matches Module - Coming Next");
+    if (eventId === "" || eventType === "" || eventName === "") {
+        alert("Please fill all Event details");
+        return;
+    }
+
+    try {
+
+        await addDoc(collection(db, "events"), {
+
+            eventId: eventId,
+            eventType: eventType,
+            eventName: eventName,
+            status: "Active"
+
+        });
+
+        alert("Event saved successfully!");
+
+        document.getElementById("eventId").value = "";
+        document.getElementById("eventType").value = "";
+        document.getElementById("eventName").value = "";
+
+    } catch (error) {
+
+        console.error(error);
+        alert("Error saving event: " + error.message);
+
+    }
+
 };
