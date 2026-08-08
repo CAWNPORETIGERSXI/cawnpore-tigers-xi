@@ -127,3 +127,13 @@ async function loadEvents() {
 }
 
 loadEvents();
+// ==========================
+// SHOW MATCH FORM
+// ==========================
+
+const addMatchBtn = document.getElementById("addMatchBtn");
+const matchForm = document.getElementById("matchForm");
+
+addMatchBtn.onclick = function () {
+    matchForm.style.display = "block";
+};
