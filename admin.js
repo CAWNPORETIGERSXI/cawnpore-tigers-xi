@@ -16,6 +16,7 @@ import {
     getDownloadURL
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js";
 
+
 // ======================================================
 // LOGIN
 // ======================================================
@@ -74,6 +75,16 @@ saveEventBtn.onclick = async function () {
     const eventName =
         document.getElementById("eventName").value.trim();
 
+    const eventImage =
+        document.getElementById("eventImage").files[0];
+
+    const eventStatus =
+        document.getElementById("eventStatus").value;
+
+
+    // ------------------------------------------
+    // REQUIRED EVENT DETAILS
+    // ------------------------------------------
 
     if (
         eventId === "" ||
@@ -87,7 +98,90 @@ saveEventBtn.onclick = async function () {
     }
 
 
+    // ------------------------------------------
+    // IMAGE REQUIRED FOR TOURNAMENT / SERIES
+    // ------------------------------------------
+
+    if (
+        (eventType === "Tournament" ||
+         eventType === "Series") &&
+        !eventImage
+    ) {
+
+        alert(
+            "Please select Tournament / Series Logo"
+        );
+
+        return;
+
+    }
+
+
+    // ------------------------------------------
+    // CHECK IMAGE TYPE
+    // ------------------------------------------
+
+    if (eventImage) {
+
+        const allowedTypes = [
+            "image/jpeg"
+        ];
+
+        if (
+            !allowedTypes.includes(
+                eventImage.type
+            )
+        ) {
+
+            alert(
+                "Please upload JPG or JPEG image only."
+            );
+
+            return;
+
+        }
+
+    }
+
+
     try {
+
+        let imageUrl = "";
+
+
+        // --------------------------------------
+        // UPLOAD EVENT IMAGE
+        // --------------------------------------
+
+        if (eventImage) {
+
+            const imageRef =
+                ref(
+                    storage,
+                    "event-images/" +
+                    Date.now() +
+                    "_" +
+                    eventImage.name
+                );
+
+
+            await uploadBytes(
+                imageRef,
+                eventImage
+            );
+
+
+            imageUrl =
+                await getDownloadURL(
+                    imageRef
+                );
+
+        }
+
+
+        // --------------------------------------
+        // SAVE EVENT TO FIRESTORE
+        // --------------------------------------
 
         await addDoc(
             collection(db, "events"),
@@ -99,20 +193,37 @@ saveEventBtn.onclick = async function () {
 
                 eventName: eventName,
 
-                status: "Active"
+                imageUrl: imageUrl,
+
+                status: eventStatus
 
             }
         );
 
 
-        alert("Event saved successfully!");
+        alert(
+            "Event saved successfully!"
+        );
 
 
-        document.getElementById("eventId").value = "";
+        // --------------------------------------
+        // CLEAR EVENT FORM
+        // --------------------------------------
 
-        document.getElementById("eventType").value = "";
+        document.getElementById("eventId")
+            .value = "";
 
-        document.getElementById("eventName").value = "";
+        document.getElementById("eventType")
+            .value = "";
+
+        document.getElementById("eventName")
+            .value = "";
+
+        document.getElementById("eventImage")
+            .value = "";
+
+        document.getElementById("eventStatus")
+            .value = "Active";
 
 
         loadEvents();
@@ -168,10 +279,30 @@ async function loadEvents() {
                 document.createElement("div");
 
 
-            div.className = "event-card";
+            div.className =
+                "event-card";
 
 
             div.innerHTML = `
+
+                ${
+                    event.imageUrl
+                    ?
+                    `
+                    <img
+                        src="${event.imageUrl}"
+                        style="
+                            width:100%;
+                            max-height:180px;
+                            object-fit:contain;
+                            border-radius:10px;
+                            margin-bottom:10px;
+                        "
+                    >
+                    `
+                    :
+                    ""
+                }
 
                 <strong>
                     ${event.eventName || ""}
@@ -190,7 +321,11 @@ async function loadEvents() {
                 <br>
 
                 Status:
-                ${event.status || ""}
+                ${
+                    event.status === "Completed"
+                    ? "🔴 Completed"
+                    : "🟢 Going On"
+                }
 
             `;
 
@@ -227,14 +362,16 @@ addMatchBtn.onclick = function () {
 
     if (matchForm.style.display === "none") {
 
-        matchForm.style.display = "block";
+        matchForm.style.display =
+            "block";
 
         addMatchBtn.innerText =
             "➖ CLOSE MATCH FORM";
 
     } else {
 
-        matchForm.style.display = "none";
+        matchForm.style.display =
+            "none";
 
         addMatchBtn.innerText =
             "➕ ADD NEW MATCH";
@@ -258,7 +395,8 @@ const eventSelect =
     document.getElementById("eventSelect");
 
 
-matchEventType.onchange = async function () {
+matchEventType.onchange =
+async function () {
 
     const selectedType =
         matchEventType.value;
@@ -357,7 +495,9 @@ matchEventType.onchange = async function () {
 
 
                 const option =
-                    document.createElement("option");
+                    document.createElement(
+                        "option"
+                    );
 
 
                 option.value =
@@ -413,7 +553,7 @@ matchEventType.onchange = async function () {
 
 
 // ======================================================
-// SAVE MATCH TO FIREBASE
+// SAVE MATCH TO FIRESTORE
 // ======================================================
 
 const saveMatchBtn =
@@ -421,6 +561,7 @@ const saveMatchBtn =
 
 
 saveMatchBtn.onclick = async function () {
+
 
     // ------------------------------------------
     // BASIC MATCH DETAILS
@@ -596,14 +737,17 @@ saveMatchBtn.onclick = async function () {
 
     if (cricHeroesLink === "") {
 
-        alert("Please enter CricHeroes Link");
+        alert(
+            "Please enter CricHeroes Link"
+        );
+
         return;
 
     }
 
 
     // ------------------------------------------
-    // SAVE TO FIRESTORE
+    // SAVE MATCH
     // ------------------------------------------
 
     try {
@@ -655,14 +799,15 @@ saveMatchBtn.onclick = async function () {
 
 
         // --------------------------------------
-        // CLEAR FORM
+        // CLEAR MATCH FORM
         // --------------------------------------
 
         document.getElementById("matchId")
             .value = "";
 
-        document.getElementById("matchEventType")
-            .value = "";
+        document.getElementById(
+            "matchEventType"
+        ).value = "";
 
         document.getElementById("matchDate")
             .value = "";
@@ -679,20 +824,25 @@ saveMatchBtn.onclick = async function () {
         document.getElementById("result")
             .value = "";
 
-        document.getElementById("playerOfMatch")
-            .value = "";
+        document.getElementById(
+            "playerOfMatch"
+        ).value = "";
 
-        document.getElementById("bestBowler")
-            .value = "";
+        document.getElementById(
+            "bestBowler"
+        ).value = "";
 
-        document.getElementById("bestBatter")
-            .value = "";
+        document.getElementById(
+            "bestBatter"
+        ).value = "";
 
-        document.getElementById("fighterOfMatch")
-            .value = "";
+        document.getElementById(
+            "fighterOfMatch"
+        ).value = "";
 
-        document.getElementById("cricHeroesLink")
-            .value = "";
+        document.getElementById(
+            "cricHeroesLink"
+        ).value = "";
 
 
         eventSelectBox.style.display =
