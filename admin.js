@@ -1,5 +1,4 @@
 import { auth, db } from "./firebase.js";
-alert("ADMIN JS STARTED");
 
 import {
     signInWithEmailAndPassword
