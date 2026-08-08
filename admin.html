@@ -81,11 +81,22 @@ button:hover{
 
 <h2>Admin Dashboard</h2>
 
-<button id="tournamentBtn">🏆 Tournament</button>
+<h2>Add New Event</h2>
 
-<button id="seriesBtn">🏏 Series</button>
+<input type="text" id="eventId" placeholder="Event ID">
 
-<button id="individualBtn">📋 Individual Matches</button>
+<select id="eventType">
+    <option value="">Select Event Type</option>
+    <option value="Tournament">Tournament</option>
+    <option value="Series">Series</option>
+    <option value="Individual Matches">Individual Matches</option>
+</select>
+
+<input type="text" id="eventName" placeholder="Event Name">
+
+<button id="saveEventBtn">SAVE EVENT</button>
+
+<p id="eventMsg"></p>
 
 </div>
 <script type="module" src="firebase.js"></script>
