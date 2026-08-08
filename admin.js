@@ -231,14 +231,45 @@ saveEventBtn.onclick = async function () {
 
     } catch (error) {
 
-        console.error(error);
+    console.error("EVENT SAVE ERROR:", error);
+
+    const eventMsg =
+        document.getElementById("eventMsg");
+
+    if (eventMsg) {
+
+        eventMsg.style.display = "block";
+
+        eventMsg.style.background = "#330000";
+
+        eventMsg.style.color = "#ff4444";
+
+        eventMsg.style.padding = "15px";
+
+        eventMsg.style.marginTop = "15px";
+
+        eventMsg.style.borderRadius = "8px";
+
+        eventMsg.style.fontWeight = "bold";
+
+        eventMsg.innerHTML =
+            "❌ ERROR:<br>" +
+            error.code +
+            "<br><br>" +
+            error.message;
+
+    } else {
 
         alert(
-            "Error saving event: " +
+            "❌ ERROR:\n\n" +
+            error.code +
+            "\n\n" +
             error.message
         );
 
     }
+
+}
 
 };
 
