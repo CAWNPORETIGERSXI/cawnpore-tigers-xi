@@ -144,40 +144,58 @@ saveEventBtn.onclick = async function () {
     }
 
 
-    try {
+    
+try {
 
-        let imageUrl = "";
+    alert("STEP 1: Save Event started");
 
+    let imageUrl = "";
 
-        // --------------------------------------
-        // UPLOAD EVENT IMAGE
-        // --------------------------------------
+    if (eventImage) {
 
-        if (eventImage) {
+        alert("STEP 2: JPG found");
 
-            const imageRef =
-                ref(
-                    storage,
-                    "event-images/" +
-                    Date.now() +
-                    "_" +
-                    eventImage.name
-                );
-
-
-            await uploadBytes(
-                imageRef,
-                eventImage
+        const imageRef =
+            ref(
+                storage,
+                "event-images/" +
+                Date.now() +
+                "_" +
+                eventImage.name
             );
 
+        alert("STEP 3: Starting image upload");
 
-            imageUrl =
-                await getDownloadURL(
-                    imageRef
-                );
+        await uploadBytes(
+            imageRef,
+            eventImage
+        );
 
+        alert("STEP 4: Image uploaded");
+
+        imageUrl =
+            await getDownloadURL(
+                imageRef
+            );
+
+        alert("STEP 5: Image URL received");
+
+    }
+
+    alert("STEP 6: Saving Event to Firestore");
+
+    await addDoc(
+        collection(db, "events"),
+        {
+            eventId: eventId,
+            eventType: eventType,
+            eventName: eventName,
+            imageUrl: imageUrl,
+            status: eventStatus
         }
+    );
 
+    alert("STEP 7: EVENT SAVED SUCCESSFULLY");
 
         // --------------------------------------
         // SAVE EVENT TO FIRESTORE
