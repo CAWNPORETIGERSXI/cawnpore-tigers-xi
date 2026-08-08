@@ -43,7 +43,6 @@ window.login = async function () {
         alert(error.message);
 
     }
-
 };
 
 
@@ -70,38 +69,29 @@ saveEventBtn.onclick = async function () {
         eventType === "" ||
         eventName === ""
     ) {
-
         alert("Please fill all Event details");
         return;
-
     }
 
 
     try {
 
-        await addDoc(
-            collection(db, "events"),
-            {
+        await addDoc(collection(db, "events"), {
 
-                eventId: eventId,
-                eventType: eventType,
-                eventName: eventName,
-                status: "Active"
+            eventId: eventId,
+            eventType: eventType,
+            eventName: eventName,
+            status: "Active"
 
-            }
-        );
-
+        });
 
         alert("Event saved successfully!");
-
 
         document.getElementById("eventId").value = "";
         document.getElementById("eventType").value = "";
         document.getElementById("eventName").value = "";
 
-
         loadEvents();
-
 
     } catch (error) {
 
@@ -113,12 +103,11 @@ saveEventBtn.onclick = async function () {
         );
 
     }
-
 };
 
 
 // ==========================
-// LOAD EXISTING EVENTS
+// LOAD EVENTS
 // ==========================
 
 async function loadEvents() {
@@ -126,58 +115,35 @@ async function loadEvents() {
     const eventList =
         document.getElementById("eventList");
 
-
     try {
 
         const snapshot =
-            await getDocs(
-                collection(db, "events")
-            );
-
+            await getDocs(collection(db, "events"));
 
         eventList.innerHTML = "";
-
 
         snapshot.forEach((doc) => {
 
             const event = doc.data();
 
-
             const div =
                 document.createElement("div");
 
-
             div.className = "event-card";
 
-
             div.innerHTML = `
-
-                <strong>
-                    ${event.eventName}
-                </strong>
-
+                <strong>${event.eventName}</strong>
                 <br>
-
-                Event ID:
-                ${event.eventId}
-
+                Event ID: ${event.eventId}
                 <br>
-
-                Type:
-                ${event.eventType}
-
+                Type: ${event.eventType}
                 <br>
-
-                Status:
-                ${event.status}
-
+                Status: ${event.status}
             `;
-
 
             eventList.appendChild(div);
 
         });
-
 
     } catch (error) {
 
@@ -187,7 +153,6 @@ async function loadEvents() {
             "Error loading events.";
 
     }
-
 }
 
 
@@ -200,7 +165,6 @@ const addMatchBtn =
 
 const matchForm =
     document.getElementById("matchForm");
-
 
 addMatchBtn.onclick = function () {
 
@@ -217,6 +181,112 @@ addMatchBtn.onclick = function () {
 
         addMatchBtn.innerText =
             "➕ ADD NEW MATCH";
+
+    }
+
+};
+
+
+// ==========================
+// MATCH EVENT TYPE
+// ==========================
+
+const matchEventType =
+    document.getElementById("matchEventType");
+
+const eventSelectBox =
+    document.getElementById("eventSelectBox");
+
+const eventSelect =
+    document.getElementById("eventSelect");
+
+
+matchEventType.onchange = async function () {
+
+    const selectedType =
+        matchEventType.value;
+
+
+    // Individual Match
+    if (selectedType === "Individual Matches") {
+
+        eventSelectBox.style.display = "none";
+
+        eventSelect.innerHTML = "";
+
+        return;
+    }
+
+
+    // Nothing selected
+    if (
+        selectedType !== "Tournament" &&
+        selectedType !== "Series"
+    ) {
+
+        eventSelectBox.style.display = "none";
+
+        eventSelect.innerHTML = "";
+
+        return;
+    }
+
+
+    // Tournament / Series
+    eventSelectBox.style.display = "block";
+
+
+    eventSelect.innerHTML =
+        `<option value="">Loading...</option>`;
+
+
+    try {
+
+        const snapshot =
+            await getDocs(collection(db, "events"));
+
+
+        eventSelect.innerHTML = `
+            <option value="">
+                Select ${selectedType}
+            </option>
+        `;
+
+
+        snapshot.forEach((doc) => {
+
+            const event = doc.data();
+
+
+            if (event.eventType === selectedType) {
+
+                const option =
+                    document.createElement("option");
+
+                option.value = doc.id;
+
+                option.textContent =
+                    event.eventName;
+
+                option.dataset.eventId =
+                    event.eventId;
+
+                eventSelect.appendChild(option);
+
+            }
+
+        });
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        eventSelect.innerHTML = `
+            <option value="">
+                Error loading events
+            </option>
+        `;
 
     }
 
