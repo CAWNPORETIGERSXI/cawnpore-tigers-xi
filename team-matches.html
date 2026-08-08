@@ -10,9 +10,106 @@
 
 <link rel="stylesheet" href="style.css">
 
+<style>
+
+.team-matches-container {
+    width: 92%;
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.team-matches-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.team-matches-title h2 {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.team-matches-title p {
+    font-size: 16px;
+}
+
+
+/* 2 × 2 MENU */
+
+.team-matches-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+
+/* MENU TAB */
+
+.match-tab {
+    background: #ff8800;
+    color: #000;
+    border: 3px solid #000;
+    border-radius: 15px;
+    padding: 30px 15px;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 5px 0 #000;
+    transition: 0.2s;
+}
+
+.match-tab h3 {
+    margin: 0 0 10px;
+    font-size: 22px;
+}
+
+.match-tab p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+/* CLICK EFFECT */
+
+.match-tab:hover {
+    transform: translateY(-3px);
+}
+
+.match-tab:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 #000;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .team-matches-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .match-tab {
+        padding: 25px 8px;
+    }
+
+    .match-tab h3 {
+        font-size: 17px;
+    }
+
+    .match-tab p {
+        font-size: 12px;
+    }
+
+}
+
+</style>
+
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -23,44 +120,69 @@
 </header>
 
 
-<section class="team-matches-menu">
-
-<a href="individual-matches.html" class="match-menu-card">
-
-<h2>🏏 Individual Matches</h2>
-
-<p>View individual match records</p>
-
-</a>
+<main class="team-matches-container">
 
 
-<a href="tournament-matches.html" class="match-menu-card">
+<div class="team-matches-title">
 
-<h2>🏆 Tournament Matches</h2>
+<h2>TEAM MATCHES</h2>
 
-<p>View tournament-wise matches</p>
+<p>Select Match Category</p>
 
-</a>
+</div>
 
 
-<a href="series-matches.html" class="match-menu-card">
+<div class="team-matches-grid">
 
-<h2>🏏 Series</h2>
 
-<p>View series-wise matches</p>
+<!-- INDIVIDUAL MATCHES -->
+
+<a href="individual-matches.html" class="match-tab">
+
+<h3>🏏 Individual Matches</h3>
+
+<p>Individual Match Records</p>
 
 </a>
 
 
-<a href="all-matches.html" class="match-menu-card">
+<!-- TOURNAMENT MATCHES -->
 
-<h2>📋 All Matches</h2>
+<a href="tournament-matches.html" class="match-tab">
 
-<p>View all team matches</p>
+<h3>🏆 Tournament Matches</h3>
+
+<p>Tournament Wise Matches</p>
 
 </a>
 
-</section>
+
+<!-- SERIES -->
+
+<a href="series-matches.html" class="match-tab">
+
+<h3>🏏 Series</h3>
+
+<p>Series Wise Matches</p>
+
+</a>
+
+
+<!-- ALL MATCHES -->
+
+<a href="all-matches.html" class="match-tab">
+
+<h3>📋 All Matches</h3>
+
+<p>Complete Match Records</p>
+
+</a>
+
+
+</div>
+
+
+</main>
 
 
 <footer>
@@ -68,6 +190,7 @@
 © 2026 CAWNPORE TIGERS XI
 
 </footer>
+
 
 </body>
 
