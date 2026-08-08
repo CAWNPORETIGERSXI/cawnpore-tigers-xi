@@ -291,3 +291,137 @@ matchEventType.onchange = async function () {
     }
 
 };
+// ==========================
+// SAVE MATCH
+// ==========================
+
+const saveMatchBtn =
+    document.getElementById("saveMatchBtn");
+
+saveMatchBtn.onclick = async function () {
+
+    const matchId =
+        document.getElementById("matchId").value.trim();
+
+    const eventType =
+        document.getElementById("matchEventType").value;
+
+    const eventSelect =
+        document.getElementById("eventSelect");
+
+    const selectedOption =
+        eventSelect.options[eventSelect.selectedIndex];
+
+    const eventId =
+        selectedOption?.dataset.eventId || "";
+
+    const eventName =
+        selectedOption?.textContent || "";
+
+    const matchDate =
+        document.getElementById("matchDate").value;
+
+    const matchPlace =
+        document.getElementById("matchPlace").value.trim();
+
+    const opponent =
+        document.getElementById("opponent").value.trim();
+
+    const overs =
+        document.getElementById("overs").value.trim();
+
+    const result =
+        document.getElementById("result").value.trim();
+
+    const playerOfMatch =
+        document.getElementById("playerOfMatch").value.trim();
+
+    const bestBowler =
+        document.getElementById("bestBowler").value.trim();
+
+    const bestBatter =
+        document.getElementById("bestBatter").value.trim();
+
+    const fighterOfMatch =
+        document.getElementById("fighterOfMatch").value.trim();
+
+    const cricHeroesLink =
+        document.getElementById("cricHeroesLink").value.trim();
+
+
+    if (
+        matchId === "" ||
+        eventType === "" ||
+        matchDate === "" ||
+        matchPlace === "" ||
+        opponent === "" ||
+        result === "" ||
+        cricHeroesLink === ""
+    ) {
+        alert("Please fill all required Match details");
+        return;
+    }
+
+
+    try {
+
+        await addDoc(collection(db, "matches"), {
+
+            matchId: matchId,
+
+            eventId: eventId,
+
+            eventType: eventType,
+
+            eventName: eventName,
+
+            matchDate: matchDate,
+
+            place: matchPlace,
+
+            opponent: opponent,
+
+            overs: overs,
+
+            result: result,
+
+            playerOfMatch: playerOfMatch,
+
+            bestBowler: bestBowler,
+
+            bestBatter: bestBatter,
+
+            fighterOfMatch: fighterOfMatch,
+
+            cricHeroesLink: cricHeroesLink
+
+        });
+
+
+        alert("Match saved successfully!");
+
+
+        document.getElementById("matchId").value = "";
+        document.getElementById("matchDate").value = "";
+        document.getElementById("matchPlace").value = "";
+        document.getElementById("opponent").value = "";
+        document.getElementById("overs").value = "";
+        document.getElementById("result").value = "";
+        document.getElementById("playerOfMatch").value = "";
+        document.getElementById("bestBowler").value = "";
+        document.getElementById("bestBatter").value = "";
+        document.getElementById("fighterOfMatch").value = "";
+        document.getElementById("cricHeroesLink").value = "";
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Error saving match: " +
+            error.message
+        );
+
+    }
+
+};
