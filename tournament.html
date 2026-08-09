@@ -103,18 +103,44 @@ body{
 .match-opponent{
     font-size:19px;
     font-weight:bold;
-    margin-bottom:8px;
+    margin-bottom:12px;
+    line-height:1.5;
 }
 
 .match-info{
     color:#ccc;
     font-size:14px;
-    line-height:1.7;
+    line-height:1.8;
 }
 
 .result{
     color:#00ff88;
     font-weight:bold;
+}
+
+.player{
+    color:#fff;
+}
+
+.special-player{
+    color:#ff9800;
+    font-weight:bold;
+}
+
+.match-button{
+    display:block;
+    text-align:center;
+    background:#ff8800;
+    color:#000;
+    padding:11px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+    margin-top:15px;
+}
+
+.match-button:hover{
+    background:#e67a00;
 }
 
 .message{
@@ -163,6 +189,10 @@ CAWNPORE TIGERS XI
 <main class="container">
 
 
+<!-- ==========================================
+     TOURNAMENT INFORMATION
+========================================== -->
+
 <div id="tournamentInfo">
 
 <p class="message">
@@ -172,10 +202,18 @@ CAWNPORE TIGERS XI
 </div>
 
 
+<!-- ==========================================
+     MATCHES TITLE
+========================================== -->
+
 <h2 class="matches-title">
 🏏 TOURNAMENT MATCHES
 </h2>
 
+
+<!-- ==========================================
+     MATCH LIST
+========================================== -->
 
 <div id="matchList">
 
@@ -185,6 +223,10 @@ CAWNPORE TIGERS XI
 
 </div>
 
+
+<!-- ==========================================
+     BACK BUTTON
+========================================== -->
 
 <a
 href="tournament-matches.html"
@@ -238,6 +280,37 @@ const matchList =
     document.getElementById(
         "matchList"
     );
+
+
+// =====================================================
+// DATE FORMAT
+// YYYY-MM-DD  →  DD-MM-YYYY
+// =====================================================
+
+function formatDate(dateString){
+
+    if(!dateString){
+        return "—";
+    }
+
+    const parts =
+        dateString.split("-");
+
+    if(parts.length === 3){
+
+        return (
+            parts[2] +
+            "-" +
+            parts[1] +
+            "-" +
+            parts[0]
+        );
+
+    }
+
+    return dateString;
+
+}
 
 
 // =====================================================
@@ -404,7 +477,9 @@ async function loadTournamentMatches(){
                 doc.data();
 
 
-            // MATCHES BELONGING TO THIS TOURNAMENT
+            // =========================================
+            // ONLY THIS TOURNAMENT'S MATCHES
+            // =========================================
 
             if(
                 match.eventId !== eventId
@@ -426,17 +501,52 @@ async function loadTournamentMatches(){
                 "match-card";
 
 
+            // =========================================
+            // CRICHEROES BUTTON
+            // =========================================
+
+            let matchButton = "";
+
+
+            if(match.cricHeroesLink){
+
+                matchButton = `
+
+                    <a
+                        href="${match.cricHeroesLink}"
+                        class="match-button"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        🔗 VIEW MATCH
+                    </a>
+
+                `;
+
+            }
+
+
+            // =========================================
+            // MATCH CARD
+            // =========================================
+
             card.innerHTML = `
 
                 <div class="match-date">
-                    📅 ${match.matchDate || ""}
+                    📅 ${formatDate(match.matchDate)}
                 </div>
 
+
                 <div class="match-opponent">
-                    CAWNPORE TIGERS XI
-                    vs
-                    ${match.opponent || ""}
+
+                    🏏 CAWNPORE TIGERS XI
+                    <br>
+                    VS
+                    <br>
+                    ${match.opponent || "—"}
+
                 </div>
+
 
                 <div class="match-info">
 
@@ -445,29 +555,91 @@ async function loadTournamentMatches(){
 
                     <br>
 
+
                     🏏 Overs:
                     ${match.overs || "—"}
 
                     <br>
 
+
                     🏆 Result:
+
                     <span class="result">
                         ${match.result || "—"}
                     </span>
+
 
                     ${
                         match.playerOfMatch
                         ?
                         `
                         <br>
+
                         ⭐ Player of the Match:
-                        ${match.playerOfMatch}
+
+                        <span class="special-player">
+                            ${match.playerOfMatch}
+                        </span>
+                        `
+                        :
+                        ""
+                    }
+
+
+                    ${
+                        match.bestBowler
+                        ?
+                        `
+                        <br>
+
+                        🎯 Best Bowler:
+
+                        <span class="player">
+                            ${match.bestBowler}
+                        </span>
+                        `
+                        :
+                        ""
+                    }
+
+
+                    ${
+                        match.bestBatter
+                        ?
+                        `
+                        <br>
+
+                        🏏 Best Batsman:
+
+                        <span class="player">
+                            ${match.bestBatter}
+                        </span>
+                        `
+                        :
+                        ""
+                    }
+
+
+                    ${
+                        match.fighterOfMatch
+                        ?
+                        `
+                        <br>
+
+                        ⚔️ Fighter of the Match:
+
+                        <span class="player">
+                            ${match.fighterOfMatch}
+                        </span>
                         `
                         :
                         ""
                     }
 
                 </div>
+
+
+                ${matchButton}
 
             `;
 
@@ -477,12 +649,21 @@ async function loadTournamentMatches(){
         });
 
 
+        // =========================================
+        // NO MATCHES
+        // =========================================
+
         if(!found){
 
             matchList.innerHTML = `
+
                 <p class="message">
-                    No matches found for this tournament yet.
+
+                    No matches found for this
+                    tournament yet.
+
                 </p>
+
             `;
 
         }
@@ -497,11 +678,17 @@ async function loadTournamentMatches(){
 
 
         matchList.innerHTML = `
+
             <p class="message error">
+
                 ❌ Error loading tournament matches.
+
                 <br><br>
+
                 ${error.message}
+
             </p>
+
         `;
 
     }
