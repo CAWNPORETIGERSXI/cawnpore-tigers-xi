@@ -1,4 +1,4 @@
-import { auth, db, storage } from "./firebase.js";
+import { auth, db } from "./firebase.js";
 
 import {
     signInWithEmailAndPassword
@@ -10,11 +10,13 @@ import {
     getDocs
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-import {
-    ref,
-    uploadBytes,
-    getDownloadURL
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js";
+
+// ======================================================
+// CLOUDINARY SETTINGS
+// ======================================================
+
+const CLOUDINARY_CLOUD_NAME = "ax0fx3uh";
+const CLOUDINARY_UPLOAD_PRESET = "tigers_images1";
 
 
 // ======================================================
@@ -54,6 +56,51 @@ window.login = async function () {
 
     }
 };
+
+
+// ======================================================
+// CLOUDINARY IMAGE UPLOAD
+// ======================================================
+
+async function uploadImageToCloudinary(file) {
+
+    const url =
+        `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
+
+    const formData = new FormData();
+
+    formData.append("file", file);
+
+    formData.append(
+        "upload_preset",
+        CLOUDINARY_UPLOAD_PRESET
+    );
+
+    const response =
+        await fetch(url, {
+            method: "POST",
+            body: formData
+        });
+
+    const data =
+        await response.json();
+
+    if (!response.ok) {
+
+        console.error(
+            "Cloudinary Error:",
+            data
+        );
+
+        throw new Error(
+            data.error?.message ||
+            "Image upload failed"
+        );
+
+    }
+
+    return data.secure_url;
+}
 
 
 // ======================================================
@@ -123,15 +170,7 @@ saveEventBtn.onclick = async function () {
 
     if (eventImage) {
 
-        const allowedTypes = [
-            "image/jpeg"
-        ];
-
-        if (
-            !allowedTypes.includes(
-                eventImage.type
-            )
-        ) {
+        if (eventImage.type !== "image/jpeg") {
 
             alert(
                 "Please upload JPG or JPEG image only."
@@ -144,62 +183,48 @@ saveEventBtn.onclick = async function () {
     }
 
 
-    
-try {
+    try {
 
-    alert("STEP 1: Save Event started");
+        const eventMsg =
+            document.getElementById("eventMsg");
 
-    let imageUrl = "";
+        eventMsg.innerHTML =
+            "⏳ Saving Event...";
 
-    if (eventImage) {
+        eventMsg.style.display =
+            "block";
 
-        alert("STEP 2: JPG found");
+        eventMsg.style.color =
+            "#ff9800";
 
-        const imageRef =
-            ref(
-                storage,
-                "event-images/" +
-                Date.now() +
-                "_" +
-                eventImage.name
-            );
 
-        alert("STEP 3: Starting image upload");
+        // --------------------------------------
+        // UPLOAD IMAGE TO CLOUDINARY
+        // --------------------------------------
 
-        await uploadBytes(
-            imageRef,
-            eventImage
-        );
+        let imageUrl = "";
 
-        alert("STEP 4: Image uploaded");
 
-        imageUrl =
-            await getDownloadURL(
-                imageRef
-            );
+        if (eventImage) {
 
-        alert("STEP 5: Image URL received");
+            eventMsg.innerHTML =
+                "⏳ Uploading image...";
 
-    }
+            imageUrl =
+                await uploadImageToCloudinary(
+                    eventImage
+                );
 
-    alert("STEP 6: Saving Event to Firestore");
-
-    await addDoc(
-        collection(db, "events"),
-        {
-            eventId: eventId,
-            eventType: eventType,
-            eventName: eventName,
-            imageUrl: imageUrl,
-            status: eventStatus
         }
-    );
 
-    alert("STEP 7: EVENT SAVED SUCCESSFULLY");
 
         // --------------------------------------
-        // SAVE EVENT TO FIRESTORE
+        // SAVE EVENT ONLY ONCE
         // --------------------------------------
+
+        eventMsg.innerHTML =
+            "⏳ Saving Event to Firebase...";
+
 
         await addDoc(
             collection(db, "events"),
@@ -219,9 +244,15 @@ try {
         );
 
 
-        alert(
-            "Event saved successfully!"
-        );
+        // --------------------------------------
+        // SUCCESS
+        // --------------------------------------
+
+        eventMsg.innerHTML =
+            "✅ Event saved successfully!";
+
+        eventMsg.style.color =
+            "#00ff88";
 
 
         // --------------------------------------
@@ -249,45 +280,27 @@ try {
 
     } catch (error) {
 
-    console.error("EVENT SAVE ERROR:", error);
+        console.error(
+            "EVENT SAVE ERROR:",
+            error
+        );
 
-    const eventMsg =
-        document.getElementById("eventMsg");
 
-    if (eventMsg) {
+        const eventMsg =
+            document.getElementById("eventMsg");
 
-        eventMsg.style.display = "block";
 
-        eventMsg.style.background = "#330000";
+        eventMsg.style.display =
+            "block";
 
-        eventMsg.style.color = "#ff4444";
-
-        eventMsg.style.padding = "15px";
-
-        eventMsg.style.marginTop = "15px";
-
-        eventMsg.style.borderRadius = "8px";
-
-        eventMsg.style.fontWeight = "bold";
+        eventMsg.style.color =
+            "#ff4444";
 
         eventMsg.innerHTML =
             "❌ ERROR:<br>" +
-            error.code +
-            "<br><br>" +
             error.message;
 
-    } else {
-
-        alert(
-            "❌ ERROR:\n\n" +
-            error.code +
-            "\n\n" +
-            error.message
-        );
-
     }
-
-}
 
 };
 
