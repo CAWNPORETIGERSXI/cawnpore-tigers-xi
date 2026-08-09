@@ -12,121 +12,306 @@
 
 </head>
 
-
 <body>
 
 
-<header>
+<!-- =================================
+     TOP BAR
+================================= -->
 
-<nav>
+<header class="top-bar">
 
-<a href="index.html">Home</a>
+    <div class="brand">
 
-<a href="players.html">Players</a>
+        <img
+            src="logo.png"
+            alt="CAWNPORE TIGERS XI">
 
-<a href="matches.html">Matches</a>
+        <span>
+            CAWNPORE TIGERS XI
+        </span>
 
-<a href="jersey-launch.html">Jersey Launch</a>
-
-<a href="team-stats.html">Team Stats</a>
-
-<a href="gallery.html">Gallery</a>
-
-<a href="contact.html">Contact</a>
-
-</nav>
+    </div>
 
 
-<h1>🐯 CAWNPORE TIGERS XI</h1>
+    <button
+        class="menu-btn"
+        id="menuBtnRight"
+        type="button"
+        aria-label="Open Menu">
 
-<p>Together We Roar, Together We Win</p>
+        ☰
+
+    </button>
 
 </header>
 
 
 
-<section>
+<!-- =================================
+     SIDE MENU
+================================= -->
 
-<h2>👥 Our Players</h2>
-
-
-<div class="players">
-
-
-<a href="anna.html" class="player-link">
-<div class="card">🏏 ANNA</div>
-</a>
+<div class="side-menu" id="sideMenu">
 
 
-<a href="puran.html" class="player-link">
-<div class="card">🏏 PURAN</div>
-</a>
+    <div class="side-menu-header">
+
+        <div class="side-brand">
+
+            <img
+                src="logo.png"
+                alt="CAWNPORE TIGERS XI">
+
+            <span>
+                CAWNPORE<br>
+                TIGERS XI
+            </span>
+
+        </div>
 
 
-<a href="sachin.html" class="player-link">
-<div class="card">🏏 SACHIN</div>
-</a>
+        <button
+            class="close-menu"
+            id="closeMenu"
+            type="button">
+
+            ×
+
+        </button>
+
+    </div>
 
 
-<a href="anupam.html" class="player-link">
-<div class="card">🏏 ANUPAM</div>
-</a>
+
+    <nav class="side-nav">
+
+        <a href="index.html">
+            <span class="menu-icon">🏠</span>
+            <span>HOME</span>
+        </a>
+
+        <a href="about.html">
+            <span class="menu-icon">ℹ️</span>
+            <span>ABOUT</span>
+        </a>
+
+        <a href="players.html">
+            <span class="menu-icon">👥</span>
+            <span>PLAYERS</span>
+        </a>
+
+        <a href="players-registration.html">
+            <span class="menu-icon">📝</span>
+            <span>PLAYERS REGISTRATION</span>
+        </a>
+
+        <a href="team-matches.html">
+            <span class="menu-icon">🏏</span>
+            <span>TEAM MATCHES</span>
+        </a>
+
+        <a href="gallery.html">
+            <span class="menu-icon">📷</span>
+            <span>GALLERY</span>
+        </a>
+
+        <a href="jersey-launch.html">
+            <span class="menu-icon">👕</span>
+            <span>JERSEY LAUNCH</span>
+        </a>
+
+        <a href="team-stats.html">
+            <span class="menu-icon">📊</span>
+            <span>TEAM STATS</span>
+        </a>
+
+    </nav>
 
 
-<div class="card">🏏 SANYAM</div>
 
+    <div class="side-menu-footer">
 
-<a href="deepak.html" class="player-link">
-<div class="card">🏏 DEEPAK</div>
-</a>
+        <strong>
+            TOGETHER WE ROAR
+        </strong>
 
+        <small>
+            TOGETHER WE WIN
+        </small>
 
-<div class="card">🏏 RAJEEV</div>
-
-<div class="card">🏏 AZFAR</div>
-
-
-<a href="amit.html" class="player-link">
-<div class="card">🏏 AMIT</div>
-</a>
-
-
-<div class="card">🏏 VINAY</div>
-
-
-<a href="praveen.html" class="player-link">
-<div class="card">🏏 PRAVEEN</div>
-</a>
-
-
-<a href="kamal.html" class="player-link">
-<div class="card">🏏 KAMAL</div>
-</a>
-
-
-<a href="jishan.html" class="player-link">
-<div class="card">🏏 JISHAN</div>
-</a>
-
-
-<a href="anujgoel.html" class="player-link">
-<div class="card">🏏 ANUJ GOEL</div>
-</a>
-
+    </div>
 
 </div>
 
 
-</section>
+
+<!-- MENU OVERLAY -->
+
+<div
+    class="menu-overlay"
+    id="menuOverlay">
+</div>
 
 
+
+<!-- =================================
+     PLAYERS
+================================= -->
+
+<main class="players-page">
+
+
+    <h1>
+        🐯 CAWNPORE TIGERS XI
+    </h1>
+
+
+    <p class="players-tagline">
+        TOGETHER WE ROAR, TOGETHER WE WIN
+    </p>
+
+
+    <h2>
+        OUR PLAYERS
+    </h2>
+
+
+
+    <div class="player-bars">
+
+
+        <!-- ANNA -->
+
+        <a href="anna.html" class="player-bar">
+            <span>🏏</span>
+            <strong>ANNA</strong>
+        </a>
+
+
+        <!-- PURAN -->
+
+        <a href="puran.html" class="player-bar">
+            <span>🏏</span>
+            <strong>PURAN</strong>
+        </a>
+
+
+        <!-- SACHIN -->
+
+        <a href="sachin.html" class="player-bar">
+            <span>🏏</span>
+            <strong>SACHIN</strong>
+        </a>
+
+
+        <!-- ANUPAM -->
+
+        <a href="anupam.html" class="player-bar">
+            <span>🏏</span>
+            <strong>ANUPAM</strong>
+        </a>
+
+
+        <!-- SANYAM -->
+
+        <div class="player-bar">
+            <span>🏏</span>
+            <strong>SANYAM</strong>
+        </div>
+
+
+        <!-- DEEPAK -->
+
+        <a href="deepak.html" class="player-bar">
+            <span>🏏</span>
+            <strong>DEEPAK</strong>
+        </a>
+
+
+        <!-- RAJEEV -->
+
+        <div class="player-bar">
+            <span>🏏</span>
+            <strong>RAJEEV</strong>
+        </div>
+
+
+        <!-- AZFAR -->
+
+        <div class="player-bar">
+            <span>🏏</span>
+            <strong>AZFAR</strong>
+        </div>
+
+
+        <!-- AMIT -->
+
+        <a href="amit.html" class="player-bar">
+            <span>🏏</span>
+            <strong>AMIT</strong>
+        </a>
+
+
+        <!-- VINAY -->
+
+        <div class="player-bar">
+            <span>🏏</span>
+            <strong>VINAY</strong>
+        </div>
+
+
+        <!-- PRAVEEN -->
+
+        <a href="praveen.html" class="player-bar">
+            <span>🏏</span>
+            <strong>PRAVEEN</strong>
+        </a>
+
+
+        <!-- KAMAL -->
+
+        <a href="kamal.html" class="player-bar">
+            <span>🏏</span>
+            <strong>KAMAL</strong>
+        </a>
+
+
+        <!-- JISHAN -->
+
+        <a href="jishan.html" class="player-bar">
+            <span>🏏</span>
+            <strong>JISHAN</strong>
+        </a>
+
+
+        <!-- ANUJ GOEL -->
+
+        <a href="anujgoel.html" class="player-bar">
+            <span>🏏</span>
+            <strong>ANUJ GOEL</strong>
+        </a>
+
+
+    </div>
+
+</main>
+
+
+
+<!-- =================================
+     FOOTER
+================================= -->
 
 <footer>
 
-© 2026 CAWNPORE TIGERS XI
+    © 2026 CAWNPORE TIGERS XI
 
 </footer>
 
+
+
+<script src="script.js"></script>
 
 </body>
 
