@@ -62,6 +62,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+
     min-width: 0;
 }
 
@@ -81,7 +82,6 @@ body {
     font-size: clamp(13px, 3.5vw, 21px);
 
     font-weight: 900;
-
     letter-spacing: 1px;
 
     white-space: nowrap;
@@ -96,6 +96,7 @@ body {
 
     -webkit-background-clip: text;
     background-clip: text;
+
     -webkit-text-fill-color: transparent;
 
     filter:
@@ -118,6 +119,7 @@ body {
     border-radius: 10px;
 
     background: #111;
+
     color: #ff8800;
 
     font-size: 25px;
@@ -182,6 +184,9 @@ body {
     flex-direction: column;
 }
 
+
+/* MENU OPEN */
+
 .side-menu.active {
     transform: translateX(0);
 }
@@ -224,9 +229,11 @@ body {
     color: #ff8800;
 
     font-size: 14px;
+
     font-weight: 900;
 
     line-height: 1.1;
+
     letter-spacing: 1px;
 }
 
@@ -240,12 +247,15 @@ body {
     height: 42px;
 
     border: 2px solid #ff8800;
+
     border-radius: 10px;
 
     background: #111;
+
     color: #ff8800;
 
     font-size: 32px;
+
     line-height: 1;
 
     cursor: pointer;
@@ -270,6 +280,7 @@ body {
     padding: 20px 15px;
 
     display: flex;
+
     flex-direction: column;
 
     gap: 8px;
@@ -294,6 +305,7 @@ body {
     text-decoration: none;
 
     font-size: 15px;
+
     font-weight: 800;
 
     letter-spacing: .5px;
@@ -303,13 +315,21 @@ body {
     transition: .25s;
 }
 
+
+/* MENU ICON */
+
 .side-nav .menu-icon {
     width: 25px;
+
     flex-shrink: 0;
 
     text-align: center;
+
     font-size: 20px;
 }
+
+
+/* MENU HOVER */
 
 .side-nav a:hover {
     background:
@@ -350,6 +370,7 @@ body {
     color: #ff8800;
 
     font-size: 14px;
+
     letter-spacing: 1px;
 }
 
@@ -361,6 +382,7 @@ body {
     margin-top: 5px;
 
     font-size: 11px;
+
     letter-spacing: 1px;
 }
 
@@ -381,6 +403,7 @@ body {
     z-index: 9998;
 
     opacity: 0;
+
     visibility: hidden;
 
     transition: .3s;
@@ -388,6 +411,7 @@ body {
 
 .menu-overlay.active {
     opacity: 1;
+
     visibility: visible;
 }
 
@@ -408,9 +432,11 @@ body {
     background: #000;
 
     display: flex;
+
     flex-direction: column;
 
     justify-content: center;
+
     align-items: center;
 
     text-align: center;
@@ -429,6 +455,7 @@ body {
     display: flex;
 
     justify-content: center;
+
     align-items: center;
 
     margin-bottom: 20px;
@@ -492,6 +519,9 @@ body {
     transform: translateY(-25px);
 }
 
+
+/* TEAM NAME */
+
 .hero-content h1 {
     margin: 0 auto 14px;
 
@@ -518,6 +548,7 @@ body {
         );
 
     -webkit-background-clip: text;
+
     background-clip: text;
 
     -webkit-text-fill-color: transparent;
@@ -623,12 +654,34 @@ body {
 
 
 /* =========================================
+   FOOTER
+========================================= */
+
+footer {
+    width: 100%;
+
+    margin: 0;
+
+    padding: 20px;
+
+    background: #000;
+
+    border-top: 1px solid #222;
+
+    color: #aaa;
+
+    text-align: center;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
    PLAYERS PAGE
 ========================================= */
 
 .players-page {
     width: 100%;
-
     max-width: 700px;
 
     margin: 0 auto;
@@ -656,14 +709,13 @@ body {
 .players-tagline {
     color: #ffb347;
 
-    font-weight: 900;
+    font-weight: bold;
 
     font-size: 14px;
 
     letter-spacing: 1px;
 
-    margin:
-        0 0 35px;
+    margin-bottom: 35px;
 }
 
 .players-page h2 {
@@ -673,8 +725,7 @@ body {
 
     font-weight: 900;
 
-    margin:
-        0 0 25px;
+    margin-bottom: 25px;
 }
 
 
@@ -689,30 +740,26 @@ body {
 
     flex-direction: column;
 
-    align-items: center;
-
     gap: 12px;
-
-    margin: 0 auto;
 }
 
 
 /* =========================================
-   PLAYER BAR
+   EACH PLAYER BAR
 ========================================= */
 
 .player-bar {
-    width: 260px !important;
+    position: relative;
 
-    max-width: 92% !important;
+    width: 100%;
 
-    min-height: 55px;
+    min-height: 58px;
 
     box-sizing: border-box;
 
-    background: #000 !important;
+    background: #000;
 
-    border: 2px solid #ff8800 !important;
+    border: 2px solid #ff8800;
 
     border-radius: 10px;
 
@@ -720,13 +767,13 @@ body {
 
     align-items: center;
 
-    justify-content: flex-start;
+    justify-content: center;
 
-    padding: 0 18px;
-
-    color: #fff !important;
+    padding: 0 55px;
 
     text-decoration: none;
+
+    color: #fff;
 
     font-size: 18px;
 
@@ -737,48 +784,48 @@ body {
     box-shadow:
         0 0 8px rgba(255,136,0,.25);
 
-    transition:
-        background .25s ease,
-        color .25s ease,
-        transform .25s ease,
-        box-shadow .25s ease;
+    transition: all .25s ease;
 }
 
 
 /* PLAYER ICON */
 
 .player-bar span {
+    position: absolute;
+
+    left: 18px;
+
     width: 35px;
 
-    flex-shrink: 0;
+    display: flex;
 
-    font-size: 21px;
+    align-items: center;
 
-    text-align: left;
+    justify-content: center;
+
+    font-size: 22px;
 }
 
 
 /* PLAYER NAME */
 
 .player-bar strong {
-    color: #fff !important;
+    color: #fff;
 
-    font-weight: 900 !important;
+    font-weight: 900;
+
+    text-align: center;
 
     white-space: nowrap;
-
-    text-align: left;
 }
 
 
 /* PLAYER HOVER */
 
 .player-bar:hover {
-    background: #ff8800 !important;
+    background: #ff8800;
 
-    border-color: #ffb300 !important;
-
-    color: #000 !important;
+    color: #000;
 
     transform: translateX(5px);
 
@@ -787,37 +834,14 @@ body {
 }
 
 .player-bar:hover strong {
-    color: #000 !important;
+    color: #000;
 }
 
 
-/* CLICK */
+/* PLAYER CLICK */
 
 .player-bar:active {
-    transform: scale(.97);
-}
-
-
-/* =========================================
-   FOOTER
-========================================= */
-
-footer {
-    width: 100%;
-
-    margin: 0;
-
-    padding: 20px;
-
-    background: #000;
-
-    border-top: 1px solid #222;
-
-    color: #aaa;
-
-    text-align: center;
-
-    font-size: 14px;
+    transform: scale(.98);
 }
 
 
@@ -827,26 +851,31 @@ footer {
 
 @media (max-width: 600px) {
 
+
     .top-bar {
         height: 62px;
 
         padding: 0 10px;
     }
 
+
     .brand {
         gap: 7px;
     }
+
 
     .brand img {
         width: 43px;
         height: 43px;
     }
 
+
     .brand span {
         font-size: 13px;
 
         letter-spacing: .6px;
     }
+
 
     .menu-btn {
         width: 42px;
@@ -856,17 +885,17 @@ footer {
     }
 
 
-    /* SIDE MENU */
-
     .side-menu {
         width: 300px;
 
         max-width: 88vw;
     }
 
+
     .side-nav {
         padding: 15px 12px;
     }
+
 
     .side-nav a {
         padding: 13px 12px;
@@ -874,8 +903,6 @@ footer {
         font-size: 14px;
     }
 
-
-    /* HERO */
 
     .hero {
         min-height:
@@ -885,6 +912,7 @@ footer {
             25px 10px 40px;
     }
 
+
     .hero-logo {
         transform:
             translateY(-20px);
@@ -892,16 +920,19 @@ footer {
         margin-bottom: 18px;
     }
 
+
     .hero-logo img {
         width: 88vw;
 
         max-width: 400px;
     }
 
+
     .hero-content {
         transform:
             translateY(-20px);
     }
+
 
     .hero-content h1 {
         font-size: 32px;
@@ -909,16 +940,24 @@ footer {
         line-height: 1.05;
     }
 
+
     .hero-content p {
         font-size: 14px;
 
         letter-spacing: 1.5px;
     }
 
+
     .title-line {
         width: 120px;
 
         height: 3px;
+    }
+
+
+    .intro {
+        padding:
+            35px 18px;
     }
 
 
@@ -929,40 +968,35 @@ footer {
             25px 12px 40px;
     }
 
+
     .players-page h1 {
         font-size: 30px;
     }
+
 
     .players-page h2 {
         font-size: 24px;
     }
 
-    .players-tagline {
-        font-size: 12px;
-    }
 
     .player-bar {
-        width: 260px !important;
+        min-height: 55px;
 
-        max-width: 92% !important;
+        padding: 0 45px;
 
-        min-height: 52px;
-
-        font-size: 17px;
+        font-size: 16px;
     }
 
+
     .player-bar span {
-        width: 35px;
+        left: 12px;
 
         font-size: 20px;
     }
 
 
-    /* INTRO */
-
-    .intro {
-        padding:
-            35px 18px;
+    .player-bar strong {
+        font-size: 16px;
     }
 
 }
