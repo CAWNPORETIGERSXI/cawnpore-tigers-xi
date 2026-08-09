@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tournament Matches - CAWNPORE TIGERS XI</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+    background:#111;
+    color:#fff;
+    font-family:Arial,sans-serif;
+}
+
+.container{
+    width:92%;
+    max-width:900px;
+    margin:30px auto;
+}
+
+h1{
+    text-align:center;
+    color:#ff8800;
+}
+
+.event-card{
+    position:relative;
+    background:#1d1d1d;
+    border:3px solid #ff8800;
+    border-radius:15px;
+    padding:15px;
+    margin:20px 0;
+    box-shadow:0 4px 0 #000;
+}
+
+.event-image{
+    width:100%;
+    max-height:220px;
+    object-fit:contain;
+    border-radius:10px;
+    background:#000;
+    margin-bottom:12px;
+}
+
+.event-name{
+    font-size:23px;
+    font-weight:bold;
+    color:#ff9800;
+    margin-bottom:8px;
+}
+
+.event-id{
+    font-size:13px;
+    color:#ccc;
+    margin-bottom:8px;
+}
+
+.status{
+    position:absolute;
+    top:12px;
+    right:12px;
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.active{
+    background:#063d18;
+    color:#00ff66;
+}
+
+.completed{
+    background:#420808;
+    color:#ff4444;
+}
+
+.view-btn{
+    display:block;
+    text-align:center;
+    background:#ff8800;
+    color:#000;
+    padding:12px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+    margin-top:15px;
+}
+
+.message{
+    text-align:center;
+    margin-top:30px;
+    color:#ccc;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>🏆 TOURNAMENT MATCHES</h1>
+
+<p style="text-align:center;">
+CAWNPORE TIGERS XI
+</p>
+
+</header>
+
+
+<main class="container">
+
+<div id="eventList">
+
+<p class="message">
+⏳ Loading Tournaments...
+</p>
+
+</div>
+
+</main>
+
+
+<footer style="text-align:center;margin:40px 0;">
+
+© 2026 CAWNPORE TIGERS XI
+
+</footer>
+
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+    collection,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+const eventList =
+    document.getElementById("eventList");
+
+
+async function loadTournaments(){
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(db,"events")
+            );
+
+
+        eventList.innerHTML = "";
+
+
+        let found = false;
+
+
+        snapshot.forEach((doc)=>{
+
+            const event =
+                doc.data();
+
+
+            // ONLY TOURNAMENT EVENTS
+
+            if(event.eventType !== "Tournament"){
+                return;
+            }
+
+
+            found = true;
+
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "event-card";
+
+
+            const statusClass =
+                event.status === "Completed"
+                ? "completed"
+                : "active";
+
+
+            const statusText =
+                event.status === "Completed"
+                ? "🔴 COMPLETED"
+                : "🟢 GOING ON";
+
+
+           
