@@ -16,7 +16,7 @@ import {
 // ======================================================
 
 const CLOUDINARY_CLOUD_NAME = "ax0fx3uh";
-const CLOUDINARY_UPLOAD_PRESET = "tigers_images1";
+const CLOUDINARY_UPLOAD_PRESET = "tigers_images";
 
 
 // ======================================================
