@@ -1518,3 +1518,50 @@ table tr:hover {
             35px 18px;
     }
 }
+/* =========================================
+   HAMBURGER BUTTON - BIGGER & CLEARER
+========================================= */
+
+.menu-btn {
+    width: 54px !important;
+    height: 54px !important;
+
+    border: 2px solid #ff8800 !important;
+    border-radius: 12px !important;
+
+    background: #111 !important;
+    color: #ff8800 !important;
+
+    font-size: 32px !important;
+    font-weight: 900 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    line-height: 1 !important;
+
+    padding: 0 !important;
+
+    box-shadow:
+        0 0 10px rgba(255,136,0,.55),
+        0 0 20px rgba(255,136,0,.18) !important;
+
+    cursor: pointer;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .menu-btn {
+        width: 50px !important;
+        height: 50px !important;
+
+        font-size: 29px !important;
+
+        border-radius: 11px !important;
+    }
+
+}
