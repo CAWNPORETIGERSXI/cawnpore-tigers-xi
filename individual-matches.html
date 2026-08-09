@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Individual Matches - CAWNPORE TIGERS XI</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+    background:#111;
+    color:#fff;
+    font-family:Arial,sans-serif;
+}
+
+.container{
+    width:92%;
+    max-width:900px;
+    margin:30px auto;
+}
+
+.page-title{
+    text-align:center;
+    color:#ff8800;
+    margin-bottom:8px;
+}
+
+.page-subtitle{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.match-card{
+    display:block;
+    background:#1d1d1d;
+    border:2px solid #333;
+    border-left:5px solid #ff8800;
+    border-radius:12px;
+    padding:15px;
+    margin:14px 0;
+    text-decoration:none;
+    color:#fff;
+    box-shadow:0 3px 0 #000;
+    transition:0.15s ease;
+}
+
+.match-card:hover{
+    transform:translateY(-2px);
+    border-color:#ff8800;
+}
+
+.match-card:active{
+    transform:translateY(2px);
+}
+
+.match-date{
+    color:#ff9800;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.match-teams{
+    font-size:19px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.match-info{
+    color:#ccc;
+    font-size:14px;
+    line-height:1.7;
+}
+
+.result{
+    color:#00ff88;
+    font-weight:bold;
+}
+
+.view-summary{
+    display:block;
+    text-align:center;
+    background:#ff8800;
+    color:#000;
+    padding:10px;
+    border-radius:8px;
+    font-weight:bold;
+    margin-top:12px;
+}
+
+.message{
+    text-align:center;
+    color:#ccc;
+    margin:30px 0;
+}
+
+.error{
+    color:#ff4444;
+}
+
+.back-btn{
+    display:block;
+    text-align:center;
+    background:#ff8800;
+    color:#000;
+    text-decoration:none;
+    padding:12px;
+    border-radius:8px;
+    font-weight:bold;
+    margin:30px 0;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1 class="page-title">
+🏏 INDIVIDUAL MATCHES
+</h1>
+
+<p class="page-subtitle">
+CAWNPORE TIGERS XI
+</p>
+
+</header>
+
+
+<main class="container">
+
+
+<div id="matchList">
+
+<p class="message">
+⏳ Loading Matches...
+</p>
+
+</div>
+
+
+<a
+href="team-matches.html"
+class="back-btn"
+>
+⬅ BACK TO TEAM MATCHES
+</a>
+
+
+</main>
+
+
+<footer style="text-align:center;margin:40px 0;">
+
+© 2026 CAWNPORE TIGERS XI
+
+</footer>
+
+
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+    collection,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+const matchList =
+    document.getElementById("matchList");
+
+
+// =====================================================
+// LOAD INDIVIDUAL MATCHES
+// =====================================================
+
+async function loadIndividualMatches(){
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(db,"matches")
+            );
+
+
+        matchList.innerHTML = "";
+
+
+        let found = false;
+
+
+        snapshot.forEach((doc)=>{
+
+            const match =
+                doc.data();
+
+
+            // ONLY INDIVIDUAL MATCHES
+
+            if(
+                match.eventType !==
+                "Individual Matches"
+            ){
+
+                return;
+
+            }
+
+
+            found = true;
+
+
+            const card =
+                document.createElement("a");
+
+
+            card.className =
+                "match-card";
+
+
+            // IMPORTANT:
+            // matchId saved from Admin Panel
+
+            card.href =
+                "match-summary.html?id=" +
+                encodeURIComponent(
+                    match.matchId || doc.id
+                );
+
+
+            card.innerHTML = `
+
+                <div class="match-date">
+
+                    📅 ${match.matchDate || "—"}
+
+                </div>
+
+
+                <div class="match-teams">
+
+                    CAWNPORE TIGERS XI
+                    vs
+                    ${match.opponent || "—"}
+
+                </div>
+
+
+                <div class="match-info">
+
+                    📍 Place:
+                    ${match.place || "—"}
+
+                    <br>
+
+                    🏏 Overs:
+                    ${match.overs || "—"}
+
+                    <br>
+
+                    🏆 Result:
+                    <span class="result">
+                        ${match.result || "—"}
+                    </span>
+
+                    ${
+                        match.playerOfMatch
+                        ?
+                        `
+                        <br>
+                        ⭐ Player of the Match:
+                        ${match.playerOfMatch}
+                        `
+                        :
+                        ""
+                    }
+
+                </div>
+
+
+                <div class="view-summary">
+
+                    VIEW MATCH SUMMARY →
+
+                </div>
+
+            `;
+
+
+            matchList.appendChild(card);
+
+        });
+
+
+        if(!found){
+
+            matchList.innerHTML = `
+
+                <p class="message">
+
+                    No Individual Matches found yet.
+
+                </p>
+
+            `;
+
+        }
+
+    }
+    catch(error){
+
+        console.error(
+            "Individual Matches Error:",
+            error
+        );
+
+
+        matchList.innerHTML = `
+
+            <p class="message error">
+
+                ❌ Error loading matches.
+
+                <br><br>
+
+                ${error.message}
+
+            </p>
+
+        `;
+
+    }
+
+}
+
+
+// =====================================================
+// START
+// =====================================================
+
+loadIndividualMatches();
+
+</script>
+
+
+</body>
+
+</html>
