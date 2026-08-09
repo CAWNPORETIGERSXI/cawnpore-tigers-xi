@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Series - CAWNPORE TIGERS XI</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+    background:#111;
+    color:#fff;
+    font-family:Arial,sans-serif;
+}
+
+.container{
+    width:92%;
+    max-width:900px;
+    margin:30px auto;
+}
+
+h1{
+    text-align:center;
+    color:#ff8800;
+}
+
+.page-subtitle{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.series-card{
+    position:relative;
+    background:#1d1d1d;
+    border:3px solid #ff8800;
+    border-radius:15px;
+    padding:15px;
+    margin:20px 0;
+    box-shadow:0 4px 0 #000;
+}
+
+.series-image{
+    width:100%;
+    max-height:220px;
+    object-fit:contain;
+    border-radius:10px;
+    background:#000;
+    margin-bottom:12px;
+}
+
+.series-name{
+    font-size:23px;
+    font-weight:bold;
+    color:#ff9800;
+    margin-bottom:8px;
+}
+
+.series-id{
+    font-size:13px;
+    color:#ccc;
+    margin-bottom:8px;
+}
+
+.status{
+    position:absolute;
+    top:12px;
+    right:12px;
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.active{
+    background:#063d18;
+    color:#00ff66;
+}
+
+.completed{
+    background:#420808;
+    color:#ff4444;
+}
+
+.view-btn{
+    display:block;
+    text-align:center;
+    background:#ff8800;
+    color:#000;
+    padding:12px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+    margin-top:15px;
+}
+
+.message{
+    text-align:center;
+    margin-top:30px;
+    color:#ccc;
+}
+
+.error{
+    color:#ff4444;
+}
+
+.back-btn{
+    display:block;
+    text-align:center;
+    background:#ff8800;
+    color:#000;
+    padding:12px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+    margin:30px 0;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>🏏 SERIES</h1>
+
+<p class="page-subtitle">
+CAWNPORE TIGERS XI
+</p>
+
+</header>
+
+
+<main class="container">
+
+<div id="seriesList">
+
+<p class="message">
+⏳ Loading Series...
+</p>
+
+</div>
+
+
+<a
+href="team-matches.html"
+class="back-btn"
+>
+⬅ BACK TO TEAM MATCHES
+</a>
+
+</main>
+
+
+<footer style="text-align:center;margin:40px 0;">
+
+© 2026 CAWNPORE TIGERS XI
+
+</footer>
+
+
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+    collection,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+const seriesList =
+    document.getElementById("seriesList");
+
+
+// =====================================================
+// LOAD SERIES
+// =====================================================
+
+async function loadSeries(){
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(db,"events")
+            );
+
+
+        seriesList.innerHTML = "";
+
+
+        let found = false;
+
+
+        snapshot.forEach((doc)=>{
+
+            const series =
+                doc.data();
+
+
+            // ONLY SERIES EVENTS
+
+            if(
+                series.eventType !== "Series"
+            ){
+
+                return;
+
+            }
+
+
+            found = true;
+
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "series-card";
+
+
+            const statusClass =
+                series.status === "Completed"
+                ? "completed"
+                : "active";
+
+
+            const statusText =
+                series.status === "Completed"
+                ? "🔴 COMPLETED"
+                : "🟢 GOING ON";
+
+
+            card.innerHTML = `
+
+                ${
+                    series.imageUrl
+                    ?
+                    `
+                    <img
+                        src="${series.imageUrl}"
+                        class="series-image"
+                        alt="Series Image"
+                    >
+                    `
+                    :
+                    ""
+                }
+
+
+                <div class="series-name">
+
+                    ${series.eventName || "Series"}
+
+                </div>
+
+
+                <div class="series-id">
+
+                    Event ID:
+                    ${series.eventId || ""}
+
+                </div>
+
+
+                <div class="status ${statusClass}">
+
+                    ${statusText}
+
+                </div>
+
+
+                <a
+                    href="series.html?eventId=${encodeURIComponent(series.eventId || "")}"
+                    class="view-btn"
+                >
+
+                    VIEW SERIES
+
+                </a>
+
+            `;
+
+
+            seriesList.appendChild(card);
+
+        });
+
+
+        if(!found){
+
+            seriesList.innerHTML = `
+
+                <p class="message">
+
+                    No Series found yet.
+
+                </p>
+
+            `;
+
+        }
+
+    }
+    catch(error){
+
+        console.error(
+            "Series Loading Error:",
+            error
+        );
+
+
+        seriesList.innerHTML = `
+
+            <p class="message error">
+
+                ❌ Error loading Series.
+
+                <br><br>
+
+                ${error.message}
+
+            </p>
+
+        `;
+
+    }
+
+}
+
+
+// =====================================================
+// START
+// =====================================================
+
+loadSeries();
+
+</script>
+
+
+</body>
+
+</html>
