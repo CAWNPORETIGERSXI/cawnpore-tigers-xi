@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Match Summary - CAWNPORE TIGERS XI</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+    background:#111;
+    color:#fff;
+    font-family:Arial,sans-serif;
+}
+
+.container{
+    width:92%;
+    max-width:900px;
+    margin:30px auto;
+}
+
+.page-title{
+    text-align:center;
+    color:#ff8800;
+    margin-bottom:25px;
+}
+
+.summary-card{
+    background:#1d1d1d;
+    border:3px solid #ff8800;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 4px 0 #000;
+}
+
+.match-date{
+    text-align:center;
+    color:#ff9800;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.teams{
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+    margin:15px 0;
+}
+
+.result{
+    text-align:center;
+    color:#00ff88;
+    font-size:20px;
+    font-weight:bold;
+    padding:12px;
+    background:#092b18;
+    border-radius:10px;
+    margin:15px 0;
+}
+
+.info{
+    font-size:16px;
+    color:#ddd;
+    line-height:1.9;
+}
+
+.label{
+    color:#ff9800;
+    font-weight:bold;
+}
+
+.view-match{
+    display:block;
+    text-align:center;
+    background:#ff8800;
+    color:#000;
+    text-decoration:none;
+    padding:12px;
+    border-radius:8px;
+    font-weight:bold;
+    margin-top:20px;
+}
+
+.back-btn{
+    display:block;
+    text-align:center;
+    background:#ff8800;
+    color:#000;
+    text-decoration:none;
+    padding:12px;
+    border-radius:8px;
+    font-weight:bold;
+    margin:25px 0;
+}
+
+.message{
+    text-align:center;
+    color:#ccc;
+    margin:30px 0;
+}
+
+.error{
+    color:#ff4444;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1 class="page-title">
+🏏 MATCH SUMMARY
+</h1>
+
+</header>
+
+
+<main class="container">
+
+
+<div id="summary">
+
+<p class="message">
+⏳ Loading Match Summary...
+</p>
+
+</div>
+
+
+<a
+href="individual-matches.html"
+class="back-btn"
+>
+⬅ BACK TO INDIVIDUAL MATCHES
+</a>
+
+
+</main>
+
+
+<footer style="text-align:center;margin:40px 0;">
+
+© 2026 CAWNPORE TIGERS XI
+
+</footer>
+
+
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+    collection,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+// =====================================================
+// GET MATCH ID FROM URL
+// =====================================================
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const matchId =
+    params.get("id");
+
+
+const summary =
+    document.getElementById("summary");
+
+
+// =====================================================
+// CHECK MATCH ID
+// =====================================================
+
+if(!matchId){
+
+    summary.innerHTML = `
+        <p class="message error">
+            ❌ Match ID not found.
+        </p>
+    `;
+
+}
+
+
+// =====================================================
+// LOAD MATCH
+// =====================================================
+
+async function loadMatch(){
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(db,"matches")
+            );
+
+
+        let selectedMatch = null;
+
+
+        snapshot.forEach((doc)=>{
+
+            const match =
+                doc.data();
+
+
+            if(
+                match.matchId === matchId ||
+                doc.id === matchId
+            ){
+
+                selectedMatch = match;
+
+            }
+
+        });
+
+
+        if(!selectedMatch){
+
+            summary.innerHTML = `
+                <p class="message error">
+                    ❌ Match not found.
+                </p>
+            `;
+
+            return;
+
+        }
+
+
+        summary.innerHTML = `
+
+            <div class="summary-card">
+
+                <div class="match-date">
+
+                    📅 ${selectedMatch.matchDate || "—"}
+
+                </div>
+
+
+                <div class="teams">
+
+                    CAWNPORE TIGERS XI
+
+                    <br>
+
+                    <span style="color:#ff8800;">
+                        vs
+                    </span>
+
+                    <br>
+
+                    ${selectedMatch.opponent || "—"}
+
+                </div>
+
+
+                <div class="result">
+
+                    🏆 ${selectedMatch.result || "—"}
+
+                </div>
+
+
+                <div class="info">
+
+                    <span class="label">
+                        📍 Place:
+                    </span>
+
+                    ${selectedMatch.place || "—"}
+
+                    <br>
+
+
+                    <span class="label">
+                        🏏 Overs:
+                    </span>
+
+                    ${selectedMatch.overs || "—"}
+
+                    <br>
+
+
+                    ${
+                        selectedMatch.playerOfMatch
+                        ?
+                        `
+                        <span class="label">
+                            ⭐ Player of the Match:
+                        </span>
+
+                        ${selectedMatch.playerOfMatch}
+
+                        <br>
+                        `
+                        :
+                        ""
+                    }
+
+
+                    ${
+                        selectedMatch.bestBowler
+                        ?
+                        `
+                        <span class="label">
+                            🎯 Best Bowler:
+                        </span>
+
+                        ${selectedMatch.bestBowler}
+
+                        <br>
+                        `
+                        :
+                        ""
+                    }
+
+
+                    ${
+                        selectedMatch.bestBatter
+                        ?
+                        `
+                        <span class="label">
+                            🏏 Best Batsman:
+                        </span>
+
+                        ${selectedMatch.bestBatter}
+
+                        <br>
+                        `
+                        :
+                        ""
+                    }
+
+
+                    ${
+                        selectedMatch.fighterOfMatch
+                        ?
+                        `
+                        <span class="label">
+                            ⚔️ Fighter of the Match:
+                        </span>
+
+                        ${selectedMatch.fighterOfMatch}
+
+                        <br>
+                        `
+                        :
+                        ""
+                    }
+
+                </div>
+
+
+                ${
+                    selectedMatch.cricHeroesLink
+                    ?
+                    `
+                    <a
+                        href="${selectedMatch.cricHeroesLink}"
+                        target="_blank"
+                        class="view-match"
+                    >
+                        🔗 VIEW MATCH ON CRICHEROES
+                    </a>
+                    `
+                    :
+                    ""
+                }
+
+            </div>
+
+        `;
+
+    }
+    catch(error){
+
+        console.error(
+            "Match Summary Error:",
+            error
+        );
+
+
+        summary.innerHTML = `
+
+            <p class="message error">
+
+                ❌ Error loading match summary.
+
+                <br><br>
+
+                ${error.message}
+
+            </p>
+
+        `;
+
+    }
+
+}
+
+
+// =====================================================
+// START
+// =====================================================
+
+if(matchId){
+
+    loadMatch();
+
+}
+
+</script>
+
+
+</body>
+
+</html>
