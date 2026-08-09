@@ -1,13 +1,82 @@
-const slides = document.querySelectorAll(".slide");
+/* =========================================
+   CAWNPORE TIGERS XI
+   MAIN JAVASCRIPT
+========================================= */
 
-let index = 0;
 
-setInterval(() => {
+/* =========================================
+   SIDE MENU
+========================================= */
 
-slides[index].classList.remove("active");
+const menuBtn = document.getElementById("menuBtnRight");
+const sideMenu = document.getElementById("sideMenu");
+const closeMenu = document.getElementById("closeMenu");
+const menuOverlay = document.getElementById("menuOverlay");
 
-index = (index + 1) % slides.length;
 
-slides[index].classList.add("active");
+/* OPEN MENU */
 
-},4000);
+if (menuBtn) {
+
+    menuBtn.addEventListener("click", () => {
+
+        sideMenu.classList.add("active");
+
+        menuOverlay.classList.add("active");
+
+        document.body.style.overflow = "hidden";
+
+    });
+
+}
+
+
+/* CLOSE MENU */
+
+if (closeMenu) {
+
+    closeMenu.addEventListener("click", () => {
+
+        sideMenu.classList.remove("active");
+
+        menuOverlay.classList.remove("active");
+
+        document.body.style.overflow = "";
+
+    });
+
+}
+
+
+/* CLOSE BY CLICKING OVERLAY */
+
+if (menuOverlay) {
+
+    menuOverlay.addEventListener("click", () => {
+
+        sideMenu.classList.remove("active");
+
+        menuOverlay.classList.remove("active");
+
+        document.body.style.overflow = "";
+
+    });
+
+}
+
+
+/* CLOSE WITH ESC KEY */
+
+document.addEventListener("keydown", (event) => {
+
+    if (event.key === "Escape") {
+
+        sideMenu?.classList.remove("active");
+
+        menuOverlay?.classList.remove("active");
+
+        document.body.style.overflow = "";
+
+    }
+
+});
