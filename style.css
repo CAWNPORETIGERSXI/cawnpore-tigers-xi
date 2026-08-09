@@ -811,3 +811,157 @@ footer {
     }
 
 }
+/* =========================================
+   PLAYERS PAGE - BAR STYLE
+========================================= */
+
+.players-page {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 35px 15px 50px;
+    box-sizing: border-box;
+    text-align: center;
+    background: #000;
+}
+
+.players-page h1 {
+    margin: 10px 0;
+    color: #fff;
+    font-size: clamp(28px, 7vw, 45px);
+    font-weight: 900;
+}
+
+.players-tagline {
+    color: #ffb347;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 35px;
+}
+
+.players-page h2 {
+    color: #ff8800;
+    font-size: 28px;
+    font-weight: 900;
+    margin-bottom: 25px;
+}
+
+
+/* PLAYER BARS */
+
+.player-bars {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+/* EACH PLAYER BAR */
+
+.player-bar {
+    width: 100%;
+    min-height: 58px;
+
+    box-sizing: border-box;
+
+    background: #000;
+
+    border: 2px solid #ff8800;
+
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    padding: 0 20px;
+
+    text-decoration: none;
+
+    color: #fff;
+
+    font-size: 18px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+        0 0 8px rgba(255,136,0,.25);
+
+    transition: all .25s ease;
+}
+
+
+/* ICON */
+
+.player-bar span {
+    width: 40px;
+    font-size: 22px;
+}
+
+
+/* PLAYER NAME */
+
+.player-bar strong {
+    color: #fff;
+    font-weight: 900;
+}
+
+
+/* HOVER */
+
+.player-bar:hover {
+    background: #ff8800;
+
+    color: #000;
+
+    transform: translateX(5px);
+
+    box-shadow:
+        0 0 15px rgba(255,136,0,.7);
+}
+
+
+.player-bar:hover strong {
+    color: #000;
+}
+
+
+/* CLICK EFFECT */
+
+.player-bar:active {
+    transform: scale(.98);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .players-page {
+        padding: 25px 12px 40px;
+    }
+
+    .players-page h1 {
+        font-size: 30px;
+    }
+
+    .players-page h2 {
+        font-size: 24px;
+    }
+
+    .player-bar {
+        min-height: 55px;
+        padding: 0 15px;
+        font-size: 16px;
+    }
+
+    .player-bar span {
+        width: 35px;
+        font-size: 20px;
+    }
+
+}
