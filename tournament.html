@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tournament - CAWNPORE TIGERS XI</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+    background:#111;
+    color:#fff;
+    font-family:Arial,sans-serif;
+}
+
+.container{
+    width:92%;
+    max-width:900px;
+    margin:30px auto;
+}
+
+.page-title{
+    text-align:center;
+    color:#ff8800;
+    margin-bottom:25px;
+}
+
+.tournament-card{
+    background:#1d1d1d;
+    border:3px solid #ff8800;
+    border-radius:15px;
+    padding:15px;
+    margin-bottom:30px;
+    position:relative;
+}
+
+.tournament-image{
+    width:100%;
+    max-height:260px;
+    object-fit:contain;
+    background:#000;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+.tournament-name{
+    font-size:27px;
+    font-weight:bold;
+    color:#ff9800;
+    margin-bottom:10px;
+}
+
+.tournament-id{
+    color:#ccc;
+    font-size:13px;
+}
+
+.status{
+    display:inline-block;
+    padding:7px 12px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+.active{
+    background:#063d18;
+    color:#00ff66;
+}
+
+.completed{
+    background:#420808;
+    color:#ff4444;
+}
+
+.matches-title{
+    color:#ff8800;
+    text-align:center;
+    margin:25px 0 15px;
+}
+
+.match-card{
+    background:#1d1d1d;
+    border:2px solid #333;
+    border-left:5px solid #ff8800;
+    border-radius:10px;
+    padding:15px;
+    margin:12px 0;
+}
+
+.match-date{
+    color:#ff9800;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.match-opponent{
+    font-size:19px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.match-info{
+    color:#ccc;
+    font-size:14px;
+    line-height:1.7;
+}
+
+.result{
+    color:#00ff88;
+    font-weight:bold;
+}
+
+.message{
+    text-align:center;
+    color:#ccc;
+    margin:30px 0;
+}
+
+.error{
+    color:#ff4444;
+}
+
+.back-btn{
+    display:block;
+    text-align:center;
+    background:#ff8800;
+    color:#000;
+    text-decoration:none;
+    padding:12px;
+    border-radius:8px;
+    font-weight:bold;
+    margin:25px 0;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1 class="page-title">
+🏆 TOURNAMENT
+</h1>
+
+<p style="text-align:center;">
+CAWNPORE TIGERS XI
+</p>
+
+</header>
+
+
+<main class="container">
+
+
+<div id="tournamentInfo">
+
+<p class="message">
+⏳ Loading Tournament...
+</p>
+
+</div>
+
+
+<h2 class="matches-title">
+🏏 TOURNAMENT MATCHES
+</h2>
+
+
+<div id="matchList">
+
+<p class="message">
+⏳ Loading Matches...
+</p>
+
+</div>
+
+
+<a
+href="tournament-matches.html"
+class="back-btn"
+>
+⬅ BACK TO TOURNAMENTS
+</a>
+
+
+</main>
+
+
+<footer style="text-align:center;margin:40px 0;">
+
+© 2026 CAWNPORE TIGERS XI
+
+</footer>
+
+
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+    collection,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+// =====================================================
+// GET EVENT ID FROM URL
+// =====================================================
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const eventId =
+    params.get("eventId");
+
+
+const tournamentInfo =
+    document.getElementById(
+        "tournamentInfo"
+    );
+
+
+const matchList =
+    document.getElementById(
+        "matchList"
+    );
+
+
+// =====================================================
+// CHECK EVENT ID
+// =====================================================
+
+if(!eventId){
+
+    tournamentInfo.innerHTML = `
+        <p class="message error">
+            ❌ Tournament ID not found.
+        </p>
+    `;
+
+    matchList.innerHTML = "";
+
+}
+
+
+// =====================================================
+// LOAD TOURNAMENT
+// =====================================================
+
+async function loadTournament(){
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(db,"events")
+            );
+
+
+        let tournament = null;
+
+
+        snapshot.forEach((doc)=>{
+
+            const event =
+                doc.data();
+
+
+            if(
+                event.eventId === eventId &&
+                (
+                    event.eventType === "Tournament" ||
+                    event.eventType === "TOURNAMENT"
+                )
+            ){
+
+                tournament = event;
+
+            }
+
+        });
+
+
+        if(!tournament){
+
+            tournamentInfo.innerHTML = `
+                <p class="message error">
+                    ❌ Tournament not found.
+                </p>
+            `;
+
+            return;
+
+        }
+
+
+        const statusClass =
+            tournament.status === "Completed"
+            ? "completed"
+            : "active";
+
+
+        const statusText =
+            tournament.status === "Completed"
+            ? "🔴 COMPLETED"
+            : "🟢 GOING ON";
+
+
+        tournamentInfo.innerHTML = `
+
+            <div class="tournament-card">
+
+                ${
+                    tournament.imageUrl
+                    ?
+                    `
+                    <img
+                        src="${tournament.imageUrl}"
+                        class="tournament-image"
+                        alt="Tournament Image"
+                    >
+                    `
+                    :
+                    ""
+                }
+
+                <div class="tournament-name">
+                    ${tournament.eventName || "Tournament"}
+                </div>
+
+                <div class="tournament-id">
+                    Event ID:
+                    ${tournament.eventId || eventId}
+                </div>
+
+                <div class="status ${statusClass}">
+                    ${statusText}
+                </div>
+
+            </div>
+
+        `;
+
+
+    }
+    catch(error){
+
+        console.error(
+            "Tournament Error:",
+            error
+        );
+
+
+        tournamentInfo.innerHTML = `
+            <p class="message error">
+                ❌ Error loading tournament.
+                <br><br>
+                ${error.message}
+            </p>
+        `;
+
+    }
+
+}
+
+
+// =====================================================
+// LOAD TOURNAMENT MATCHES
+// =====================================================
+
+async function loadTournamentMatches(){
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(db,"matches")
+            );
+
+
+        matchList.innerHTML = "";
+
+
+        let found = false;
+
+
+        snapshot.forEach((doc)=>{
+
+            const match =
+                doc.data();
+
+
+            // MATCHES BELONGING TO THIS TOURNAMENT
+
+            if(
+                match.eventId !== eventId
+            ){
+
+                return;
+
+            }
+
+
+            found = true;
+
+
+            const card =
+                document.createElement("div");
+
+
+            card.className =
+                "match-card";
+
+
+            card.innerHTML = `
+
+                <div class="match-date">
+                    📅 ${match.matchDate || ""}
+                </div>
+
+                <div class="match-opponent">
+                    CAWNPORE TIGERS XI
+                    vs
+                    ${match.opponent || ""}
+                </div>
+
+                <div class="match-info">
+
+                    📍 Place:
+                    ${match.place || "—"}
+
+                    <br>
+
+                    🏏 Overs:
+                    ${match.overs || "—"}
+
+                    <br>
+
+                    🏆 Result:
+                    <span class="result">
+                        ${match.result || "—"}
+                    </span>
+
+                    ${
+                        match.playerOfMatch
+                        ?
+                        `
+                        <br>
+                        ⭐ Player of the Match:
+                        ${match.playerOfMatch}
+                        `
+                        :
+                        ""
+                    }
+
+                </div>
+
+            `;
+
+
+            matchList.appendChild(card);
+
+        });
+
+
+        if(!found){
+
+            matchList.innerHTML = `
+                <p class="message">
+                    No matches found for this tournament yet.
+                </p>
+            `;
+
+        }
+
+    }
+    catch(error){
+
+        console.error(
+            "Match Loading Error:",
+            error
+        );
+
+
+        matchList.innerHTML = `
+            <p class="message error">
+                ❌ Error loading tournament matches.
+                <br><br>
+                ${error.message}
+            </p>
+        `;
+
+    }
+
+}
+
+
+// =====================================================
+// START
+// =====================================================
+
+if(eventId){
+
+    loadTournament();
+
+    loadTournamentMatches();
+
+}
+
+</script>
+
+
+</body>
+
+</html>
