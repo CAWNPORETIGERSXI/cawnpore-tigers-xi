@@ -880,3 +880,326 @@ cursor:pointer;
     margin-bottom:25px;
     box-shadow:0 0 15px rgba(255,136,0,.6);
 }
+
+/* =================================
+   NEW TIGERS HOME PAGE
+   FINAL OVERRIDE
+================================= */
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #000 !important;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Top Bar */
+
+.top-bar {
+    width: 100%;
+    height: 75px;
+    background: #050505;
+    border-bottom: 2px solid #ff8800;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0 18px;
+    position: relative;
+    z-index: 20;
+}
+
+.top-title {
+    color: #ff8800;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.menu-btn {
+    width: 48px;
+    height: 48px;
+    border: 2px solid #ff8800;
+    border-radius: 12px;
+    background: #111;
+    color: #ff8800;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* Hero */
+
+.hero {
+    width: 100%;
+    min-height: calc(100vh - 75px);
+    margin: 0 !important;
+    padding: 35px 15px 50px !important;
+    background: #000 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+    overflow: visible !important;
+}
+
+/* IMPORTANT:
+   Old slider is disabled on new home page
+*/
+
+.hero .slider {
+    display: none !important;
+}
+
+/* Logo */
+
+.hero-logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.hero-logo img {
+    width: min(82vw, 430px);
+    height: auto;
+    max-height: 430px;
+    object-fit: contain;
+    display: block;
+
+    border: none;
+    border-radius: 0;
+    background: transparent;
+
+    filter:
+        drop-shadow(0 0 8px #ff8800)
+        drop-shadow(0 0 20px rgba(255,136,0,.65));
+
+    animation: tigerGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes tigerGlow {
+    from {
+        filter:
+            drop-shadow(0 0 7px #ff8800)
+            drop-shadow(0 0 15px rgba(255,136,0,.45));
+    }
+
+    to {
+        filter:
+            drop-shadow(0 0 12px #ff8800)
+            drop-shadow(0 0 30px rgba(255,136,0,.85));
+    }
+}
+
+/* Hero Content */
+
+.hero-content {
+    width: 100%;
+    text-align: center;
+}
+
+.hero-content h1 {
+    margin: 5px 0 10px;
+    color: #fff;
+    font-size: clamp(28px, 7vw, 58px);
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-shadow:
+        0 0 8px rgba(255,136,0,.7),
+        0 0 20px rgba(255,136,0,.35);
+}
+
+.title-line {
+    width: 110px;
+    height: 4px;
+    background: #ff8800;
+    margin: 0 auto 18px;
+    border-radius: 10px;
+    box-shadow: 0 0 12px #ff8800;
+}
+
+.hero-content p {
+    color: #ffb347;
+    font-size: clamp(15px, 4vw, 22px);
+    font-weight: 800;
+    line-height: 1.5;
+    letter-spacing: 2px;
+    margin: 0 0 25px;
+}
+
+/* Buttons */
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.hero-buttons .btn,
+.hero-buttons .btn-outline {
+    margin: 0;
+    padding: 13px 22px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 900;
+    letter-spacing: .5px;
+}
+
+.hero-buttons .btn {
+    background: #ff8800;
+    color: #000;
+    box-shadow: 0 0 15px rgba(255,136,0,.5);
+}
+
+.hero-buttons .btn-outline {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #ff8800;
+}
+
+.hero-buttons .btn:hover {
+    background: #fff;
+    color: #000;
+}
+
+.hero-buttons .btn-outline:hover {
+    background: #ff8800;
+    color: #000;
+}
+
+/* Quick Menu */
+
+.quick-menu {
+    width: 100%;
+    padding: 25px 15px;
+    box-sizing: border-box;
+    background: #080808;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.quick-menu a {
+    text-decoration: none;
+    color: #fff;
+    background: #111;
+    border: 1px solid #ff8800;
+    border-radius: 15px;
+    padding: 18px 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+    box-shadow: 0 0 10px rgba(255,136,0,.2);
+}
+
+.quick-menu span {
+    font-size: 27px;
+}
+
+.quick-menu strong {
+    color: #ff8800;
+    font-size: 14px;
+}
+
+/* Owner */
+
+.owner-section {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 35px 15px;
+    background: #000;
+}
+
+.owner-section h2 {
+    color: #ff8800;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.owner-section .profile-card {
+    max-width: 420px;
+}
+
+/* Intro */
+
+.intro {
+    width: 100% !important;
+    max-width: none !important;
+    box-sizing: border-box;
+    margin: 0 !important;
+    padding: 40px 20px !important;
+    border-radius: 0 !important;
+    background: #0b0b0b !important;
+}
+
+.intro h2 {
+    color: #ff8800;
+}
+
+.intro p {
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.7;
+    color: #ddd;
+}
+
+/* Footer */
+
+footer {
+    margin: 0 !important;
+    background: #000;
+    border-top: 1px solid #222;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .top-bar {
+        height: 65px;
+        padding: 0 12px;
+    }
+
+    .top-title {
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
+
+    .menu-btn {
+        width: 42px;
+        height: 42px;
+        font-size: 22px;
+    }
+
+    .hero {
+        min-height: calc(100vh - 65px);
+        padding-top: 25px !important;
+    }
+
+    .hero-logo img {
+        width: min(88vw, 360px);
+        max-height: 360px;
+    }
+
+    .hero-content h1 {
+        font-size: 30px;
+    }
+
+    .hero-content p {
+        font-size: 14px;
+        letter-spacing: 1.5px;
+    }
+}
