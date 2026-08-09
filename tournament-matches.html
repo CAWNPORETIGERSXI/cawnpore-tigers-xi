@@ -99,13 +99,16 @@ h1{
     color:#ccc;
 }
 
+.error{
+    color:#ff4444;
+}
+
 </style>
 
 </head>
 
 
 <body>
-
 
 <header>
 
@@ -148,35 +151,32 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-const eventList =
-    document.getElementById("eventList");
+const eventList = document.getElementById("eventList");
 
 
 async function loadTournaments(){
 
     try{
 
-        const snapshot =
-            await getDocs(
-                collection(db,"events")
-            );
-
+        const snapshot = await getDocs(
+            collection(db, "events")
+        );
 
         eventList.innerHTML = "";
-
 
         let found = false;
 
 
-        snapshot.forEach((doc)=>{
+        snapshot.forEach((doc) => {
 
-            const event =
-                doc.data();
+            const event = doc.data();
 
 
-            // ONLY TOURNAMENT EVENTS
-
-            if(event.eventType !== "Tournament"){
+            // केवल Tournament Events
+            if(
+                event.eventType !== "Tournament" &&
+                event.eventType !== "TOURNAMENT"
+            ){
                 return;
             }
 
@@ -184,11 +184,9 @@ async function loadTournaments(){
             found = true;
 
 
-            const card =
-                document.createElement("div");
+            const card = document.createElement("div");
 
-            card.className =
-                "event-card";
+            card.className = "event-card";
 
 
             const statusClass =
@@ -203,4 +201,92 @@ async function loadTournaments(){
                 : "🟢 GOING ON";
 
 
-           
+            const imageURL =
+                event.imageURL ||
+                event.imageUrl ||
+                event.image ||
+                "";
+
+
+            card.innerHTML = `
+
+                <div class="status ${statusClass}">
+                    ${statusText}
+                </div>
+
+                ${
+                    imageURL
+                    ?
+                    `<img
+                        src="${imageURL}"
+                        class="event-image"
+                        alt="Tournament Image"
+                    >`
+                    :
+                    ""
+                }
+
+                <div class="event-name">
+                    ${event.eventName || "Tournament"}
+                </div>
+
+                <div class="event-id">
+                    Event ID: ${event.eventId || doc.id}
+                </div>
+
+                <a
+                    href="tournament.html?eventId=${encodeURIComponent(event.eventId || doc.id)}"
+                    class="view-btn"
+                >
+                    VIEW TOURNAMENT
+                </a>
+
+            `;
+
+
+            eventList.appendChild(card);
+
+        });
+
+
+        if(!found){
+
+            eventList.innerHTML = `
+                <p class="message">
+                    No tournaments found.
+                </p>
+            `;
+
+        }
+
+    }
+    catch(error){
+
+        console.error(
+            "Tournament Loading Error:",
+            error
+        );
+
+
+        eventList.innerHTML = `
+            <p class="message error">
+                ❌ Unable to load tournaments.
+                <br><br>
+                Please refresh the page.
+            </p>
+        `;
+
+    }
+
+}
+
+
+// LOAD TOURNAMENTS
+loadTournaments();
+
+</script>
+
+
+</body>
+
+</html>
