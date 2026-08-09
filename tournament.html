@@ -10,159 +10,347 @@
 
 <link rel="stylesheet" href="style.css">
 
+
 <style>
 
+/* =========================================
+   BASIC
+========================================= */
+
+html,
 body{
-    background:#111;
-    color:#fff;
+
+    margin:0;
+    padding:0;
+
+    background:#111 !important;
+    color:#fff !important;
+
     font-family:Arial,sans-serif;
+
 }
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
 
 .container{
+
     width:92%;
+
     max-width:900px;
+
     margin:30px auto;
+
 }
+
+
+/* =========================================
+   PAGE TITLE
+========================================= */
 
 .page-title{
+
     text-align:center;
+
     color:#ff8800;
+
     margin-bottom:25px;
+
 }
+
+
+/* =========================================
+   TOURNAMENT INFORMATION CARD
+========================================= */
 
 .tournament-card{
-    background:#1d1d1d;
-    border:3px solid #ff8800;
-    border-radius:15px;
-    padding:15px;
-    margin-bottom:30px;
+
     position:relative;
+
+    background:#111;
+
+    border:3px solid #ff8800;
+
+    border-radius:12px;
+
+    padding:15px;
+
+    margin-bottom:30px;
+
 }
+
+
+/* =========================================
+   TOURNAMENT IMAGE
+========================================= */
 
 .tournament-image{
+
     width:100%;
+
     max-height:260px;
+
     object-fit:contain;
+
     background:#000;
+
     border-radius:10px;
+
     margin-bottom:15px;
+
 }
+
+
+/* =========================================
+   TOURNAMENT NAME
+========================================= */
 
 .tournament-name{
-    font-size:27px;
-    font-weight:bold;
+
     color:#ff9800;
-    margin-bottom:10px;
+
+    font-weight:bold;
+
+    margin-bottom:8px;
+
 }
+
+
+/* =========================================
+   EVENT ID
+========================================= */
 
 .tournament-id{
+
     color:#ccc;
+
     font-size:13px;
+
 }
+
+
+/* =========================================
+   STATUS
+========================================= */
 
 .status{
+
     display:inline-block;
+
     padding:7px 12px;
+
     border-radius:20px;
+
     font-size:12px;
+
     font-weight:bold;
+
     margin-top:10px;
+
 }
+
 
 .active{
+
     background:#063d18;
+
     color:#00ff66;
+
 }
+
 
 .completed{
+
     background:#420808;
+
     color:#ff4444;
+
 }
+
+
+/* =========================================
+   MATCHES TITLE
+========================================= */
 
 .matches-title{
-    color:#ff8800;
+
     text-align:center;
-    margin:25px 0 15px;
+
+    color:#ff8800;
+
+    margin:30px 0 20px;
+
 }
 
-.match-card{
-    background:#1d1d1d;
-    border:2px solid #333;
-    border-left:5px solid #ff8800;
+
+/* =========================================
+   MATCH BAR
+========================================= */
+
+.match-bar{
+
+    display:block;
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    background:#111;
+
+    border:3px solid #ff8800;
+
     border-radius:10px;
-    padding:15px;
-    margin:12px 0;
+
+    padding:18px 15px;
+
+    margin:0 0 15px;
+
+    text-decoration:none;
+
+    color:#fff;
+
+    text-align:center;
+
+    transition:0.2s ease;
+
 }
 
-.match-date{
-    color:#ff9800;
-    font-weight:bold;
-    margin-bottom:8px;
+
+/* =========================================
+   MATCH BAR HOVER
+========================================= */
+
+.match-bar:hover{
+
+    background:#181818;
+
+    transform:translateY(-2px);
+
 }
+
+
+/* =========================================
+   MATCH BAR CLICK
+========================================= */
+
+.match-bar:active{
+
+    transform:scale(0.98);
+
+}
+
+
+/* =========================================
+   VS
+========================================= */
+
+.match-vs{
+
+    display:block;
+
+    color:#ff8800;
+
+    font-weight:bold;
+
+    margin-bottom:6px;
+
+}
+
+
+/* =========================================
+   OPPONENT NAME
+========================================= */
 
 .match-opponent{
-    font-size:19px;
-    font-weight:bold;
-    margin-bottom:12px;
-    line-height:1.5;
-}
 
-.match-info{
-    color:#ccc;
-    font-size:14px;
-    line-height:1.8;
-}
-
-.result{
-    color:#00ff88;
-    font-weight:bold;
-}
-
-.player{
-    color:#fff;
-}
-
-.special-player{
-    color:#ff9800;
-    font-weight:bold;
-}
-
-.match-button{
     display:block;
-    text-align:center;
-    background:#ff8800;
-    color:#000;
-    padding:11px;
-    border-radius:8px;
-    text-decoration:none;
+
+    color:#fff;
+
     font-weight:bold;
-    margin-top:15px;
+
 }
 
-.match-button:hover{
-    background:#e67a00;
-}
+
+/* =========================================
+   MESSAGE
+========================================= */
 
 .message{
+
     text-align:center;
+
     color:#ccc;
+
     margin:30px 0;
+
 }
+
 
 .error{
+
     color:#ff4444;
+
 }
 
+
+/* =========================================
+   BACK BUTTON
+========================================= */
+
 .back-btn{
+
     display:block;
+
     text-align:center;
-    background:#ff8800;
-    color:#000;
+
+    background:#111;
+
+    color:#ff8800;
+
+    border:3px solid #ff8800;
+
     text-decoration:none;
+
     padding:12px;
-    border-radius:8px;
+
+    border-radius:10px;
+
     font-weight:bold;
-    margin:25px 0;
+
+    margin:30px 0;
+
+}
+
+
+.back-btn:hover{
+
+    background:#181818;
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:600px){
+
+    .container{
+
+        width:92%;
+
+    }
+
+
+    .match-bar{
+
+        padding:16px 10px;
+
+    }
+
 }
 
 </style>
@@ -170,8 +358,13 @@ body{
 </head>
 
 
+
 <body>
 
+
+<!-- =========================================
+     HEADER
+========================================= -->
 
 <header>
 
@@ -186,12 +379,13 @@ CAWNPORE TIGERS XI
 </header>
 
 
+
 <main class="container">
 
 
-<!-- ==========================================
+<!-- =========================================
      TOURNAMENT INFORMATION
-========================================== -->
+========================================= -->
 
 <div id="tournamentInfo">
 
@@ -202,18 +396,20 @@ CAWNPORE TIGERS XI
 </div>
 
 
-<!-- ==========================================
-     MATCHES TITLE
-========================================== -->
+
+<!-- =========================================
+     MATCH TITLE
+========================================= -->
 
 <h2 class="matches-title">
 🏏 TOURNAMENT MATCHES
 </h2>
 
 
-<!-- ==========================================
+
+<!-- =========================================
      MATCH LIST
-========================================== -->
+========================================= -->
 
 <div id="matchList">
 
@@ -224,19 +420,23 @@ CAWNPORE TIGERS XI
 </div>
 
 
-<!-- ==========================================
-     BACK BUTTON
-========================================== -->
+
+<!-- =========================================
+     BACK
+========================================= -->
 
 <a
 href="tournament-matches.html"
 class="back-btn"
 >
+
 ⬅ BACK TO TOURNAMENTS
+
 </a>
 
 
 </main>
+
 
 
 <footer style="text-align:center;margin:40px 0;">
@@ -249,99 +449,63 @@ class="back-btn"
 
 <script type="module">
 
+
+/* =========================================
+   FIREBASE
+========================================= */
+
 import { db } from "./firebase.js";
 
 import {
+
     collection,
     getDocs
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-// =====================================================
-// GET EVENT ID FROM URL
-// =====================================================
+
+/* =========================================
+   GET EVENT ID
+========================================= */
 
 const params =
-    new URLSearchParams(
-        window.location.search
-    );
+new URLSearchParams(
+    window.location.search
+);
+
 
 const eventId =
-    params.get("eventId");
+params.get("eventId");
+
 
 
 const tournamentInfo =
-    document.getElementById(
-        "tournamentInfo"
-    );
+document.getElementById(
+    "tournamentInfo"
+);
 
 
 const matchList =
-    document.getElementById(
-        "matchList"
-    );
+document.getElementById(
+    "matchList"
+);
 
 
-// =====================================================
-// DATE FORMAT
-// YYYY-MM-DD  →  DD-MM-YYYY
-// =====================================================
 
-function formatDate(dateString){
-
-    if(!dateString){
-        return "—";
-    }
-
-    const parts =
-        dateString.split("-");
-
-    if(parts.length === 3){
-
-        return (
-            parts[2] +
-            "-" +
-            parts[1] +
-            "-" +
-            parts[0]
-        );
-
-    }
-
-    return dateString;
-
-}
-
-
-// =====================================================
-// CHECK EVENT ID
-// =====================================================
-
-if(!eventId){
-
-    tournamentInfo.innerHTML = `
-        <p class="message error">
-            ❌ Tournament ID not found.
-        </p>
-    `;
-
-    matchList.innerHTML = "";
-
-}
-
-
-// =====================================================
-// LOAD TOURNAMENT
-// =====================================================
+/* =========================================
+   LOAD TOURNAMENT
+========================================= */
 
 async function loadTournament(){
 
     try{
 
         const snapshot =
-            await getDocs(
-                collection(db,"events")
-            );
+        await getDocs(
+            collection(db,"events")
+        );
 
 
         let tournament = null;
@@ -350,15 +514,27 @@ async function loadTournament(){
         snapshot.forEach((doc)=>{
 
             const event =
-                doc.data();
+            doc.data();
 
 
             if(
-                event.eventId === eventId &&
+
+                event.eventId === eventId
+
+                &&
+
                 (
-                    event.eventType === "Tournament" ||
-                    event.eventType === "TOURNAMENT"
+
+                    event.eventType ===
+                    "Tournament"
+
+                    ||
+
+                    event.eventType ===
+                    "TOURNAMENT"
+
                 )
+
             ){
 
                 tournament = event;
@@ -368,12 +544,17 @@ async function loadTournament(){
         });
 
 
+
         if(!tournament){
 
             tournamentInfo.innerHTML = `
+
                 <p class="message error">
+
                     ❌ Tournament not found.
+
                 </p>
+
             `;
 
             return;
@@ -381,48 +562,103 @@ async function loadTournament(){
         }
 
 
+
+        /* STATUS */
+
         const statusClass =
-            tournament.status === "Completed"
-            ? "completed"
-            : "active";
+        tournament.status === "Completed"
+        ? "completed"
+        : "active";
 
 
         const statusText =
-            tournament.status === "Completed"
-            ? "🔴 COMPLETED"
-            : "🟢 GOING ON";
+        tournament.status === "Completed"
+        ? "🔴 COMPLETED"
+        : "🟢 GOING ON";
+
+
+
+        /* IMAGE */
+
+        const imageURL =
+
+            tournament.imageUrl
+
+            ||
+
+            tournament.imageURL
+
+            ||
+
+            tournament.image
+
+            ||
+
+            "";
+
 
 
         tournamentInfo.innerHTML = `
 
             <div class="tournament-card">
 
+
                 ${
-                    tournament.imageUrl
+                    imageURL
+
                     ?
+
                     `
+
                     <img
-                        src="${tournament.imageUrl}"
+
+                        src="${imageURL}"
+
                         class="tournament-image"
+
                         alt="Tournament Image"
+
                     >
+
                     `
+
                     :
+
                     ""
+
                 }
 
+
                 <div class="tournament-name">
-                    ${tournament.eventName || "Tournament"}
+
+                    ${
+                        tournament.eventName
+                        ||
+                        "Tournament"
+                    }
+
                 </div>
+
 
                 <div class="tournament-id">
+
                     Event ID:
-                    ${tournament.eventId || eventId}
+
+                    ${
+                        tournament.eventId
+                        ||
+                        eventId
+                    }
+
                 </div>
 
+
                 <div class="status ${statusClass}">
+
                     ${statusText}
+
                 </div>
+
 
             </div>
 
@@ -430,6 +666,7 @@ async function loadTournament(){
 
 
     }
+
     catch(error){
 
         console.error(
@@ -439,11 +676,17 @@ async function loadTournament(){
 
 
         tournamentInfo.innerHTML = `
+
             <p class="message error">
+
                 ❌ Error loading tournament.
+
                 <br><br>
+
                 ${error.message}
+
             </p>
+
         `;
 
     }
@@ -451,18 +694,19 @@ async function loadTournament(){
 }
 
 
-// =====================================================
-// LOAD TOURNAMENT MATCHES
-// =====================================================
+
+/* =========================================
+   LOAD TOURNAMENT MATCHES
+========================================= */
 
 async function loadTournamentMatches(){
 
     try{
 
         const snapshot =
-            await getDocs(
-                collection(db,"matches")
-            );
+        await getDocs(
+            collection(db,"matches")
+        );
 
 
         matchList.innerHTML = "";
@@ -471,15 +715,15 @@ async function loadTournamentMatches(){
         let found = false;
 
 
+
         snapshot.forEach((doc)=>{
 
             const match =
-                doc.data();
+            doc.data();
 
 
-            // =========================================
-            // ONLY THIS TOURNAMENT'S MATCHES
-            // =========================================
+
+            /* ONLY THIS TOURNAMENT */
 
             if(
                 match.eventId !== eventId
@@ -490,168 +734,70 @@ async function loadTournamentMatches(){
             }
 
 
+
             found = true;
 
 
-            const card =
-                document.createElement("div");
+
+            /* =================================
+               MATCH BAR
+            ================================= */
 
 
-            card.className =
-                "match-card";
+            const bar =
+            document.createElement("a");
 
 
-            // =========================================
-            // CRICHEROES BUTTON
-            // =========================================
-
-            let matchButton = "";
+            bar.className =
+            "match-bar";
 
 
-            if(match.cricHeroesLink){
 
-                matchButton = `
+            /* =================================
+               MATCH SUMMARY LINK
 
-                    <a
-                        href="${match.cricHeroesLink}"
-                        class="match-button"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        🔗 VIEW MATCH
-                    </a>
-
-                `;
-
-            }
+               Firestore document ID
+            ================================= */
 
 
-            // =========================================
-            // MATCH CARD
-            // =========================================
-
-            card.innerHTML = `
-
-                <div class="match-date">
-                    📅 ${formatDate(match.matchDate)}
-                </div>
+            bar.href =
+            "match-summary.html?id=" +
+            encodeURIComponent(doc.id);
 
 
-                <div class="match-opponent">
 
-                    🏏 CAWNPORE TIGERS XI
-                    <br>
-                    VS
-                    <br>
-                    ${match.opponent || "—"}
+            bar.innerHTML = `
 
-                </div>
+                <span class="match-vs">
 
+                    🏏 VS
 
-                <div class="match-info">
-
-                    📍 Place:
-                    ${match.place || "—"}
-
-                    <br>
+                </span>
 
 
-                    🏏 Overs:
-                    ${match.overs || "—"}
-
-                    <br>
-
-
-                    🏆 Result:
-
-                    <span class="result">
-                        ${match.result || "—"}
-                    </span>
-
+                <span class="match-opponent">
 
                     ${
-                        match.playerOfMatch
-                        ?
-                        `
-                        <br>
-
-                        ⭐ Player of the Match:
-
-                        <span class="special-player">
-                            ${match.playerOfMatch}
-                        </span>
-                        `
-                        :
-                        ""
+                        match.opponent
+                        ||
+                        "Opponent Team"
                     }
 
-
-                    ${
-                        match.bestBowler
-                        ?
-                        `
-                        <br>
-
-                        🎯 Best Bowler:
-
-                        <span class="player">
-                            ${match.bestBowler}
-                        </span>
-                        `
-                        :
-                        ""
-                    }
-
-
-                    ${
-                        match.bestBatter
-                        ?
-                        `
-                        <br>
-
-                        🏏 Best Batsman:
-
-                        <span class="player">
-                            ${match.bestBatter}
-                        </span>
-                        `
-                        :
-                        ""
-                    }
-
-
-                    ${
-                        match.fighterOfMatch
-                        ?
-                        `
-                        <br>
-
-                        ⚔️ Fighter of the Match:
-
-                        <span class="player">
-                            ${match.fighterOfMatch}
-                        </span>
-                        `
-                        :
-                        ""
-                    }
-
-                </div>
-
-
-                ${matchButton}
+                </span>
 
             `;
 
 
-            matchList.appendChild(card);
+
+            matchList.appendChild(bar);
 
         });
 
 
-        // =========================================
-        // NO MATCHES
-        // =========================================
+
+        /* =================================
+           NO MATCHES
+        ================================= */
 
         if(!found){
 
@@ -669,6 +815,7 @@ async function loadTournamentMatches(){
         }
 
     }
+
     catch(error){
 
         console.error(
@@ -696,9 +843,10 @@ async function loadTournamentMatches(){
 }
 
 
-// =====================================================
-// START
-// =====================================================
+
+/* =========================================
+   START
+========================================= */
 
 if(eventId){
 
@@ -708,7 +856,26 @@ if(eventId){
 
 }
 
+else{
+
+    tournamentInfo.innerHTML = `
+
+        <p class="message error">
+
+            ❌ Tournament ID not found.
+
+        </p>
+
+    `;
+
+
+    matchList.innerHTML = "";
+
+}
+
+
 </script>
+
 
 
 </body>
