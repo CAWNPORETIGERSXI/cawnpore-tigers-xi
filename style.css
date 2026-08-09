@@ -1,6 +1,6 @@
 /* =========================================
    CAWNPORE TIGERS XI
-   CLEAN HOME PAGE CSS
+   COMPLETE STYLE.CSS
 ========================================= */
 
 
@@ -62,7 +62,6 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-
     min-width: 0;
 }
 
@@ -71,7 +70,6 @@ body {
     height: 48px;
 
     object-fit: contain;
-
     display: block;
 
     filter:
@@ -98,7 +96,6 @@ body {
 
     -webkit-background-clip: text;
     background-clip: text;
-
     -webkit-text-fill-color: transparent;
 
     filter:
@@ -121,7 +118,6 @@ body {
     border-radius: 10px;
 
     background: #111;
-
     color: #ff8800;
 
     font-size: 25px;
@@ -186,9 +182,6 @@ body {
     flex-direction: column;
 }
 
-
-/* MENU OPEN */
-
 .side-menu.active {
     transform: translateX(0);
 }
@@ -213,7 +206,6 @@ body {
 .side-brand {
     display: flex;
     align-items: center;
-
     gap: 10px;
 }
 
@@ -232,11 +224,9 @@ body {
     color: #ff8800;
 
     font-size: 14px;
-
     font-weight: 900;
 
     line-height: 1.1;
-
     letter-spacing: 1px;
 }
 
@@ -250,15 +240,12 @@ body {
     height: 42px;
 
     border: 2px solid #ff8800;
-
     border-radius: 10px;
 
     background: #111;
-
     color: #ff8800;
 
     font-size: 32px;
-
     line-height: 1;
 
     cursor: pointer;
@@ -283,16 +270,12 @@ body {
     padding: 20px 15px;
 
     display: flex;
-
     flex-direction: column;
 
     gap: 8px;
 
     overflow-y: auto;
 }
-
-
-/* MENU LINKS */
 
 .side-nav a {
     position: relative;
@@ -311,7 +294,6 @@ body {
     text-decoration: none;
 
     font-size: 15px;
-
     font-weight: 800;
 
     letter-spacing: .5px;
@@ -321,21 +303,13 @@ body {
     transition: .25s;
 }
 
-
-/* ICON */
-
 .side-nav .menu-icon {
     width: 25px;
-
     flex-shrink: 0;
 
     text-align: center;
-
     font-size: 20px;
 }
-
-
-/* LINK HOVER */
 
 .side-nav a:hover {
     background:
@@ -376,7 +350,6 @@ body {
     color: #ff8800;
 
     font-size: 14px;
-
     letter-spacing: 1px;
 }
 
@@ -388,7 +361,6 @@ body {
     margin-top: 5px;
 
     font-size: 11px;
-
     letter-spacing: 1px;
 }
 
@@ -409,7 +381,6 @@ body {
     z-index: 9998;
 
     opacity: 0;
-
     visibility: hidden;
 
     transition: .3s;
@@ -417,7 +388,6 @@ body {
 
 .menu-overlay.active {
     opacity: 1;
-
     visibility: visible;
 }
 
@@ -438,11 +408,9 @@ body {
     background: #000;
 
     display: flex;
-
     flex-direction: column;
 
     justify-content: center;
-
     align-items: center;
 
     text-align: center;
@@ -461,7 +429,6 @@ body {
     display: flex;
 
     justify-content: center;
-
     align-items: center;
 
     margin-bottom: 20px;
@@ -489,7 +456,9 @@ body {
 }
 
 
-/* LOGO GLOW */
+/* =========================================
+   LOGO GLOW
+========================================= */
 
 @keyframes tigerGlow {
 
@@ -523,9 +492,6 @@ body {
     transform: translateY(-25px);
 }
 
-
-/* TEAM NAME */
-
 .hero-content h1 {
     margin: 0 auto 14px;
 
@@ -552,7 +518,6 @@ body {
         );
 
     -webkit-background-clip: text;
-
     background-clip: text;
 
     -webkit-text-fill-color: transparent;
@@ -658,6 +623,182 @@ body {
 
 
 /* =========================================
+   PLAYERS PAGE
+========================================= */
+
+.players-page {
+    width: 100%;
+
+    max-width: 700px;
+
+    margin: 0 auto;
+
+    padding: 35px 15px 50px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    background: #000;
+}
+
+.players-page h1 {
+    margin: 10px 0;
+
+    color: #fff;
+
+    font-size:
+        clamp(28px, 7vw, 45px);
+
+    font-weight: 900;
+}
+
+.players-tagline {
+    color: #ffb347;
+
+    font-weight: 900;
+
+    font-size: 14px;
+
+    letter-spacing: 1px;
+
+    margin:
+        0 0 35px;
+}
+
+.players-page h2 {
+    color: #ff8800;
+
+    font-size: 28px;
+
+    font-weight: 900;
+
+    margin:
+        0 0 25px;
+}
+
+
+/* =========================================
+   PLAYER BARS
+========================================= */
+
+.player-bars {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   PLAYER BAR
+========================================= */
+
+.player-bar {
+    width: 260px !important;
+
+    max-width: 92% !important;
+
+    min-height: 55px;
+
+    box-sizing: border-box;
+
+    background: #000 !important;
+
+    border: 2px solid #ff8800 !important;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    padding: 0 18px;
+
+    color: #fff !important;
+
+    text-decoration: none;
+
+    font-size: 18px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+        0 0 8px rgba(255,136,0,.25);
+
+    transition:
+        background .25s ease,
+        color .25s ease,
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+
+/* PLAYER ICON */
+
+.player-bar span {
+    width: 35px;
+
+    flex-shrink: 0;
+
+    font-size: 21px;
+
+    text-align: left;
+}
+
+
+/* PLAYER NAME */
+
+.player-bar strong {
+    color: #fff !important;
+
+    font-weight: 900 !important;
+
+    white-space: nowrap;
+
+    text-align: left;
+}
+
+
+/* PLAYER HOVER */
+
+.player-bar:hover {
+    background: #ff8800 !important;
+
+    border-color: #ffb300 !important;
+
+    color: #000 !important;
+
+    transform: translateX(5px);
+
+    box-shadow:
+        0 0 15px rgba(255,136,0,.7);
+}
+
+.player-bar:hover strong {
+    color: #000 !important;
+}
+
+
+/* CLICK */
+
+.player-bar:active {
+    transform: scale(.97);
+}
+
+
+/* =========================================
    FOOTER
 ========================================= */
 
@@ -686,17 +827,11 @@ footer {
 
 @media (max-width: 600px) {
 
-
-    /* TOP BAR */
-
     .top-bar {
         height: 62px;
 
         padding: 0 10px;
     }
-
-
-    /* BRAND */
 
     .brand {
         gap: 7px;
@@ -712,9 +847,6 @@ footer {
 
         letter-spacing: .6px;
     }
-
-
-    /* MENU BUTTON */
 
     .menu-btn {
         width: 42px;
@@ -732,11 +864,9 @@ footer {
         max-width: 88vw;
     }
 
-
     .side-nav {
         padding: 15px 12px;
     }
-
 
     .side-nav a {
         padding: 13px 12px;
@@ -755,9 +885,6 @@ footer {
             25px 10px 40px;
     }
 
-
-    /* LOGO */
-
     .hero-logo {
         transform:
             translateY(-20px);
@@ -771,14 +898,10 @@ footer {
         max-width: 400px;
     }
 
-
-    /* HERO CONTENT */
-
     .hero-content {
         transform:
             translateY(-20px);
     }
-
 
     .hero-content h1 {
         font-size: 32px;
@@ -786,15 +909,11 @@ footer {
         line-height: 1.05;
     }
 
-
     .hero-content p {
         font-size: 14px;
 
         letter-spacing: 1.5px;
     }
-
-
-    /* TITLE LINE */
 
     .title-line {
         width: 120px;
@@ -803,146 +922,11 @@ footer {
     }
 
 
-    /* INTRO */
-
-    .intro {
-        padding:
-            35px 18px;
-    }
-
-}
-/* =========================================
-   PLAYERS PAGE - BAR STYLE
-========================================= */
-
-.players-page {
-    width: 100%;
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 35px 15px 50px;
-    box-sizing: border-box;
-    text-align: center;
-    background: #000;
-}
-
-.players-page h1 {
-    margin: 10px 0;
-    color: #fff;
-    font-size: clamp(28px, 7vw, 45px);
-    font-weight: 900;
-}
-
-.players-tagline {
-    color: #ffb347;
-    font-weight: bold;
-    font-size: 14px;
-    letter-spacing: 1px;
-    margin-bottom: 35px;
-}
-
-.players-page h2 {
-    color: #ff8800;
-    font-size: 28px;
-    font-weight: 900;
-    margin-bottom: 25px;
-}
-
-
-/* PLAYER BARS */
-
-.player-bars {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-
-/* EACH PLAYER BAR */
-
-.player-bar {
-    width: 100%;
-    min-height: 58px;
-
-    box-sizing: border-box;
-
-    background: #000;
-
-    border: 2px solid #ff8800;
-
-    border-radius: 10px;
-
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-
-    padding: 0 20px;
-
-    text-decoration: none;
-
-    color: #fff;
-
-    font-size: 18px;
-
-    font-weight: 900;
-
-    letter-spacing: 1px;
-
-    box-shadow:
-        0 0 8px rgba(255,136,0,.25);
-
-    transition: all .25s ease;
-}
-
-
-/* ICON */
-
-.player-bar span {
-    width: 40px;
-    font-size: 22px;
-}
-
-
-/* PLAYER NAME */
-
-.player-bar strong {
-    color: #fff;
-    font-weight: 900;
-}
-
-
-/* HOVER */
-
-.player-bar:hover {
-    background: #ff8800;
-
-    color: #000;
-
-    transform: translateX(5px);
-
-    box-shadow:
-        0 0 15px rgba(255,136,0,.7);
-}
-
-
-.player-bar:hover strong {
-    color: #000;
-}
-
-
-/* CLICK EFFECT */
-
-.player-bar:active {
-    transform: scale(.98);
-}
-
-
-/* MOBILE */
-
-@media (max-width: 600px) {
+    /* PLAYERS */
 
     .players-page {
-        padding: 25px 12px 40px;
+        padding:
+            25px 12px 40px;
     }
 
     .players-page h1 {
@@ -953,15 +937,32 @@ footer {
         font-size: 24px;
     }
 
+    .players-tagline {
+        font-size: 12px;
+    }
+
     .player-bar {
-        min-height: 55px;
-        padding: 0 15px;
-        font-size: 16px;
+        width: 260px !important;
+
+        max-width: 92% !important;
+
+        min-height: 52px;
+
+        font-size: 17px;
     }
 
     .player-bar span {
         width: 35px;
+
         font-size: 20px;
+    }
+
+
+    /* INTRO */
+
+    .intro {
+        padding:
+            35px 18px;
     }
 
 }
