@@ -109,6 +109,8 @@ body{
 
 .tournament-name{
 
+    font-size:27px;
+
     color:#ff9800;
 
     font-weight:bold;
@@ -248,28 +250,22 @@ body{
 
 .match-vs{
 
-    display:block;
-
     color:#ff8800;
 
     font-weight:bold;
-
-    margin-bottom:6px;
 
 }
 
 
 /* =========================================
-   OPPONENT NAME
+   OPPONENT TEAM
 ========================================= */
 
 .match-opponent{
 
-    display:block;
-
     color:#fff;
 
-    font-weight:bold;
+    font-weight:900;
 
 }
 
@@ -347,7 +343,9 @@ body{
 
     .match-bar{
 
-        padding:16px 10px;
+        padding:16px 8px;
+
+        font-size:15px;
 
     }
 
@@ -422,7 +420,7 @@ CAWNPORE TIGERS XI
 
 
 <!-- =========================================
-     BACK
+     BACK BUTTON
 ========================================= -->
 
 <a
@@ -563,7 +561,9 @@ async function loadTournament(){
 
 
 
-        /* STATUS */
+        /* =====================================
+           STATUS
+        ===================================== */
 
         const statusClass =
         tournament.status === "Completed"
@@ -578,7 +578,9 @@ async function loadTournament(){
 
 
 
-        /* IMAGE */
+        /* =====================================
+           TOURNAMENT IMAGE
+        ===================================== */
 
         const imageURL =
 
@@ -723,7 +725,9 @@ async function loadTournamentMatches(){
 
 
 
-            /* ONLY THIS TOURNAMENT */
+            /* =================================
+               ONLY THIS TOURNAMENT MATCHES
+            ================================= */
 
             if(
                 match.eventId !== eventId
@@ -740,9 +744,8 @@ async function loadTournamentMatches(){
 
 
             /* =================================
-               MATCH BAR
+               CREATE MATCH BAR
             ================================= */
-
 
             const bar =
             document.createElement("a");
@@ -754,11 +757,8 @@ async function loadTournamentMatches(){
 
 
             /* =================================
-               MATCH SUMMARY LINK
-
-               Firestore document ID
+               OPEN MATCH SUMMARY
             ================================= */
-
 
             bar.href =
             "match-summary.html?id=" +
@@ -766,22 +766,25 @@ async function loadTournamentMatches(){
 
 
 
+            /* =================================
+               BAR CONTENT
+            ================================= */
+
             bar.innerHTML = `
 
                 <span class="match-vs">
 
                     🏏 VS
 
-                </span>
+                    <span class="match-opponent">
 
+                        ${
+                            match.opponent
+                            ||
+                            "Opponent Team"
+                        }
 
-                <span class="match-opponent">
-
-                    ${
-                        match.opponent
-                        ||
-                        "Opponent Team"
-                    }
+                    </span>
 
                 </span>
 
