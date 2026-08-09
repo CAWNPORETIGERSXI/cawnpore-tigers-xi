@@ -10,108 +10,232 @@
 
 <link rel="stylesheet" href="style.css">
 
+
 <style>
 
+/* =========================================
+   BASIC
+========================================= */
+
+html,
 body{
-    background:#111;
-    color:#fff;
+
+    margin:0;
+    padding:0;
+
+    background:#111 !important;
+    color:#fff !important;
+
     font-family:Arial,sans-serif;
+
 }
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
 
 .container{
+
     width:92%;
+
     max-width:900px;
+
     margin:30px auto;
+
 }
+
+
+/* =========================================
+   PAGE TITLE
+========================================= */
 
 .page-title{
+
     text-align:center;
+
     color:#ff8800;
+
     margin-bottom:8px;
+
 }
+
+
+/* =========================================
+   PAGE SUBTITLE
+========================================= */
 
 .page-subtitle{
+
     text-align:center;
+
     margin-bottom:30px;
+
 }
 
-.match-card{
+
+/* =========================================
+   MATCH BAR
+========================================= */
+
+.match-bar{
+
     display:block;
-    background:#1d1d1d;
-    border:2px solid #333;
-    border-left:5px solid #ff8800;
-    border-radius:12px;
-    padding:15px;
-    margin:14px 0;
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    background:#111;
+
+    border:3px solid #ff8800;
+
+    border-radius:10px;
+
+    padding:18px 15px;
+
+    margin:0 0 15px;
+
     text-decoration:none;
+
     color:#fff;
-    box-shadow:0 3px 0 #000;
-    transition:0.15s ease;
-}
 
-.match-card:hover{
-    transform:translateY(-2px);
-    border-color:#ff8800;
-}
-
-.match-card:active{
-    transform:translateY(2px);
-}
-
-.match-date{
-    color:#ff9800;
-    font-weight:bold;
-    margin-bottom:8px;
-}
-
-.match-teams{
-    font-size:19px;
-    font-weight:bold;
-    margin-bottom:8px;
-}
-
-.match-info{
-    color:#ccc;
-    font-size:14px;
-    line-height:1.7;
-}
-
-.result{
-    color:#00ff88;
-    font-weight:bold;
-}
-
-.view-summary{
-    display:block;
     text-align:center;
-    background:#ff8800;
-    color:#000;
-    padding:10px;
-    border-radius:8px;
-    font-weight:bold;
-    margin-top:12px;
+
+    transition:0.2s ease;
+
 }
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+.match-bar:hover{
+
+    background:#181818;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* =========================================
+   CLICK
+========================================= */
+
+.match-bar:active{
+
+    transform:scale(0.98);
+
+}
+
+
+/* =========================================
+   VS
+========================================= */
+
+.match-vs{
+
+    color:#ff8800;
+
+    font-weight:bold;
+
+}
+
+
+/* =========================================
+   OPPONENT
+========================================= */
+
+.match-opponent{
+
+    color:#fff;
+
+    font-weight:900;
+
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
 
 .message{
+
     text-align:center;
+
     color:#ccc;
+
     margin:30px 0;
+
 }
+
 
 .error{
+
     color:#ff4444;
+
 }
 
+
+/* =========================================
+   BACK BUTTON
+========================================= */
+
 .back-btn{
+
     display:block;
+
     text-align:center;
-    background:#ff8800;
-    color:#000;
+
+    background:#111;
+
+    color:#ff8800;
+
+    border:3px solid #ff8800;
+
     text-decoration:none;
+
     padding:12px;
-    border-radius:8px;
+
+    border-radius:10px;
+
     font-weight:bold;
+
     margin:30px 0;
+
+}
+
+
+.back-btn:hover{
+
+    background:#181818;
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:600px){
+
+    .container{
+
+        width:92%;
+
+    }
+
+
+    .match-bar{
+
+        padding:16px 8px;
+
+        font-size:15px;
+
+    }
+
 }
 
 </style>
@@ -121,6 +245,10 @@ body{
 
 <body>
 
+
+<!-- =========================================
+     HEADER
+========================================= -->
 
 <header>
 
@@ -135,8 +263,13 @@ CAWNPORE TIGERS XI
 </header>
 
 
+
 <main class="container">
 
+
+<!-- =========================================
+     MATCH LIST
+========================================= -->
 
 <div id="matchList">
 
@@ -147,15 +280,23 @@ CAWNPORE TIGERS XI
 </div>
 
 
+
+<!-- =========================================
+     BACK BUTTON
+========================================= -->
+
 <a
 href="team-matches.html"
 class="back-btn"
 >
+
 ⬅ BACK TO TEAM MATCHES
+
 </a>
 
 
 </main>
+
 
 
 <footer style="text-align:center;margin:40px 0;">
@@ -168,49 +309,66 @@ class="back-btn"
 
 <script type="module">
 
+
+/* =========================================
+   FIREBASE
+========================================= */
+
 import { db } from "./firebase.js";
 
 import {
+
     collection,
     getDocs
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
 
 
 const matchList =
-    document.getElementById("matchList");
+document.getElementById(
+    "matchList"
+);
 
 
-// =====================================================
-// LOAD INDIVIDUAL MATCHES
-// =====================================================
+
+/* =========================================
+   LOAD INDIVIDUAL MATCHES
+========================================= */
 
 async function loadIndividualMatches(){
 
     try{
 
         const snapshot =
-            await getDocs(
-                collection(db,"matches")
-            );
+        await getDocs(
+            collection(db,"matches")
+        );
 
 
         matchList.innerHTML = "";
 
 
-        let found = false;
+        let matches = [];
 
+
+
+        /* =====================================
+           GET ONLY INDIVIDUAL MATCHES
+        ===================================== */
 
         snapshot.forEach((doc)=>{
 
             const match =
-                doc.data();
+            doc.data();
 
-
-            // ONLY INDIVIDUAL MATCHES
 
             if(
+
                 match.eventType !==
                 "Individual Matches"
+
             ){
 
                 return;
@@ -218,106 +376,128 @@ async function loadIndividualMatches(){
             }
 
 
-            found = true;
+            matches.push({
 
+                ...match,
 
-            const card =
-                document.createElement("a");
+                firestoreId: doc.id
 
-
-            card.className =
-                "match-card";
-
-
-            // IMPORTANT:
-            // matchId saved from Admin Panel
-
-            card.href =
-                "match-summary.html?id=" +
-                encodeURIComponent(
-                    match.matchId || doc.id
-                );
-
-
-            card.innerHTML = `
-
-                <div class="match-date">
-
-                    📅 ${match.matchDate || "—"}
-
-                </div>
-
-
-                <div class="match-teams">
-
-                    CAWNPORE TIGERS XI
-                    vs
-                    ${match.opponent || "—"}
-
-                </div>
-
-
-                <div class="match-info">
-
-                    📍 Place:
-                    ${match.place || "—"}
-
-                    <br>
-
-                    🏏 Overs:
-                    ${match.overs || "—"}
-
-                    <br>
-
-                    🏆 Result:
-                    <span class="result">
-                        ${match.result || "—"}
-                    </span>
-
-                    ${
-                        match.playerOfMatch
-                        ?
-                        `
-                        <br>
-                        ⭐ Player of the Match:
-                        ${match.playerOfMatch}
-                        `
-                        :
-                        ""
-                    }
-
-                </div>
-
-
-                <div class="view-summary">
-
-                    VIEW MATCH SUMMARY →
-
-                </div>
-
-            `;
-
-
-            matchList.appendChild(card);
+            });
 
         });
 
 
-        if(!found){
+
+        /* =====================================
+           SORT NEWEST FIRST
+        ===================================== */
+
+        matches.sort((a,b)=>{
+
+            const dateA =
+            new Date(
+                a.matchDate ||
+                "1970-01-01"
+            );
+
+
+            const dateB =
+            new Date(
+                b.matchDate ||
+                "1970-01-01"
+            );
+
+
+            return dateB - dateA;
+
+        });
+
+
+
+        /* =====================================
+           NO MATCHES
+        ===================================== */
+
+        if(matches.length === 0){
 
             matchList.innerHTML = `
 
                 <p class="message">
 
-                    No Individual Matches found yet.
+                    No Individual Matches
+                    found yet.
 
                 </p>
 
             `;
 
+            return;
+
         }
 
+
+
+        /* =====================================
+           CREATE MATCH BARS
+        ===================================== */
+
+        matches.forEach((match)=>{
+
+
+            const bar =
+            document.createElement("a");
+
+
+            bar.className =
+            "match-bar";
+
+
+
+            /* =================================
+               OPEN MATCH SUMMARY
+            ================================= */
+
+            bar.href =
+            "match-summary.html?id=" +
+            encodeURIComponent(
+                match.matchId ||
+                match.firestoreId
+            );
+
+
+
+            /* =================================
+               BAR CONTENT
+            ================================= */
+
+            bar.innerHTML = `
+
+                <span class="match-vs">
+
+                    🏏 VS
+
+                    <span class="match-opponent">
+
+                        ${
+                            match.opponent
+                            ||
+                            "Opponent Team"
+                        }
+
+                    </span>
+
+                </span>
+
+            `;
+
+
+
+            matchList.appendChild(bar);
+
+        });
+
     }
+
     catch(error){
 
         console.error(
@@ -345,13 +525,15 @@ async function loadIndividualMatches(){
 }
 
 
-// =====================================================
-// START
-// =====================================================
+
+/* =========================================
+   START
+========================================= */
 
 loadIndividualMatches();
 
 </script>
+
 
 
 </body>
