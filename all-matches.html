@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>All Matches - CAWNPORE TIGERS XI</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+    background:#111;
+    color:#fff;
+    font-family:Arial,sans-serif;
+}
+
+.container{
+    width:92%;
+    max-width:900px;
+    margin:30px auto;
+}
+
+.page-title{
+    text-align:center;
+    color:#ff8800;
+    margin-bottom:8px;
+}
+
+.page-subtitle{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.match-card{
+    display:block;
+    background:#1d1d1d;
+    border:2px solid #333;
+    border-left:5px solid #ff8800;
+    border-radius:12px;
+    padding:15px;
+    margin:14px 0;
+    text-decoration:none;
+    color:#fff;
+    box-shadow:0 3px 0 #000;
+    transition:0.15s ease;
+}
+
+.match-card:hover{
+    transform:translateY(-2px);
+    border-color:#ff8800;
+}
+
+.match-card:active{
+    transform:translateY(2px);
+}
+
+.match-date{
+    color:#ff9800;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.match-teams{
+    font-size:19px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.match-type{
+    display:inline-block;
+    background:#333;
+    color:#ff9800;
+    padding:5px 8px;
+    border-radius:6px;
+    font-size:11px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.match-info{
+    color:#ccc;
+    font-size:14px;
+    line-height:1.7;
+}
+
+.result{
+    color:#00ff88;
+    font-weight:bold;
+}
+
+.view-summary{
+    display:block;
+    text-align:center;
+    background:#ff8800;
+    color:#000;
+    padding:10px;
+    border-radius:8px;
+    font-weight:bold;
+    margin-top:12px;
+}
+
+.message{
+    text-align:center;
+    color:#ccc;
+    margin:30px 0;
+}
+
+.error{
+    color:#ff4444;
+}
+
+.back-btn{
+    display:block;
+    text-align:center;
+    background:#ff8800;
+    color:#000;
+    text-decoration:none;
+    padding:12px;
+    border-radius:8px;
+    font-weight:bold;
+    margin:30px 0;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1 class="page-title">
+📋 ALL MATCHES
+</h1>
+
+<p class="page-subtitle">
+CAWNPORE TIGERS XI
+</p>
+
+</header>
+
+
+<main class="container">
+
+
+<div id="matchList">
+
+<p class="message">
+⏳ Loading All Matches...
+</p>
+
+</div>
+
+
+<a
+href="team-matches.html"
+class="back-btn"
+>
+⬅ BACK TO TEAM MATCHES
+</a>
+
+
+</main>
+
+
+<footer style="text-align:center;margin:40px 0;">
+
+© 2026 CAWNPORE TIGERS XI
+
+</footer>
+
+
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+    collection,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+const matchList =
+    document.getElementById("matchList");
+
+
+// =====================================================
+// LOAD ALL MATCHES
+// =====================================================
+
+async function loadAllMatches(){
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(db,"matches")
+            );
+
+
+        matchList.innerHTML = "";
+
+
+        let matches = [];
+
+
+        snapshot.forEach((doc)=>{
+
+            const match =
+                doc.data();
+
+
+            matches.push({
+
+                ...match,
+
+                firestoreId: doc.id
+
+            });
+
+        });
+
+
+        // =================================================
+        // SORT BY DATE - NEWEST FIRST
+        // =================================================
+
+        matches.sort((a,b)=>{
+
+            const dateA =
+                new Date(a.matchDate || "1970-01-01");
+
+            const dateB =
+                new Date(b.matchDate || "1970-01-01");
+
+            return dateB - dateA;
+
+        });
+
+
+        if(matches.length === 0){
+
+            matchList.innerHTML = `
+
+                <p class="message">
+
+                    No matches found yet.
+
+                </p>
+
+            `;
+
+            return;
+
+        }
+
+
+        // =================================================
+        // CREATE MATCH CARDS
+        // =================================================
+
+        matches.forEach((match)=>{
+
+
+            const card =
+                document.createElement("a");
+
+
+            card.className =
+                "match-card";
+
+
+            card.href =
+                "match-summary.html?id=" +
+                encodeURIComponent(
+                    match.matchId ||
+                    match.firestoreId
+                );
+
+
+            let typeText =
+                match.eventType ||
+                "Match";
+
+
+            card.innerHTML = `
+
+                <div class="match-date">
+
+                    📅 ${match.matchDate || "—"}
+
+                </div>
+
+
+                <div class="match-type">
+
+                    ${typeText}
+
+                </div>
+
+
+                <div class="match-teams">
+
+                    CAWNPORE TIGERS XI
+                    vs
+                    ${match.opponent || "—"}
+
+                </div>
+
+
+                <div class="match-info">
+
+                    📍 Place:
+                    ${match.place || "—"}
+
+                    <br>
+
+                    🏏 Overs:
+                    ${match.overs || "—"}
+
+                    <br>
+
+                    🏆 Result:
+                    <span class="result">
+                        ${match.result || "—"}
+                    </span>
+
+
+                    ${
+                        match.playerOfMatch
+                        ?
+                        `
+                        <br>
+
+                        ⭐ Player of the Match:
+                        ${match.playerOfMatch}
+
+                        `
+                        :
+                        ""
+                    }
+
+                </div>
+
+
+                <div class="view-summary">
+
+                    VIEW MATCH SUMMARY →
+
+                </div>
+
+            `;
+
+
+            matchList.appendChild(card);
+
+        });
+
+    }
+    catch(error){
+
+        console.error(
+            "All Matches Error:",
+            error
+        );
+
+
+        matchList.innerHTML = `
+
+            <p class="message error">
+
+                ❌ Error loading matches.
+
+                <br><br>
+
+                ${error.message}
+
+            </p>
+
+        `;
+
+    }
+
+}
+
+
+// =====================================================
+// START
+// =====================================================
+
+loadAllMatches();
+
+</script>
+
+
+</body>
+
+</html>
