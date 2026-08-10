@@ -10,7 +10,6 @@
 
 <link rel="stylesheet" href="style.css">
 
-
 <style>
 
 /* =====================================
@@ -18,16 +17,11 @@
 ===================================== */
 
 html,
-body{
-
-    margin:0;
-
-    padding:0;
-
-    background:#111 !important;
-
-    color:#fff !important;
-
+body {
+    margin: 0;
+    padding: 0;
+    background: #111 !important;
+    color: #fff !important;
 }
 
 
@@ -35,14 +29,10 @@ body{
    TEAM MATCHES CONTAINER
 ===================================== */
 
-.team-matches-container{
-
-    width:92%;
-
-    max-width:900px;
-
-    margin:40px auto;
-
+.team-matches-container {
+    width: 92%;
+    max-width: 900px;
+    margin: 40px auto;
 }
 
 
@@ -50,12 +40,9 @@ body{
    PAGE TITLE
 ===================================== */
 
-.team-matches-title{
-
-    text-align:center;
-
-    margin-bottom:30px;
-
+.team-matches-title {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 
@@ -63,54 +50,52 @@ body{
    2 × 2 GRID
 ===================================== */
 
-.team-matches-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap:15px;
-
+.team-matches-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
 }
 
 
 /* =====================================
    MATCH CARDS
+   SQUARE BOX + ROUNDED EDGES
 ===================================== */
 
-.match-tab{
+.match-tab {
 
-    box-sizing:border-box;
+    box-sizing: border-box;
 
-    width:100%;
+    width: 100%;
 
-    min-height:120px;
+    aspect-ratio: 1 / 1;
 
-    background:#111 !important;
+    background: #111 !important;
 
-    color:#fff !important;
+    color: #fff !important;
 
-    border:3px solid #ff8800;
+    border: 4px solid #ff8800;
 
-    border-radius:10px;
+    border-radius: 18px;
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    align-items:center;
+    align-items: center;
 
-    justify-content:center;
+    justify-content: center;
 
-    text-align:center;
+    text-align: center;
 
-    text-decoration:none;
+    text-decoration: none;
 
-    padding:15px;
+    padding: 18px;
 
-    transition:0.2s ease;
+    transition: 0.25s ease;
 
+    box-shadow:
+        0 0 10px rgba(255,136,0,.25);
 }
 
 
@@ -118,12 +103,14 @@ body{
    CARD HOVER
 ===================================== */
 
-.match-tab:hover{
+.match-tab:hover {
 
-    background:#181818 !important;
+    background: #181818 !important;
 
-    transform:translateY(-2px);
+    transform: translateY(-3px);
 
+    box-shadow:
+        0 0 18px rgba(255,136,0,.55);
 }
 
 
@@ -131,10 +118,8 @@ body{
    CARD CLICK
 ===================================== */
 
-.match-tab:active{
-
-    transform:scale(0.98);
-
+.match-tab:active {
+    transform: scale(0.97);
 }
 
 
@@ -142,12 +127,17 @@ body{
    CARD TITLE
 ===================================== */
 
-.match-tab h3{
+.match-tab h3 {
 
-    margin:0 0 8px;
+    margin: 0 0 10px;
 
-    color:#fff;
+    color: #fff;
 
+    font-size: 20px;
+
+    font-weight: 900;
+
+    line-height: 1.25;
 }
 
 
@@ -155,12 +145,15 @@ body{
    CARD DESCRIPTION
 ===================================== */
 
-.match-tab p{
+.match-tab p {
 
-    margin:0;
+    margin: 0;
 
-    color:#fff;
+    color: #fff;
 
+    font-size: 15px;
+
+    line-height: 1.4;
 }
 
 
@@ -168,31 +161,47 @@ body{
    MOBILE
 ===================================== */
 
-@media(max-width:600px){
+@media (max-width: 600px) {
 
-    .team-matches-container{
+    .team-matches-container {
 
-        width:92%;
+        width: 92%;
 
+        margin: 30px auto;
     }
 
 
-    .team-matches-grid{
+    .team-matches-grid {
 
-        grid-template-columns:
-            repeat(2,1fr);
+        grid-template-columns: repeat(2, 1fr);
 
-        gap:12px;
-
+        gap: 12px;
     }
 
 
-    .match-tab{
+    .match-tab {
 
-        min-height:120px;
+        aspect-ratio: 1 / 1;
 
-        padding:10px;
+        border: 4px solid #ff8800;
 
+        border-radius: 16px;
+
+        padding: 10px;
+    }
+
+
+    .match-tab h3 {
+
+        font-size: 16px;
+
+        margin-bottom: 7px;
+    }
+
+
+    .match-tab p {
+
+        font-size: 13px;
     }
 
 }
@@ -202,19 +211,33 @@ body{
    SMALL MOBILE
 ===================================== */
 
-@media(max-width:380px){
+@media (max-width: 380px) {
 
-    .team-matches-grid{
+    .team-matches-grid {
 
-        gap:10px;
-
+        gap: 10px;
     }
 
 
-    .match-tab{
+    .match-tab {
 
-        min-height:110px;
+        border-width: 4px;
 
+        border-radius: 15px;
+
+        padding: 8px;
+    }
+
+
+    .match-tab h3 {
+
+        font-size: 15px;
+    }
+
+
+    .match-tab p {
+
+        font-size: 12px;
     }
 
 }
@@ -248,99 +271,99 @@ body{
 <main class="team-matches-container">
 
 
-<div class="team-matches-title">
+    <div class="team-matches-title">
 
-<h2>TEAM MATCHES</h2>
+        <h2>TEAM MATCHES</h2>
 
-<p>Select Match Category</p>
+        <p>Select Match Category</p>
 
-</div>
-
-
-
-<!-- =====================================
-     FOUR MENU CARDS
-===================================== -->
-
-<div class="team-matches-grid">
-
-
-<!-- 1. INDIVIDUAL MATCHES -->
-
-<a
-href="individual-matches.html"
-class="match-tab"
->
-
-<h3>
-🏏 Individual Matches
-</h3>
-
-<p>
-Individual Match Records
-</p>
-
-</a>
+    </div>
 
 
 
-<!-- 2. TOURNAMENT MATCHES -->
+    <!-- =================================
+         FOUR MENU CARDS
+    ================================== -->
 
-<a
-href="tournament-matches.html"
-class="match-tab"
->
-
-<h3>
-🏆 Tournament Matches
-</h3>
-
-<p>
-Tournament Wise Matches
-</p>
-
-</a>
+    <div class="team-matches-grid">
 
 
+        <!-- 1. INDIVIDUAL MATCHES -->
 
-<!-- 3. SERIES -->
+        <a
+            href="individual-matches.html"
+            class="match-tab"
+        >
 
-<a
-href="series-matches.html"
-class="match-tab"
->
+            <h3>
+                🏏 Individual Matches
+            </h3>
 
-<h3>
-🏏 Series
-</h3>
+            <p>
+                Individual Match Records
+            </p>
 
-<p>
-Series Wise Matches
-</p>
-
-</a>
+        </a>
 
 
 
-<!-- 4. ALL MATCHES -->
+        <!-- 2. TOURNAMENT MATCHES -->
 
-<a
-href="all-matches.html"
-class="match-tab"
->
+        <a
+            href="tournament-matches.html"
+            class="match-tab"
+        >
 
-<h3>
-📋 All Matches
-</h3>
+            <h3>
+                🏆 Tournament Matches
+            </h3>
 
-<p>
-Complete Match Records
-</p>
+            <p>
+                Tournament Wise Matches
+            </p>
 
-</a>
+        </a>
 
 
-</div>
+
+        <!-- 3. SERIES -->
+
+        <a
+            href="series-matches.html"
+            class="match-tab"
+        >
+
+            <h3>
+                🏏 Series
+            </h3>
+
+            <p>
+                Series Wise Matches
+            </p>
+
+        </a>
+
+
+
+        <!-- 4. ALL MATCHES -->
+
+        <a
+            href="all-matches.html"
+            class="match-tab"
+        >
+
+            <h3>
+                📋 All Matches
+            </h3>
+
+            <p>
+                Complete Match Records
+            </p>
+
+        </a>
+
+
+    </div>
 
 
 </main>
