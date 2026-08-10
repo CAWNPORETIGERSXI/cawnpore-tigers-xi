@@ -51,12 +51,16 @@ body{
 
 /* =========================================
    SERIES INFORMATION CARD
-   ORIGINAL SIZE — UNCHANGED
+   WIDE RECTANGULAR CARD
 ========================================= */
 
 .series-card{
 
     position:relative;
+
+    width:100%;
+
+    box-sizing:border-box;
 
     background:#111;
 
@@ -64,9 +68,9 @@ body{
 
     border-radius:12px;
 
-    padding:15px;
+    padding:20px;
 
-    margin-bottom:30px;
+    margin:0 0 30px;
 
 }
 
@@ -195,7 +199,7 @@ body{
 
 /* =========================================
    MATCH CARD
-   ONLY THIS PART CHANGED
+   CENTERED / COMPACT
 ========================================= */
 
 .match-bar{
@@ -234,7 +238,7 @@ body{
 
 
 /* =========================================
-   HOVER
+   MATCH HOVER
 ========================================= */
 
 .match-bar:hover{
@@ -247,7 +251,7 @@ body{
 
 
 /* =========================================
-   CLICK
+   MATCH CLICK
 ========================================= */
 
 .match-bar:active{
@@ -368,7 +372,9 @@ body{
     }
 
 
-    /* Series main card remains full width */
+    /* SERIES CARD
+       FULL AVAILABLE WIDTH
+    */
 
     .series-card{
 
@@ -376,14 +382,18 @@ body{
 
         box-sizing:border-box;
 
+        padding:16px;
+
     }
 
 
-    /* Only match cards become centered */
+    /* MATCH CARD
+       CENTERED ON MOBILE
+    */
 
     .match-bar{
 
-        width:min(330px, 88vw);
+        width:min(330px,88vw);
 
         min-height:200px;
 
@@ -741,7 +751,7 @@ async function loadSeriesMatches(){
 
             /* =================================
                CREATE MATCH CARD
-========================================= */
+            ================================= */
 
             const bar =
             document.createElement("a");
@@ -754,7 +764,7 @@ async function loadSeriesMatches(){
 
             /* =================================
                OPEN MATCH SUMMARY
-========================================= */
+            ================================= */
 
             bar.href =
             "match-summary.html?id=" +
@@ -764,7 +774,7 @@ async function loadSeriesMatches(){
 
             /* =================================
                CARD CONTENT
-========================================= */
+            ================================= */
 
             bar.innerHTML = `
 
@@ -796,7 +806,7 @@ async function loadSeriesMatches(){
 
         /* =================================
            NO MATCHES
-========================================= */
+        ================================= */
 
         if(!found){
 
