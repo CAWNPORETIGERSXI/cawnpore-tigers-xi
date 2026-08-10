@@ -1,174 +1,373 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Series - CAWNPORE TIGERS XI</title><link rel="stylesheet" href="style.css"><style>
 
-<head>
+/* =========================================
+   BASIC
+========================================= */
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Series - CAWNPORE TIGERS XI</title>
-
-<link rel="stylesheet" href="style.css">
-
-<style>
-
+html,
 body{
-    background:#111;
-    color:#fff;
+
+    margin:0;
+    padding:0;
+
+    background:#111 !important;
+    color:#fff !important;
+
     font-family:Arial,sans-serif;
+
 }
+
+
+/* =========================================
+   CONTAINER
+========================================= */
 
 .container{
+
     width:92%;
+
     max-width:900px;
+
     margin:30px auto;
+
 }
+
+
+/* =========================================
+   PAGE TITLE
+========================================= */
 
 h1{
+
     text-align:center;
+
     color:#ff8800;
+
 }
+
+
+/* =========================================
+   PAGE SUBTITLE
+========================================= */
 
 .page-subtitle{
+
     text-align:center;
+
     margin-bottom:30px;
+
 }
+
+
+/* =========================================
+   SERIES LIST
+========================================= */
+
+#seriesList{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    width:100%;
+
+}
+
+
+/* =========================================
+   SERIES CARD
+========================================= */
 
 .series-card{
+
     position:relative;
-    background:#1d1d1d;
-    border:3px solid #ff8800;
-    border-radius:15px;
-    padding:15px;
-    margin:20px 0;
-    box-shadow:0 4px 0 #000;
+
+    width:330px;
+
+    min-height:210px;
+
+    box-sizing:border-box;
+
+    background:#111;
+
+    border:4px solid #ff8800;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    margin:0 auto 20px;
+
+    box-shadow:none;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    transition:0.2s ease;
+
 }
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+.series-card:hover{
+
+    background:#181818;
+
+    transform:translateY(-3px);
+
+}
+
+
+/* =========================================
+   SERIES IMAGE
+========================================= */
 
 .series-image{
+
     width:100%;
-    max-height:220px;
+
+    max-width:270px;
+
+    height:120px;
+
     object-fit:contain;
+
     border-radius:10px;
+
     background:#000;
+
     margin-bottom:12px;
+
 }
+
+
+/* =========================================
+   SERIES NAME
+========================================= */
 
 .series-name{
+
     font-size:23px;
+
     font-weight:bold;
+
     color:#ff9800;
+
     margin-bottom:8px;
+
+    line-height:1.25;
+
 }
+
+
+/* =========================================
+   SERIES ID
+========================================= */
 
 .series-id{
+
     font-size:13px;
+
     color:#ccc;
-    margin-bottom:8px;
+
+    margin-bottom:5px;
+
 }
+
+
+/* =========================================
+   STATUS
+========================================= */
 
 .status{
+
     position:absolute;
+
     top:12px;
+
     right:12px;
+
     padding:6px 10px;
+
     border-radius:20px;
+
     font-size:12px;
+
     font-weight:bold;
+
+    z-index:2;
+
 }
+
 
 .active{
+
     background:#063d18;
+
     color:#00ff66;
+
 }
+
 
 .completed{
+
     background:#420808;
+
     color:#ff4444;
+
 }
+
+
+/* =========================================
+   VIEW BUTTON
+========================================= */
 
 .view-btn{
+
     display:block;
+
+    width:100%;
+
+    box-sizing:border-box;
+
     text-align:center;
+
     background:#ff8800;
+
     color:#000;
+
     padding:12px;
+
     border-radius:8px;
+
     text-decoration:none;
+
     font-weight:bold;
+
     margin-top:15px;
+
 }
+
+
+/* =========================================
+   MESSAGE
+========================================= */
 
 .message{
+
     text-align:center;
+
     margin-top:30px;
+
     color:#ccc;
+
 }
+
 
 .error{
+
     color:#ff4444;
+
 }
+
+
+/* =========================================
+   BACK BUTTON
+========================================= */
 
 .back-btn{
+
     display:block;
+
     text-align:center;
+
     background:#ff8800;
+
     color:#000;
+
     padding:12px;
+
     border-radius:8px;
+
     text-decoration:none;
+
     font-weight:bold;
+
     margin:30px 0;
+
 }
 
-</style>
 
-</head>
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:600px){
+
+    .container{
+
+        width:92%;
+
+    }
 
 
-<body>
+    .series-card{
+
+        width:min(330px, 88vw);
+
+        min-height:200px;
+
+        padding:16px;
+
+    }
 
 
-<header>
+    .series-image{
 
-<h1>🏏 SERIES</h1>
+        max-width:100%;
 
-<p class="page-subtitle">
+        height:110px;
+
+    }
+
+
+    .series-name{
+
+        font-size:21px;
+
+    }
+
+}
+
+</style></head><body><header><h1>🏏 SERIES</h1><p class="page-subtitle">
 CAWNPORE TIGERS XI
-</p>
-
-</header>
-
-
-<main class="container">
-
-<div id="seriesList">
-
-<p class="message">
+</p></header><main class="container"><div id="seriesList"><p class="message">
 ⏳ Loading Series...
-</p>
-
-</div>
-
-
-<a
+</p></div><a
 href="team-matches.html"
 class="back-btn"
->
+
+«»
+
 ⬅ BACK TO TEAM MATCHES
 </a>
 
-</main>
+</main><footer style="text-align:center;margin:40px 0;">© 2026 CAWNPORE TIGERS XI
 
-
-<footer style="text-align:center;margin:40px 0;">
-
-© 2026 CAWNPORE TIGERS XI
-
-</footer>
-
-
-
-<script type="module">
+</footer><script type="module">
 
 import { db } from "./firebase.js";
 
@@ -345,9 +544,4 @@ async function loadSeries(){
 
 loadSeries();
 
-</script>
-
-
-</body>
-
-</html>
+</script></body></html>
