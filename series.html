@@ -51,7 +51,7 @@ body{
 
 /* =========================================
    SERIES INFORMATION CARD
-   — UNCHANGED
+   ORIGINAL SIZE — UNCHANGED
 ========================================= */
 
 .series-card{
@@ -195,6 +195,7 @@ body{
 
 /* =========================================
    MATCH CARD
+   ONLY THIS PART CHANGED
 ========================================= */
 
 .match-bar{
@@ -366,6 +367,19 @@ body{
 
     }
 
+
+    /* Series main card remains full width */
+
+    .series-card{
+
+        width:100%;
+
+        box-sizing:border-box;
+
+    }
+
+
+    /* Only match cards become centered */
 
     .match-bar{
 
@@ -740,7 +754,7 @@ async function loadSeriesMatches(){
 
             /* =================================
                OPEN MATCH SUMMARY
-            ================================= */
+========================================= */
 
             bar.href =
             "match-summary.html?id=" +
@@ -750,7 +764,7 @@ async function loadSeriesMatches(){
 
             /* =================================
                CARD CONTENT
-            ================================= */
+========================================= */
 
             bar.innerHTML = `
 
@@ -782,7 +796,7 @@ async function loadSeriesMatches(){
 
         /* =================================
            NO MATCHES
-        ================================= */
+========================================= */
 
         if(!found){
 
