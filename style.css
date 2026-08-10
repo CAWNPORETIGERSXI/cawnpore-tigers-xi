@@ -1787,3 +1787,15 @@ table tr:hover {
     flex-direction: column;
 
     align-items
+/* PLAYER NAVIGATION */
+
+.profile-card .player-nav a.btn {
+    background: #000;
+    color: #fff;
+    border: 2px solid #ff8800;
+}
+
+.profile-card .player-nav a.btn:hover {
+    background: #111;
+    color: #fff;
+}
