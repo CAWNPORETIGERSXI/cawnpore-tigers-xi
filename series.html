@@ -1,17 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Series - CAWNPORE TIGERS XI</title>
-
-<link rel="stylesheet" href="style.css">
-
-
-<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Series - CAWNPORE TIGERS XI</title><link rel="stylesheet" href="style.css"><style>
 
 /* =========================================
    BASIC
@@ -63,6 +51,7 @@ body{
 
 /* =========================================
    SERIES INFORMATION CARD
+   — UNCHANGED
 ========================================= */
 
 .series-card{
@@ -188,26 +177,49 @@ body{
 
 
 /* =========================================
-   MATCH BAR
+   MATCH LIST
+========================================= */
+
+#matchList{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    width:100%;
+
+}
+
+
+/* =========================================
+   MATCH CARD
 ========================================= */
 
 .match-bar{
 
-    display:block;
+    display:flex;
 
-    width:100%;
+    align-items:center;
+
+    justify-content:center;
+
+    width:330px;
+
+    min-height:210px;
 
     box-sizing:border-box;
 
     background:#111;
 
-    border:3px solid #ff8800;
+    border:4px solid #ff8800;
 
-    border-radius:10px;
+    border-radius:18px;
 
-    padding:18px 15px;
+    padding:20px;
 
-    margin:0 0 15px;
+    margin:0 auto 20px;
 
     text-decoration:none;
 
@@ -228,7 +240,7 @@ body{
 
     background:#181818;
 
-    transform:translateY(-2px);
+    transform:translateY(-3px);
 
 }
 
@@ -254,6 +266,10 @@ body{
 
     font-weight:bold;
 
+    font-size:20px;
+
+    line-height:1.5;
+
 }
 
 
@@ -263,9 +279,19 @@ body{
 
 .match-opponent{
 
+    display:block;
+
     color:#fff;
 
     font-weight:900;
+
+    font-size:22px;
+
+    margin-top:8px;
+
+    line-height:1.25;
+
+    word-break:break-word;
 
 }
 
@@ -343,108 +369,65 @@ body{
 
     .match-bar{
 
-        padding:16px 8px;
+        width:min(330px, 88vw);
 
-        font-size:15px;
+        min-height:200px;
+
+        padding:16px;
+
+        margin-left:auto;
+
+        margin-right:auto;
+
+    }
+
+
+    .match-vs{
+
+        font-size:18px;
+
+    }
+
+
+    .match-opponent{
+
+        font-size:20px;
 
     }
 
 }
 
-</style>
-
-</head>
-
-
-<body>
-
-
-<!-- =========================================
+</style></head><body><!-- =========================================
      HEADER
-========================================= -->
-
-<header>
-
-<h1 class="page-title">
+========================================= --><header><h1 class="page-title">
 🏏 SERIES
-</h1>
-
-<p style="text-align:center;">
+</h1><p style="text-align:center;">
 CAWNPORE TIGERS XI
-</p>
-
-</header>
-
-
-
-<main class="container">
-
-
-<!-- =========================================
+</p></header><main class="container"><!-- =========================================
      SERIES INFORMATION
-========================================= -->
-
-<div id="seriesInfo">
-
-<p class="message">
+========================================= --><div id="seriesInfo"><p class="message">
 ⏳ Loading Series...
-</p>
-
-</div>
-
-
-
-<!-- =========================================
+</p></div><!-- =========================================
      MATCH TITLE
-========================================= -->
-
-<h2 class="matches-title">
+========================================= --><h2 class="matches-title">
 🏏 SERIES MATCHES
-</h2>
-
-
-
-<!-- =========================================
+</h2><!-- =========================================
      MATCH LIST
-========================================= -->
-
-<div id="matchList">
-
-<p class="message">
+========================================= --><div id="matchList"><p class="message">
 ⏳ Loading Matches...
-</p>
-
-</div>
-
-
-
-<!-- =========================================
+</p></div><!-- =========================================
      BACK BUTTON
-========================================= -->
-
-<a
+========================================= --><a
 href="series-matches.html"
 class="back-btn"
->
+
+«»
 
 ⬅ BACK TO SERIES
 
-</a>
+</a></main><footer style="text-align:center;margin:40px 0;">© 2026 CAWNPORE TIGERS XI
 
-
-</main>
-
-
-
-<footer style="text-align:center;margin:40px 0;">
-
-© 2026 CAWNPORE TIGERS XI
-
-</footer>
-
-
-
-<script type="module">
+</footer><script type="module">
 
 
 /* =========================================
@@ -743,8 +726,8 @@ async function loadSeriesMatches(){
 
 
             /* =================================
-               CREATE MATCH BAR
-            ================================= */
+               CREATE MATCH CARD
+========================================= */
 
             const bar =
             document.createElement("a");
@@ -766,7 +749,7 @@ async function loadSeriesMatches(){
 
 
             /* =================================
-               BAR CONTENT
+               CARD CONTENT
             ================================= */
 
             bar.innerHTML = `
@@ -876,10 +859,4 @@ else{
 }
 
 
-</script>
-
-
-
-</body>
-
-</html>
+</script></body></html>
