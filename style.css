@@ -1565,3 +1565,225 @@ table tr:hover {
     }
 
 }
+/* =========================================
+   PLAYER PROFILE CARD - POLISHING
+   CAWNPORE TIGERS XI
+========================================= */
+
+/* MAIN PROFILE CARD */
+
+.profile-card {
+    width: 92%;
+    max-width: 600px;
+    margin: 35px auto 50px;
+
+    padding: 28px 22px 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #151515,
+            #0b0b0b
+        );
+
+    border: 3px solid #ff8800;
+    border-radius: 22px;
+
+    text-align: center;
+
+    box-shadow:
+        0 0 12px rgba(255,136,0,.45),
+        0 0 30px rgba(255,136,0,.20);
+}
+
+
+/* PLAYER PHOTO */
+
+.profile-card > img:not(.jersey-img) {
+    width: 255px;
+    height: 255px;
+
+    max-width: 80vw;
+    max-height: 80vw;
+
+    object-fit: cover;
+
+    border-radius: 28px;
+
+    border: 4px solid #ff8800;
+
+    margin: 0 auto 18px;
+
+    display: block;
+
+    box-shadow:
+        0 0 12px rgba(255,136,0,.55),
+        0 0 25px rgba(255,136,0,.25);
+}
+
+
+/* PLAYER NAME */
+
+.profile-card > h1 {
+    margin: 8px 0 12px;
+
+    color: #fff;
+
+    font-size: clamp(30px, 7vw, 42px);
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 0 8px rgba(255,136,0,.45);
+}
+
+
+/* ROLE BADGE */
+
+.profile-card .badge {
+    display: inline-block;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff8800,
+            #ffb300,
+            #ff8800
+        );
+
+    color: #000;
+
+    padding: 9px 22px;
+
+    border-radius: 25px;
+
+    font-size: 16px;
+    font-weight: 900;
+
+    margin: 5px 0 12px;
+
+    box-shadow:
+        0 0 12px rgba(255,136,0,.65);
+}
+
+
+/* TEAM NAME */
+
+.profile-card > h3 {
+    margin: 8px 0 18px;
+
+    color: #ff8800;
+
+    font-size: 21px;
+
+    font-weight: 900;
+
+    letter-spacing: .5px;
+}
+
+
+/* OLD SMALL BADGES - HIDE */
+
+.profile-card .badges {
+    display: none;
+}
+
+
+/* PLAYER DESCRIPTION */
+
+.profile-card > p:last-of-type {
+    margin: 18px auto 28px;
+
+    max-width: 520px;
+
+    color: #eee;
+
+    font-size: 16px;
+
+    line-height: 1.65;
+
+    text-align: center;
+}
+
+
+/* HIDE OLD DETAIL PARAGRAPHS
+   THE SAME INFORMATION IS SHOWN
+   IN THE FOUR BOXES BELOW */
+
+.profile-card > p:not(:last-of-type) {
+    display: none;
+}
+
+
+/* PLAYER INFORMATION SECTION */
+
+.profile-card .player-nav {
+    width: 100%;
+}
+
+
+/* PLAYER INFORMATION TITLE */
+
+.profile-card .player-nav h2 {
+    margin: 10px 0 22px;
+
+    color: #fff;
+
+    font-size: clamp(21px, 5vw, 28px);
+
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    letter-spacing: .5px;
+}
+
+
+/* ORANGE ACCENT BEFORE TITLE */
+
+.profile-card .player-nav h2::first-letter {
+    color: #ff8800;
+}
+
+
+/* FOUR INFORMATION BOXES */
+
+.profile-card .stats {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+
+    margin: 0;
+}
+
+
+/* INDIVIDUAL INFORMATION BOX */
+
+.profile-card .stat-card {
+    width: 100%;
+
+    min-height: 88px;
+
+    margin: 0;
+
+    padding: 15px 18px;
+
+    background: #151515;
+
+    border: 3px solid #ff8800;
+
+    border-radius: 15px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items
