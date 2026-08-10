@@ -1799,3 +1799,91 @@ table tr:hover {
     background: #111;
     color: #fff;
 }
+/* =========================================
+   PLAYER NAVIGATION BUTTONS
+========================================= */
+
+.player-navigation {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.player-navigation .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #000 !important;
+    color: #fff !important;
+
+    border: 3px solid #ff8800 !important;
+    border-radius: 10px;
+
+    min-height: 48px;
+    padding: 10px 14px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 900;
+
+    white-space: nowrap;
+
+    box-shadow: 0 0 8px rgba(255,136,0,.25);
+
+    transition: .25s ease;
+}
+
+.player-navigation .btn:hover {
+    background: #111 !important;
+    color: #fff !important;
+
+    border-color: #ff8800 !important;
+
+    box-shadow: 0 0 15px rgba(255,136,0,.6);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .player-navigation {
+        gap: 7px;
+    }
+
+    .player-navigation .btn {
+        min-height: 45px;
+        padding: 9px 10px;
+
+        font-size: 12px;
+
+        border-width: 3px;
+    }
+}
+
+
+/* =========================================
+   VERY SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+
+    .player-navigation {
+        gap: 5px;
+    }
+
+    .player-navigation .btn {
+        padding: 8px 7px;
+        font-size: 11px;
+    }
+}
