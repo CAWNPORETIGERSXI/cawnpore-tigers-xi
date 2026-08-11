@@ -4,13 +4,172 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Players | CAWNPORE TIGERS XI</title>
 
-<link rel="stylesheet" href="style.css">
+<link
+    rel="stylesheet"
+    href="style.css"
+>
+
+
+<style>
+
+/* =====================================================
+   APPROVED PLAYER SECTION
+===================================================== */
+
+.firebase-players-title{
+
+    margin-top:35px;
+
+    color:#ff8800;
+
+    text-align:center;
+
+    font-size:24px;
+
+}
+
+
+.firebase-player-card{
+
+    display:block;
+
+    text-decoration:none;
+
+    background:#080808;
+
+    border:2px solid #ff8800;
+
+    border-radius:12px;
+
+    padding:16px;
+
+    margin:14px 0;
+
+    color:#fff;
+
+    transition:0.3s ease;
+
+}
+
+
+.firebase-player-card:hover{
+
+    background:#ff8800;
+
+    color:#000;
+
+    transform:translateY(-2px);
+
+}
+
+
+.firebase-player-name{
+
+    font-size:21px;
+
+    font-weight:800;
+
+    margin-bottom:8px;
+
+}
+
+
+.firebase-player-role{
+
+    font-size:15px;
+
+    color:#ff8800;
+
+    font-weight:700;
+
+    margin-bottom:6px;
+
+}
+
+
+.firebase-player-card:hover
+.firebase-player-role{
+
+    color:#000;
+
+}
+
+
+.firebase-player-info{
+
+    font-size:14px;
+
+    line-height:1.6;
+
+    color:#ddd;
+
+}
+
+
+.firebase-player-card:hover
+.firebase-player-info{
+
+    color:#000;
+
+}
+
+
+#approvedPlayers{
+
+    width:100%;
+
+    max-width:700px;
+
+    margin:0 auto;
+
+}
+
+
+#approvedPlayerMessage{
+
+    text-align:center;
+
+    color:#aaa;
+
+    font-size:14px;
+
+    margin:15px 0;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:600px){
+
+    .firebase-player-name{
+
+        font-size:19px;
+
+    }
+
+    .firebase-player-info{
+
+        font-size:13px;
+
+    }
+
+}
+
+</style>
 
 </head>
+
 
 <body>
 
@@ -25,7 +184,8 @@
 
         <img
             src="logo.png"
-            alt="CAWNPORE TIGERS XI">
+            alt="CAWNPORE TIGERS XI"
+        >
 
         <span>
             CAWNPORE TIGERS XI
@@ -38,7 +198,8 @@
         class="menu-btn"
         id="menuBtnRight"
         type="button"
-        aria-label="Open Menu">
+        aria-label="Open Menu"
+    >
 
         ☰
 
@@ -52,7 +213,10 @@
      SIDE MENU
 ================================= -->
 
-<div class="side-menu" id="sideMenu">
+<div
+    class="side-menu"
+    id="sideMenu"
+>
 
 
     <div class="side-menu-header">
@@ -61,11 +225,14 @@
 
             <img
                 src="logo.png"
-                alt="CAWNPORE TIGERS XI">
+                alt="CAWNPORE TIGERS XI"
+            >
 
             <span>
+
                 CAWNPORE<br>
                 TIGERS XI
+
             </span>
 
         </div>
@@ -74,7 +241,8 @@
         <button
             class="close-menu"
             id="closeMenu"
-            type="button">
+            type="button"
+        >
 
             ×
 
@@ -87,43 +255,108 @@
     <nav class="side-nav">
 
         <a href="index.html">
-            <span class="menu-icon">🏠</span>
-            <span>HOME</span>
+
+            <span class="menu-icon">
+                🏠
+            </span>
+
+            <span>
+                HOME
+            </span>
+
         </a>
+
 
         <a href="about.html">
-            <span class="menu-icon">ℹ️</span>
-            <span>ABOUT</span>
+
+            <span class="menu-icon">
+                ℹ️
+            </span>
+
+            <span>
+                ABOUT
+            </span>
+
         </a>
+
 
         <a href="players.html">
-            <span class="menu-icon">👥</span>
-            <span>PLAYERS</span>
+
+            <span class="menu-icon">
+                👥
+            </span>
+
+            <span>
+                PLAYERS
+            </span>
+
         </a>
 
-        <a href="players-registration.html">
-            <span class="menu-icon">📝</span>
-            <span>PLAYERS REGISTRATION</span>
+
+        <!-- FIXED FILE NAME -->
+
+        <a href="player-registration.html">
+
+            <span class="menu-icon">
+                📝
+            </span>
+
+            <span>
+                PLAYER REGISTRATION
+            </span>
+
         </a>
+
 
         <a href="team-matches.html">
-            <span class="menu-icon">🏏</span>
-            <span>TEAM MATCHES</span>
+
+            <span class="menu-icon">
+                🏏
+            </span>
+
+            <span>
+                TEAM MATCHES
+            </span>
+
         </a>
+
 
         <a href="gallery.html">
-            <span class="menu-icon">📷</span>
-            <span>GALLERY</span>
+
+            <span class="menu-icon">
+                📷
+            </span>
+
+            <span>
+                GALLERY
+            </span>
+
         </a>
+
 
         <a href="jersey-launch.html">
-            <span class="menu-icon">👕</span>
-            <span>JERSEY LAUNCH</span>
+
+            <span class="menu-icon">
+                👕
+            </span>
+
+            <span>
+                JERSEY LAUNCH
+            </span>
+
         </a>
 
+
         <a href="team-stats.html">
-            <span class="menu-icon">📊</span>
-            <span>TEAM STATS</span>
+
+            <span class="menu-icon">
+                📊
+            </span>
+
+            <span>
+                TEAM STATS
+            </span>
+
         </a>
 
     </nav>
@@ -150,7 +383,8 @@
 
 <div
     class="menu-overlay"
-    id="menuOverlay">
+    id="menuOverlay"
+>
 </div>
 
 
@@ -183,134 +417,349 @@
 
         <!-- ANNA -->
 
-        <a href="anna.html" class="player-bar">
+        <a
+            href="anna.html"
+            class="player-bar"
+        >
+
             <span>🏏</span>
-            <strong>ANNA</strong>
+
+            <strong>
+                ANNA
+            </strong>
+
         </a>
+
 
 
         <!-- PURAN -->
 
-        <a href="puran.html" class="player-bar">
+        <a
+            href="puran.html"
+            class="player-bar"
+        >
+
             <span>🏏</span>
-            <strong>PURAN</strong>
+
+            <strong>
+                PURAN
+            </strong>
+
         </a>
 
-<!-- PAWAN --><a href="pawan.html" class="player-bar">
-    <span>🏏</span>
-    <strong>PAWAN</strong>
-</a>
+
+
+        <!-- PAWAN -->
+
+        <a
+            href="pawan.html"
+            class="player-bar"
+        >
+
+            <span>🏏</span>
+
+            <strong>
+                PAWAN
+            </strong>
+
+        </a>
+
+
+
         <!-- SACHIN -->
 
-        <a href="sachin.html" class="player-bar">
+        <a
+            href="sachin.html"
+            class="player-bar"
+        >
+
             <span>🏏</span>
-            <strong>SACHIN</strong>
+
+            <strong>
+                SACHIN
+            </strong>
+
         </a>
-<!-- SANJAY --><a href="sanjay.html" class="player-bar">
-    <span>🏏</span>
-    <strong>SANJAY</strong>
-</a>
+
+
+
+        <!-- SANJAY -->
+
+        <a
+            href="sanjay.html"
+            class="player-bar"
+        >
+
+            <span>🏏</span>
+
+            <strong>
+                SANJAY
+            </strong>
+
+        </a>
+
 
 
         <!-- ANUPAM -->
 
-        <a href="anupam.html" class="player-bar">
+        <a
+            href="anupam.html"
+            class="player-bar"
+        >
+
             <span>🏏</span>
-            <strong>ANUPAM</strong>
+
+            <strong>
+                ANUPAM
+            </strong>
+
         </a>
 
 
-        <a href="sanyam.html" class="player-bar">
-    <span>🏏</span>
-    <strong>SANYAM</strong>
-</a>
+
+        <!-- SANYAM -->
+
+        <a
+            href="sanyam.html"
+            class="player-bar"
+        >
+
+            <span>🏏</span>
+
+            <strong>
+                SANYAM
+            </strong>
+
+        </a>
+
 
 
         <!-- DEEPAK -->
 
-        <a href="deepak.html" class="player-bar">
+        <a
+            href="deepak.html"
+            class="player-bar"
+        >
+
             <span>🏏</span>
-            <strong>DEEPAK</strong>
+
+            <strong>
+                DEEPAK
+            </strong>
+
         </a>
 
-<!-- ANAND MOHAN --><a href="anand.html" class="player-bar">
-    <span>🏏</span>
-    <strong>ANAND MOHAN</strong>
-</a>
+
+
+        <!-- ANAND MOHAN -->
+
+        <a
+            href="anand.html"
+            class="player-bar"
+        >
+
+            <span>🏏</span>
+
+            <strong>
+                ANAND MOHAN
+            </strong>
+
+        </a>
+
+
+
         <!-- RAJEEV -->
 
         <div class="player-bar">
+
             <span>🏏</span>
-            <strong>RAJEEV</strong>
+
+            <strong>
+                RAJEEV
+            </strong>
+
         </div>
 
 
-        <!-- AZFAR --><a href="azfar.html" class="player-bar">
-    <span>🏏</span>
-    <strong>AZFAR</strong>
-</a>
+
+        <!-- AZFAR -->
+
+        <a
+            href="azfar.html"
+            class="player-bar"
+        >
+
+            <span>🏏</span>
+
+            <strong>
+                AZFAR
+            </strong>
+
+        </a>
+
 
 
         <!-- AMIT -->
 
-        <a href="amit.html" class="player-bar">
+        <a
+            href="amit.html"
+            class="player-bar"
+        >
+
             <span>🏏</span>
-            <strong>AMIT</strong>
+
+            <strong>
+                AMIT
+            </strong>
+
         </a>
 
-<!-- VINAY --><a href="vinay.html" class="player-bar">
-    <span>🏏</span>
-    <strong>VINAY</strong>
-</a>
-     
+
+
+        <!-- VINAY -->
+
+        <a
+            href="vinay.html"
+            class="player-bar"
+        >
+
+            <span>🏏</span>
+
+            <strong>
+                VINAY
+            </strong>
+
+        </a>
+
 
 
         <!-- PRAVEEN -->
 
-        <a href="praveen.html" class="player-bar">
+        <a
+            href="praveen.html"
+            class="player-bar"
+        >
+
             <span>🏏</span>
-            <strong>PRAVEEN</strong>
+
+            <strong>
+                PRAVEEN
+            </strong>
+
         </a>
+
 
 
         <!-- KAMAL -->
 
-        <a href="kamal.html" class="player-bar">
+        <a
+            href="kamal.html"
+            class="player-bar"
+        >
+
             <span>🏏</span>
-            <strong>KAMAL</strong>
+
+            <strong>
+                KAMAL
+            </strong>
+
         </a>
 
-<!-- RAVI -->
-
-<a href="ravi.html" class="player-bar">
-    <span>🏏</span>
-    <strong>RAVI</strong>
-</a>
 
 
-<!-- PIYUSH -->
+        <!-- RAVI -->
 
-<a href="piyush.html" class="player-bar">
-    <span>🏏</span>
-    <strong>PIYUSH</strong>
-</a>
+        <a
+            href="ravi.html"
+            class="player-bar"
+        >
+
+            <span>🏏</span>
+
+            <strong>
+                RAVI
+            </strong>
+
+        </a>
+
+
+
+        <!-- PIYUSH -->
+
+        <a
+            href="piyush.html"
+            class="player-bar"
+        >
+
+            <span>🏏</span>
+
+            <strong>
+                PIYUSH
+            </strong>
+
+        </a>
+
+
+
         <!-- JISHAN -->
 
-        <a href="jishan.html" class="player-bar">
+        <a
+            href="jishan.html"
+            class="player-bar"
+        >
+
             <span>🏏</span>
-            <strong>JISHAN</strong>
+
+            <strong>
+                JISHAN
+            </strong>
+
         </a>
+
 
 
         <!-- ANUJ GOEL -->
 
-        <a href="anujgoel.html" class="player-bar">
+        <a
+            href="anujgoel.html"
+            class="player-bar"
+        >
+
             <span>🏏</span>
-            <strong>ANUJ GOEL</strong>
+
+            <strong>
+                ANUJ GOEL
+            </strong>
+
         </a>
 
 
     </div>
+
+
+
+    <!-- =================================
+         FIREBASE APPROVED PLAYERS
+    ================================= -->
+
+    <h2 class="firebase-players-title">
+
+        🆕 NEW TEAM MEMBERS
+
+    </h2>
+
+
+    <p id="approvedPlayerMessage">
+
+        Loading approved players...
+
+    </p>
+
+
+    <div id="approvedPlayers">
+
+    </div>
+
 
 </main>
 
@@ -328,7 +777,273 @@
 
 
 
+<!-- =================================
+     MENU SCRIPT
+================================= -->
+
 <script src="script.js"></script>
+
+
+
+<!-- =================================
+     FIREBASE PLAYERS SCRIPT
+================================= -->
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+    collection,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+// =====================================================
+// LOAD APPROVED PLAYERS
+// =====================================================
+
+async function loadApprovedPlayers(){
+
+    const container =
+        document.getElementById(
+            "approvedPlayers"
+        );
+
+
+    const message =
+        document.getElementById(
+            "approvedPlayerMessage"
+        );
+
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "playerRegistrations"
+                )
+            );
+
+
+        container.innerHTML = "";
+
+
+        let approvedCount = 0;
+
+
+        snapshot.forEach(
+            (playerDoc) => {
+
+                const player =
+                    playerDoc.data();
+
+
+                // ONLY APPROVED PLAYERS
+
+                if(
+                    player.status !==
+                    "Approved"
+                ){
+
+                    return;
+
+                }
+
+
+                approvedCount++;
+
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className =
+                    "firebase-player-card";
+
+
+                card.innerHTML = `
+
+                    <div class="firebase-player-name">
+
+                        🏏
+                        ${escapeHtml(
+                            player.fullName ||
+                            "Player"
+                        )}
+
+                    </div>
+
+
+                    <div class="firebase-player-role">
+
+                        ${escapeHtml(
+                            player.playingRole ||
+                            "Player"
+                        )}
+
+                    </div>
+
+
+                    <div class="firebase-player-info">
+
+                        <strong>
+                            City:
+                        </strong>
+
+                        ${escapeHtml(
+                            player.city ||
+                            "-"
+                        )}
+
+                        <br>
+
+
+                        <strong>
+                            Batting:
+                        </strong>
+
+                        ${escapeHtml(
+                            player.battingStyle ||
+                            "-"
+                        )}
+
+                        <br>
+
+
+                        <strong>
+                            Bowling:
+                        </strong>
+
+                        ${escapeHtml(
+                            player.bowlingStyle ||
+                            "-"
+                        )}
+
+                        <br>
+
+
+                        <strong>
+                            Jersey:
+                        </strong>
+
+                        ${escapeHtml(
+                            player.jerseyNumber ||
+                            "-"
+                        )}
+
+                        <br>
+
+
+                        <strong>
+                            Experience:
+                        </strong>
+
+                        ${escapeHtml(
+                            player.experience ||
+                            "-"
+                        )}
+
+                    </div>
+
+                `;
+
+
+                container.appendChild(
+                    card
+                );
+
+            }
+        );
+
+
+        if(
+            approvedCount === 0
+        ){
+
+            message.innerText =
+                "No newly approved players yet.";
+
+        }
+        else{
+
+            message.innerText =
+                approvedCount +
+                " approved player" +
+                (
+                    approvedCount > 1
+                    ? "s"
+                    : ""
+                );
+
+        }
+
+
+    }
+    catch(error){
+
+        console.error(
+            "APPROVED PLAYERS ERROR:",
+            error
+        );
+
+
+        message.innerText =
+            "Unable to load new players.";
+
+    }
+
+}
+
+
+// =====================================================
+// SAFE HTML
+// =====================================================
+
+function escapeHtml(value){
+
+    return String(value)
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
+
+}
+
+
+// =====================================================
+// START
+// =====================================================
+
+loadApprovedPlayers();
+
+</script>
+
 
 </body>
 
