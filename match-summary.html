@@ -4,46 +4,64 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Match Summary - CAWNPORE TIGERS XI</title>
 
-<link rel="stylesheet" href="style.css">
+<link
+    rel="stylesheet"
+    href="style.css"
+>
 
 <style>
 
-/* =========================================
-   MATCH SUMMARY
-========================================= */
+/* =====================================================
+   BODY
+===================================================== */
 
 body{
+
+    margin:0;
+
     background:#080808;
-    color:#fff;
+
+    color:#ffffff;
+
     font-family:Arial,sans-serif;
+
 }
 
 
-/* =========================================
-   CONTAINER
-========================================= */
+/* =====================================================
+   MAIN CONTAINER
+===================================================== */
 
 .container{
+
     width:94%;
+
     max-width:1000px;
+
     margin:20px auto 40px;
+
 }
 
 
-/* =========================================
+/* =====================================================
    PAGE TITLE
-========================================= */
+===================================================== */
 
 .page-title{
+
     text-align:center;
 
     color:#ff8800;
 
-    font-size:36px;
+    font-size:38px;
 
     font-weight:900;
 
@@ -51,14 +69,19 @@ body{
 
     text-shadow:
         0 0 10px rgba(255,136,0,.35);
+
 }
 
 
-/* =========================================
-   MAIN SUMMARY BOX
-========================================= */
+/* =====================================================
+   MAIN CARD
+===================================================== */
 
 .summary-card{
+
+    width:100%;
+
+    box-sizing:border-box;
 
     background:#090909;
 
@@ -69,78 +92,86 @@ body{
     padding:28px;
 
     box-shadow:
+
         0 0 18px rgba(255,136,0,.35),
+
         0 0 35px rgba(255,136,0,.12);
+
 }
 
 
-/* =========================================
+/* =====================================================
    DATE
-========================================= */
+===================================================== */
 
 .match-date{
 
     text-align:center;
 
-    font-size:18px;
+    color:#ffffff;
+
+    font-size:20px;
 
     font-weight:900;
 
-    color:#fff;
-
     margin-bottom:18px;
+
 }
 
 
-/* =========================================
+/* =====================================================
    TEAMS
-========================================= */
+===================================================== */
 
 .teams{
 
     text-align:center;
 
-    font-size:34px;
+    color:#ffffff;
+
+    font-size:40px;
+
+    font-weight:900;
 
     line-height:1.4;
 
-    font-weight:900;
-
     margin:8px 0 28px;
 
-    color:#fff;
 }
 
+
+/* =====================================================
+   VS
+===================================================== */
 
 .teams .vs{
 
+    display:inline-block;
+
     color:#ff8800;
 
-    font-size:28px;
+    font-size:34px;
 
     font-weight:900;
 
-    display:inline-block;
-
     margin:5px 0;
+
 }
 
 
-/* =========================================
+/* =====================================================
    RESULT
-========================================= */
+===================================================== */
 
 .result{
+
+    width:100%;
+
+    box-sizing:border-box;
 
     text-align:center;
 
     color:#00ff66;
-
-    font-size:28px;
-
-    font-weight:900;
-
-    padding:22px 15px;
 
     background:#052b15;
 
@@ -148,19 +179,26 @@ body{
 
     border-radius:17px;
 
+    font-size:32px;
+
+    font-weight:900;
+
+    padding:22px 15px;
+
     margin-bottom:25px;
+
 }
 
 
-/* =========================================
+/* =====================================================
    INFORMATION BOX
-========================================= */
+===================================================== */
 
 .info-box{
 
     width:100%;
 
-    min-height:112px;
+    min-height:120px;
 
     box-sizing:border-box;
 
@@ -176,24 +214,26 @@ body{
 
     border-radius:17px;
 
-    padding:14px 18px;
+    padding:16px 18px;
 
     margin:15px 0;
 
     box-shadow:
+
         0 0 8px rgba(255,136,0,.20);
+
 }
 
 
-/* =========================================
+/* =====================================================
    ICON
-========================================= */
+===================================================== */
 
 .info-icon{
 
-    width:78px;
+    width:82px;
 
-    height:78px;
+    height:82px;
 
     flex-shrink:0;
 
@@ -207,13 +247,14 @@ body{
 
     border-radius:14px;
 
-    font-size:42px;
+    font-size:44px;
+
 }
 
 
-/* =========================================
+/* =====================================================
    LABEL
-========================================= */
+===================================================== */
 
 .info-label{
 
@@ -221,55 +262,57 @@ body{
 
     color:#ff8800;
 
-    font-size:24px;
+    font-size:27px;
 
     font-weight:900;
 
     line-height:1.2;
+
 }
 
 
-/* =========================================
+/* =====================================================
    VALUE
-========================================= */
+===================================================== */
 
 .info-value{
 
-    min-width:300px;
-
-    padding:17px 18px;
+    min-width:310px;
 
     box-sizing:border-box;
+
+    padding:19px 18px;
 
     text-align:center;
 
     background:#090909;
 
-    color:#fff;
+    color:#ffffff;
 
     border:3px solid #ff8800;
 
     border-radius:12px;
 
-    font-size:25px;
+    font-size:31px;
 
     font-weight:900;
 
     line-height:1.2;
 
     word-break:break-word;
+
 }
 
 
-/* =========================================
-   CRICHEROES URL BOX
-========================================= */
+/* =====================================================
+   CRICHEROES LINK BOX
+===================================================== */
 
 .cricheroes-box{
 
     width:100%;
 
-    min-height:80px;
+    min-height:90px;
 
     box-sizing:border-box;
 
@@ -289,36 +332,52 @@ body{
 
     margin-top:18px;
 
-    color:#fff;
+    color:#ffffff;
 
     text-decoration:none;
 
     cursor:pointer;
 
     transition:.2s;
+
 }
 
+
+/* =====================================================
+   LINK HOVER
+===================================================== */
 
 .cricheroes-box:hover{
 
     background:#151515;
 
     box-shadow:
+
         0 0 15px rgba(255,136,0,.45);
+
 }
 
+
+/* =====================================================
+   LINK ICON
+===================================================== */
 
 .cricheroes-icon{
 
-    font-size:38px;
+    font-size:40px;
 
     flex-shrink:0;
+
 }
 
 
+/* =====================================================
+   LINK TEXT
+===================================================== */
+
 .cricheroes-text{
 
-    color:#fff;
+    color:#ffffff;
 
     font-size:20px;
 
@@ -327,74 +386,106 @@ body{
     line-height:1.3;
 
     word-break:break-all;
+
 }
 
 
-/* =========================================
+/* =====================================================
+   OPEN TEXT
+===================================================== */
+
+.open-scorecard{
+
+    display:block;
+
+    margin-top:6px;
+
+    color:#ff8800;
+
+    font-size:18px;
+
+    font-weight:900;
+
+}
+
+
+/* =====================================================
    MESSAGE
-========================================= */
+===================================================== */
 
 .message{
 
     text-align:center;
 
-    color:#ccc;
+    color:#cccccc;
 
-    font-size:18px;
+    font-size:20px;
 
     margin:40px 0;
+
 }
 
+
+/* =====================================================
+   ERROR
+===================================================== */
 
 .error{
 
     color:#ff4444;
+
 }
 
 
-/* =========================================
+/* =====================================================
    FOOTER
-========================================= */
+===================================================== */
 
 footer{
 
     width:100%;
 
+    box-sizing:border-box;
+
     padding:20px;
 
     margin-top:30px;
 
-    background:#000;
+    background:#000000;
 
-    border-top:1px solid #222;
+    border-top:1px solid #222222;
 
-    color:#aaa;
+    color:#aaaaaa;
 
     text-align:center;
 
-    font-size:13px;
+    font-size:14px;
+
 }
 
 
-/* =========================================
+/* =====================================================
    MOBILE
-========================================= */
+===================================================== */
 
-@media (max-width:600px){
+@media(max-width:600px){
+
 
     .container{
 
         width:94%;
 
         margin:18px auto 30px;
+
     }
 
 
     .page-title{
 
-        font-size:28px;
+        font-size:30px;
 
         margin-bottom:22px;
+
     }
 
 
@@ -405,34 +496,47 @@ footer{
         border-width:5px;
 
         border-radius:18px;
+
     }
 
+
+    /* DATE */
 
     .match-date{
 
-        font-size:16px;
+        font-size:18px;
+
     }
 
 
+    /* TEAM NAMES */
+
     .teams{
 
-        font-size:25px;
+        font-size:30px;
 
         line-height:1.4;
+
+        margin-bottom:25px;
+
     }
 
 
     .teams .vs{
 
-        font-size:23px;
+        font-size:27px;
+
     }
 
 
+    /* RESULT */
+
     .result{
 
-        font-size:21px;
+        font-size:25px;
 
-        padding:17px 10px;
+        padding:18px 10px;
+
     }
 
 
@@ -440,11 +544,11 @@ footer{
 
     .info-box{
 
-        min-height:100px;
+        min-height:115px;
 
         display:grid;
 
-        grid-template-columns:62px 1fr;
+        grid-template-columns:68px 1fr;
 
         gap:8px 12px;
 
@@ -453,102 +557,137 @@ footer{
         border-width:4px;
 
         border-radius:14px;
+
     }
 
+
+    /* ICON */
 
     .info-icon{
 
-        width:62px;
+        width:68px;
 
-        height:62px;
+        height:68px;
 
         grid-row:span 2;
 
-        font-size:32px;
+        font-size:35px;
 
         border-radius:11px;
+
     }
 
+
+    /* LABEL */
 
     .info-label{
 
-        font-size:19px;
+        font-size:21px;
 
         align-self:end;
+
     }
 
+
+    /* PLAYER NAME / VALUE */
 
     .info-value{
 
-        min-width:0;
-
         width:100%;
 
-        padding:10px 8px;
+        min-width:0;
 
-        font-size:20px;
+        padding:12px 8px;
+
+        font-size:26px;
 
         border-width:3px;
+
     }
 
 
+    /* URL BOX */
+
     .cricheroes-box{
 
-        min-height:70px;
+        min-height:85px;
 
         padding:12px;
 
         gap:12px;
+
     }
 
 
     .cricheroes-icon{
 
-        font-size:30px;
+        font-size:32px;
+
     }
 
 
     .cricheroes-text{
 
+        font-size:16px;
+
+    }
+
+
+    .open-scorecard{
+
         font-size:15px;
+
     }
 
 }
 
 
-/* =========================================
+/* =====================================================
    VERY SMALL MOBILE
-========================================= */
+===================================================== */
 
-@media (max-width:370px){
+@media(max-width:370px){
+
 
     .teams{
 
-        font-size:22px;
+        font-size:26px;
+
+    }
+
+
+    .teams .vs{
+
+        font-size:23px;
+
     }
 
 
     .result{
 
-        font-size:18px;
+        font-size:21px;
+
     }
 
 
     .info-label{
 
-        font-size:16px;
+        font-size:18px;
+
     }
 
 
     .info-value{
 
-        font-size:18px;
+        font-size:22px;
+
     }
 
 
     .cricheroes-text{
 
-        font-size:13px;
+        font-size:14px;
+
     }
 
 }
@@ -561,84 +700,96 @@ footer{
 <body>
 
 
-<!-- =========================================
-     TITLE
-========================================= -->
+<!-- =====================================================
+     PAGE TITLE
+===================================================== -->
 
 <header>
 
-<h1 class="page-title">
+    <h1 class="page-title">
 
-🏏 MATCH SUMMARY
+        🏏 MATCH SUMMARY
 
-</h1>
+    </h1>
 
 </header>
 
 
-
-<!-- =========================================
+<!-- =====================================================
      MAIN
-========================================= -->
+===================================================== -->
 
 <main class="container">
 
-<div id="summary">
+    <div id="summary">
 
-<p class="message">
+        <p class="message">
 
-⏳ Loading Match Summary...
+            ⏳ Loading Match Summary...
 
-</p>
+        </p>
 
-</div>
+    </div>
 
 </main>
 
 
-
-<!-- =========================================
+<!-- =====================================================
      FOOTER
-========================================= -->
+===================================================== -->
 
 <footer>
 
-© 2026 CAWNPORE TIGERS XI
+    © 2026 CAWNPORE TIGERS XI
 
 </footer>
 
 
-
 <script type="module">
+
+
+/* =====================================================
+   FIREBASE
+===================================================== */
 
 import { db } from "./firebase.js";
 
 import {
+
     collection,
+
     getDocs
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+}
+
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-// =====================================================
-// GET MATCH ID
-// =====================================================
+/* =====================================================
+   GET MATCH ID FROM URL
+===================================================== */
 
 const params =
+
     new URLSearchParams(
         window.location.search
     );
 
+
 const matchId =
+
     params.get("id");
 
 
 const summary =
+
     document.getElementById("summary");
 
 
-// =====================================================
-// CHECK ID
-// =====================================================
+/* =====================================================
+   NO MATCH ID
+===================================================== */
 
 if(!matchId){
 
@@ -655,32 +806,55 @@ if(!matchId){
 }
 
 
-// =====================================================
-// LOAD MATCH
-// =====================================================
+/* =====================================================
+   LOAD MATCH
+===================================================== */
 
 async function loadMatch(){
 
     try{
 
+
+        /* =============================================
+           GET ALL MATCHES
+        ============================================= */
+
         const snapshot =
+
             await getDocs(
-                collection(db,"matches")
+
+                collection(
+                    db,
+                    "matches"
+                )
+
             );
 
 
         let selectedMatch = null;
 
 
+        /* =============================================
+           FIND SELECTED MATCH
+        ============================================= */
+
         snapshot.forEach((doc)=>{
 
+
             const match =
+
                 doc.data();
 
 
             if(
-                match.matchId === matchId ||
+
+                String(match.matchId || "") ===
+                String(matchId)
+
+                ||
+
                 doc.id === matchId
+
             ){
 
                 selectedMatch = match;
@@ -690,9 +864,9 @@ async function loadMatch(){
         });
 
 
-        // =============================================
-        // MATCH NOT FOUND
-        // =============================================
+        /* =============================================
+           MATCH NOT FOUND
+        ============================================= */
 
         if(!selectedMatch){
 
@@ -711,55 +885,98 @@ async function loadMatch(){
         }
 
 
-        // =============================================
-        // ADMIN PANEL URL
-        // =============================================
+        /* =============================================
+           GET ADMIN URL
+        =============================================
+
+           IMPORTANT:
+
+           Admin Panel saves:
+
+           cricHeroesLink
+
+           इसलिए हम सबसे पहले यही field
+           पढ़ रहे हैं।
+
+           पुराने records के लिए
+           cricHeroesUrl भी fallback है।
+        ============================================= */
 
         let cricHeroesUrl =
-            selectedMatch.cricHeroesLink || "";
+
+            selectedMatch.cricHeroesLink
+
+            ||
+
+            selectedMatch.cricHeroesUrl
+
+            ||
+
+            "";
 
 
-        /*
-         * अगर Admin Panel में URL
-         * https:// या http:// के बिना save हुआ है,
-         * तो automatically https:// जोड़ देंगे।
-         *
-         * अगर पहले से https:// है,
-         * तो वही exact URL रहेगा।
-         */
+        cricHeroesUrl =
+
+            String(
+                cricHeroesUrl
+            ).trim();
+
+
+        /* =============================================
+           ADD HTTPS IF REQUIRED
+        ============================================= */
 
         if(
-            cricHeroesUrl &&
-            !cricHeroesUrl.startsWith("http://") &&
-            !cricHeroesUrl.startsWith("https://")
+
+            cricHeroesUrl !== ""
+
+            &&
+
+            !cricHeroesUrl.startsWith(
+                "http://"
+            )
+
+            &&
+
+            !cricHeroesUrl.startsWith(
+                "https://"
+            )
+
         ){
 
             cricHeroesUrl =
-                "https://" + cricHeroesUrl;
+
+                "https://" +
+                cricHeroesUrl;
 
         }
 
 
-        // =============================================
-        // MATCH SUMMARY
-        // =============================================
+        /* =============================================
+           MATCH SUMMARY HTML
+        ============================================= */
 
         summary.innerHTML = `
+
 
             <div class="summary-card">
 
 
-                <!-- DATE -->
+                <!-- =================================
+                     DATE
+                ================================== -->
 
                 <div class="match-date">
 
-                    📅 ${selectedMatch.matchDate || "—"}
+                    📅
+                    ${selectedMatch.matchDate || "—"}
 
                 </div>
 
 
-
-                <!-- TEAMS -->
+                <!-- =================================
+                     TEAMS
+                ================================== -->
 
                 <div class="teams">
 
@@ -780,20 +997,24 @@ async function loadMatch(){
                 </div>
 
 
-
-                <!-- RESULT -->
+                <!-- =================================
+                     RESULT
+                ================================== -->
 
                 <div class="result">
 
-                    🏆 ${selectedMatch.result || "—"}
+                    🏆
+                    ${selectedMatch.result || "—"}
 
                 </div>
 
 
-
-                <!-- PLACE -->
+                <!-- =================================
+                     PLACE
+                ================================== -->
 
                 <div class="info-box">
+
 
                     <div class="info-icon">
 
@@ -801,11 +1022,13 @@ async function loadMatch(){
 
                     </div>
 
+
                     <div class="info-label">
 
                         PLACE
 
                     </div>
+
 
                     <div class="info-value">
 
@@ -813,19 +1036,23 @@ async function loadMatch(){
 
                     </div>
 
+
                 </div>
 
 
-
-                <!-- OVERS -->
+                <!-- =================================
+                     OVERS
+                ================================== -->
 
                 <div class="info-box">
+
 
                     <div class="info-icon">
 
                         🏏
 
                     </div>
+
 
                     <div class="info-label">
 
@@ -833,19 +1060,23 @@ async function loadMatch(){
 
                     </div>
 
+
                     <div class="info-value">
 
                         ${selectedMatch.overs || "—"}
 
                     </div>
 
+
                 </div>
 
 
-
-                <!-- PLAYER OF THE MATCH -->
+                <!-- =================================
+                     PLAYER OF THE MATCH
+                ================================== -->
 
                 <div class="info-box">
+
 
                     <div class="info-icon">
 
@@ -853,11 +1084,13 @@ async function loadMatch(){
 
                     </div>
 
+
                     <div class="info-label">
 
                         PLAYER OF THE MATCH
 
                     </div>
+
 
                     <div class="info-value">
 
@@ -865,13 +1098,16 @@ async function loadMatch(){
 
                     </div>
 
+
                 </div>
 
 
-
-                <!-- BEST BATSMAN -->
+                <!-- =================================
+                     BEST BATSMAN
+                ================================== -->
 
                 <div class="info-box">
+
 
                     <div class="info-icon">
 
@@ -879,11 +1115,13 @@ async function loadMatch(){
 
                     </div>
 
+
                     <div class="info-label">
 
                         BEST BATSMAN
 
                     </div>
+
 
                     <div class="info-value">
 
@@ -891,13 +1129,16 @@ async function loadMatch(){
 
                     </div>
 
+
                 </div>
 
 
-
-                <!-- BEST BOWLER -->
+                <!-- =================================
+                     BEST BOWLER
+                ================================== -->
 
                 <div class="info-box">
+
 
                     <div class="info-icon">
 
@@ -905,11 +1146,13 @@ async function loadMatch(){
 
                     </div>
 
+
                     <div class="info-label">
 
                         BEST BOWLER
 
                     </div>
+
 
                     <div class="info-value">
 
@@ -917,18 +1160,23 @@ async function loadMatch(){
 
                     </div>
 
+
                 </div>
 
 
-
-                <!-- FIGHTER OF THE MATCH -->
+                <!-- =================================
+                     FIGHTER OF THE MATCH
+                ================================== -->
 
                 ${
                     selectedMatch.fighterOfMatch
+
                     ?
+
                     `
 
                     <div class="info-box">
+
 
                         <div class="info-icon">
 
@@ -936,11 +1184,13 @@ async function loadMatch(){
 
                         </div>
 
+
                         <div class="info-label">
 
                             FIGHTER OF THE MATCH
 
                         </div>
+
 
                         <div class="info-value">
 
@@ -948,29 +1198,41 @@ async function loadMatch(){
 
                         </div>
 
+
                     </div>
 
                     `
+
                     :
+
                     ""
 
                 }
 
 
-
-                <!-- CRICHEROES URL -->
+                <!-- =================================
+                     ADMIN CRICHEROES URL
+                ================================== -->
 
                 ${
                     cricHeroesUrl
+
                     ?
+
                     `
 
                     <a
+
                         href="${cricHeroesUrl}"
+
                         target="_blank"
+
                         rel="noopener noreferrer"
+
                         class="cricheroes-box"
+
                     >
+
 
                         <span class="cricheroes-icon">
 
@@ -978,17 +1240,55 @@ async function loadMatch(){
 
                         </span>
 
-                        <span class="cricheroes-text">
 
-                            ${cricHeroesUrl}
+                        <span>
+
+
+                            <span class="cricheroes-text">
+
+                                ${cricHeroesUrl}
+
+                            </span>
+
+
+                            <span class="open-scorecard">
+
+                                🔗 OPEN MATCH SCORECARD
+
+                            </span>
+
 
                         </span>
+
 
                     </a>
 
                     `
+
                     :
-                    ""
+
+                    `
+
+                    <div class="cricheroes-box">
+
+
+                        <span class="cricheroes-icon">
+
+                            🌐
+
+                        </span>
+
+
+                        <span class="cricheroes-text">
+
+                            Match scorecard link not available.
+
+                        </span>
+
+
+                    </div>
+
+                    `
 
                 }
 
@@ -997,14 +1297,18 @@ async function loadMatch(){
 
         `;
 
-    }
 
+    }
 
     catch(error){
 
+
         console.error(
-            "Match Summary Error:",
+
+            "MATCH SUMMARY ERROR:",
+
             error
+
         );
 
 
@@ -1027,9 +1331,9 @@ async function loadMatch(){
 }
 
 
-// =====================================================
-// START
-// =====================================================
+/* =====================================================
+   START
+===================================================== */
 
 if(matchId){
 
