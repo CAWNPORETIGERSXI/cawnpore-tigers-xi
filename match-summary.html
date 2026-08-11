@@ -12,100 +12,570 @@
 
 <style>
 
+/* =========================================
+   MATCH SUMMARY PAGE
+========================================= */
+
 body{
-    background:#111;
+    background:#080808;
     color:#fff;
     font-family:Arial,sans-serif;
 }
 
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
 .container{
-    width:92%;
-    max-width:900px;
-    margin:30px auto;
+    width:94%;
+    max-width:1000px;
+    margin:25px auto 40px;
 }
+
+
+/* =========================================
+   PAGE TITLE
+========================================= */
 
 .page-title{
     text-align:center;
+
     color:#ff8800;
-    margin-bottom:25px;
+
+    font-size:36px;
+
+    font-weight:900;
+
+    margin:20px 0 30px;
+
+    letter-spacing:.5px;
+
+    text-shadow:
+        0 0 10px rgba(255,136,0,.35);
 }
+
+
+/* =========================================
+   MAIN SUMMARY CARD
+========================================= */
 
 .summary-card{
-    background:#1d1d1d;
-    border:3px solid #ff8800;
-    border-radius:15px;
-    padding:20px;
-    box-shadow:0 4px 0 #000;
+
+    background:#0d0d0d;
+
+    border:5px solid #ff8800;
+
+    border-radius:22px;
+
+    padding:28px;
+
+    box-shadow:
+        0 0 18px rgba(255,136,0,.35),
+        0 0 35px rgba(255,136,0,.12);
+
 }
+
+
+/* =========================================
+   DATE
+========================================= */
 
 .match-date{
+
     text-align:center;
-    color:#ff9800;
-    font-weight:bold;
-    margin-bottom:15px;
+
+    color:#fff;
+
+    font-size:18px;
+
+    font-weight:900;
+
+    margin-bottom:20px;
+
 }
+
+
+/* =========================================
+   TEAMS
+========================================= */
 
 .teams{
+
     text-align:center;
-    font-size:24px;
-    font-weight:bold;
-    margin:15px 0;
+
+    font-size:34px;
+
+    line-height:1.45;
+
+    font-weight:900;
+
+    color:#fff;
+
+    margin:10px 0 28px;
+
 }
+
+
+/* VS */
+
+.teams .vs{
+
+    display:inline-block;
+
+    color:#ff8800;
+
+    font-size:28px;
+
+    font-weight:900;
+
+    margin:5px 0;
+
+}
+
+
+/* =========================================
+   RESULT
+========================================= */
 
 .result{
+
     text-align:center;
-    color:#00ff88;
+
+    color:#00ff66;
+
+    font-size:27px;
+
+    font-weight:900;
+
+    padding:22px 15px;
+
+    background:#062b16;
+
+    border:3px solid #00aa44;
+
+    border-radius:17px;
+
+    margin:0 0 25px;
+
+    box-shadow:
+        0 0 12px rgba(0,255,100,.18);
+
+}
+
+
+/* =========================================
+   INFORMATION BOXES
+========================================= */
+
+.info-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    width:100%;
+
+    min-height:100px;
+
+    box-sizing:border-box;
+
+    background:#0d0d0d;
+
+    border:4px solid #ff8800;
+
+    border-radius:17px;
+
+    padding:14px 18px;
+
+    margin:14px 0;
+
+    box-shadow:
+        0 0 8px rgba(255,136,0,.22);
+
+}
+
+
+/* ICON */
+
+.info-icon{
+
+    width:76px;
+
+    height:76px;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#171717;
+
+    border-radius:14px;
+
+    font-size:42px;
+
+}
+
+
+/* LABEL */
+
+.info-label{
+
+    flex:1;
+
+    color:#ff8800;
+
     font-size:20px;
-    font-weight:bold;
-    padding:12px;
-    background:#092b18;
-    border-radius:10px;
-    margin:15px 0;
+
+    font-weight:900;
+
+    line-height:1.2;
+
 }
 
-.info{
-    font-size:16px;
-    color:#ddd;
-    line-height:1.9;
-}
 
-.label{
-    color:#ff9800;
-    font-weight:bold;
-}
+/* VALUE BOX */
 
-.view-match{
-    display:block;
+.info-value{
+
+    min-width:280px;
+
+    padding:16px 18px;
+
+    box-sizing:border-box;
+
     text-align:center;
-    background:#ff8800;
-    color:#000;
-    text-decoration:none;
-    padding:12px;
-    border-radius:8px;
-    font-weight:bold;
-    margin-top:20px;
+
+    background:#080808;
+
+    color:#fff;
+
+    border:3px solid #ff8800;
+
+    border-radius:12px;
+
+    font-size:20px;
+
+    font-weight:900;
+
 }
 
-.back-btn{
-    display:block;
-    text-align:center;
-    background:#ff8800;
-    color:#000;
+
+/* =========================================
+   CRICHEROES TEAM LINK
+========================================= */
+
+.cricheroes-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    background:#0d0d0d;
+
+    border:4px solid #ff8800;
+
+    border-radius:17px;
+
+    padding:17px 20px;
+
+    margin-top:18px;
+
     text-decoration:none;
-    padding:12px;
-    border-radius:8px;
-    font-weight:bold;
-    margin:25px 0;
+
+    color:#fff;
+
+    box-shadow:
+        0 0 8px rgba(255,136,0,.22);
+
 }
+
+
+.cricheroes-icon{
+
+    font-size:34px;
+
+    flex-shrink:0;
+
+}
+
+
+.cricheroes-text{
+
+    font-size:17px;
+
+    font-weight:900;
+
+    word-break:break-all;
+
+}
+
+
+.cricheroes-box:hover{
+
+    background:#151515;
+
+    box-shadow:
+        0 0 16px rgba(255,136,0,.5);
+
+}
+
+
+/* =========================================
+   LOADING / ERROR
+========================================= */
 
 .message{
+
     text-align:center;
+
     color:#ccc;
-    margin:30px 0;
+
+    margin:40px 0;
+
+    font-size:18px;
+
 }
 
+
 .error{
+
     color:#ff4444;
+
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer{
+
+    width:100%;
+
+    padding:20px;
+
+    margin-top:30px;
+
+    background:#000;
+
+    border-top:1px solid #222;
+
+    color:#aaa;
+
+    text-align:center;
+
+    font-size:13px;
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width:600px){
+
+    .container{
+
+        width:94%;
+
+        margin:20px auto 30px;
+
+    }
+
+
+    .page-title{
+
+        font-size:28px;
+
+        margin-bottom:22px;
+
+    }
+
+
+    .summary-card{
+
+        padding:15px;
+
+        border-width:5px;
+
+        border-radius:18px;
+
+    }
+
+
+    .match-date{
+
+        font-size:16px;
+
+    }
+
+
+    .teams{
+
+        font-size:25px;
+
+        line-height:1.4;
+
+        margin-bottom:22px;
+
+    }
+
+
+    .teams .vs{
+
+        font-size:23px;
+
+    }
+
+
+    .result{
+
+        font-size:21px;
+
+        padding:17px 10px;
+
+        border-radius:14px;
+
+    }
+
+
+    /* INFORMATION BOX */
+
+    .info-box{
+
+        min-height:auto;
+
+        display:grid;
+
+        grid-template-columns:58px 1fr;
+
+        gap:10px;
+
+        padding:12px;
+
+        border-width:4px;
+
+        border-radius:14px;
+
+    }
+
+
+    .info-icon{
+
+        width:58px;
+
+        height:58px;
+
+        border-radius:11px;
+
+        font-size:31px;
+
+        grid-row:span 2;
+
+    }
+
+
+    .info-label{
+
+        font-size:16px;
+
+        align-self:end;
+
+    }
+
+
+    .info-value{
+
+        min-width:0;
+
+        width:100%;
+
+        padding:10px 8px;
+
+        font-size:16px;
+
+        border-width:3px;
+
+    }
+
+
+    .cricheroes-box{
+
+        padding:14px;
+
+    }
+
+
+    .cricheroes-icon{
+
+        font-size:28px;
+
+    }
+
+
+    .cricheroes-text{
+
+        font-size:13px;
+
+    }
+
+}
+
+
+/* =========================================
+   VERY SMALL MOBILE
+========================================= */
+
+@media (max-width:370px){
+
+    .page-title{
+
+        font-size:25px;
+
+    }
+
+
+    .teams{
+
+        font-size:22px;
+
+    }
+
+
+    .result{
+
+        font-size:18px;
+
+    }
+
+
+    .info-label{
+
+        font-size:14px;
+
+    }
+
+
+    .info-value{
+
+        font-size:14px;
+
+    }
+
 }
 
 </style>
@@ -116,14 +586,25 @@ body{
 <body>
 
 
+<!-- =========================================
+     PAGE TITLE
+========================================= -->
+
 <header>
 
 <h1 class="page-title">
+
 🏏 MATCH SUMMARY
+
 </h1>
 
 </header>
 
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
 
 <main class="container">
 
@@ -131,24 +612,23 @@ body{
 <div id="summary">
 
 <p class="message">
+
 ⏳ Loading Match Summary...
+
 </p>
 
 </div>
 
 
-<a
-href="individual-matches.html"
-class="back-btn"
->
-⬅ BACK TO INDIVIDUAL MATCHES
-</a>
-
-
 </main>
 
 
-<footer style="text-align:center;margin:40px 0;">
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer>
 
 © 2026 CAWNPORE TIGERS XI
 
@@ -190,9 +670,13 @@ const summary =
 if(!matchId){
 
     summary.innerHTML = `
+
         <p class="message error">
+
             ❌ Match ID not found.
+
         </p>
+
     `;
 
 }
@@ -233,12 +717,20 @@ async function loadMatch(){
         });
 
 
+        // =============================================
+        // MATCH NOT FOUND
+        // =============================================
+
         if(!selectedMatch){
 
             summary.innerHTML = `
+
                 <p class="message error">
+
                     ❌ Match not found.
+
                 </p>
+
             `;
 
             return;
@@ -246,9 +738,24 @@ async function loadMatch(){
         }
 
 
+        // =============================================
+        // CRICHEROES TEAM URL
+        // =============================================
+
+        const cricHeroesUrl =
+            selectedMatch.cricHeroesLink || "";
+
+
+        // =============================================
+        // MATCH SUMMARY HTML
+        // =============================================
+
         summary.innerHTML = `
 
             <div class="summary-card">
+
+
+                <!-- DATE -->
 
                 <div class="match-date">
 
@@ -257,14 +764,18 @@ async function loadMatch(){
                 </div>
 
 
+                <!-- TEAMS -->
+
                 <div class="teams">
 
                     CAWNPORE TIGERS XI
 
                     <br>
 
-                    <span style="color:#ff8800;">
-                        vs
+                    <span class="vs">
+
+                        VS
+
                     </span>
 
                     <br>
@@ -274,6 +785,8 @@ async function loadMatch(){
                 </div>
 
 
+                <!-- RESULT -->
+
                 <div class="result">
 
                     🏆 ${selectedMatch.result || "—"}
@@ -281,117 +794,216 @@ async function loadMatch(){
                 </div>
 
 
-                <div class="info">
 
-                    <span class="label">
-                        📍 Place:
-                    </span>
+                <!-- PLACE -->
 
-                    ${selectedMatch.place || "—"}
+                <div class="info-box">
 
-                    <br>
+                    <div class="info-icon">
 
+                        📍
 
-                    <span class="label">
-                        🏏 Overs:
-                    </span>
+                    </div>
 
-                    ${selectedMatch.overs || "—"}
+                    <div class="info-label">
 
-                    <br>
+                        PLACE
 
+                    </div>
 
-                    ${
-                        selectedMatch.playerOfMatch
-                        ?
-                        `
-                        <span class="label">
-                            ⭐ Player of the Match:
-                        </span>
+                    <div class="info-value">
 
-                        ${selectedMatch.playerOfMatch}
+                        ${selectedMatch.place || "—"}
 
-                        <br>
-                        `
-                        :
-                        ""
-                    }
-
-
-                    ${
-                        selectedMatch.bestBowler
-                        ?
-                        `
-                        <span class="label">
-                            🎯 Best Bowler:
-                        </span>
-
-                        ${selectedMatch.bestBowler}
-
-                        <br>
-                        `
-                        :
-                        ""
-                    }
-
-
-                    ${
-                        selectedMatch.bestBatter
-                        ?
-                        `
-                        <span class="label">
-                            🏏 Best Batsman:
-                        </span>
-
-                        ${selectedMatch.bestBatter}
-
-                        <br>
-                        `
-                        :
-                        ""
-                    }
-
-
-                    ${
-                        selectedMatch.fighterOfMatch
-                        ?
-                        `
-                        <span class="label">
-                            ⚔️ Fighter of the Match:
-                        </span>
-
-                        ${selectedMatch.fighterOfMatch}
-
-                        <br>
-                        `
-                        :
-                        ""
-                    }
+                    </div>
 
                 </div>
 
 
+
+                <!-- OVERS -->
+
+                <div class="info-box">
+
+                    <div class="info-icon">
+
+                        🏏
+
+                    </div>
+
+                    <div class="info-label">
+
+                        OVERS
+
+                    </div>
+
+                    <div class="info-value">
+
+                        ${selectedMatch.overs || "—"}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PLAYER OF THE MATCH -->
+
+                <div class="info-box">
+
+                    <div class="info-icon">
+
+                        ⭐
+
+                    </div>
+
+                    <div class="info-label">
+
+                        PLAYER OF THE MATCH
+
+                    </div>
+
+                    <div class="info-value">
+
+                        ${selectedMatch.playerOfMatch || "—"}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BEST BATSMAN -->
+
+                <div class="info-box">
+
+                    <div class="info-icon">
+
+                        🏏
+
+                    </div>
+
+                    <div class="info-label">
+
+                        BEST BATSMAN
+
+                    </div>
+
+                    <div class="info-value">
+
+                        ${selectedMatch.bestBatter || "—"}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BEST BOWLER -->
+
+                <div class="info-box">
+
+                    <div class="info-icon">
+
+                        🔴
+
+                    </div>
+
+                    <div class="info-label">
+
+                        BEST BOWLER
+
+                    </div>
+
+                    <div class="info-value">
+
+                        ${selectedMatch.bestBowler || "—"}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- FIGHTER OF THE MATCH -->
+
                 ${
-                    selectedMatch.cricHeroesLink
+                    selectedMatch.fighterOfMatch
                     ?
                     `
-                    <a
-                        href="${selectedMatch.cricHeroesLink}"
-                        target="_blank"
-                        class="view-match"
-                    >
-                        🔗 VIEW MATCH ON CRICHEROES
-                    </a>
+
+                    <div class="info-box">
+
+                        <div class="info-icon">
+
+                            ⚔️
+
+                        </div>
+
+                        <div class="info-label">
+
+                            FIGHTER OF THE MATCH
+
+                        </div>
+
+                        <div class="info-value">
+
+                            ${selectedMatch.fighterOfMatch}
+
+                        </div>
+
+                    </div>
+
                     `
                     :
                     ""
+
                 }
+
+
+
+                <!-- CRICHEROES TEAM URL -->
+
+                ${
+                    cricHeroesUrl
+                    ?
+                    `
+
+                    <a
+                        href="${cricHeroesUrl}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="cricheroes-box"
+                    >
+
+                        <span class="cricheroes-icon">
+
+                            🌐
+
+                        </span>
+
+                        <span class="cricheroes-text">
+
+                            ${cricHeroesUrl}
+
+                        </span>
+
+                    </a>
+
+                    `
+                    :
+                    ""
+
+                }
+
 
             </div>
 
         `;
 
     }
+
+
     catch(error){
 
         console.error(
