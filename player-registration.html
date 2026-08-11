@@ -25,9 +25,7 @@
 ===================================================== */
 
 body{
-
     background:#000;
-
 }
 
 
@@ -101,9 +99,7 @@ body{
 
     font-size:18px;
 
-    margin:
-
-        12px 0 28px;
+    margin:12px 0 28px;
 
 }
 
@@ -116,10 +112,7 @@ body{
 
     background:#000;
 
-    border:
-
-        3px solid
-        #ff8800;
+    border:3px solid #ff8800;
 
     border-radius:16px;
 
@@ -142,16 +135,11 @@ body{
 
     font-weight:700;
 
-    margin:
-
-        4px 0 18px;
+    margin:4px 0 18px;
 
     padding-bottom:10px;
 
-    border-bottom:
-
-        2px solid
-        #ff8800;
+    border-bottom:2px solid #ff8800;
 
 }
 
@@ -200,10 +188,7 @@ body{
 
     color:#fff;
 
-    border:
-
-        2px solid
-        #555;
+    border:2px solid #555;
 
     border-radius:8px;
 
@@ -224,10 +209,6 @@ body{
 }
 
 
-/* =====================================================
-   FOCUS
-===================================================== */
-
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus{
@@ -235,16 +216,11 @@ body{
     border-color:#ff8800;
 
     box-shadow:
-
         0 0 8px
         rgba(255,136,0,0.35);
 
 }
 
-
-/* =====================================================
-   SELECT
-===================================================== */
 
 .form-group select{
 
@@ -252,10 +228,6 @@ body{
 
 }
 
-
-/* =====================================================
-   TEXTAREA
-===================================================== */
 
 .form-group textarea{
 
@@ -274,9 +246,7 @@ body{
 
     display:grid;
 
-    grid-template-columns:
-
-        1fr 1fr;
+    grid-template-columns:1fr 1fr;
 
     gap:22px;
 
@@ -284,16 +254,14 @@ body{
 
 
 /* =====================================================
-   PLAYER PHOTO AREA
+   PLAYER PHOTO
 ===================================================== */
 
 .photo-section{
 
     display:grid;
 
-    grid-template-columns:
-
-        1fr 1.4fr;
+    grid-template-columns:1fr 1.4fr;
 
     gap:30px;
 
@@ -301,14 +269,9 @@ body{
 
     margin-top:8px;
 
-    padding:
+    padding:12px 0 22px;
 
-        12px 0 22px;
-
-    border-bottom:
-
-        2px solid
-        #ff8800;
+    border-bottom:2px solid #ff8800;
 
 }
 
@@ -324,16 +287,9 @@ body{
 }
 
 
-.photo-title span{
+.photo-upload label{
 
     display:block;
-
-    color:#ff8800;
-
-}
-
-
-.photo-upload label{
 
     color:#fff;
 
@@ -356,10 +312,7 @@ body{
 
     color:#fff;
 
-    border:
-
-        2px solid
-        #555;
+    border:2px solid #555;
 
     border-radius:8px;
 
@@ -385,9 +338,7 @@ body{
 
     display:grid;
 
-    grid-template-columns:
-
-        0.8fr 1.6fr;
+    grid-template-columns:0.8fr 1.6fr;
 
     gap:25px;
 
@@ -416,10 +367,7 @@ body{
 
     background:#000;
 
-    border:
-
-        2px solid
-        #ff8800;
+    border:2px solid #ff8800;
 
     border-radius:10px;
 
@@ -446,10 +394,7 @@ body{
 
     color:#ff8800;
 
-    border:
-
-        2px solid
-        #ff8800;
+    border:2px solid #ff8800;
 
     border-radius:10px;
 
@@ -471,20 +416,17 @@ body{
     color:#000;
 
     box-shadow:
-
         0 0 15px
         rgba(255,136,0,0.6);
 
 }
 
 
-/* =====================================================
-   FOOTER
-===================================================== */
+.submit-btn:disabled{
 
-footer{
+    opacity:0.6;
 
-    text-align:center;
+    cursor:not-allowed;
 
 }
 
@@ -645,8 +587,6 @@ Together We Roar, Together We Win
 <main class="registration-container">
 
 
-<!-- TITLE -->
-
 <h2 class="registration-title">
 
 <span class="join">
@@ -698,6 +638,7 @@ Full Name *
     placeholder="Enter your full name"
 >
 
+
 </div>
 
 
@@ -716,7 +657,9 @@ Date of Birth
     id="dob"
 >
 
+
 </div>
+
 
 
 <div class="form-group">
@@ -731,6 +674,7 @@ Mobile Number *
     placeholder="Enter mobile number"
     maxlength="10"
 >
+
 
 </div>
 
@@ -750,6 +694,7 @@ City
     id="city"
     placeholder="Enter your city"
 >
+
 
 </div>
 
@@ -894,23 +839,6 @@ Preferred Jersey Number
     placeholder="Example: 18"
 >
 
-</div>
-
-
-
-<div class="form-group">
-
-<label>
-Short Cricket Profile
-</label>
-
-<textarea
-    id="profile"
-    placeholder="Tell us briefly about your cricket experience..."
-></textarea>
-
-</div>
-
 
 </div>
 
@@ -957,6 +885,24 @@ Other
 </div>
 
 
+</div>
+
+
+
+<div class="form-group">
+
+<label>
+Short Cricket Profile
+</label>
+
+<textarea
+    id="profile"
+    placeholder="Tell us briefly about your cricket experience..."
+></textarea>
+
+</div>
+
+
 
 <!-- ===================================================
      PLAYER PHOTO
@@ -983,6 +929,7 @@ Upload Player Photo
     id="playerPhoto"
     accept="image/jpeg,image/png"
 >
+
 
 <p class="photo-note">
 
@@ -1046,37 +993,43 @@ CAWNPORE TIGERS XI management.
 
 
 <!-- =====================================================
-     TEMPORARY JAVASCRIPT
+     FIREBASE REGISTRATION SCRIPT
 ===================================================== -->
-
-<script>
 
 <script type="module">
 
 import { db, storage } from "./firebase.js";
 
+
 import {
+
     collection,
     addDoc,
     serverTimestamp
+
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
+
 import {
+
     ref,
     uploadBytes,
     getDownloadURL
+
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js";
 
 
-// =====================================================
-// SUBMIT PLAYER REGISTRATION
-// =====================================================
+
+/* =====================================================
+   SUBMIT PLAYER REGISTRATION
+===================================================== */
 
 window.submitRegistration = async function () {
 
-    // -----------------------------------------------
-    // GET FORM VALUES
-    // -----------------------------------------------
+
+    /* -------------------------------------------------
+       GET FORM VALUES
+    ------------------------------------------------- */
 
     const name =
         document
@@ -1149,9 +1102,10 @@ window.submitRegistration = async function () {
         .files[0];
 
 
-    // -----------------------------------------------
-    // REQUIRED DETAILS
-    // -----------------------------------------------
+
+    /* -------------------------------------------------
+       REQUIRED FIELDS
+    ------------------------------------------------- */
 
     if (name === "") {
 
@@ -1197,15 +1151,19 @@ window.submitRegistration = async function () {
     }
 
 
-    // -----------------------------------------------
-    // PHOTO TYPE CHECK
-    // -----------------------------------------------
+
+    /* -------------------------------------------------
+       PHOTO CHECK
+    ------------------------------------------------- */
 
     if (photoFile) {
 
         const allowedTypes = [
+
             "image/jpeg",
+
             "image/png"
+
         ];
 
 
@@ -1226,246 +1184,10 @@ window.submitRegistration = async function () {
     }
 
 
-    // -----------------------------------------------
-    // REGISTRATION ID
-    // -----------------------------------------------
+
+    /* -------------------------------------------------
+       REGISTRATION ID
+    ------------------------------------------------- */
 
     const year =
-        new Date()
-        .getFullYear();
-
-
-    const uniqueNumber =
-        Date.now()
-        .toString()
-        .slice(-6);
-
-
-    const registrationId =
-        `CTXI-${year}-${uniqueNumber}`;
-
-
-    // -----------------------------------------------
-    // BUTTON
-    // -----------------------------------------------
-
-    const submitButton =
-        document.querySelector(
-            ".submit-btn"
-        );
-
-
-    submitButton.disabled = true;
-
-    submitButton.innerText =
-        "⏳ SUBMITTING...";
-
-
-    try {
-
-        // -------------------------------------------
-        // PHOTO UPLOAD
-        // -------------------------------------------
-
-        let photoUrl = "";
-
-
-        if (photoFile) {
-
-            submitButton.innerText =
-                "⏳ UPLOADING PHOTO...";
-
-
-            const fileExtension =
-                photoFile.name
-                .split(".")
-                .pop();
-
-
-            const photoPath =
-                `player-registrations/${registrationId}.${fileExtension}`;
-
-
-            const storageRef =
-                ref(
-                    storage,
-                    photoPath
-                );
-
-
-            await uploadBytes(
-                storageRef,
-                photoFile
-            );
-
-
-            photoUrl =
-                await getDownloadURL(
-                    storageRef
-                );
-
-        }
-
-
-        // -------------------------------------------
-        // SAVE TO FIRESTORE
-        // -------------------------------------------
-
-        submitButton.innerText =
-            "⏳ SAVING REGISTRATION...";
-
-
-        await addDoc(
-            collection(
-                db,
-                "playerRegistrations"
-            ),
-            {
-
-                registrationId:
-                    registrationId,
-
-                fullName:
-                    name,
-
-                mobile:
-                    mobile,
-
-                dateOfBirth:
-                    dob,
-
-                city:
-                    city,
-
-                playingRole:
-                    playingRole,
-
-                battingStyle:
-                    battingStyle,
-
-                bowlingStyle:
-                    bowlingStyle,
-
-                jerseyNumber:
-                    jerseyNumber,
-
-                experience:
-                    experience,
-
-                profile:
-                    profile,
-
-                photoUrl:
-                    photoUrl,
-
-                status:
-                    "Pending",
-
-                submittedAt:
-                    serverTimestamp()
-
-            }
-        );
-
-
-        // -------------------------------------------
-        // SUCCESS
-        // -------------------------------------------
-
-        alert(
-            "✅ Registration submitted successfully!\n\n" +
-            "Your Registration ID is:\n" +
-            registrationId +
-            "\n\nStatus: Pending"
-        );
-
-
-        // -------------------------------------------
-        // CLEAR FORM
-        // -------------------------------------------
-
-        document
-            .getElementById("fullName")
-            .value = "";
-
-
-        document
-            .getElementById("mobile")
-            .value = "";
-
-
-        document
-            .getElementById("dob")
-            .value = "";
-
-
-        document
-            .getElementById("city")
-            .value = "";
-
-
-        document
-            .getElementById("playingRole")
-            .value = "";
-
-
-        document
-            .getElementById("battingStyle")
-            .value = "";
-
-
-        document
-            .getElementById("bowlingStyle")
-            .value = "";
-
-
-        document
-            .getElementById("jerseyNumber")
-            .value = "";
-
-
-        document
-            .getElementById("experience")
-            .value = "";
-
-
-        document
-            .getElementById("profile")
-            .value = "";
-
-
-        document
-            .getElementById("playerPhoto")
-            .value = "";
-
-
-    } catch (error) {
-
-        console.error(
-            "PLAYER REGISTRATION ERROR:",
-            error
-        );
-
-
-        alert(
-            "❌ Registration failed.\n\n" +
-            error.message
-        );
-
-
-    } finally {
-
-        submitButton.disabled = false;
-
-        submitButton.innerText =
-            "🐾 SUBMIT PLAYER REGISTRATION";
-
-    }
-
-};
-
-</script>
-
-</body>
-
-</html>
+       
