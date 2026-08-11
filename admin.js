@@ -7,7 +7,10 @@ import {
 import {
     collection,
     addDoc,
-    getDocs
+    getDocs,
+    updateDoc,
+    doc,
+    serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
@@ -16,6 +19,7 @@ import {
 // ======================================================
 
 const CLOUDINARY_CLOUD_NAME = "ax0fx3uh";
+
 const CLOUDINARY_UPLOAD_PRESET = "tigers_images";
 
 
@@ -31,10 +35,15 @@ window.login = async function () {
     const password =
         document.getElementById("password").value;
 
+
     if (email === "" || password === "") {
+
         alert("Enter Email & Password");
+
         return;
+
     }
+
 
     try {
 
@@ -44,18 +53,446 @@ window.login = async function () {
             password
         );
 
-        document.getElementById("loginBox").style.display = "none";
 
-        document.getElementById("adminPanel").style.display = "block";
+        document.getElementById("loginBox")
+            .style.display = "none";
+
+
+        document.getElementById("adminPanel")
+            .style.display = "block";
+
 
         loadEvents();
+
+        loadPlayerRegistrations();
+
 
     } catch (error) {
 
         alert(error.message);
 
     }
+
 };
+
+
+// ======================================================
+// PLAYER REGISTRATIONS
+// ======================================================
+
+async function loadPlayerRegistrations() {
+
+    const registrationList =
+        document.getElementById(
+            "registrationList"
+        );
+
+    const registrationMsg =
+        document.getElementById(
+            "registrationMsg"
+        );
+
+
+    if (!registrationList) {
+
+        return;
+
+    }
+
+
+    registrationList.innerHTML = "";
+
+    registrationMsg.innerText =
+        "⏳ Loading registrations...";
+
+
+    try {
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "playerRegistrations"
+                )
+            );
+
+
+        if (snapshot.empty) {
+
+            registrationMsg.innerText =
+                "No player registrations found.";
+
+            return;
+
+        }
+
+
+        let count = 0;
+
+
+        snapshot.forEach((registrationDoc) => {
+
+            const player =
+                registrationDoc.data();
+
+
+            count++;
+
+
+            const card =
+                document.createElement("div");
+
+
+            card.className =
+                "registration-card";
+
+
+            // --------------------------------------
+            // TITLE
+            // --------------------------------------
+
+            const title =
+                document.createElement("h3");
+
+
+            title.innerText =
+                player.fullName ||
+                "Unnamed Player";
+
+
+            card.appendChild(title);
+
+
+            // --------------------------------------
+            // REGISTRATION ID
+            // --------------------------------------
+
+            const idText =
+                document.createElement("div");
+
+
+            idText.className =
+                "registration-info";
+
+
+            idText.innerHTML =
+                "<strong>Registration ID:</strong> " +
+                escapeHtml(
+                    player.registrationId || ""
+                );
+
+
+            card.appendChild(idText);
+
+
+            // --------------------------------------
+            // DETAILS
+            // --------------------------------------
+
+            const details =
+                document.createElement("div");
+
+
+            details.className =
+                "registration-info";
+
+
+            details.innerHTML = `
+
+                <strong>Mobile:</strong>
+                ${escapeHtml(player.mobile || "-")}
+
+                <br>
+
+                <strong>Date of Birth:</strong>
+                ${escapeHtml(player.dateOfBirth || "-")}
+
+                <br>
+
+                <strong>City:</strong>
+                ${escapeHtml(player.city || "-")}
+
+                <br>
+
+                <strong>Playing Role:</strong>
+                ${escapeHtml(player.playingRole || "-")}
+
+                <br>
+
+                <strong>Batting Style:</strong>
+                ${escapeHtml(player.battingStyle || "-")}
+
+                <br>
+
+                <strong>Bowling Style:</strong>
+                ${escapeHtml(player.bowlingStyle || "-")}
+
+                <br>
+
+                <strong>Jersey Number:</strong>
+                ${escapeHtml(player.jerseyNumber || "-")}
+
+                <br>
+
+                <strong>Experience:</strong>
+                ${escapeHtml(player.experience || "-")}
+
+                <br>
+
+                <strong>Profile:</strong>
+                ${escapeHtml(player.profile || "-")}
+
+            `;
+
+
+            card.appendChild(details);
+
+
+            // --------------------------------------
+            // STATUS
+            // --------------------------------------
+
+            const status =
+                document.createElement("span");
+
+
+            status.className =
+                "registration-status";
+
+
+            const currentStatus =
+                player.status || "Pending";
+
+
+            if (
+                currentStatus ===
+                "Approved"
+            ) {
+
+                status.classList.add(
+                    "status-approved"
+                );
+
+            }
+            else if (
+                currentStatus ===
+                "Rejected"
+            ) {
+
+                status.classList.add(
+                    "status-rejected"
+                );
+
+            }
+            else {
+
+                status.classList.add(
+                    "status-pending"
+                );
+
+            }
+
+
+            status.innerText =
+                "Status: " +
+                currentStatus;
+
+
+            card.appendChild(status);
+
+
+            // --------------------------------------
+            // ACTION BUTTONS
+            // --------------------------------------
+
+            const actions =
+                document.createElement("div");
+
+
+            actions.className =
+                "registration-actions";
+
+
+            const approveButton =
+                document.createElement("button");
+
+
+            approveButton.className =
+                "approve-btn";
+
+
+            approveButton.innerText =
+                "✅ APPROVE";
+
+
+            approveButton.onclick =
+                function () {
+
+                    updateRegistrationStatus(
+                        registrationDoc.id,
+                        "Approved"
+                    );
+
+                };
+
+
+            const rejectButton =
+                document.createElement("button");
+
+
+            rejectButton.className =
+                "reject-btn";
+
+
+            rejectButton.innerText =
+                "❌ REJECT";
+
+
+            rejectButton.onclick =
+                function () {
+
+                    updateRegistrationStatus(
+                        registrationDoc.id,
+                        "Rejected"
+                    );
+
+                };
+
+
+            actions.appendChild(
+                approveButton
+            );
+
+
+            actions.appendChild(
+                rejectButton
+            );
+
+
+            card.appendChild(actions);
+
+
+            registrationList.appendChild(card);
+
+        });
+
+
+        registrationMsg.innerText =
+            "Total Registrations: " +
+            count;
+
+
+    } catch (error) {
+
+        console.error(
+            "REGISTRATION LOAD ERROR:",
+            error
+        );
+
+
+        registrationMsg.innerText =
+            "❌ Error loading registrations: " +
+            error.message;
+
+    }
+
+}
+
+
+// ======================================================
+// UPDATE PLAYER REGISTRATION STATUS
+// ======================================================
+
+async function updateRegistrationStatus(
+    documentId,
+    newStatus
+) {
+
+    const confirmation =
+        confirm(
+            "Change registration status to " +
+            newStatus +
+            "?"
+        );
+
+
+    if (!confirmation) {
+
+        return;
+
+    }
+
+
+    try {
+
+        await updateDoc(
+
+            doc(
+                db,
+                "playerRegistrations",
+                documentId
+            ),
+
+            {
+
+                status:
+                    newStatus,
+
+                statusUpdatedAt:
+                    serverTimestamp()
+
+            }
+
+        );
+
+
+        alert(
+            "Registration " +
+            newStatus +
+            " successfully!"
+        );
+
+
+        loadPlayerRegistrations();
+
+
+    } catch (error) {
+
+        console.error(
+            "STATUS UPDATE ERROR:",
+            error
+        );
+
+
+        alert(
+            "Error updating status:\n" +
+            error.message
+        );
+
+    }
+
+}
+
+
+// ======================================================
+// ESCAPE HTML
+// ======================================================
+
+function escapeHtml(value) {
+
+    return String(value)
+
+        .replaceAll("&", "&amp;")
+
+        .replaceAll("<", "&lt;")
+
+        .replaceAll(">", "&gt;")
+
+        .replaceAll('"', "&quot;")
+
+        .replaceAll("'", "&#039;");
+
+}
 
 
 // ======================================================
@@ -67,23 +504,36 @@ async function uploadImageToCloudinary(file) {
     const url =
         `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
 
-    const formData = new FormData();
 
-    formData.append("file", file);
+    const formData =
+        new FormData();
+
+
+    formData.append(
+        "file",
+        file
+    );
+
 
     formData.append(
         "upload_preset",
         CLOUDINARY_UPLOAD_PRESET
     );
 
+
     const response =
-        await fetch(url, {
-            method: "POST",
-            body: formData
-        });
+        await fetch(
+            url,
+            {
+                method: "POST",
+                body: formData
+            }
+        );
+
 
     const data =
         await response.json();
+
 
     if (!response.ok) {
 
@@ -92,6 +542,7 @@ async function uploadImageToCloudinary(file) {
             data
         );
 
+
         throw new Error(
             data.error?.message ||
             "Image upload failed"
@@ -99,7 +550,9 @@ async function uploadImageToCloudinary(file) {
 
     }
 
+
     return data.secure_url;
+
 }
 
 
@@ -108,30 +561,43 @@ async function uploadImageToCloudinary(file) {
 // ======================================================
 
 const saveEventBtn =
-    document.getElementById("saveEventBtn");
+    document.getElementById(
+        "saveEventBtn"
+    );
 
 
-saveEventBtn.onclick = async function () {
+saveEventBtn.onclick =
+async function () {
 
     const eventId =
-        document.getElementById("eventId").value.trim();
+        document.getElementById(
+            "eventId"
+        ).value.trim();
+
 
     const eventType =
-        document.getElementById("eventType").value;
+        document.getElementById(
+            "eventType"
+        ).value;
+
 
     const eventName =
-        document.getElementById("eventName").value.trim();
+        document.getElementById(
+            "eventName"
+        ).value.trim();
+
 
     const eventImage =
-        document.getElementById("eventImage").files[0];
+        document.getElementById(
+            "eventImage"
+        ).files[0];
+
 
     const eventStatus =
-        document.getElementById("eventStatus").value;
+        document.getElementById(
+            "eventStatus"
+        ).value;
 
-
-    // ------------------------------------------
-    // REQUIRED EVENT DETAILS
-    // ------------------------------------------
 
     if (
         eventId === "" ||
@@ -139,19 +605,20 @@ saveEventBtn.onclick = async function () {
         eventName === ""
     ) {
 
-        alert("Please fill all Event details");
+        alert(
+            "Please fill all Event details"
+        );
+
         return;
 
     }
 
 
-    // ------------------------------------------
-    // IMAGE REQUIRED FOR TOURNAMENT / SERIES
-    // ------------------------------------------
-
     if (
-        (eventType === "Tournament" ||
-         eventType === "Series") &&
+        (
+            eventType === "Tournament" ||
+            eventType === "Series"
+        ) &&
         !eventImage
     ) {
 
@@ -164,13 +631,12 @@ saveEventBtn.onclick = async function () {
     }
 
 
-    // ------------------------------------------
-    // CHECK IMAGE TYPE
-    // ------------------------------------------
-
     if (eventImage) {
 
-        if (eventImage.type !== "image/jpeg") {
+        if (
+            eventImage.type !==
+            "image/jpeg"
+        ) {
 
             alert(
                 "Please upload JPG or JPEG image only."
@@ -186,21 +652,22 @@ saveEventBtn.onclick = async function () {
     try {
 
         const eventMsg =
-            document.getElementById("eventMsg");
+            document.getElementById(
+                "eventMsg"
+            );
+
 
         eventMsg.innerHTML =
             "⏳ Saving Event...";
 
+
         eventMsg.style.display =
             "block";
+
 
         eventMsg.style.color =
             "#ff9800";
 
-
-        // --------------------------------------
-        // UPLOAD IMAGE TO CLOUDINARY
-        // --------------------------------------
 
         let imageUrl = "";
 
@@ -210,6 +677,7 @@ saveEventBtn.onclick = async function () {
             eventMsg.innerHTML =
                 "⏳ Uploading image...";
 
+
             imageUrl =
                 await uploadImageToCloudinary(
                     eventImage
@@ -218,61 +686,70 @@ saveEventBtn.onclick = async function () {
         }
 
 
-        // --------------------------------------
-        // SAVE EVENT ONLY ONCE
-        // --------------------------------------
-
         eventMsg.innerHTML =
             "⏳ Saving Event to Firebase...";
 
 
         await addDoc(
-            collection(db, "events"),
+
+            collection(
+                db,
+                "events"
+            ),
+
             {
 
-                eventId: eventId,
+                eventId:
+                    eventId,
 
-                eventType: eventType,
+                eventType:
+                    eventType,
 
-                eventName: eventName,
+                eventName:
+                    eventName,
 
-                imageUrl: imageUrl,
+                imageUrl:
+                    imageUrl,
 
-                status: eventStatus
+                status:
+                    eventStatus
 
             }
+
         );
 
 
-        // --------------------------------------
-        // SUCCESS
-        // --------------------------------------
-
         eventMsg.innerHTML =
             "✅ Event saved successfully!";
+
 
         eventMsg.style.color =
             "#00ff88";
 
 
-        // --------------------------------------
-        // CLEAR EVENT FORM
-        // --------------------------------------
+        document.getElementById(
+            "eventId"
+        ).value = "";
 
-        document.getElementById("eventId")
-            .value = "";
 
-        document.getElementById("eventType")
-            .value = "";
+        document.getElementById(
+            "eventType"
+        ).value = "";
 
-        document.getElementById("eventName")
-            .value = "";
 
-        document.getElementById("eventImage")
-            .value = "";
+        document.getElementById(
+            "eventName"
+        ).value = "";
 
-        document.getElementById("eventStatus")
-            .value = "Active";
+
+        document.getElementById(
+            "eventImage"
+        ).value = "";
+
+
+        document.getElementById(
+            "eventStatus"
+        ).value = "Active";
 
 
         loadEvents();
@@ -287,14 +764,18 @@ saveEventBtn.onclick = async function () {
 
 
         const eventMsg =
-            document.getElementById("eventMsg");
+            document.getElementById(
+                "eventMsg"
+            );
 
 
         eventMsg.style.display =
             "block";
 
+
         eventMsg.style.color =
             "#ff4444";
+
 
         eventMsg.innerHTML =
             "❌ ERROR:<br>" +
@@ -312,11 +793,15 @@ saveEventBtn.onclick = async function () {
 async function loadEvents() {
 
     const eventList =
-        document.getElementById("eventList");
+        document.getElementById(
+            "eventList"
+        );
 
 
     if (!eventList) {
+
         return;
+
     }
 
 
@@ -324,21 +809,26 @@ async function loadEvents() {
 
         const snapshot =
             await getDocs(
-                collection(db, "events")
+                collection(
+                    db,
+                    "events"
+                )
             );
 
 
         eventList.innerHTML = "";
 
 
-        snapshot.forEach((doc) => {
+        snapshot.forEach((docSnapshot) => {
 
             const event =
-                doc.data();
+                docSnapshot.data();
 
 
             const div =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
 
 
             div.className =
@@ -367,18 +857,24 @@ async function loadEvents() {
                 }
 
                 <strong>
-                    ${event.eventName || ""}
+                    ${escapeHtml(
+                        event.eventName || ""
+                    )}
                 </strong>
 
                 <br>
 
                 Event ID:
-                ${event.eventId || ""}
+                ${escapeHtml(
+                    event.eventId || ""
+                )}
 
                 <br>
 
                 Type:
-                ${event.eventType || ""}
+                ${escapeHtml(
+                    event.eventType || ""
+                )}
 
                 <br>
 
@@ -401,6 +897,7 @@ async function loadEvents() {
 
         console.error(error);
 
+
         eventList.innerHTML =
             "Error loading events.";
 
@@ -414,26 +911,38 @@ async function loadEvents() {
 // ======================================================
 
 const addMatchBtn =
-    document.getElementById("addMatchBtn");
+    document.getElementById(
+        "addMatchBtn"
+    );
+
 
 const matchForm =
-    document.getElementById("matchForm");
+    document.getElementById(
+        "matchForm"
+    );
 
 
-addMatchBtn.onclick = function () {
+addMatchBtn.onclick =
+function () {
 
-    if (matchForm.style.display === "none") {
+    if (
+        matchForm.style.display ===
+        "none"
+    ) {
 
         matchForm.style.display =
             "block";
 
+
         addMatchBtn.innerText =
             "➖ CLOSE MATCH FORM";
 
-    } else {
+    }
+    else {
 
         matchForm.style.display =
             "none";
+
 
         addMatchBtn.innerText =
             "➕ ADD NEW MATCH";
@@ -448,13 +957,21 @@ addMatchBtn.onclick = function () {
 // ======================================================
 
 const matchEventType =
-    document.getElementById("matchEventType");
+    document.getElementById(
+        "matchEventType"
+    );
+
 
 const eventSelectBox =
-    document.getElementById("eventSelectBox");
+    document.getElementById(
+        "eventSelectBox"
+    );
+
 
 const eventSelect =
-    document.getElementById("eventSelect");
+    document.getElementById(
+        "eventSelect"
+    );
 
 
 matchEventType.onchange =
@@ -464,10 +981,6 @@ async function () {
         matchEventType.value;
 
 
-    // ------------------------------------------
-    // INDIVIDUAL MATCH
-    // ------------------------------------------
-
     if (
         selectedType ===
         "Individual Matches"
@@ -476,19 +989,17 @@ async function () {
         eventSelectBox.style.display =
             "none";
 
+
         eventSelect.innerHTML =
             `<option value="">
                 Select Tournament / Series
             </option>`;
 
+
         return;
 
     }
 
-
-    // ------------------------------------------
-    // NOTHING SELECTED
-    // ------------------------------------------
 
     if (
         selectedType !== "Tournament" &&
@@ -498,19 +1009,17 @@ async function () {
         eventSelectBox.style.display =
             "none";
 
+
         eventSelect.innerHTML =
             `<option value="">
                 Select Tournament / Series
             </option>`;
 
+
         return;
 
     }
 
-
-    // ------------------------------------------
-    // TOURNAMENT / SERIES
-    // ------------------------------------------
 
     eventSelectBox.style.display =
         "block";
@@ -526,7 +1035,10 @@ async function () {
 
         const snapshot =
             await getDocs(
-                collection(db, "events")
+                collection(
+                    db,
+                    "events"
+                )
             );
 
 
@@ -542,45 +1054,47 @@ async function () {
         let found = false;
 
 
-        snapshot.forEach((doc) => {
+        snapshot.forEach(
+            (eventDoc) => {
 
-            const event =
-                doc.data();
-
-
-            if (
-                event.eventType ===
-                selectedType
-            ) {
-
-                found = true;
+                const event =
+                    eventDoc.data();
 
 
-                const option =
-                    document.createElement(
-                        "option"
+                if (
+                    event.eventType ===
+                    selectedType
+                ) {
+
+                    found = true;
+
+
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
+
+
+                    option.value =
+                        eventDoc.id;
+
+
+                    option.textContent =
+                        event.eventName;
+
+
+                    option.dataset.eventId =
+                        event.eventId;
+
+
+                    eventSelect.appendChild(
+                        option
                     );
 
-
-                option.value =
-                    doc.id;
-
-
-                option.textContent =
-                    event.eventName;
-
-
-                option.dataset.eventId =
-                    event.eventId;
-
-
-                eventSelect.appendChild(
-                    option
-                );
+                }
 
             }
-
-        });
+        );
 
 
         if (!found) {
@@ -619,89 +1133,85 @@ async function () {
 // ======================================================
 
 const saveMatchBtn =
-    document.getElementById("saveMatchBtn");
+    document.getElementById(
+        "saveMatchBtn"
+    );
 
 
-saveMatchBtn.onclick = async function () {
-
-
-    // ------------------------------------------
-    // BASIC MATCH DETAILS
-    // ------------------------------------------
+saveMatchBtn.onclick =
+async function () {
 
     const matchId =
-        document.getElementById("matchId")
-        .value
-        .trim();
+        document.getElementById(
+            "matchId"
+        ).value.trim();
 
 
     const eventType =
-        document.getElementById("matchEventType")
-        .value;
+        document.getElementById(
+            "matchEventType"
+        ).value;
 
 
     const matchDate =
-        document.getElementById("matchDate")
-        .value;
+        document.getElementById(
+            "matchDate"
+        ).value;
 
 
     const matchPlace =
-        document.getElementById("matchPlace")
-        .value
-        .trim();
+        document.getElementById(
+            "matchPlace"
+        ).value.trim();
 
 
     const opponent =
-        document.getElementById("opponent")
-        .value
-        .trim();
+        document.getElementById(
+            "opponent"
+        ).value.trim();
 
 
     const overs =
-        document.getElementById("overs")
-        .value
-        .trim();
+        document.getElementById(
+            "overs"
+        ).value.trim();
 
 
     const result =
-        document.getElementById("result")
-        .value
-        .trim();
+        document.getElementById(
+            "result"
+        ).value.trim();
 
 
     const playerOfMatch =
-        document.getElementById("playerOfMatch")
-        .value
-        .trim();
+        document.getElementById(
+            "playerOfMatch"
+        ).value.trim();
 
 
     const bestBowler =
-        document.getElementById("bestBowler")
-        .value
-        .trim();
+        document.getElementById(
+            "bestBowler"
+        ).value.trim();
 
 
     const bestBatter =
-        document.getElementById("bestBatter")
-        .value
-        .trim();
+        document.getElementById(
+            "bestBatter"
+        ).value.trim();
 
 
     const fighterOfMatch =
-        document.getElementById("fighterOfMatch")
-        .value
-        .trim();
+        document.getElementById(
+            "fighterOfMatch"
+        ).value.trim();
 
 
     const cricHeroesLink =
-        document.getElementById("cricHeroesLink")
-        .value
-        .trim();
+        document.getElementById(
+            "cricHeroesLink"
+        ).value.trim();
 
-
-    // ------------------------------------------
-    // EVENT INFORMATION
-    // ------------------------------------------
 
     let eventId = "";
 
@@ -745,13 +1255,12 @@ saveMatchBtn.onclick = async function () {
     }
 
 
-    // ------------------------------------------
-    // REQUIRED FIELDS
-    // ------------------------------------------
-
     if (matchId === "") {
 
-        alert("Please enter Match ID");
+        alert(
+            "Please enter Match ID"
+        );
+
         return;
 
     }
@@ -759,7 +1268,10 @@ saveMatchBtn.onclick = async function () {
 
     if (eventType === "") {
 
-        alert("Please select Event Type");
+        alert(
+            "Please select Event Type"
+        );
+
         return;
 
     }
@@ -767,7 +1279,10 @@ saveMatchBtn.onclick = async function () {
 
     if (matchDate === "") {
 
-        alert("Please select Match Date");
+        alert(
+            "Please select Match Date"
+        );
+
         return;
 
     }
@@ -775,7 +1290,10 @@ saveMatchBtn.onclick = async function () {
 
     if (matchPlace === "") {
 
-        alert("Please enter Place");
+        alert(
+            "Please enter Place"
+        );
+
         return;
 
     }
@@ -783,7 +1301,10 @@ saveMatchBtn.onclick = async function () {
 
     if (opponent === "") {
 
-        alert("Please enter Opponent");
+        alert(
+            "Please enter Opponent"
+        );
+
         return;
 
     }
@@ -791,7 +1312,10 @@ saveMatchBtn.onclick = async function () {
 
     if (result === "") {
 
-        alert("Please enter Result");
+        alert(
+            "Please enter Result"
+        );
+
         return;
 
     }
@@ -808,33 +1332,43 @@ saveMatchBtn.onclick = async function () {
     }
 
 
-    // ------------------------------------------
-    // SAVE MATCH
-    // ------------------------------------------
-
     try {
 
         await addDoc(
-            collection(db, "matches"),
+
+            collection(
+                db,
+                "matches"
+            ),
+
             {
 
-                matchId: matchId,
+                matchId:
+                    matchId,
 
-                eventId: eventId,
+                eventId:
+                    eventId,
 
-                eventType: eventType,
+                eventType:
+                    eventType,
 
-                eventName: eventName,
+                eventName:
+                    eventName,
 
-                matchDate: matchDate,
+                matchDate:
+                    matchDate,
 
-                place: matchPlace,
+                place:
+                    matchPlace,
 
-                opponent: opponent,
+                opponent:
+                    opponent,
 
-                overs: overs,
+                overs:
+                    overs,
 
-                result: result,
+                result:
+                    result,
 
                 playerOfMatch:
                     playerOfMatch,
@@ -852,6 +1386,7 @@ saveMatchBtn.onclick = async function () {
                     cricHeroesLink
 
             }
+
         );
 
 
@@ -860,47 +1395,60 @@ saveMatchBtn.onclick = async function () {
         );
 
 
-        // --------------------------------------
-        // CLEAR MATCH FORM
-        // --------------------------------------
+        document.getElementById(
+            "matchId"
+        ).value = "";
 
-        document.getElementById("matchId")
-            .value = "";
 
         document.getElementById(
             "matchEventType"
         ).value = "";
 
-        document.getElementById("matchDate")
-            .value = "";
 
-        document.getElementById("matchPlace")
-            .value = "";
+        document.getElementById(
+            "matchDate"
+        ).value = "";
 
-        document.getElementById("opponent")
-            .value = "";
 
-        document.getElementById("overs")
-            .value = "";
+        document.getElementById(
+            "matchPlace"
+        ).value = "";
 
-        document.getElementById("result")
-            .value = "";
+
+        document.getElementById(
+            "opponent"
+        ).value = "";
+
+
+        document.getElementById(
+            "overs"
+        ).value = "";
+
+
+        document.getElementById(
+            "result"
+        ).value = "";
+
 
         document.getElementById(
             "playerOfMatch"
         ).value = "";
 
+
         document.getElementById(
             "bestBowler"
         ).value = "";
+
 
         document.getElementById(
             "bestBatter"
         ).value = "";
 
+
         document.getElementById(
             "fighterOfMatch"
         ).value = "";
+
 
         document.getElementById(
             "cricHeroesLink"
