@@ -1,0 +1,531 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+«»
+
+<title>Player Registration | CAWNPORE TIGERS XI</title><link
+    rel="stylesheet"
+    href="style.css"
+><style>
+
+/* =====================================================
+   REGISTRATION PAGE
+===================================================== */
+
+.registration-container{
+
+    width:92%;
+
+    max-width:850px;
+
+    margin:30px auto 50px;
+
+}
+
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.registration-title{
+
+    text-align:center;
+
+    color:#ff8800;
+
+    font-size:32px;
+
+    margin-bottom:8px;
+
+}
+
+
+.registration-subtitle{
+
+    text-align:center;
+
+    color:#ccc;
+
+    margin-bottom:30px;
+
+}
+
+
+/* =====================================================
+   FORM BOX
+===================================================== */
+
+.registration-box{
+
+    background:#000;
+
+    border:2px solid #ff8800;
+
+    border-radius:14px;
+
+    padding:25px;
+
+}
+
+
+/* =====================================================
+   SECTION TITLE
+===================================================== */
+
+.form-section-title{
+
+    color:#ff8800;
+
+    font-size:20px;
+
+    margin:
+
+        10px 0 18px;
+
+    padding-bottom:8px;
+
+    border-bottom:
+
+        1px solid #ff8800;
+
+}
+
+
+/* =====================================================
+   FORM GROUP
+===================================================== */
+
+.form-group{
+
+    margin-bottom:18px;
+
+}
+
+
+.form-group label{
+
+    display:block;
+
+    color:#fff;
+
+    font-weight:bold;
+
+    margin-bottom:7px;
+
+}
+
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    padding:13px;
+
+    background:#111;
+
+    color:#fff;
+
+    border:1px solid #ff8800;
+
+    border-radius:8px;
+
+    outline:none;
+
+    font-size:15px;
+
+}
+
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+
+    box-shadow:
+
+        0 0 8px
+        rgba(255,136,0,0.5);
+
+}
+
+
+.form-group textarea{
+
+    min-height:100px;
+
+    resize:vertical;
+
+}
+
+
+/* =====================================================
+   TWO COLUMN
+===================================================== */
+
+.form-row{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:15px;
+
+}
+
+
+/* =====================================================
+   PHOTO
+===================================================== */
+
+.photo-note{
+
+    color:#aaa;
+
+    font-size:13px;
+
+    margin-top:6px;
+
+}
+
+
+/* =====================================================
+   SUBMIT BUTTON
+===================================================== */
+
+.submit-btn{
+
+    display:block;
+
+    width:100%;
+
+    padding:15px;
+
+    margin-top:25px;
+
+    background:#000;
+
+    color:#ff8800;
+
+    border:2px solid #ff8800;
+
+    border-radius:10px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s ease;
+
+}
+
+
+.submit-btn:hover{
+
+    background:#ff8800;
+
+    color:#000;
+
+    box-shadow:
+
+        0 0 12px
+        rgba(255,136,0,0.7);
+
+}
+
+
+/* =====================================================
+   NOTE
+===================================================== */
+
+.registration-note{
+
+    margin-top:18px;
+
+    text-align:center;
+
+    color:#aaa;
+
+    font-size:13px;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:650px){
+
+    .form-row{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .registration-box{
+
+        padding:18px;
+
+    }
+
+
+    .registration-title{
+
+        font-size:27px;
+
+    }
+
+}
+
+</style></head><body><!-- =====================================================
+     HEADER
+===================================================== --><header><nav><a href="index.html">
+Home
+</a><a href="players.html">
+Players
+</a><a href="matches.html">
+Matches
+</a><a href="jersey-launch.html">
+Jersey Launch
+</a><a href="team-stats.html">
+Team Stats
+</a><a href="gallery.html">
+Gallery
+</a><a href="contact.html">
+Contact
+</a></nav><h1>
+🐯 CAWNPORE TIGERS XI
+</h1><p>
+Together We Roar, Together We Win
+</p></header><!-- =====================================================
+     REGISTRATION
+===================================================== --><main class="registration-container"><h2 class="registration-title">JOIN CAWNPORE TIGERS XI
+
+</h2><p class="registration-subtitle">Player Registration Form
+
+</p><div class="registration-box"><!-- ===================================================
+     PERSONAL INFORMATION
+=================================================== --><h3 class="form-section-title">👤 Personal Information
+
+</h3><div class="form-group"><label>
+Full Name *
+</label><input
+type="text"
+id="fullName"
+placeholder="Enter your full name"
+required
+
+«»
+
+</div><div class="form-row"><div class="form-group"><label>
+Date of Birth
+</label><input
+type="date"
+id="dob"
+
+«»
+
+</div><div class="form-group"><label>
+Mobile Number *
+</label><input
+type="tel"
+id="mobile"
+placeholder="Enter mobile number"
+maxlength="10"
+required
+
+«»
+
+</div></div><div class="form-group"><label>
+City
+</label><input
+type="text"
+id="city"
+placeholder="Enter your city"
+
+«»
+
+</div><!-- ===================================================
+     CRICKET INFORMATION
+=================================================== --><h3 class="form-section-title">🏏 Cricket Information
+
+</h3><div class="form-group"><label>
+Playing Role *
+</label><select
+id="playingRole"
+
+«»
+
+<option value="">
+Select Playing Role
+</option><option value="Batter">
+Batter
+</option><option value="Bowler">
+Bowler
+</option><option value="All-Rounder">
+All-Rounder
+</option><option value="Wicket-Keeper">
+Wicket-Keeper
+</option></select></div><div class="form-row"><div class="form-group"><label>
+Batting Style
+</label><select id="battingStyle"><option value="">
+Select Batting Style
+</option><option value="Right Hand">
+Right Hand
+</option><option value="Left Hand">
+Left Hand
+</option></select></div><div class="form-group"><label>
+Bowling Style
+</label><select id="bowlingStyle"><option value="">
+Select Bowling Style
+</option><option value="Right Arm Fast">
+Right Arm Fast
+</option><option value="Right Arm Medium">
+Right Arm Medium
+</option><option value="Right Arm Spin">
+Right Arm Spin
+</option><option value="Left Arm Fast">
+Left Arm Fast
+</option><option value="Left Arm Medium">
+Left Arm Medium
+</option><option value="Left Arm Spin">
+Left Arm Spin
+</option><option value="Does Not Bowl">
+Does Not Bowl
+</option></select></div></div><div class="form-row"><div class="form-group"><label>
+Preferred Jersey Number
+</label><input
+type="number"
+id="jerseyNumber"
+placeholder="Example: 18"
+
+«»
+
+</div><div class="form-group"><label>
+Cricket Experience
+</label><select id="experience"><option value="">
+Select Experience
+</option><option value="Beginner">
+Beginner
+</option><option value="Club Cricket">
+Club Cricket
+</option><option value="School Cricket">
+School Cricket
+</option><option value="College Cricket">
+College Cricket
+</option><option value="District Cricket">
+District Cricket
+</option><option value="Other">
+Other
+</option></select></div></div><div class="form-group"><label>
+Short Cricket Profile
+</label><textarea
+    id="profile"
+    placeholder="Tell us briefly about your cricket experience..."
+></textarea></div><!-- ===================================================
+     PHOTO
+=================================================== --><h3 class="form-section-title">📸 Player Photo
+
+</h3><div class="form-group"><label>
+Upload Player Photo
+</label><input
+type="file"
+id="playerPhoto"
+accept="image/jpeg,image/png"
+
+«»
+
+<p class="photo-note">JPG or PNG image recommended.
+
+</p></div><!-- ===================================================
+     SUBMIT
+=================================================== --><button
+type="button"
+class="submit-btn"
+onclick="submitRegistration()"
+
+«»
+
+🐯 SUBMIT PLAYER REGISTRATION
+
+</button><p class="registration-note">Your registration will be reviewed by
+CAWNPORE TIGERS XI management.
+
+</p></div></main><!-- =====================================================
+     FOOTER
+===================================================== --><footer>© 2026 CAWNPORE TIGERS XI
+
+</footer><script>
+
+/* =====================================================
+   TEMPORARY SUBMIT
+===================================================== */
+
+function submitRegistration(){
+
+    const name =
+        document.getElementById(
+            "fullName"
+        ).value.trim();
+
+
+    const mobile =
+        document.getElementById(
+            "mobile"
+        ).value.trim();
+
+
+    const role =
+        document.getElementById(
+            "playingRole"
+        ).value;
+
+
+    if(name === ""){
+
+        alert(
+            "Please enter your full name."
+        );
+
+        return;
+
+    }
+
+
+    if(mobile === ""){
+
+        alert(
+            "Please enter your mobile number."
+        );
+
+        return;
+
+    }
+
+
+    if(role === ""){
+
+        alert(
+            "Please select your playing role."
+        );
+
+        return;
+
+    }
+
+
+    alert(
+        "Registration form is ready. Firebase submission will be connected in the next step."
+    );
+
+}
+
+</script></body></html>
