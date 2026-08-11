@@ -1,0 +1,1239 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+«»
+
+<title>Team Stats | CAWNPORE TIGERS XI</title><link
+    rel="stylesheet"
+    href="style.css"
+><style>
+
+/* =====================================================
+   TEAM STATS CONTAINER
+===================================================== */
+
+.stats-container{
+
+    width:92%;
+
+    max-width:1100px;
+
+    margin:30px auto 50px;
+
+}
+
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.stats-title{
+
+    text-align:center;
+
+    color:#ff8800;
+
+    font-size:34px;
+
+    margin-bottom:8px;
+
+}
+
+.stats-subtitle{
+
+    text-align:center;
+
+    color:#ccc;
+
+    margin-bottom:30px;
+
+}
+
+
+/* =====================================================
+   MAIN STAT CARDS
+===================================================== */
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:15px;
+
+    margin-bottom:20px;
+
+}
+
+.stat-card{
+
+    background:#000;
+
+    border:2px solid #ff8800;
+
+    border-radius:12px;
+
+    padding:20px 10px;
+
+    text-align:center;
+
+}
+
+.stat-card h3{
+
+    margin:0 0 10px;
+
+    color:#ccc;
+
+    font-size:16px;
+
+}
+
+.stat-number{
+
+    color:#ff8800;
+
+    font-size:32px;
+
+    font-weight:bold;
+
+}
+
+
+/* =====================================================
+   WIN PERCENTAGE
+===================================================== */
+
+.win-card{
+
+    margin-bottom:30px;
+
+}
+
+
+/* =====================================================
+   CHART BOX
+===================================================== */
+
+.chart-box{
+
+    background:#000;
+
+    border:2px solid #ff8800;
+
+    border-radius:14px;
+
+    padding:20px;
+
+    margin-bottom:30px;
+
+}
+
+.chart-box h2{
+
+    text-align:center;
+
+    color:#ff8800;
+
+    margin-top:0;
+
+    margin-bottom:20px;
+
+}
+
+
+/* =====================================================
+   PIE CHART
+===================================================== */
+
+.pie-container{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:35px;
+
+}
+
+
+.pie-chart{
+
+    width:230px;
+
+    height:230px;
+
+    border-radius:50%;
+
+    position:relative;
+
+    background:#333;
+
+}
+
+
+.pie-chart::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:110px;
+
+    height:110px;
+
+    background:#000;
+
+    border-radius:50%;
+
+    top:50%;
+
+    left:50%;
+
+    transform:
+        translate(-50%, -50%);
+
+}
+
+
+.legend{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:13px;
+
+}
+
+
+.legend-item{
+
+    color:#fff;
+
+    font-size:16px;
+
+}
+
+
+.legend-dot{
+
+    display:inline-block;
+
+    width:13px;
+
+    height:13px;
+
+    border-radius:50%;
+
+    margin-right:8px;
+
+}
+
+
+.win-dot{
+    background:#00c853;
+}
+
+.loss-dot{
+    background:#ff3333;
+}
+
+.tie-dot{
+    background:#ffd600;
+}
+
+.nr-dot{
+    background:#777;
+}
+
+
+/* =====================================================
+   LEADERBOARD
+===================================================== */
+
+.leaderboard{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+
+.leader-row{
+
+    background:#080808;
+
+    border:1px solid #ff8800;
+
+    border-radius:10px;
+
+    padding:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+}
+
+
+.player-name{
+
+    color:#fff;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+}
+
+
+.player-count{
+
+    color:#ff8800;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+}
+
+
+/* =====================================================
+   LEADERBOARD GRID
+===================================================== */
+
+.leaderboard-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:20px;
+
+}
+
+
+.leaderboard-box{
+
+    background:#000;
+
+    border:2px solid #ff8800;
+
+    border-radius:14px;
+
+    padding:18px;
+
+}
+
+
+.leaderboard-title{
+
+    text-align:center;
+
+    color:#ff8800;
+
+    font-size:20px;
+
+    margin-top:0;
+
+    margin-bottom:18px;
+
+}
+
+
+.empty-message{
+
+    text-align:center;
+
+    color:#aaa;
+
+    padding:15px;
+
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+
+    text-align:center;
+
+    color:#ff8800;
+
+    padding:20px;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:800px){
+
+    .stats-grid{
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .leaderboard-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .stats-title{
+
+        font-size:28px;
+
+    }
+
+}
+
+
+@media(max-width:450px){
+
+    .stats-container{
+
+        width:94%;
+
+    }
+
+
+    .stats-grid{
+
+        gap:10px;
+
+    }
+
+
+    .stat-card{
+
+        padding:15px 5px;
+
+    }
+
+
+    .stat-number{
+
+        font-size:27px;
+
+    }
+
+
+    .pie-chart{
+
+        width:200px;
+
+        height:200px;
+
+    }
+
+}
+
+</style></head><body><!-- =====================================================
+     HEADER
+===================================================== --><header><nav><a href="index.html">
+Home
+</a><a href="players.html">
+Players
+</a><a href="matches.html">
+Matches
+</a><a href="jersey-launch.html">
+Jersey Launch
+</a><a href="teamstats.html">
+Team Stats
+</a><a href="gallery.html">
+Gallery
+</a><a href="contact.html">
+Contact
+</a></nav><h1>
+🐯 CAWNPORE TIGERS XI
+</h1><p>
+Together We Roar, Together We Win
+</p></header><!-- =====================================================
+     MAIN
+===================================================== --><main class="stats-container"><h2 class="stats-title">
+TEAM STATS
+</h2><p class="stats-subtitle">
+Performance from all uploaded matches
+</p><!-- =====================================================
+     STAT CARDS
+===================================================== --><div class="stats-grid"><div class="stat-card"><h3>
+Total Matches
+</h3><div
+    class="stat-number"
+    id="totalMatches"
+>
+0
+</div></div><div class="stat-card"><h3>
+Wins
+</h3><div
+    class="stat-number"
+    id="wins"
+>
+0
+</div></div><div class="stat-card"><h3>
+Losses
+</h3><div
+    class="stat-number"
+    id="losses"
+>
+0
+</div></div><div class="stat-card"><h3>
+Tie
+</h3><div
+    class="stat-number"
+    id="ties"
+>
+0
+</div></div></div><!-- =====================================================
+     NO RESULT
+===================================================== --><div
+    class="stat-card win-card"
+><h3>
+No Result / Abandoned
+</h3><div
+    class="stat-number"
+    id="noResult"
+>
+0
+</div></div><!-- =====================================================
+     WIN PERCENTAGE
+===================================================== --><div
+    class="stat-card win-card"
+><h3>
+Win Percentage
+</h3><div
+    class="stat-number"
+    id="winPercentage"
+>
+0%
+</div></div><!-- =====================================================
+     RESULT PIE CHART
+===================================================== --><div class="chart-box"><h2>
+MATCH RESULT DISTRIBUTION
+</h2><div class="pie-container"><div
+    class="pie-chart"
+    id="resultPie"
+>
+</div><div class="legend"><div class="legend-item"><span
+class="legend-dot win-dot"
+
+«</span>»
+
+Wins:
+
+<strong id="legendWins">
+0
+</strong></div><div class="legend-item"><span
+class="legend-dot loss-dot"
+
+«</span>»
+
+Losses:
+
+<strong id="legendLosses">
+0
+</strong></div><div class="legend-item"><span
+class="legend-dot tie-dot"
+
+«</span>»
+
+Ties:
+
+<strong id="legendTies">
+0
+</strong></div><div class="legend-item"><span
+class="legend-dot nr-dot"
+
+«</span>»
+
+No Result:
+
+<strong id="legendNR">
+0
+</strong></div></div></div></div><!-- =====================================================
+     LEADERBOARDS
+===================================================== --><div class="leaderboard-grid"><!-- ===================================================
+     PLAYER OF MATCH
+=================================================== --><div class="leaderboard-box"><h2 class="leaderboard-title">🏆 PLAYER OF THE MATCH
+
+</h2><div
+    class="leaderboard"
+    id="momList"
+><div class="loading">Loading...
+
+</div></div></div><!-- ===================================================
+     BEST BATTER
+=================================================== --><div class="leaderboard-box"><h2 class="leaderboard-title">🏏 BEST BATTER
+
+</h2><div
+    class="leaderboard"
+    id="batterList"
+><div class="loading">Loading...
+
+</div></div></div><!-- ===================================================
+     BEST BOWLER
+=================================================== --><div class="leaderboard-box"><h2 class="leaderboard-title">🎯 BEST BOWLER
+
+</h2><div
+    class="leaderboard"
+    id="bowlerList"
+><div class="loading">Loading...
+
+</div></div></div></div></main><!-- =====================================================
+     FOOTER
+===================================================== --><footer>© 2026 CAWNPORE TIGERS XI
+
+</footer><!-- =====================================================
+     FIREBASE SCRIPT
+===================================================== --><script type="module">
+
+
+import { db }
+
+from "./firebase.js";
+
+
+import {
+
+    collection,
+
+    getDocs
+
+}
+
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+
+/* =====================================================
+   LOAD TEAM DATA
+===================================================== */
+
+async function loadTeamStats(){
+
+    try{
+
+
+        const snapshot =
+
+            await getDocs(
+
+                collection(
+                    db,
+                    "matches"
+                )
+
+            );
+
+
+
+        let total = 0;
+
+        let wins = 0;
+
+        let losses = 0;
+
+        let ties = 0;
+
+        let noResult = 0;
+
+
+
+        const momCount = {};
+
+        const batterCount = {};
+
+        const bowlerCount = {};
+
+
+
+        /* =============================================
+           READ ALL MATCHES
+        ============================================= */
+
+        snapshot.forEach(
+
+            (doc) => {
+
+
+                const match =
+                    doc.data();
+
+
+
+                total++;
+
+
+
+                const result =
+
+                    (
+                        match.result ||
+                        ""
+                    )
+                    .trim()
+                    .toLowerCase();
+
+
+
+                /* =====================================
+                   RESULT DETECTION
+                ===================================== */
+
+                if(
+
+                    result.includes("won") ||
+                    result.includes("win")
+
+                ){
+
+                    wins++;
+
+                }
+
+                else if(
+
+                    result.includes("lost") ||
+                    result.includes("loss")
+
+                ){
+
+                    losses++;
+
+                }
+
+                else if(
+
+                    result.includes("tie") ||
+                    result.includes("tied")
+
+                ){
+
+                    ties++;
+
+                }
+
+                else if(
+
+                    result.includes("abandoned") ||
+                    result.includes("no result") ||
+                    result.includes("no-result") ||
+                    result.includes("cancelled") ||
+                    result.includes("canceled")
+
+                ){
+
+                    noResult++;
+
+                }
+
+                else{
+
+                    noResult++;
+
+                }
+
+
+
+                /* =====================================
+                   PLAYER OF MATCH
+                ===================================== */
+
+                const mom =
+
+                    (
+                        match.playerOfMatch ||
+                        ""
+                    )
+                    .trim();
+
+
+
+                if(mom !== ""){
+
+                    momCount[mom] =
+
+                        (
+                            momCount[mom] ||
+                            0
+                        ) + 1;
+
+                }
+
+
+
+                /* =====================================
+                   BEST BATTER
+                ===================================== */
+
+                const batter =
+
+                    (
+                        match.bestBatter ||
+                        ""
+                    )
+                    .trim();
+
+
+
+                if(batter !== ""){
+
+                    batterCount[batter] =
+
+                        (
+                            batterCount[batter] ||
+                            0
+                        ) + 1;
+
+                }
+
+
+
+                /* =====================================
+                   BEST BOWLER
+                ===================================== */
+
+                const bowler =
+
+                    (
+                        match.bestBowler ||
+                        ""
+                    )
+                    .trim();
+
+
+
+                if(bowler !== ""){
+
+                    bowlerCount[bowler] =
+
+                        (
+                            bowlerCount[bowler] ||
+                            0
+                        ) + 1;
+
+                }
+
+
+            }
+
+        );
+
+
+
+        /* =================================================
+           UPDATE STATISTICS
+        ================================================= */
+
+        document.getElementById(
+            "totalMatches"
+        ).textContent = total;
+
+
+
+        document.getElementById(
+            "wins"
+        ).textContent = wins;
+
+
+
+        document.getElementById(
+            "losses"
+        ).textContent = losses;
+
+
+
+        document.getElementById(
+            "ties"
+        ).textContent = ties;
+
+
+
+        document.getElementById(
+            "noResult"
+        ).textContent = noResult;
+
+
+
+        /* =================================================
+           WIN PERCENTAGE
+        ================================================= */
+
+        const decidedMatches =
+
+            wins +
+            losses +
+            ties;
+
+
+
+        const winPercentage =
+
+            decidedMatches > 0
+
+            ?
+
+            (
+                wins /
+                decidedMatches *
+                100
+            ).toFixed(1)
+
+            :
+
+            "0";
+
+
+
+        document.getElementById(
+            "winPercentage"
+        ).textContent =
+
+            winPercentage + "%";
+
+
+
+        /* =================================================
+           LEGEND
+        ================================================= */
+
+        document.getElementById(
+            "legendWins"
+        ).textContent = wins;
+
+
+
+        document.getElementById(
+            "legendLosses"
+        ).textContent = losses;
+
+
+
+        document.getElementById(
+            "legendTies"
+        ).textContent = ties;
+
+
+
+        document.getElementById(
+            "legendNR"
+        ).textContent = noResult;
+
+
+
+        /* =================================================
+           PIE CHART
+        ================================================= */
+
+        const chartTotal =
+
+            wins +
+            losses +
+            ties +
+            noResult;
+
+
+
+        if(chartTotal > 0){
+
+
+            const winDeg =
+
+                wins /
+                chartTotal *
+                360;
+
+
+
+            const lossDeg =
+
+                losses /
+                chartTotal *
+                360;
+
+
+
+            const tieDeg =
+
+                ties /
+                chartTotal *
+                360;
+
+
+
+            const winEnd = winDeg;
+
+
+
+            const lossEnd =
+
+                winEnd +
+                lossDeg;
+
+
+
+            const tieEnd =
+
+                lossEnd +
+                tieDeg;
+
+
+
+            document.getElementById(
+                "resultPie"
+            ).style.background = `
+
+                conic-gradient(
+
+                    #00c853
+                    0deg
+                    ${winEnd}deg,
+
+                    #ff3333
+                    ${winEnd}deg
+                    ${lossEnd}deg,
+
+                    #ffd600
+                    ${lossEnd}deg
+                    ${tieEnd}deg,
+
+                    #777
+                    ${tieEnd}deg
+                    360deg
+
+                )
+
+            `;
+
+
+        }
+
+
+
+        /* =================================================
+           CREATE LEADERBOARD FUNCTION
+        ================================================= */
+
+        function createLeaderboard(
+
+            containerId,
+            data,
+            icon
+
+        ){
+
+
+            const container =
+
+                document.getElementById(
+                    containerId
+                );
+
+
+
+            container.innerHTML = "";
+
+
+
+            const sorted =
+
+                Object.entries(data)
+
+                .sort(
+
+                    (a,b) =>
+                        b[1] - a[1]
+
+                );
+
+
+
+            if(sorted.length === 0){
+
+                container.innerHTML = `
+
+                    <div
+                        class="empty-message"
+                    >
+
+                        No data available
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+
+            sorted.forEach(
+
+                (
+                    [player,count],
+                    index
+                ) => {
+
+
+                    const row =
+
+                        document.createElement(
+                            "div"
+                        );
+
+
+
+                    row.className =
+                        "leader-row";
+
+
+
+                    row.innerHTML = `
+
+                        <span
+                            class="player-name"
+                        >
+
+                            ${index + 1}.
+                            ${player}
+
+                        </span>
+
+
+                        <span
+                            class="player-count"
+                        >
+
+                            ${icon}
+                            ${count}
+
+                        </span>
+
+                    `;
+
+
+
+                    container.appendChild(
+                        row
+                    );
+
+
+                }
+
+            );
+
+
+        }
+
+
+
+        /* =================================================
+           CREATE ALL THREE LEADERBOARDS
+        ================================================= */
+
+        createLeaderboard(
+
+            "momList",
+            momCount,
+            "🏆"
+
+        );
+
+
+
+        createLeaderboard(
+
+            "batterList",
+            batterCount,
+            "🏏"
+
+        );
+
+
+
+        createLeaderboard(
+
+            "bowlerList",
+            bowlerCount,
+            "🎯"
+
+        );
+
+
+    }
+
+    catch(error){
+
+
+        console.error(
+            "TEAM STATS ERROR:",
+            error
+        );
+
+
+        document.getElementById(
+            "momList"
+        ).innerHTML =
+
+            `<div class="empty-message">
+                ❌ Error loading statistics
+            </div>`;
+
+
+        document.getElementById(
+            "batterList"
+        ).innerHTML =
+
+            `<div class="empty-message">
+                ❌ Error loading statistics
+            </div>`;
+
+
+        document.getElementById(
+            "bowlerList"
+        ).innerHTML =
+
+            `<div class="empty-message">
+                ❌ Error loading statistics
+            </div>`;
+
+
+    }
+
+}
+
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadTeamStats();
+
+
+</script></body></html>
