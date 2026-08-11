@@ -1051,7 +1051,32 @@ CAWNPORE TIGERS XI management.
 
 <script>
 
-function submitRegistration(){
+<script type="module">
+
+import { db, storage } from "./firebase.js";
+
+import {
+    collection,
+    addDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+import {
+    ref,
+    uploadBytes,
+    getDownloadURL
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js";
+
+
+// =====================================================
+// SUBMIT PLAYER REGISTRATION
+// =====================================================
+
+window.submitRegistration = async function () {
+
+    // -----------------------------------------------
+    // GET FORM VALUES
+    // -----------------------------------------------
 
     const name =
         document
@@ -1067,13 +1092,68 @@ function submitRegistration(){
         .trim();
 
 
-    const role =
+    const dob =
+        document
+        .getElementById("dob")
+        .value;
+
+
+    const city =
+        document
+        .getElementById("city")
+        .value
+        .trim();
+
+
+    const playingRole =
         document
         .getElementById("playingRole")
         .value;
 
 
-    if(name === ""){
+    const battingStyle =
+        document
+        .getElementById("battingStyle")
+        .value;
+
+
+    const bowlingStyle =
+        document
+        .getElementById("bowlingStyle")
+        .value;
+
+
+    const jerseyNumber =
+        document
+        .getElementById("jerseyNumber")
+        .value
+        .trim();
+
+
+    const experience =
+        document
+        .getElementById("experience")
+        .value;
+
+
+    const profile =
+        document
+        .getElementById("profile")
+        .value
+        .trim();
+
+
+    const photoFile =
+        document
+        .getElementById("playerPhoto")
+        .files[0];
+
+
+    // -----------------------------------------------
+    // REQUIRED DETAILS
+    // -----------------------------------------------
+
+    if (name === "") {
 
         alert(
             "Please enter your full name."
@@ -1084,7 +1164,7 @@ function submitRegistration(){
     }
 
 
-    if(mobile === ""){
+    if (mobile === "") {
 
         alert(
             "Please enter your mobile number."
@@ -1095,7 +1175,18 @@ function submitRegistration(){
     }
 
 
-    if(role === ""){
+    if (!/^[0-9]{10}$/.test(mobile)) {
+
+        alert(
+            "Please enter a valid 10-digit mobile number."
+        );
+
+        return;
+
+    }
+
+
+    if (playingRole === "") {
 
         alert(
             "Please select your playing role."
@@ -1106,14 +1197,274 @@ function submitRegistration(){
     }
 
 
-    alert(
-        "Registration form is ready. Firebase submission will be connected next."
-    );
+    // -----------------------------------------------
+    // PHOTO TYPE CHECK
+    // -----------------------------------------------
 
-}
+    if (photoFile) {
+
+        const allowedTypes = [
+            "image/jpeg",
+            "image/png"
+        ];
+
+
+        if (
+            !allowedTypes.includes(
+                photoFile.type
+            )
+        ) {
+
+            alert(
+                "Please upload JPG or PNG image only."
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    // -----------------------------------------------
+    // REGISTRATION ID
+    // -----------------------------------------------
+
+    const year =
+        new Date()
+        .getFullYear();
+
+
+    const uniqueNumber =
+        Date.now()
+        .toString()
+        .slice(-6);
+
+
+    const registrationId =
+        `CTXI-${year}-${uniqueNumber}`;
+
+
+    // -----------------------------------------------
+    // BUTTON
+    // -----------------------------------------------
+
+    const submitButton =
+        document.querySelector(
+            ".submit-btn"
+        );
+
+
+    submitButton.disabled = true;
+
+    submitButton.innerText =
+        "⏳ SUBMITTING...";
+
+
+    try {
+
+        // -------------------------------------------
+        // PHOTO UPLOAD
+        // -------------------------------------------
+
+        let photoUrl = "";
+
+
+        if (photoFile) {
+
+            submitButton.innerText =
+                "⏳ UPLOADING PHOTO...";
+
+
+            const fileExtension =
+                photoFile.name
+                .split(".")
+                .pop();
+
+
+            const photoPath =
+                `player-registrations/${registrationId}.${fileExtension}`;
+
+
+            const storageRef =
+                ref(
+                    storage,
+                    photoPath
+                );
+
+
+            await uploadBytes(
+                storageRef,
+                photoFile
+            );
+
+
+            photoUrl =
+                await getDownloadURL(
+                    storageRef
+                );
+
+        }
+
+
+        // -------------------------------------------
+        // SAVE TO FIRESTORE
+        // -------------------------------------------
+
+        submitButton.innerText =
+            "⏳ SAVING REGISTRATION...";
+
+
+        await addDoc(
+            collection(
+                db,
+                "playerRegistrations"
+            ),
+            {
+
+                registrationId:
+                    registrationId,
+
+                fullName:
+                    name,
+
+                mobile:
+                    mobile,
+
+                dateOfBirth:
+                    dob,
+
+                city:
+                    city,
+
+                playingRole:
+                    playingRole,
+
+                battingStyle:
+                    battingStyle,
+
+                bowlingStyle:
+                    bowlingStyle,
+
+                jerseyNumber:
+                    jerseyNumber,
+
+                experience:
+                    experience,
+
+                profile:
+                    profile,
+
+                photoUrl:
+                    photoUrl,
+
+                status:
+                    "Pending",
+
+                submittedAt:
+                    serverTimestamp()
+
+            }
+        );
+
+
+        // -------------------------------------------
+        // SUCCESS
+        // -------------------------------------------
+
+        alert(
+            "✅ Registration submitted successfully!\n\n" +
+            "Your Registration ID is:\n" +
+            registrationId +
+            "\n\nStatus: Pending"
+        );
+
+
+        // -------------------------------------------
+        // CLEAR FORM
+        // -------------------------------------------
+
+        document
+            .getElementById("fullName")
+            .value = "";
+
+
+        document
+            .getElementById("mobile")
+            .value = "";
+
+
+        document
+            .getElementById("dob")
+            .value = "";
+
+
+        document
+            .getElementById("city")
+            .value = "";
+
+
+        document
+            .getElementById("playingRole")
+            .value = "";
+
+
+        document
+            .getElementById("battingStyle")
+            .value = "";
+
+
+        document
+            .getElementById("bowlingStyle")
+            .value = "";
+
+
+        document
+            .getElementById("jerseyNumber")
+            .value = "";
+
+
+        document
+            .getElementById("experience")
+            .value = "";
+
+
+        document
+            .getElementById("profile")
+            .value = "";
+
+
+        document
+            .getElementById("playerPhoto")
+            .value = "";
+
+
+    } catch (error) {
+
+        console.error(
+            "PLAYER REGISTRATION ERROR:",
+            error
+        );
+
+
+        alert(
+            "❌ Registration failed.\n\n" +
+            error.message
+        );
+
+
+    } finally {
+
+        submitButton.disabled = false;
+
+        submitButton.innerText =
+            "🐾 SUBMIT PLAYER REGISTRATION";
+
+    }
+
+};
 
 </script>
-
 
 </body>
 
