@@ -1,42 +1,94 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
+<!DOCTYPE html>
+<html lang="en">
 
-«»
+<head>
 
-<title>Player Registration | CAWNPORE TIGERS XI</title><link
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Player Registration | CAWNPORE TIGERS XI</title>
+
+<link
     rel="stylesheet"
     href="style.css"
-><style>
+>
+
+
+<style>
 
 /* =====================================================
-   REGISTRATION PAGE
+   PLAYER REGISTRATION PAGE
+===================================================== */
+
+body{
+
+    background:#000;
+
+}
+
+
+/* =====================================================
+   REGISTRATION CONTAINER
 ===================================================== */
 
 .registration-container{
 
     width:92%;
 
-    max-width:850px;
+    max-width:900px;
 
-    margin:30px auto 50px;
+    margin:35px auto 55px;
 
 }
 
 
 /* =====================================================
-   TITLE
+   MAIN TITLE
 ===================================================== */
 
 .registration-title{
 
     text-align:center;
 
+    margin:0;
+
+    line-height:1.05;
+
+}
+
+
+.registration-title .join{
+
+    display:block;
+
     color:#ff8800;
 
-    font-size:32px;
+    font-size:42px;
 
-    margin-bottom:8px;
+    font-weight:800;
+
+    letter-spacing:1px;
+
+}
+
+
+.registration-title .team-name{
+
+    display:block;
+
+    color:#ff8800;
+
+    font-size:38px;
+
+    font-weight:800;
+
+    margin-top:4px;
+
+    letter-spacing:0.5px;
 
 }
 
@@ -45,26 +97,35 @@ content="width=device-width, initial-scale=1.0"
 
     text-align:center;
 
-    color:#ccc;
+    color:#ddd;
 
-    margin-bottom:30px;
+    font-size:18px;
+
+    margin:
+
+        12px 0 28px;
 
 }
 
 
 /* =====================================================
-   FORM BOX
+   MAIN FORM BOX
 ===================================================== */
 
 .registration-box{
 
     background:#000;
 
-    border:2px solid #ff8800;
+    border:
 
-    border-radius:14px;
+        3px solid
+        #ff8800;
 
-    padding:25px;
+    border-radius:16px;
+
+    padding:30px;
+
+    box-sizing:border-box;
 
 }
 
@@ -77,17 +138,20 @@ content="width=device-width, initial-scale=1.0"
 
     color:#ff8800;
 
-    font-size:20px;
+    font-size:23px;
+
+    font-weight:700;
 
     margin:
 
-        10px 0 18px;
+        4px 0 18px;
 
-    padding-bottom:8px;
+    padding-bottom:10px;
 
     border-bottom:
 
-        1px solid #ff8800;
+        2px solid
+        #ff8800;
 
 }
 
@@ -98,7 +162,7 @@ content="width=device-width, initial-scale=1.0"
 
 .form-group{
 
-    margin-bottom:18px;
+    margin-bottom:19px;
 
 }
 
@@ -109,12 +173,18 @@ content="width=device-width, initial-scale=1.0"
 
     color:#fff;
 
-    font-weight:bold;
+    font-size:16px;
 
-    margin-bottom:7px;
+    font-weight:600;
+
+    margin-bottom:8px;
 
 }
 
+
+/* =====================================================
+   INPUT / SELECT / TEXTAREA
+===================================================== */
 
 .form-group input,
 .form-group select,
@@ -124,38 +194,72 @@ content="width=device-width, initial-scale=1.0"
 
     box-sizing:border-box;
 
-    padding:13px;
+    padding:14px;
 
-    background:#111;
+    background:#050505;
 
     color:#fff;
 
-    border:1px solid #ff8800;
+    border:
+
+        2px solid
+        #555;
 
     border-radius:8px;
 
     outline:none;
 
-    font-size:15px;
+    font-size:16px;
+
+    font-family:inherit;
 
 }
 
+
+.form-group input::placeholder,
+.form-group textarea::placeholder{
+
+    color:#999;
+
+}
+
+
+/* =====================================================
+   FOCUS
+===================================================== */
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus{
 
+    border-color:#ff8800;
+
     box-shadow:
 
         0 0 8px
-        rgba(255,136,0,0.5);
+        rgba(255,136,0,0.35);
 
 }
 
 
+/* =====================================================
+   SELECT
+===================================================== */
+
+.form-group select{
+
+    cursor:pointer;
+
+}
+
+
+/* =====================================================
+   TEXTAREA
+===================================================== */
+
 .form-group textarea{
 
-    min-height:100px;
+    min-height:110px;
 
     resize:vertical;
 
@@ -171,16 +275,96 @@ content="width=device-width, initial-scale=1.0"
     display:grid;
 
     grid-template-columns:
+
         1fr 1fr;
 
-    gap:15px;
+    gap:22px;
 
 }
 
 
 /* =====================================================
-   PHOTO
+   PLAYER PHOTO AREA
 ===================================================== */
+
+.photo-section{
+
+    display:grid;
+
+    grid-template-columns:
+
+        1fr 1.4fr;
+
+    gap:30px;
+
+    align-items:center;
+
+    margin-top:8px;
+
+    padding:
+
+        12px 0 22px;
+
+    border-bottom:
+
+        2px solid
+        #ff8800;
+
+}
+
+
+.photo-title{
+
+    color:#ff8800;
+
+    font-size:23px;
+
+    font-weight:700;
+
+}
+
+
+.photo-title span{
+
+    display:block;
+
+    color:#ff8800;
+
+}
+
+
+.photo-upload label{
+
+    color:#fff;
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+}
+
+
+.photo-upload input{
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    padding:10px;
+
+    background:#050505;
+
+    color:#fff;
+
+    border:
+
+        2px solid
+        #555;
+
+    border-radius:8px;
+
+}
+
 
 .photo-note{
 
@@ -188,7 +372,62 @@ content="width=device-width, initial-scale=1.0"
 
     font-size:13px;
 
-    margin-top:6px;
+    margin-top:7px;
+
+}
+
+
+/* =====================================================
+   BOTTOM AREA
+===================================================== */
+
+.bottom-section{
+
+    display:grid;
+
+    grid-template-columns:
+
+        0.8fr 1.6fr;
+
+    gap:25px;
+
+    margin-top:20px;
+
+    align-items:stretch;
+
+}
+
+
+/* =====================================================
+   REVIEW NOTE
+===================================================== */
+
+.registration-note{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    color:#ddd;
+
+    background:#000;
+
+    border:
+
+        2px solid
+        #ff8800;
+
+    border-radius:10px;
+
+    padding:18px;
+
+    font-size:14px;
+
+    line-height:1.5;
 
 }
 
@@ -199,25 +438,24 @@ content="width=device-width, initial-scale=1.0"
 
 .submit-btn{
 
-    display:block;
-
     width:100%;
 
-    padding:15px;
-
-    margin-top:25px;
+    padding:17px;
 
     background:#000;
 
     color:#ff8800;
 
-    border:2px solid #ff8800;
+    border:
+
+        2px solid
+        #ff8800;
 
     border-radius:10px;
 
-    font-size:18px;
+    font-size:20px;
 
-    font-weight:bold;
+    font-weight:800;
 
     cursor:pointer;
 
@@ -234,25 +472,19 @@ content="width=device-width, initial-scale=1.0"
 
     box-shadow:
 
-        0 0 12px
-        rgba(255,136,0,0.7);
+        0 0 15px
+        rgba(255,136,0,0.6);
 
 }
 
 
 /* =====================================================
-   NOTE
+   FOOTER
 ===================================================== */
 
-.registration-note{
-
-    margin-top:18px;
+footer{
 
     text-align:center;
-
-    color:#aaa;
-
-    font-size:13px;
 
 }
 
@@ -261,11 +493,13 @@ content="width=device-width, initial-scale=1.0"
    MOBILE
 ===================================================== */
 
-@media(max-width:650px){
+@media(max-width:700px){
 
-    .form-row{
+    .registration-container{
 
-        grid-template-columns:1fr;
+        width:94%;
+
+        margin-top:25px;
 
     }
 
@@ -274,219 +508,569 @@ content="width=device-width, initial-scale=1.0"
 
         padding:18px;
 
+        border-width:3px;
+
     }
 
 
-    .registration-title{
+    .registration-title .join{
 
-        font-size:27px;
+        font-size:34px;
+
+    }
+
+
+    .registration-title .team-name{
+
+        font-size:28px;
+
+    }
+
+
+    .registration-subtitle{
+
+        font-size:15px;
+
+        margin-bottom:22px;
+
+    }
+
+
+    .form-row{
+
+        grid-template-columns:1fr;
+
+        gap:0;
+
+    }
+
+
+    .photo-section{
+
+        grid-template-columns:1fr;
+
+        gap:15px;
+
+    }
+
+
+    .photo-title{
+
+        font-size:21px;
+
+    }
+
+
+    .bottom-section{
+
+        grid-template-columns:1fr;
+
+        gap:15px;
+
+    }
+
+
+    .submit-btn{
+
+        font-size:17px;
 
     }
 
 }
 
-</style></head><body><!-- =====================================================
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
      HEADER
-===================================================== --><header><nav><a href="index.html">
+===================================================== -->
+
+<header>
+
+<nav>
+
+<a href="index.html">
 Home
-</a><a href="players.html">
+</a>
+
+<a href="players.html">
 Players
-</a><a href="matches.html">
+</a>
+
+<a href="matches.html">
 Matches
-</a><a href="jersey-launch.html">
+</a>
+
+<a href="jersey-launch.html">
 Jersey Launch
-</a><a href="team-stats.html">
+</a>
+
+<a href="team-stats.html">
 Team Stats
-</a><a href="gallery.html">
+</a>
+
+<a href="gallery.html">
 Gallery
-</a><a href="contact.html">
+</a>
+
+<a href="contact.html">
 Contact
-</a></nav><h1>
+</a>
+
+</nav>
+
+
+<h1>
 🐯 CAWNPORE TIGERS XI
-</h1><p>
+</h1>
+
+
+<p>
 Together We Roar, Together We Win
-</p></header><!-- =====================================================
+</p>
+
+</header>
+
+
+
+<!-- =====================================================
      REGISTRATION
-===================================================== --><main class="registration-container"><h2 class="registration-title">JOIN CAWNPORE TIGERS XI
+===================================================== -->
 
-</h2><p class="registration-subtitle">Player Registration Form
+<main class="registration-container">
 
-</p><div class="registration-box"><!-- ===================================================
+
+<!-- TITLE -->
+
+<h2 class="registration-title">
+
+<span class="join">
+JOIN
+</span>
+
+<span class="team-name">
+CAWNPORE TIGERS XI
+</span>
+
+</h2>
+
+
+<p class="registration-subtitle">
+
+Player Registration Form
+
+</p>
+
+
+
+<!-- =====================================================
+     FORM BOX
+===================================================== -->
+
+<div class="registration-box">
+
+
+<!-- ===================================================
      PERSONAL INFORMATION
-=================================================== --><h3 class="form-section-title">👤 Personal Information
+=================================================== -->
 
-</h3><div class="form-group"><label>
+<h3 class="form-section-title">
+
+👤 Personal Information
+
+</h3>
+
+
+<div class="form-group">
+
+<label>
 Full Name *
-</label><input
-type="text"
-id="fullName"
-placeholder="Enter your full name"
-required
+</label>
 
-«»
+<input
+    type="text"
+    id="fullName"
+    placeholder="Enter your full name"
+>
 
-</div><div class="form-row"><div class="form-group"><label>
+</div>
+
+
+
+<div class="form-row">
+
+
+<div class="form-group">
+
+<label>
 Date of Birth
-</label><input
-type="date"
-id="dob"
+</label>
 
-«»
+<input
+    type="date"
+    id="dob"
+>
 
-</div><div class="form-group"><label>
+</div>
+
+
+<div class="form-group">
+
+<label>
 Mobile Number *
-</label><input
-type="tel"
-id="mobile"
-placeholder="Enter mobile number"
-maxlength="10"
-required
+</label>
 
-«»
+<input
+    type="tel"
+    id="mobile"
+    placeholder="Enter mobile number"
+    maxlength="10"
+>
 
-</div></div><div class="form-group"><label>
+</div>
+
+
+</div>
+
+
+
+<div class="form-group">
+
+<label>
 City
-</label><input
-type="text"
-id="city"
-placeholder="Enter your city"
+</label>
 
-«»
+<input
+    type="text"
+    id="city"
+    placeholder="Enter your city"
+>
 
-</div><!-- ===================================================
+</div>
+
+
+
+<!-- ===================================================
      CRICKET INFORMATION
-=================================================== --><h3 class="form-section-title">🏏 Cricket Information
+=================================================== -->
 
-</h3><div class="form-group"><label>
+<h3 class="form-section-title">
+
+🏏 Cricket Information
+
+</h3>
+
+
+
+<div class="form-group">
+
+<label>
 Playing Role *
-</label><select
-id="playingRole"
+</label>
 
-«»
+<select id="playingRole">
 
 <option value="">
 Select Playing Role
-</option><option value="Batter">
+</option>
+
+<option value="Batter">
 Batter
-</option><option value="Bowler">
+</option>
+
+<option value="Bowler">
 Bowler
-</option><option value="All-Rounder">
+</option>
+
+<option value="All-Rounder">
 All-Rounder
-</option><option value="Wicket-Keeper">
+</option>
+
+<option value="Wicket-Keeper">
 Wicket-Keeper
-</option></select></div><div class="form-row"><div class="form-group"><label>
+</option>
+
+</select>
+
+</div>
+
+
+
+<div class="form-row">
+
+
+<div class="form-group">
+
+<label>
 Batting Style
-</label><select id="battingStyle"><option value="">
+</label>
+
+<select id="battingStyle">
+
+<option value="">
 Select Batting Style
-</option><option value="Right Hand">
+</option>
+
+<option value="Right Hand">
 Right Hand
-</option><option value="Left Hand">
+</option>
+
+<option value="Left Hand">
 Left Hand
-</option></select></div><div class="form-group"><label>
+</option>
+
+</select>
+
+</div>
+
+
+
+<div class="form-group">
+
+<label>
 Bowling Style
-</label><select id="bowlingStyle"><option value="">
+</label>
+
+<select id="bowlingStyle">
+
+<option value="">
 Select Bowling Style
-</option><option value="Right Arm Fast">
+</option>
+
+<option value="Right Arm Fast">
 Right Arm Fast
-</option><option value="Right Arm Medium">
+</option>
+
+<option value="Right Arm Medium">
 Right Arm Medium
-</option><option value="Right Arm Spin">
+</option>
+
+<option value="Right Arm Spin">
 Right Arm Spin
-</option><option value="Left Arm Fast">
+</option>
+
+<option value="Left Arm Fast">
 Left Arm Fast
-</option><option value="Left Arm Medium">
+</option>
+
+<option value="Left Arm Medium">
 Left Arm Medium
-</option><option value="Left Arm Spin">
+</option>
+
+<option value="Left Arm Spin">
 Left Arm Spin
-</option><option value="Does Not Bowl">
+</option>
+
+<option value="Does Not Bowl">
 Does Not Bowl
-</option></select></div></div><div class="form-row"><div class="form-group"><label>
+</option>
+
+</select>
+
+</div>
+
+
+</div>
+
+
+
+<div class="form-row">
+
+
+<div class="form-group">
+
+<label>
 Preferred Jersey Number
-</label><input
-type="number"
-id="jerseyNumber"
-placeholder="Example: 18"
+</label>
 
-«»
+<input
+    type="number"
+    id="jerseyNumber"
+    placeholder="Example: 18"
+>
 
-</div><div class="form-group"><label>
-Cricket Experience
-</label><select id="experience"><option value="">
-Select Experience
-</option><option value="Beginner">
-Beginner
-</option><option value="Club Cricket">
-Club Cricket
-</option><option value="School Cricket">
-School Cricket
-</option><option value="College Cricket">
-College Cricket
-</option><option value="District Cricket">
-District Cricket
-</option><option value="Other">
-Other
-</option></select></div></div><div class="form-group"><label>
+</div>
+
+
+
+<div class="form-group">
+
+<label>
 Short Cricket Profile
-</label><textarea
+</label>
+
+<textarea
     id="profile"
     placeholder="Tell us briefly about your cricket experience..."
-></textarea></div><!-- ===================================================
-     PHOTO
-=================================================== --><h3 class="form-section-title">📸 Player Photo
+></textarea>
 
-</h3><div class="form-group"><label>
+</div>
+
+
+</div>
+
+
+
+<div class="form-group">
+
+<label>
+Cricket Experience
+</label>
+
+<select id="experience">
+
+<option value="">
+Select Experience
+</option>
+
+<option value="Beginner">
+Beginner
+</option>
+
+<option value="Club Cricket">
+Club Cricket
+</option>
+
+<option value="School Cricket">
+School Cricket
+</option>
+
+<option value="College Cricket">
+College Cricket
+</option>
+
+<option value="District Cricket">
+District Cricket
+</option>
+
+<option value="Other">
+Other
+</option>
+
+</select>
+
+</div>
+
+
+
+<!-- ===================================================
+     PLAYER PHOTO
+=================================================== -->
+
+<div class="photo-section">
+
+
+<div class="photo-title">
+
+📸 Player Photo
+
+</div>
+
+
+<div class="photo-upload">
+
+<label>
 Upload Player Photo
-</label><input
-type="file"
-id="playerPhoto"
-accept="image/jpeg,image/png"
+</label>
 
-«»
+<input
+    type="file"
+    id="playerPhoto"
+    accept="image/jpeg,image/png"
+>
 
-<p class="photo-note">JPG or PNG image recommended.
+<p class="photo-note">
 
-</p></div><!-- ===================================================
-     SUBMIT
-=================================================== --><button
-type="button"
-class="submit-btn"
-onclick="submitRegistration()"
+JPG or PNG image recommended.
 
-«»
+</p>
 
-🐯 SUBMIT PLAYER REGISTRATION
+</div>
 
-</button><p class="registration-note">Your registration will be reviewed by
+
+</div>
+
+
+
+<!-- ===================================================
+     BOTTOM
+=================================================== -->
+
+<div class="bottom-section">
+
+
+<div class="registration-note">
+
+Your registration will be reviewed by
 CAWNPORE TIGERS XI management.
 
-</p></div></main><!-- =====================================================
+</div>
+
+
+
+<button
+    type="button"
+    class="submit-btn"
+    onclick="submitRegistration()"
+>
+
+🐾 SUBMIT PLAYER REGISTRATION
+
+</button>
+
+
+</div>
+
+
+</div>
+
+</main>
+
+
+
+<!-- =====================================================
      FOOTER
-===================================================== --><footer>© 2026 CAWNPORE TIGERS XI
+===================================================== -->
 
-</footer><script>
+<footer>
 
-/* =====================================================
-   TEMPORARY SUBMIT
-===================================================== */
+© 2026 CAWNPORE TIGERS XI
+
+</footer>
+
+
+
+<!-- =====================================================
+     TEMPORARY JAVASCRIPT
+===================================================== -->
+
+<script>
 
 function submitRegistration(){
 
     const name =
-        document.getElementById(
-            "fullName"
-        ).value.trim();
+        document
+        .getElementById("fullName")
+        .value
+        .trim();
 
 
     const mobile =
-        document.getElementById(
-            "mobile"
-        ).value.trim();
+        document
+        .getElementById("mobile")
+        .value
+        .trim();
 
 
     const role =
-        document.getElementById(
-            "playingRole"
-        ).value;
+        document
+        .getElementById("playingRole")
+        .value;
 
 
     if(name === ""){
@@ -523,9 +1107,14 @@ function submitRegistration(){
 
 
     alert(
-        "Registration form is ready. Firebase submission will be connected in the next step."
+        "Registration form is ready. Firebase submission will be connected next."
     );
 
 }
 
-</script></body></html>
+</script>
+
+
+</body>
+
+</html>
