@@ -13,7 +13,7 @@
 <style>
 
 /* =========================================
-   MATCH SUMMARY PAGE
+   MATCH SUMMARY
 ========================================= */
 
 body{
@@ -24,13 +24,13 @@ body{
 
 
 /* =========================================
-   MAIN CONTAINER
+   CONTAINER
 ========================================= */
 
 .container{
     width:94%;
     max-width:1000px;
-    margin:25px auto 40px;
+    margin:20px auto 40px;
 }
 
 
@@ -47,9 +47,7 @@ body{
 
     font-weight:900;
 
-    margin:20px 0 30px;
-
-    letter-spacing:.5px;
+    margin:18px 0 28px;
 
     text-shadow:
         0 0 10px rgba(255,136,0,.35);
@@ -57,12 +55,12 @@ body{
 
 
 /* =========================================
-   MAIN SUMMARY CARD
+   MAIN SUMMARY BOX
 ========================================= */
 
 .summary-card{
 
-    background:#0d0d0d;
+    background:#090909;
 
     border:5px solid #ff8800;
 
@@ -73,7 +71,6 @@ body{
     box-shadow:
         0 0 18px rgba(255,136,0,.35),
         0 0 35px rgba(255,136,0,.12);
-
 }
 
 
@@ -85,14 +82,13 @@ body{
 
     text-align:center;
 
-    color:#fff;
-
     font-size:18px;
 
     font-weight:900;
 
-    margin-bottom:20px;
+    color:#fff;
 
+    margin-bottom:18px;
 }
 
 
@@ -106,22 +102,17 @@ body{
 
     font-size:34px;
 
-    line-height:1.45;
+    line-height:1.4;
 
     font-weight:900;
 
+    margin:8px 0 28px;
+
     color:#fff;
-
-    margin:10px 0 28px;
-
 }
 
 
-/* VS */
-
 .teams .vs{
-
-    display:inline-block;
 
     color:#ff8800;
 
@@ -129,8 +120,9 @@ body{
 
     font-weight:900;
 
-    margin:5px 0;
+    display:inline-block;
 
+    margin:5px 0;
 }
 
 
@@ -144,31 +136,33 @@ body{
 
     color:#00ff66;
 
-    font-size:27px;
+    font-size:28px;
 
     font-weight:900;
 
     padding:22px 15px;
 
-    background:#062b16;
+    background:#052b15;
 
-    border:3px solid #00aa44;
+    border:3px solid #009f40;
 
     border-radius:17px;
 
-    margin:0 0 25px;
-
-    box-shadow:
-        0 0 12px rgba(0,255,100,.18);
-
+    margin-bottom:25px;
 }
 
 
 /* =========================================
-   INFORMATION BOXES
+   INFORMATION BOX
 ========================================= */
 
 .info-box{
+
+    width:100%;
+
+    min-height:112px;
+
+    box-sizing:border-box;
 
     display:flex;
 
@@ -176,13 +170,7 @@ body{
 
     gap:18px;
 
-    width:100%;
-
-    min-height:100px;
-
-    box-sizing:border-box;
-
-    background:#0d0d0d;
+    background:#090909;
 
     border:4px solid #ff8800;
 
@@ -190,21 +178,22 @@ body{
 
     padding:14px 18px;
 
-    margin:14px 0;
+    margin:15px 0;
 
     box-shadow:
-        0 0 8px rgba(255,136,0,.22);
-
+        0 0 8px rgba(255,136,0,.20);
 }
 
 
-/* ICON */
+/* =========================================
+   ICON
+========================================= */
 
 .info-icon{
 
-    width:76px;
+    width:78px;
 
-    height:76px;
+    height:78px;
 
     flex-shrink:0;
 
@@ -219,11 +208,12 @@ body{
     border-radius:14px;
 
     font-size:42px;
-
 }
 
 
-/* LABEL */
+/* =========================================
+   LABEL
+========================================= */
 
 .info-label{
 
@@ -231,28 +221,29 @@ body{
 
     color:#ff8800;
 
-    font-size:20px;
+    font-size:24px;
 
     font-weight:900;
 
     line-height:1.2;
-
 }
 
 
-/* VALUE BOX */
+/* =========================================
+   VALUE
+========================================= */
 
 .info-value{
 
-    min-width:280px;
+    min-width:300px;
 
-    padding:16px 18px;
+    padding:17px 18px;
 
     box-sizing:border-box;
 
     text-align:center;
 
-    background:#080808;
+    background:#090909;
 
     color:#fff;
 
@@ -260,66 +251,51 @@ body{
 
     border-radius:12px;
 
-    font-size:20px;
+    font-size:25px;
 
     font-weight:900;
 
+    line-height:1.2;
+
+    word-break:break-word;
 }
 
 
 /* =========================================
-   CRICHEROES TEAM LINK
+   CRICHEROES URL BOX
 ========================================= */
 
 .cricheroes-box{
+
+    width:100%;
+
+    min-height:80px;
+
+    box-sizing:border-box;
 
     display:flex;
 
     align-items:center;
 
-    gap:15px;
+    gap:18px;
 
-    width:100%;
-
-    box-sizing:border-box;
-
-    background:#0d0d0d;
+    background:#090909;
 
     border:4px solid #ff8800;
 
     border-radius:17px;
 
-    padding:17px 20px;
+    padding:15px 20px;
 
     margin-top:18px;
 
-    text-decoration:none;
-
     color:#fff;
 
-    box-shadow:
-        0 0 8px rgba(255,136,0,.22);
+    text-decoration:none;
 
-}
+    cursor:pointer;
 
-
-.cricheroes-icon{
-
-    font-size:34px;
-
-    flex-shrink:0;
-
-}
-
-
-.cricheroes-text{
-
-    font-size:17px;
-
-    font-weight:900;
-
-    word-break:break-all;
-
+    transition:.2s;
 }
 
 
@@ -328,13 +304,34 @@ body{
     background:#151515;
 
     box-shadow:
-        0 0 16px rgba(255,136,0,.5);
+        0 0 15px rgba(255,136,0,.45);
+}
 
+
+.cricheroes-icon{
+
+    font-size:38px;
+
+    flex-shrink:0;
+}
+
+
+.cricheroes-text{
+
+    color:#fff;
+
+    font-size:20px;
+
+    font-weight:900;
+
+    line-height:1.3;
+
+    word-break:break-all;
 }
 
 
 /* =========================================
-   LOADING / ERROR
+   MESSAGE
 ========================================= */
 
 .message{
@@ -343,17 +340,15 @@ body{
 
     color:#ccc;
 
-    margin:40px 0;
-
     font-size:18px;
 
+    margin:40px 0;
 }
 
 
 .error{
 
     color:#ff4444;
-
 }
 
 
@@ -378,7 +373,6 @@ footer{
     text-align:center;
 
     font-size:13px;
-
 }
 
 
@@ -392,8 +386,7 @@ footer{
 
         width:94%;
 
-        margin:20px auto 30px;
-
+        margin:18px auto 30px;
     }
 
 
@@ -402,25 +395,22 @@ footer{
         font-size:28px;
 
         margin-bottom:22px;
-
     }
 
 
     .summary-card{
 
-        padding:15px;
+        padding:14px;
 
         border-width:5px;
 
         border-radius:18px;
-
     }
 
 
     .match-date{
 
         font-size:16px;
-
     }
 
 
@@ -429,16 +419,12 @@ footer{
         font-size:25px;
 
         line-height:1.4;
-
-        margin-bottom:22px;
-
     }
 
 
     .teams .vs{
 
         font-size:23px;
-
     }
 
 
@@ -447,9 +433,6 @@ footer{
         font-size:21px;
 
         padding:17px 10px;
-
-        border-radius:14px;
-
     }
 
 
@@ -457,44 +440,41 @@ footer{
 
     .info-box{
 
-        min-height:auto;
+        min-height:100px;
 
         display:grid;
 
-        grid-template-columns:58px 1fr;
+        grid-template-columns:62px 1fr;
 
-        gap:10px;
+        gap:8px 12px;
 
         padding:12px;
 
         border-width:4px;
 
         border-radius:14px;
-
     }
 
 
     .info-icon{
 
-        width:58px;
+        width:62px;
 
-        height:58px;
-
-        border-radius:11px;
-
-        font-size:31px;
+        height:62px;
 
         grid-row:span 2;
 
+        font-size:32px;
+
+        border-radius:11px;
     }
 
 
     .info-label{
 
-        font-size:16px;
+        font-size:19px;
 
         align-self:end;
-
     }
 
 
@@ -506,31 +486,31 @@ footer{
 
         padding:10px 8px;
 
-        font-size:16px;
+        font-size:20px;
 
         border-width:3px;
-
     }
 
 
     .cricheroes-box{
 
-        padding:14px;
+        min-height:70px;
 
+        padding:12px;
+
+        gap:12px;
     }
 
 
     .cricheroes-icon{
 
-        font-size:28px;
-
+        font-size:30px;
     }
 
 
     .cricheroes-text{
 
-        font-size:13px;
-
+        font-size:15px;
     }
 
 }
@@ -542,38 +522,33 @@ footer{
 
 @media (max-width:370px){
 
-    .page-title{
-
-        font-size:25px;
-
-    }
-
-
     .teams{
 
         font-size:22px;
-
     }
 
 
     .result{
 
         font-size:18px;
-
     }
 
 
     .info-label{
 
-        font-size:14px;
-
+        font-size:16px;
     }
 
 
     .info-value{
 
-        font-size:14px;
+        font-size:18px;
+    }
 
+
+    .cricheroes-text{
+
+        font-size:13px;
     }
 
 }
@@ -587,7 +562,7 @@ footer{
 
 
 <!-- =========================================
-     PAGE TITLE
+     TITLE
 ========================================= -->
 
 <header>
@@ -608,7 +583,6 @@ footer{
 
 <main class="container">
 
-
 <div id="summary">
 
 <p class="message">
@@ -618,7 +592,6 @@ footer{
 </p>
 
 </div>
-
 
 </main>
 
@@ -647,7 +620,7 @@ import {
 
 
 // =====================================================
-// GET MATCH ID FROM URL
+// GET MATCH ID
 // =====================================================
 
 const params =
@@ -664,7 +637,7 @@ const summary =
 
 
 // =====================================================
-// CHECK MATCH ID
+// CHECK ID
 // =====================================================
 
 if(!matchId){
@@ -739,15 +712,36 @@ async function loadMatch(){
 
 
         // =============================================
-        // CRICHEROES TEAM URL
+        // ADMIN PANEL URL
         // =============================================
 
-        const cricHeroesUrl =
+        let cricHeroesUrl =
             selectedMatch.cricHeroesLink || "";
 
 
+        /*
+         * अगर Admin Panel में URL
+         * https:// या http:// के बिना save हुआ है,
+         * तो automatically https:// जोड़ देंगे।
+         *
+         * अगर पहले से https:// है,
+         * तो वही exact URL रहेगा।
+         */
+
+        if(
+            cricHeroesUrl &&
+            !cricHeroesUrl.startsWith("http://") &&
+            !cricHeroesUrl.startsWith("https://")
+        ){
+
+            cricHeroesUrl =
+                "https://" + cricHeroesUrl;
+
+        }
+
+
         // =============================================
-        // MATCH SUMMARY HTML
+        // MATCH SUMMARY
         // =============================================
 
         summary.innerHTML = `
@@ -762,6 +756,7 @@ async function loadMatch(){
                     📅 ${selectedMatch.matchDate || "—"}
 
                 </div>
+
 
 
                 <!-- TEAMS -->
@@ -783,6 +778,7 @@ async function loadMatch(){
                     ${selectedMatch.opponent || "—"}
 
                 </div>
+
 
 
                 <!-- RESULT -->
@@ -962,7 +958,7 @@ async function loadMatch(){
 
 
 
-                <!-- CRICHEROES TEAM URL -->
+                <!-- CRICHEROES URL -->
 
                 ${
                     cricHeroesUrl
