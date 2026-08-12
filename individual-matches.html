@@ -1,20 +1,36 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Individual Matches - CAWNPORE TIGERS XI</title><link rel="stylesheet" href="style.css"><style>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Individual Matches - CAWNPORE TIGERS XI</title>
+
+<link rel="stylesheet" href="style.css">
+
+
+<style>
 
 /* =========================================
    BASIC
 ========================================= */
 
 html,
-body{
+body {
 
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 
-    background:#111 !important;
-    color:#fff !important;
+    background: #111 !important;
+    color: #fff !important;
 
-    font-family:Arial,sans-serif;
+    font-family: Arial, sans-serif;
 
 }
 
@@ -23,13 +39,12 @@ body{
    MAIN CONTAINER
 ========================================= */
 
-.container{
+.container {
 
-    width:92%;
+    width: 92%;
+    max-width: 700px;
 
-    max-width:900px;
-
-    margin:30px auto;
+    margin: 30px auto;
 
 }
 
@@ -38,13 +53,15 @@ body{
    PAGE TITLE
 ========================================= */
 
-.page-title{
+.page-title {
 
-    text-align:center;
+    text-align: center;
 
-    color:#ff8800;
+    color: #ff8800;
 
-    margin-bottom:8px;
+    margin: 0 0 8px;
+
+    font-size: 28px;
 
 }
 
@@ -53,11 +70,13 @@ body{
    PAGE SUBTITLE
 ========================================= */
 
-.page-subtitle{
+.page-subtitle {
 
-    text-align:center;
+    text-align: center;
 
-    margin-bottom:30px;
+    color: #fff;
+
+    margin: 0 0 30px;
 
 }
 
@@ -66,15 +85,15 @@ body{
    MATCH LIST
 ========================================= */
 
-#matchList{
+#matchList {
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    align-items:center;
+    width: 100%;
 
-    width:100%;
+    gap: 20px;
 
 }
 
@@ -83,37 +102,35 @@ body{
    MATCH CARD
 ========================================= */
 
-.match-bar{
+.match-card {
 
-    display:flex;
+    display: block;
 
-    align-items:center;
+    width: 100%;
 
-    justify-content:center;
+    box-sizing: border-box;
 
-    width:330px;
+    background: #000;
 
-    min-height:210px;
+    color: #fff;
 
-    box-sizing:border-box;
+    border: 2px solid #ff8800;
 
-    background:#111;
+    border-radius: 12px;
 
-    border:4px solid #ff8800;
+    padding: 20px;
 
-    border-radius:18px;
+    text-align: center;
 
-    padding:20px;
+    text-decoration: none;
 
-    margin:0 auto 20px;
+    box-shadow:
+        0 0 8px rgba(255,136,0,0.20);
 
-    text-decoration:none;
-
-    color:#fff;
-
-    text-align:center;
-
-    transition:0.2s ease;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
 
 }
 
@@ -122,11 +139,14 @@ body{
    HOVER
 ========================================= */
 
-.match-bar:hover{
+.match-card:hover {
 
-    background:#181818;
+    background: #080808;
 
-    transform:translateY(-3px);
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 15px rgba(255,136,0,0.45);
 
 }
 
@@ -135,9 +155,60 @@ body{
    CLICK
 ========================================= */
 
-.match-bar:active{
+.match-card:active {
 
-    transform:scale(0.98);
+    transform: scale(0.98);
+
+}
+
+
+/* =========================================
+   DATE
+========================================= */
+
+.match-date {
+
+    color: #ff8800;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    margin-bottom: 12px;
+
+}
+
+
+/* =========================================
+   TEAMS
+========================================= */
+
+.match-teams {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 6px;
+
+}
+
+
+/* =========================================
+   CAWNPORE TIGERS XI
+========================================= */
+
+.team-name {
+
+    color: #fff;
+
+    font-size: 20px;
+
+    font-weight: 900;
+
+    line-height: 1.25;
 
 }
 
@@ -146,15 +217,13 @@ body{
    VS
 ========================================= */
 
-.match-vs{
+.vs {
 
-    color:#ff8800;
+    color: #ff8800;
 
-    font-weight:bold;
+    font-size: 17px;
 
-    font-size:20px;
-
-    line-height:1.5;
+    font-weight: bold;
 
 }
 
@@ -163,21 +232,81 @@ body{
    OPPONENT
 ========================================= */
 
-.match-opponent{
+.opponent-name {
 
-    display:block;
+    color: #fff;
 
-    color:#fff;
+    font-size: 20px;
 
-    font-weight:900;
+    font-weight: 900;
 
-    font-size:22px;
+    line-height: 1.25;
 
-    margin-top:8px;
+    overflow-wrap: anywhere;
 
-    line-height:1.25;
+}
 
-    word-break:break-word;
+
+/* =========================================
+   MATCH INFO
+========================================= */
+
+.match-info {
+
+    margin-top: 15px;
+
+    padding-top: 12px;
+
+    border-top: 1px solid #333;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 25px;
+
+    flex-wrap: wrap;
+
+}
+
+
+/* =========================================
+   INFO ITEM
+========================================= */
+
+.info-item {
+
+    color: #ccc;
+
+    font-size: 15px;
+
+}
+
+
+.info-label {
+
+    color: #ff8800;
+
+    font-weight: bold;
+
+}
+
+
+/* =========================================
+   RESULT
+========================================= */
+
+.match-result {
+
+    margin-top: 14px;
+
+    color: #00ff66;
+
+    font-size: 17px;
+
+    font-weight: 900;
+
+    line-height: 1.35;
 
 }
 
@@ -186,20 +315,20 @@ body{
    MESSAGE
 ========================================= */
 
-.message{
+.message {
 
-    text-align:center;
+    text-align: center;
 
-    color:#ccc;
+    color: #ccc;
 
-    margin:30px 0;
+    margin: 30px 0;
 
 }
 
 
-.error{
+.error {
 
-    color:#ff4444;
+    color: #ff4444;
 
 }
 
@@ -208,34 +337,34 @@ body{
    BACK BUTTON
 ========================================= */
 
-.back-btn{
+.back-btn {
 
-    display:block;
+    display: block;
 
-    text-align:center;
+    text-align: center;
 
-    background:#111;
+    background: #000;
 
-    color:#ff8800;
+    color: #ff8800;
 
-    border:3px solid #ff8800;
+    border: 2px solid #ff8800;
 
-    text-decoration:none;
+    text-decoration: none;
 
-    padding:12px;
+    padding: 12px;
 
-    border-radius:10px;
+    border-radius: 10px;
 
-    font-weight:bold;
+    font-weight: bold;
 
-    margin:30px 0;
+    margin: 30px 0;
 
 }
 
 
-.back-btn:hover{
+.back-btn:hover {
 
-    background:#181818;
+    background: #181818;
 
 }
 
@@ -244,64 +373,210 @@ body{
    MOBILE
 ========================================= */
 
-@media(max-width:600px){
+@media (max-width: 600px) {
 
-    .container{
+    .container {
 
-        width:92%;
+        width: 92%;
 
-    }
-
-
-    .match-bar{
-
-        width:min(330px, 88vw);
-
-        min-height:200px;
-
-        padding:16px;
+        margin: 25px auto;
 
     }
 
 
-    .match-vs{
+    .page-title {
 
-        font-size:18px;
+        font-size: 24px;
 
     }
 
 
-    .match-opponent{
+    #matchList {
 
-        font-size:20px;
+        gap: 18px;
+
+    }
+
+
+    .match-card {
+
+        padding: 18px 14px;
+
+        border-width: 2px;
+
+        border-radius: 11px;
+
+    }
+
+
+    .match-date {
+
+        font-size: 15px;
+
+    }
+
+
+    .team-name,
+    .opponent-name {
+
+        font-size: 18px;
+
+    }
+
+
+    .vs {
+
+        font-size: 16px;
+
+    }
+
+
+    .match-info {
+
+        gap: 15px;
+
+    }
+
+
+    .match-result {
+
+        font-size: 16px;
 
     }
 
 }
 
-</style></head><body><!-- =========================================
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+
+    .container {
+
+        width: 94%;
+
+    }
+
+
+    .match-card {
+
+        padding: 16px 12px;
+
+    }
+
+
+    .team-name,
+    .opponent-name {
+
+        font-size: 17px;
+
+    }
+
+
+    .match-result {
+
+        font-size: 15px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
      HEADER
-========================================= --><header><h1 class="page-title">
-🏏 INDIVIDUAL MATCHES
-</h1><p class="page-subtitle">
-CAWNPORE TIGERS XI
-</p></header><main class="container"><!-- =========================================
-     MATCH LIST
-========================================= --><div id="matchList"><p class="message">
-⏳ Loading Matches...
-</p></div><!-- =========================================
-     BACK BUTTON
-========================================= --><a
-href="team-matches.html"
-class="back-btn"
+========================================= -->
 
-«»
+<header>
 
-⬅ BACK TO TEAM MATCHES
+    <h1 class="page-title">
 
-</a></main><footer style="text-align:center;margin:40px 0;">© 2026 CAWNPORE TIGERS XI
+        🏏 INDIVIDUAL MATCHES
 
-</footer><script type="module">
+    </h1>
+
+
+    <p class="page-subtitle">
+
+        CAWNPORE TIGERS XI
+
+    </p>
+
+</header>
+
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main class="container">
+
+
+    <!-- =====================================
+         MATCH LIST
+    ====================================== -->
+
+    <div id="matchList">
+
+        <p class="message">
+
+            ⏳ Loading Matches...
+
+        </p>
+
+    </div>
+
+
+
+    <!-- =====================================
+         BACK BUTTON
+    ====================================== -->
+
+    <a
+        href="team-matches.html"
+        class="back-btn"
+    >
+
+        ⬅ BACK TO TEAM MATCHES
+
+    </a>
+
+
+</main>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer
+    style="
+        text-align:center;
+        margin:40px 0;
+    "
+>
+
+    © 2026 CAWNPORE TIGERS XI
+
+</footer>
+
+
+
+<!-- =========================================
+     FIREBASE SCRIPT
+========================================= -->
+
+<script type="module">
 
 
 /* =========================================
@@ -320,10 +595,12 @@ import {
 
 
 
+/* =========================================
+   MATCH LIST ELEMENT
+========================================= */
+
 const matchList =
-document.getElementById(
-    "matchList"
-);
+document.getElementById("matchList");
 
 
 
@@ -331,43 +608,64 @@ document.getElementById(
    LOAD INDIVIDUAL MATCHES
 ========================================= */
 
-async function loadIndividualMatches(){
+async function loadIndividualMatches() {
 
-    try{
+    try {
+
+
+        /* =====================================
+           GET MATCHES FROM FIREBASE
+        ===================================== */
 
         const snapshot =
-        await getDocs(
-            collection(db,"matches")
-        );
+            await getDocs(
+                collection(
+                    db,
+                    "matches"
+                )
+            );
 
+
+
+        /* =====================================
+           CLEAR LOADING MESSAGE
+        ===================================== */
 
         matchList.innerHTML = "";
 
+
+
+        /* =====================================
+           MATCH ARRAY
+        ===================================== */
 
         let matches = [];
 
 
 
         /* =====================================
-           GET ONLY INDIVIDUAL MATCHES
+           FILTER INDIVIDUAL MATCHES
         ===================================== */
 
-        snapshot.forEach((doc)=>{
-
-            const match =
-            doc.data();
+        snapshot.forEach((doc) => {
 
 
-            if(
+            const match = doc.data();
 
+
+            /*
+             * Only Individual Matches
+             */
+
+            if (
                 match.eventType !==
                 "Individual Matches"
-
-            ){
+            ) {
 
                 return;
 
             }
+
 
 
             matches.push({
@@ -383,23 +681,27 @@ async function loadIndividualMatches(){
 
 
         /* =====================================
-           SORT NEWEST FIRST
+           SORT BY DATE
+           NEWEST FIRST
         ===================================== */
 
-        matches.sort((a,b)=>{
+        matches.sort((a, b) => {
+
 
             const dateA =
-            new Date(
-                a.matchDate ||
-                "1970-01-01"
-            );
+                new Date(
+                    a.matchDate ||
+                    a.date ||
+                    "1970-01-01"
+                );
 
 
             const dateB =
-            new Date(
-                b.matchDate ||
-                "1970-01-01"
-            );
+                new Date(
+                    b.matchDate ||
+                    b.date ||
+                    "1970-01-01"
+                );
 
 
             return dateB - dateA;
@@ -412,7 +714,9 @@ async function loadIndividualMatches(){
            NO MATCHES
         ===================================== */
 
-        if(matches.length === 0){
+        if (
+            matches.length === 0
+        ) {
 
             matchList.innerHTML = `
 
@@ -435,15 +739,30 @@ async function loadIndividualMatches(){
            CREATE MATCH CARDS
         ===================================== */
 
-        matches.forEach((match)=>{
+        matches.forEach((match) => {
 
 
-            const bar =
-            document.createElement("a");
+            /* =================================
+               CREATE CARD
+            ================================= */
+
+            const card =
+                document.createElement("a");
 
 
-            bar.className =
-            "match-bar";
+
+            card.className =
+                "match-card";
+
+
+
+            /* =================================
+               MATCH ID
+            ================================= */
+
+            const matchId =
+                match.matchId ||
+                match.firestoreId;
 
 
 
@@ -451,48 +770,176 @@ async function loadIndividualMatches(){
                OPEN MATCH SUMMARY
             ================================= */
 
-            bar.href =
-            "match-summary.html?id=" +
-            encodeURIComponent(
-                match.matchId ||
-                match.firestoreId
-            );
+            card.href =
+                "match-summary.html?id=" +
+                encodeURIComponent(
+                    matchId
+                );
 
 
 
             /* =================================
-               CARD CONTENT
+               DATE
             ================================= */
 
-            bar.innerHTML = `
+            let displayDate =
+                match.matchDate ||
+                match.date ||
+                "";
 
-                <span class="match-vs">
 
-                    🏏 VS
 
-                    <span class="match-opponent">
+            if (displayDate) {
 
-                        ${
-                            match.opponent
-                            ||
-                            "Opponent Team"
-                        }
 
-                    </span>
+                const dateObj =
+                    new Date(
+                        displayDate
+                    );
 
-                </span>
+
+                if (
+                    !isNaN(
+                        dateObj.getTime()
+                    )
+                ) {
+
+                    displayDate =
+                        dateObj.toLocaleDateString(
+                            "en-GB",
+                            {
+                                day: "2-digit",
+                                month: "short",
+                                year: "numeric"
+                            }
+                        );
+
+                }
+
+            }
+
+
+
+            /* =================================
+               OPPONENT
+            ================================= */
+
+            const opponent =
+                match.opponent ||
+                "Opponent Team";
+
+
+
+            /* =================================
+               OVERS
+            ================================= */
+
+            const overs =
+                match.overs ||
+                match.totalOvers ||
+                "—";
+
+
+
+            /* =================================
+               RESULT
+            ================================= */
+
+            const result =
+                match.result ||
+                "Result Not Available";
+
+
+
+            /* =================================
+               CARD HTML
+            ================================= */
+
+            card.innerHTML = `
+
+                <div class="match-date">
+
+                    📅 ${displayDate}
+
+                </div>
+
+
+                <div class="match-teams">
+
+
+                    <div class="team-name">
+
+                        CAWNPORE TIGERS XI
+
+                    </div>
+
+
+                    <div class="vs">
+
+                        VS
+
+                    </div>
+
+
+                    <div class="opponent-name">
+
+                        ${opponent}
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="match-info">
+
+
+                    <div class="info-item">
+
+                        <span class="info-label">
+
+                            OVERS:
+
+                        </span>
+
+                        ${overs}
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="match-result">
+
+                    ${result}
+
+                </div>
 
             `;
 
 
 
-            matchList.appendChild(bar);
+            /* =================================
+               ADD CARD TO PAGE
+            ================================= */
+
+            matchList.appendChild(
+                card
+            );
 
         });
 
+
     }
 
-    catch(error){
+
+    /* =====================================
+       ERROR
+    ===================================== */
+
+    catch (error) {
+
 
         console.error(
             "Individual Matches Error:",
@@ -526,4 +973,10 @@ async function loadIndividualMatches(){
 
 loadIndividualMatches();
 
-</script></body></html>
+
+</script>
+
+
+</body>
+
+</html>
