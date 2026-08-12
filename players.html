@@ -19,72 +19,42 @@
 
 <style>
 
-/* =====================================================
-   FIREBASE APPROVED PLAYERS
-===================================================== */
-
 .firebase-players-title{
 
     margin-top:35px;
-
     color:#ff8800;
-
     text-align:center;
-
     font-size:24px;
 
-    font-weight:800;
-
 }
-
 
 #approvedPlayers{
 
-    width:92%;
-
-    max-width:900px;
-
-    margin:0 auto 35px;
+    width:100%;
+    max-width:700px;
+    margin:0 auto;
 
 }
 
+/* Firebase players will look exactly like old players */
 
-#approvedPlayerMessage{
-
-    text-align:center;
-
-    color:#aaa;
-
-    font-size:14px;
-
-    margin:15px 0 22px;
-
-}
-
-
-/* =====================================================
-   APPROVED PLAYER CARD
-===================================================== */
-
-.firebase-player-card{
+.firebase-player-bar{
 
     display:block;
-
     width:100%;
-
     box-sizing:border-box;
 
     text-decoration:none;
 
-    background:#111;
+    background:#080808;
 
     border:2px solid #ff8800;
 
-    border-radius:14px;
+    border-radius:12px;
 
-    padding:20px;
+    padding:16px;
 
-    margin:18px 0;
+    margin:14px 0;
 
     color:#fff;
 
@@ -92,177 +62,53 @@
 
     transition:0.3s ease;
 
-    box-shadow:
-        0 0 10px
-        rgba(255,136,0,0.20);
+}
+
+.firebase-player-bar:hover{
+
+    background:#ff8800;
+    color:#000;
+    transform:translateY(-2px);
 
 }
 
+.firebase-player-bar span{
 
-.firebase-player-card:hover{
+    font-size:15px;
 
-    transform:translateY(-3px);
-
-    box-shadow:
-        0 0 18px
-        rgba(255,136,0,0.50);
+    margin-right:8px;
 
 }
 
+.firebase-player-bar strong{
 
-/* =====================================================
-   PLAYER PHOTO
-===================================================== */
-
-.firebase-player-photo{
-
-    width:125px;
-
-    height:125px;
-
-    object-fit:cover;
-
-    border-radius:18px;
-
-    border:3px solid #ff8800;
-
-    display:block;
-
-    margin:0 auto 14px;
-
-    background:#050505;
-
-    box-shadow:
-        0 0 12px
-        rgba(255,136,0,0.40);
-
-}
-
-
-/* =====================================================
-   PLAYER NAME
-===================================================== */
-
-.firebase-player-name{
-
-    font-size:23px;
+    font-size:21px;
 
     font-weight:800;
 
-    color:#fff;
-
-    margin-bottom:8px;
-
-    text-transform:uppercase;
-
 }
 
-
-/* =====================================================
-   ROLE
-===================================================== */
-
-.firebase-player-role{
-
-    display:inline-block;
-
-    background:#ff8800;
+.firebase-player-bar:hover strong{
 
     color:#000;
 
+}
+
+#approvedPlayerMessage{
+
+    text-align:center;
+    color:#aaa;
     font-size:14px;
-
-    font-weight:800;
-
-    padding:6px 14px;
-
-    border-radius:20px;
-
-    margin-bottom:12px;
+    margin:15px 0;
 
 }
 
-
-/* =====================================================
-   PLAYER INFO
-===================================================== */
-
-.firebase-player-info{
-
-    color:#ddd;
-
-    font-size:14px;
-
-    line-height:1.8;
-
-}
-
-
-.firebase-player-info strong{
-
-    color:#ff8800;
-
-}
-
-
-/* =====================================================
-   NEW MEMBER BADGE
-===================================================== */
-
-.new-member-badge{
-
-    color:#ff8800;
-
-    font-size:12px;
-
-    font-weight:800;
-
-    letter-spacing:1px;
-
-    margin-bottom:8px;
-
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
 
 @media(max-width:600px){
 
-    #approvedPlayers{
+    .firebase-player-bar strong{
 
-        width:94%;
-
-    }
-
-
-    .firebase-player-card{
-
-        padding:18px;
-
-    }
-
-
-    .firebase-player-photo{
-
-        width:115px;
-
-        height:115px;
-
-    }
-
-
-    .firebase-player-name{
-
-        font-size:21px;
-
-    }
-
-
-    .firebase-player-info{
-
-        font-size:13px;
+        font-size:19px;
 
     }
 
@@ -310,7 +156,6 @@
 </header>
 
 
-
 <!-- =================================
      SIDE MENU
 ================================= -->
@@ -352,123 +197,82 @@
     </div>
 
 
-
     <nav class="side-nav">
 
 
         <a href="index.html">
 
-            <span class="menu-icon">
-                🏠
-            </span>
+            <span class="menu-icon">🏠</span>
 
-            <span>
-                HOME
-            </span>
+            <span>HOME</span>
 
         </a>
-
 
 
         <a href="about.html">
 
-            <span class="menu-icon">
-                ℹ️
-            </span>
+            <span class="menu-icon">ℹ️</span>
 
-            <span>
-                ABOUT
-            </span>
+            <span>ABOUT</span>
 
         </a>
-
 
 
         <a href="players.html">
 
-            <span class="menu-icon">
-                👥
-            </span>
+            <span class="menu-icon">👥</span>
 
-            <span>
-                PLAYERS
-            </span>
+            <span>PLAYERS</span>
 
         </a>
-
 
 
         <a href="player-registration.html">
 
-            <span class="menu-icon">
-                📝
-            </span>
+            <span class="menu-icon">📝</span>
 
-            <span>
-                PLAYER REGISTRATION
-            </span>
+            <span>PLAYER REGISTRATION</span>
 
         </a>
-
 
 
         <a href="team-matches.html">
 
-            <span class="menu-icon">
-                🏏
-            </span>
+            <span class="menu-icon">🏏</span>
 
-            <span>
-                TEAM MATCHES
-            </span>
+            <span>TEAM MATCHES</span>
 
         </a>
-
 
 
         <a href="gallery.html">
 
-            <span class="menu-icon">
-                📷
-            </span>
+            <span class="menu-icon">📷</span>
 
-            <span>
-                GALLERY
-            </span>
+            <span>GALLERY</span>
 
         </a>
-
 
 
         <a href="jersey-launch.html">
 
-            <span class="menu-icon">
-                👕
-            </span>
+            <span class="menu-icon">👕</span>
 
-            <span>
-                JERSEY LAUNCH
-            </span>
+            <span>JERSEY LAUNCH</span>
 
         </a>
 
 
-
         <a href="team-stats.html">
 
-            <span class="menu-icon">
-                📊
-            </span>
+            <span class="menu-icon">📊</span>
 
-            <span>
-                TEAM STATS
-            </span>
+            <span>TEAM STATS</span>
 
         </a>
 
 
     </nav>
-
 
 
     <div class="side-menu-footer">
@@ -486,17 +290,13 @@
 </div>
 
 
-
-<!-- =================================
-     MENU OVERLAY
-================================= -->
+<!-- MENU OVERLAY -->
 
 <div
     class="menu-overlay"
     id="menuOverlay"
 >
 </div>
-
 
 
 <!-- =================================
@@ -519,7 +319,6 @@
     <h2>
         OUR PLAYERS
     </h2>
-
 
 
     <!-- =================================
@@ -651,7 +450,6 @@
     </div>
 
 
-
     <!-- =================================
          NEW TEAM MEMBERS
     ================================= -->
@@ -678,7 +476,6 @@
 </main>
 
 
-
 <!-- =================================
      FOOTER
 ================================= -->
@@ -690,13 +487,7 @@
 </footer>
 
 
-
-<!-- =================================
-     MENU SCRIPT
-================================= -->
-
 <script src="script.js"></script>
-
 
 
 <!-- =================================
@@ -708,16 +499,11 @@
 import { db } from "./firebase.js";
 
 import {
-
     collection,
     getDocs
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
-
-// =====================================================
-// LOAD APPROVED PLAYERS
-// =====================================================
 
 async function loadApprovedPlayers(){
 
@@ -737,12 +523,10 @@ async function loadApprovedPlayers(){
 
         const snapshot =
             await getDocs(
-
                 collection(
                     db,
                     "playerRegistrations"
                 )
-
             );
 
 
@@ -759,8 +543,6 @@ async function loadApprovedPlayers(){
                     playerDoc.data();
 
 
-                // ONLY APPROVED PLAYERS
-
                 if(
                     player.status !==
                     "Approved"
@@ -774,197 +556,48 @@ async function loadApprovedPlayers(){
                 approvedCount++;
 
 
-                // =====================================
-                // PLAYER PROFILE LINK
-                // =====================================
+                /*
+                 * SAME STYLE AS OLD PLAYERS
+                 */
 
-                const card =
+                const playerBar =
                     document.createElement(
                         "a"
                     );
 
 
-                card.className =
-                    "firebase-player-card";
+                playerBar.className =
+                    "firebase-player-bar";
 
 
-                card.href =
+                playerBar.href =
                     "player-profile.html?id=" +
                     encodeURIComponent(
                         playerDoc.id
                     );
 
 
-                // =====================================
-                // PHOTO
-                // =====================================
+                playerBar.innerHTML = `
 
-                let photoUrl =
-                    player.photoUrl ||
-                    "";
+                    <span>🏏</span>
 
-
-                /*
-                 * Vivek special photo
-                 *
-                 * Firestore photoUrl is currently
-                 * empty, so Vivek will use vivek.jpg
-                 */
-
-                if(
-                    player.fullName &&
-                    player.fullName
-                        .trim()
-                        .toLowerCase() ===
-                    "vivek"
-                ){
-
-                    photoUrl =
-                        "vivek.jpg";
-
-                }
-
-
-                // =====================================
-                // CARD HTML
-                // =====================================
-
-                card.innerHTML = `
-
-                    <div class="new-member-badge">
-
-                        🆕 NEW TEAM MEMBER
-
-                    </div>
-
-
-                    ${
-                        photoUrl
-                        ?
-                        `
-                        <img
-                            src="${escapeHtml(photoUrl)}"
-                            alt="${escapeHtml(
-                                player.fullName ||
-                                "Player"
-                            )}"
-                            class="firebase-player-photo"
-                        >
-                        `
-                        :
-                        `
-                        <div
-                            class="firebase-player-photo"
-                            style="
-                                display:flex;
-                                align-items:center;
-                                justify-content:center;
-                                color:#ff8800;
-                                font-size:40px;
-                            "
-                        >
-                            🏏
-                        </div>
-                        `
-                    }
-
-
-                    <div class="firebase-player-name">
-
-                        🏏
+                    <strong>
                         ${escapeHtml(
                             player.fullName ||
-                            "Player"
+                            "PLAYER"
                         )}
-
-                    </div>
-
-
-                    <div class="firebase-player-role">
-
-                        ${escapeHtml(
-                            player.playingRole ||
-                            "Player"
-                        )}
-
-                    </div>
-
-
-                    <div class="firebase-player-info">
-
-                        <strong>
-                            City:
-                        </strong>
-
-                        ${escapeHtml(
-                            player.city ||
-                            "-"
-                        )}
-
-                        <br>
-
-
-                        <strong>
-                            Batting:
-                        </strong>
-
-                        ${escapeHtml(
-                            player.battingStyle ||
-                            "-"
-                        )}
-
-                        <br>
-
-
-                        <strong>
-                            Bowling:
-                        </strong>
-
-                        ${escapeHtml(
-                            player.bowlingStyle ||
-                            "-"
-                        )}
-
-                        <br>
-
-
-                        <strong>
-                            Jersey:
-                        </strong>
-
-                        ${escapeHtml(
-                            player.jerseyNumber ||
-                            "-"
-                        )}
-
-                        <br>
-
-
-                        <strong>
-                            Experience:
-                        </strong>
-
-                        ${escapeHtml(
-                            player.experience ||
-                            "-"
-                        )}
-
-                    </div>
+                    </strong>
 
                 `;
 
 
                 container.appendChild(
-                    card
+                    playerBar
                 );
 
             }
         );
 
-
-        // =========================================
-        // MESSAGE
-        // =========================================
 
         if(
             approvedCount === 0
@@ -1005,45 +638,22 @@ async function loadApprovedPlayers(){
 }
 
 
-// =====================================================
-// ESCAPE HTML
-// =====================================================
-
 function escapeHtml(value){
 
     return String(value)
 
-        .replaceAll(
-            "&",
-            "&amp;"
-        )
+        .replaceAll("&","&amp;")
 
-        .replaceAll(
-            "<",
-            "&lt;"
-        )
+        .replaceAll("<","&lt;")
 
-        .replaceAll(
-            ">",
-            "&gt;"
-        )
+        .replaceAll(">","&gt;")
 
-        .replaceAll(
-            '"',
-            "&quot;"
-        )
+        .replaceAll('"',"&quot;")
 
-        .replaceAll(
-            "'",
-            "&#039;"
-        );
+        .replaceAll("'","&#039;");
 
 }
 
-
-// =====================================================
-// START
-// =====================================================
 
 loadApprovedPlayers();
 
