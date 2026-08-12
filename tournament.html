@@ -1,20 +1,36 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Tournament - CAWNPORE TIGERS XI</title><link rel="stylesheet" href="style.css"><style>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Tournament - CAWNPORE TIGERS XI</title>
+
+<link rel="stylesheet" href="style.css">
+
+
+<style>
 
 /* =========================================
    BASIC
 ========================================= */
 
 html,
-body{
+body {
 
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 
-    background:#111 !important;
-    color:#fff !important;
+    background: #111 !important;
+    color: #fff !important;
 
-    font-family:Arial,sans-serif;
+    font-family: Arial, sans-serif;
 
 }
 
@@ -23,13 +39,12 @@ body{
    MAIN CONTAINER
 ========================================= */
 
-.container{
+.container {
 
-    width:92%;
+    width: 92%;
+    max-width: 700px;
 
-    max-width:900px;
-
-    margin:30px auto;
+    margin: 30px auto;
 
 }
 
@@ -38,35 +53,34 @@ body{
    PAGE TITLE
 ========================================= */
 
-.page-title{
+.page-title {
 
-    text-align:center;
+    text-align: center;
 
-    color:#ff8800;
+    color: #ff8800;
 
-    margin-bottom:25px;
+    margin-bottom: 8px;
 
 }
 
 
 /* =========================================
    TOURNAMENT INFORMATION CARD
-   — UNCHANGED
 ========================================= */
 
-.tournament-card{
+.tournament-card {
 
-    position:relative;
+    position: relative;
 
-    background:#111;
+    background: #111;
 
-    border:3px solid #ff8800;
+    border: 2px solid #ff8800;
 
-    border-radius:12px;
+    border-radius: 12px;
 
-    padding:15px;
+    padding: 15px;
 
-    margin-bottom:30px;
+    margin-bottom: 30px;
 
 }
 
@@ -75,19 +89,19 @@ body{
    TOURNAMENT IMAGE
 ========================================= */
 
-.tournament-image{
+.tournament-image {
 
-    width:100%;
+    width: 100%;
 
-    max-height:260px;
+    max-height: 260px;
 
-    object-fit:contain;
+    object-fit: contain;
 
-    background:#000;
+    background: #000;
 
-    border-radius:10px;
+    border-radius: 10px;
 
-    margin-bottom:15px;
+    margin-bottom: 15px;
 
 }
 
@@ -96,15 +110,15 @@ body{
    TOURNAMENT NAME
 ========================================= */
 
-.tournament-name{
+.tournament-name {
 
-    font-size:27px;
+    font-size: 27px;
 
-    color:#ff9800;
+    color: #ff9800;
 
-    font-weight:bold;
+    font-weight: bold;
 
-    margin-bottom:8px;
+    margin-bottom: 8px;
 
 }
 
@@ -113,11 +127,11 @@ body{
    EVENT ID
 ========================================= */
 
-.tournament-id{
+.tournament-id {
 
-    color:#ccc;
+    color: #ccc;
 
-    font-size:13px;
+    font-size: 13px;
 
 }
 
@@ -126,37 +140,37 @@ body{
    STATUS
 ========================================= */
 
-.status{
+.status {
 
-    display:inline-block;
+    display: inline-block;
 
-    padding:7px 12px;
+    padding: 7px 12px;
 
-    border-radius:20px;
+    border-radius: 20px;
 
-    font-size:12px;
+    font-size: 12px;
 
-    font-weight:bold;
+    font-weight: bold;
 
-    margin-top:10px;
-
-}
-
-
-.active{
-
-    background:#063d18;
-
-    color:#00ff66;
+    margin-top: 10px;
 
 }
 
 
-.completed{
+.active {
 
-    background:#420808;
+    background: #063d18;
 
-    color:#ff4444;
+    color: #00ff66;
+
+}
+
+
+.completed {
+
+    background: #420808;
+
+    color: #ff4444;
 
 }
 
@@ -165,13 +179,13 @@ body{
    MATCHES TITLE
 ========================================= */
 
-.matches-title{
+.matches-title {
 
-    text-align:center;
+    text-align: center;
 
-    color:#ff8800;
+    color: #ff8800;
 
-    margin:30px 0 20px;
+    margin: 30px 0 20px;
 
 }
 
@@ -180,15 +194,15 @@ body{
    MATCH LIST
 ========================================= */
 
-#matchList{
+#matchList {
 
-    display:flex;
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    align-items:center;
+    width: 100%;
 
-    width:100%;
+    gap: 20px;
 
 }
 
@@ -197,61 +211,113 @@ body{
    MATCH CARD
 ========================================= */
 
-.match-bar{
+.match-card {
 
-    display:flex;
+    display: block;
 
-    align-items:center;
+    width: 100%;
 
-    justify-content:center;
+    box-sizing: border-box;
 
-    width:330px;
+    background: #000;
 
-    min-height:210px;
+    color: #fff;
 
-    box-sizing:border-box;
+    border: 2px solid #ff8800;
 
-    background:#111;
+    border-radius: 12px;
 
-    border:4px solid #ff8800;
+    padding: 20px;
 
-    border-radius:18px;
+    text-align: center;
 
-    padding:20px;
+    text-decoration: none;
 
-    margin:0 auto 20px;
+    box-shadow:
+        0 0 8px rgba(255,136,0,0.20);
 
-    text-decoration:none;
-
-    color:#fff;
-
-    text-align:center;
-
-    transition:0.2s ease;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
 
 }
 
 
 /* =========================================
-   MATCH CARD HOVER
+   HOVER
 ========================================= */
 
-.match-bar:hover{
+.match-card:hover {
 
-    background:#181818;
+    background: #080808;
 
-    transform:translateY(-3px);
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 15px rgba(255,136,0,0.45);
 
 }
 
 
 /* =========================================
-   MATCH CARD CLICK
+   CLICK
 ========================================= */
 
-.match-bar:active{
+.match-card:active {
 
-    transform:scale(0.98);
+    transform: scale(0.98);
+
+}
+
+
+/* =========================================
+   DATE
+========================================= */
+
+.match-date {
+
+    color: #ff8800;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    margin-bottom: 12px;
+
+}
+
+
+/* =========================================
+   TEAMS
+========================================= */
+
+.match-teams {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 6px;
+
+}
+
+
+/* =========================================
+   CAWNPORE TIGERS XI
+========================================= */
+
+.team-name {
+
+    color: #fff;
+
+    font-size: 20px;
+
+    font-weight: 900;
+
+    line-height: 1.25;
 
 }
 
@@ -260,38 +326,96 @@ body{
    VS
 ========================================= */
 
-.match-vs{
+.vs {
 
-    color:#ff8800;
+    color: #ff8800;
 
-    font-weight:bold;
+    font-size: 17px;
 
-    font-size:20px;
-
-    line-height:1.5;
+    font-weight: bold;
 
 }
 
 
 /* =========================================
-   OPPONENT TEAM
+   OPPONENT
 ========================================= */
 
-.match-opponent{
+.opponent-name {
 
-    display:block;
+    color: #fff;
 
-    color:#fff;
+    font-size: 20px;
 
-    font-weight:900;
+    font-weight: 900;
 
-    font-size:22px;
+    line-height: 1.25;
 
-    margin-top:8px;
+    overflow-wrap: anywhere;
 
-    line-height:1.25;
+}
 
-    word-break:break-word;
+
+/* =========================================
+   MATCH INFO
+========================================= */
+
+.match-info {
+
+    margin-top: 15px;
+
+    padding-top: 12px;
+
+    border-top: 1px solid #333;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 25px;
+
+    flex-wrap: wrap;
+
+}
+
+
+/* =========================================
+   INFO ITEM
+========================================= */
+
+.info-item {
+
+    color: #ccc;
+
+    font-size: 15px;
+
+}
+
+
+.info-label {
+
+    color: #ff8800;
+
+    font-weight: bold;
+
+}
+
+
+/* =========================================
+   RESULT
+========================================= */
+
+.match-result {
+
+    margin-top: 14px;
+
+    color: #00ff66;
+
+    font-size: 17px;
+
+    font-weight: 900;
+
+    line-height: 1.35;
 
 }
 
@@ -300,20 +424,20 @@ body{
    MESSAGE
 ========================================= */
 
-.message{
+.message {
 
-    text-align:center;
+    text-align: center;
 
-    color:#ccc;
+    color: #ccc;
 
-    margin:30px 0;
+    margin: 30px 0;
 
 }
 
 
-.error{
+.error {
 
-    color:#ff4444;
+    color: #ff4444;
 
 }
 
@@ -322,34 +446,34 @@ body{
    BACK BUTTON
 ========================================= */
 
-.back-btn{
+.back-btn {
 
-    display:block;
+    display: block;
 
-    text-align:center;
+    text-align: center;
 
-    background:#111;
+    background: #000;
 
-    color:#ff8800;
+    color: #ff8800;
 
-    border:3px solid #ff8800;
+    border: 2px solid #ff8800;
 
-    text-decoration:none;
+    text-decoration: none;
 
-    padding:12px;
+    padding: 12px;
 
-    border-radius:10px;
+    border-radius: 10px;
 
-    font-weight:bold;
+    font-weight: bold;
 
-    margin:30px 0;
+    margin: 30px 0;
 
 }
 
 
-.back-btn:hover{
+.back-btn:hover {
 
-    background:#181818;
+    background: #181818;
 
 }
 
@@ -358,76 +482,235 @@ body{
    MOBILE
 ========================================= */
 
-@media(max-width:600px){
+@media (max-width: 600px) {
 
-    .container{
+    .container {
 
-        width:92%;
+        width: 92%;
 
-    }
-
-
-    .match-bar{
-
-        width:min(330px, 88vw);
-
-        min-height:200px;
-
-        padding:16px;
-
-        margin-left:auto;
-
-        margin-right:auto;
+        margin: 25px auto;
 
     }
 
 
-    .match-vs{
+    .page-title {
 
-        font-size:18px;
+        font-size: 24px;
 
     }
 
 
-    .match-opponent{
+    .tournament-name {
 
-        font-size:20px;
+        font-size: 22px;
+
+    }
+
+
+    #matchList {
+
+        gap: 18px;
+
+    }
+
+
+    .match-card {
+
+        padding: 18px 14px;
+
+        border-radius: 11px;
+
+    }
+
+
+    .match-date {
+
+        font-size: 15px;
+
+    }
+
+
+    .team-name,
+    .opponent-name {
+
+        font-size: 18px;
+
+    }
+
+
+    .vs {
+
+        font-size: 16px;
+
+    }
+
+
+    .match-info {
+
+        gap: 15px;
+
+    }
+
+
+    .match-result {
+
+        font-size: 16px;
 
     }
 
 }
 
-</style></head><body><!-- =========================================
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+
+    .container {
+
+        width: 94%;
+
+    }
+
+
+    .match-card {
+
+        padding: 16px 12px;
+
+    }
+
+
+    .team-name,
+    .opponent-name {
+
+        font-size: 17px;
+
+    }
+
+
+    .match-result {
+
+        font-size: 15px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
      HEADER
-========================================= --><header><h1 class="page-title">
-🏆 TOURNAMENT
-</h1><p style="text-align:center;">
-CAWNPORE TIGERS XI
-</p></header><main class="container"><!-- =========================================
+========================================= -->
+
+<header>
+
+    <h1 class="page-title">
+
+        🏆 TOURNAMENT
+
+    </h1>
+
+
+    <p style="text-align:center;">
+
+        CAWNPORE TIGERS XI
+
+    </p>
+
+</header>
+
+
+
+<main class="container">
+
+
+<!-- =========================================
      TOURNAMENT INFORMATION
-========================================= --><div id="tournamentInfo"><p class="message">
-⏳ Loading Tournament...
-</p></div><!-- =========================================
-     MATCH TITLE
-========================================= --><h2 class="matches-title">
-🏏 TOURNAMENT MATCHES
-</h2><!-- =========================================
+========================================= -->
+
+<div id="tournamentInfo">
+
+    <p class="message">
+
+        ⏳ Loading Tournament...
+
+    </p>
+
+</div>
+
+
+
+<!-- =========================================
+     MATCHES TITLE
+========================================= -->
+
+<h2 class="matches-title">
+
+    🏏 TOURNAMENT MATCHES
+
+</h2>
+
+
+
+<!-- =========================================
      MATCH LIST
-========================================= --><div id="matchList"><p class="message">
-⏳ Loading Matches...
-</p></div><!-- =========================================
+========================================= -->
+
+<div id="matchList">
+
+    <p class="message">
+
+        ⏳ Loading Matches...
+
+    </p>
+
+</div>
+
+
+
+<!-- =========================================
      BACK BUTTON
-========================================= --><a
-href="tournament-matches.html"
-class="back-btn"
+========================================= -->
 
-«»
+<a
+    href="tournament-matches.html"
+    class="back-btn"
+>
 
-⬅ BACK TO TOURNAMENTS
+    ⬅ BACK TO TOURNAMENTS
 
-</a></main><footer style="text-align:center;margin:40px 0;">© 2026 CAWNPORE TIGERS XI
+</a>
 
-</footer><script type="module">
+
+</main>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer
+    style="
+        text-align:center;
+        margin:40px 0;
+    "
+>
+
+    © 2026 CAWNPORE TIGERS XI
+
+</footer>
+
+
+
+<script type="module">
 
 
 /* =========================================
@@ -461,6 +744,10 @@ params.get("eventId");
 
 
 
+/* =========================================
+   ELEMENTS
+========================================= */
+
 const tournamentInfo =
 document.getElementById(
     "tournamentInfo"
@@ -478,26 +765,33 @@ document.getElementById(
    LOAD TOURNAMENT
 ========================================= */
 
-async function loadTournament(){
+async function loadTournament() {
 
-    try{
+    try {
+
 
         const snapshot =
-        await getDocs(
-            collection(db,"events")
-        );
+            await getDocs(
+                collection(
+                    db,
+                    "events"
+                )
+            );
 
 
         let tournament = null;
 
 
-        snapshot.forEach((doc)=>{
+
+        snapshot.forEach((doc) => {
+
 
             const event =
-            doc.data();
+                doc.data();
 
 
-            if(
+
+            if (
 
                 event.eventId === eventId
 
@@ -515,7 +809,7 @@ async function loadTournament(){
 
                 )
 
-            ){
+            ) {
 
                 tournament = event;
 
@@ -525,7 +819,11 @@ async function loadTournament(){
 
 
 
-        if(!tournament){
+        /* =================================
+           TOURNAMENT NOT FOUND
+        ================================= */
+
+        if (!tournament) {
 
             tournamentInfo.innerHTML = `
 
@@ -543,26 +841,43 @@ async function loadTournament(){
 
 
 
-        /* =====================================
+        /* =================================
            STATUS
-        ===================================== */
+        ================================= */
 
         const statusClass =
-        tournament.status === "Completed"
-        ? "completed"
-        : "active";
+
+            tournament.status ===
+            "Completed"
+
+            ?
+
+            "completed"
+
+            :
+
+            "active";
+
 
 
         const statusText =
-        tournament.status === "Completed"
-        ? "🔴 COMPLETED"
-        : "🟢 GOING ON";
+
+            tournament.status ===
+            "Completed"
+
+            ?
+
+            "🔴 COMPLETED"
+
+            :
+
+            "🟢 GOING ON";
 
 
 
-        /* =====================================
-           TOURNAMENT IMAGE
-        ===================================== */
+        /* =================================
+           IMAGE
+        ================================= */
 
         const imageURL =
 
@@ -581,6 +896,10 @@ async function loadTournament(){
             "";
 
 
+
+        /* =================================
+           TOURNAMENT CARD
+        ================================= */
 
         tournamentInfo.innerHTML = `
 
@@ -648,10 +967,11 @@ async function loadTournament(){
 
         `;
 
-
     }
 
-    catch(error){
+
+    catch (error) {
+
 
         console.error(
             "Tournament Error:",
@@ -683,37 +1003,43 @@ async function loadTournament(){
    LOAD TOURNAMENT MATCHES
 ========================================= */
 
-async function loadTournamentMatches(){
+async function loadTournamentMatches() {
 
-    try{
+    try {
+
 
         const snapshot =
-        await getDocs(
-            collection(db,"matches")
-        );
+            await getDocs(
+                collection(
+                    db,
+                    "matches"
+                )
+            );
 
 
         matchList.innerHTML = "";
 
 
-        let found = false;
+
+        let matches = [];
 
 
 
-        snapshot.forEach((doc)=>{
+        /* =================================
+           GET THIS TOURNAMENT MATCHES
+        ================================= */
+
+        snapshot.forEach((doc) => {
+
 
             const match =
-            doc.data();
+                doc.data();
 
 
 
-            /* =================================
-               ONLY THIS TOURNAMENT MATCHES
-            ================================= */
-
-            if(
+            if (
                 match.eventId !== eventId
-            ){
+            ) {
 
                 return;
 
@@ -721,60 +1047,42 @@ async function loadTournamentMatches(){
 
 
 
-            found = true;
+            matches.push({
+
+                ...match,
+
+                firestoreId: doc.id
+
+            });
+
+        });
 
 
 
-            /* =================================
-               CREATE MATCH CARD
-            ================================= */
+        /* =================================
+           SORT NEWEST FIRST
+        ================================= */
 
-            const bar =
-            document.createElement("a");
-
-
-            bar.className =
-            "match-bar";
+        matches.sort((a, b) => {
 
 
-
-            /* =================================
-               OPEN MATCH SUMMARY
-            ================================= */
-
-            bar.href =
-            "match-summary.html?id=" +
-            encodeURIComponent(doc.id);
+            const dateA =
+                new Date(
+                    a.matchDate ||
+                    a.date ||
+                    "1970-01-01"
+                );
 
 
-
-            /* =================================
-               CARD CONTENT
-            ================================= */
-
-            bar.innerHTML = `
-
-                <span class="match-vs">
-
-                    🏏 VS
-
-                    <span class="match-opponent">
-
-                        ${
-                            match.opponent
-                            ||
-                            "Opponent Team"
-                        }
-
-                    </span>
-
-                </span>
-
-            `;
+            const dateB =
+                new Date(
+                    b.matchDate ||
+                    b.date ||
+                    "1970-01-01"
+                );
 
 
-
-            matchList.appendChild(bar);
+            return dateB - dateA;
 
         });
 
@@ -784,7 +1092,9 @@ async function loadTournamentMatches(){
            NO MATCHES
         ================================= */
 
-        if(!found){
+        if (
+            matches.length === 0
+        ) {
 
             matchList.innerHTML = `
 
@@ -797,11 +1107,195 @@ async function loadTournamentMatches(){
 
             `;
 
+            return;
+
         }
+
+
+
+        /* =================================
+           CREATE MATCH CARDS
+        ================================= */
+
+        matches.forEach((match) => {
+
+
+            const card =
+                document.createElement("a");
+
+
+
+            card.className =
+                "match-card";
+
+
+
+            /* =================================
+               OPEN MATCH SUMMARY
+            ================================= */
+
+            card.href =
+                "match-summary.html?id=" +
+                encodeURIComponent(
+                    match.matchId ||
+                    match.firestoreId
+                );
+
+
+
+            /* =================================
+               DATE
+            ================================= */
+
+            let displayDate =
+                match.matchDate ||
+                match.date ||
+                "";
+
+
+
+            if (displayDate) {
+
+
+                const dateObj =
+                    new Date(
+                        displayDate
+                    );
+
+
+                if (
+                    !isNaN(
+                        dateObj.getTime()
+                    )
+                ) {
+
+                    displayDate =
+                        dateObj.toLocaleDateString(
+                            "en-GB",
+                            {
+                                day: "2-digit",
+                                month: "short",
+                                year: "numeric"
+                            }
+                        );
+
+                }
+
+            }
+
+
+
+            /* =================================
+               OPPONENT
+            ================================= */
+
+            const opponent =
+                match.opponent ||
+                "Opponent Team";
+
+
+
+            /* =================================
+               OVERS
+            ================================= */
+
+            const overs =
+                match.overs ||
+                match.totalOvers ||
+                "—";
+
+
+
+            /* =================================
+               RESULT
+            ================================= */
+
+            const result =
+                match.result ||
+                "Result Not Available";
+
+
+
+            /* =================================
+               CARD CONTENT
+            ================================= */
+
+            card.innerHTML = `
+
+                <div class="match-date">
+
+                    📅 ${displayDate}
+
+                </div>
+
+
+                <div class="match-teams">
+
+
+                    <div class="team-name">
+
+                        CAWNPORE TIGERS XI
+
+                    </div>
+
+
+                    <div class="vs">
+
+                        VS
+
+                    </div>
+
+
+                    <div class="opponent-name">
+
+                        ${opponent}
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="match-info">
+
+
+                    <div class="info-item">
+
+                        <span class="info-label">
+
+                            OVERS:
+
+                        </span>
+
+                        ${overs}
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="match-result">
+
+                    ${result}
+
+                </div>
+
+            `;
+
+
+
+            matchList.appendChild(
+                card
+            );
+
+        });
 
     }
 
-    catch(error){
+
+    catch (error) {
+
 
         console.error(
             "Match Loading Error:",
@@ -833,7 +1327,7 @@ async function loadTournamentMatches(){
    START
 ========================================= */
 
-if(eventId){
+if (eventId) {
 
     loadTournament();
 
@@ -841,7 +1335,8 @@ if(eventId){
 
 }
 
-else{
+else {
+
 
     tournamentInfo.innerHTML = `
 
@@ -858,5 +1353,9 @@ else{
 
 }
 
+</script>
 
-</script></body></html>
+
+</body>
+
+</html>
