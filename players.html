@@ -33,105 +33,18 @@
 
     font-size:24px;
 
+    font-weight:800;
+
 }
 
 
 #approvedPlayers{
 
-    width:100%;
+    width:92%;
 
-    max-width:700px;
+    max-width:900px;
 
-    margin:0 auto;
-
-}
-
-
-.firebase-player-card{
-
-    display:block;
-
-    width:100%;
-
-    box-sizing:border-box;
-
-    text-decoration:none;
-
-    background:#080808;
-
-    border:2px solid #ff8800;
-
-    border-radius:12px;
-
-    padding:16px;
-
-    margin:14px 0;
-
-    color:#fff;
-
-    transition:0.3s ease;
-
-}
-
-
-.firebase-player-card:hover{
-
-    background:#ff8800;
-
-    color:#000;
-
-    transform:translateY(-2px);
-
-}
-
-
-.firebase-player-name{
-
-    font-size:21px;
-
-    font-weight:800;
-
-    margin-bottom:8px;
-
-}
-
-
-.firebase-player-role{
-
-    font-size:15px;
-
-    color:#ff8800;
-
-    font-weight:700;
-
-    margin-bottom:6px;
-
-}
-
-
-.firebase-player-card:hover
-.firebase-player-role{
-
-    color:#000;
-
-}
-
-
-.firebase-player-info{
-
-    font-size:14px;
-
-    line-height:1.6;
-
-    color:#ddd;
-
-}
-
-
-.firebase-player-card:hover
-.firebase-player-info{
-
-    color:#000;
+    margin:0 auto 35px;
 
 }
 
@@ -144,7 +57,169 @@
 
     font-size:14px;
 
-    margin:15px 0;
+    margin:15px 0 22px;
+
+}
+
+
+/* =====================================================
+   APPROVED PLAYER CARD
+===================================================== */
+
+.firebase-player-card{
+
+    display:block;
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    text-decoration:none;
+
+    background:#111;
+
+    border:2px solid #ff8800;
+
+    border-radius:14px;
+
+    padding:20px;
+
+    margin:18px 0;
+
+    color:#fff;
+
+    text-align:center;
+
+    transition:0.3s ease;
+
+    box-shadow:
+        0 0 10px
+        rgba(255,136,0,0.20);
+
+}
+
+
+.firebase-player-card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 0 18px
+        rgba(255,136,0,0.50);
+
+}
+
+
+/* =====================================================
+   PLAYER PHOTO
+===================================================== */
+
+.firebase-player-photo{
+
+    width:125px;
+
+    height:125px;
+
+    object-fit:cover;
+
+    border-radius:18px;
+
+    border:3px solid #ff8800;
+
+    display:block;
+
+    margin:0 auto 14px;
+
+    background:#050505;
+
+    box-shadow:
+        0 0 12px
+        rgba(255,136,0,0.40);
+
+}
+
+
+/* =====================================================
+   PLAYER NAME
+===================================================== */
+
+.firebase-player-name{
+
+    font-size:23px;
+
+    font-weight:800;
+
+    color:#fff;
+
+    margin-bottom:8px;
+
+    text-transform:uppercase;
+
+}
+
+
+/* =====================================================
+   ROLE
+===================================================== */
+
+.firebase-player-role{
+
+    display:inline-block;
+
+    background:#ff8800;
+
+    color:#000;
+
+    font-size:14px;
+
+    font-weight:800;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    margin-bottom:12px;
+
+}
+
+
+/* =====================================================
+   PLAYER INFO
+===================================================== */
+
+.firebase-player-info{
+
+    color:#ddd;
+
+    font-size:14px;
+
+    line-height:1.8;
+
+}
+
+
+.firebase-player-info strong{
+
+    color:#ff8800;
+
+}
+
+
+/* =====================================================
+   NEW MEMBER BADGE
+===================================================== */
+
+.new-member-badge{
+
+    color:#ff8800;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    margin-bottom:8px;
 
 }
 
@@ -155,11 +230,35 @@
 
 @media(max-width:600px){
 
-    .firebase-player-name{
+    #approvedPlayers{
 
-        font-size:19px;
+        width:94%;
 
     }
+
+
+    .firebase-player-card{
+
+        padding:18px;
+
+    }
+
+
+    .firebase-player-photo{
+
+        width:115px;
+
+        height:115px;
+
+    }
+
+
+    .firebase-player-name{
+
+        font-size:21px;
+
+    }
+
 
     .firebase-player-info{
 
@@ -221,7 +320,6 @@
     id="sideMenu"
 >
 
-
     <div class="side-menu-header">
 
         <div class="side-brand">
@@ -257,6 +355,7 @@
 
     <nav class="side-nav">
 
+
         <a href="index.html">
 
             <span class="menu-icon">
@@ -268,6 +367,7 @@
             </span>
 
         </a>
+
 
 
         <a href="about.html">
@@ -283,6 +383,7 @@
         </a>
 
 
+
         <a href="players.html">
 
             <span class="menu-icon">
@@ -294,6 +395,7 @@
             </span>
 
         </a>
+
 
 
         <a href="player-registration.html">
@@ -309,6 +411,7 @@
         </a>
 
 
+
         <a href="team-matches.html">
 
             <span class="menu-icon">
@@ -320,6 +423,7 @@
             </span>
 
         </a>
+
 
 
         <a href="gallery.html">
@@ -335,6 +439,7 @@
         </a>
 
 
+
         <a href="jersey-launch.html">
 
             <span class="menu-icon">
@@ -348,6 +453,7 @@
         </a>
 
 
+
         <a href="team-stats.html">
 
             <span class="menu-icon">
@@ -359,6 +465,7 @@
             </span>
 
         </a>
+
 
     </nav>
 
@@ -380,7 +487,9 @@
 
 
 
-<!-- MENU OVERLAY -->
+<!-- =================================
+     MENU OVERLAY
+================================= -->
 
 <div
     class="menu-overlay"
@@ -544,7 +653,7 @@
 
 
     <!-- =================================
-         FIREBASE APPROVED PLAYERS
+         NEW TEAM MEMBERS
     ================================= -->
 
     <h2 class="firebase-players-title">
@@ -591,7 +700,7 @@
 
 
 <!-- =================================
-     FIREBASE PLAYERS SCRIPT
+     FIREBASE APPROVED PLAYERS
 ================================= -->
 
 <script type="module">
@@ -599,8 +708,10 @@
 import { db } from "./firebase.js";
 
 import {
+
     collection,
     getDocs
+
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
@@ -626,10 +737,12 @@ async function loadApprovedPlayers(){
 
         const snapshot =
             await getDocs(
+
                 collection(
                     db,
                     "playerRegistrations"
                 )
+
             );
 
 
@@ -661,12 +774,9 @@ async function loadApprovedPlayers(){
                 approvedCount++;
 
 
-                /*
-                 * IMPORTANT
-                 *
-                 * Firestore document ID is
-                 * passed to player-profile.html
-                 */
+                // =====================================
+                // PLAYER PROFILE LINK
+                // =====================================
 
                 const card =
                     document.createElement(
@@ -685,7 +795,79 @@ async function loadApprovedPlayers(){
                     );
 
 
+                // =====================================
+                // PHOTO
+                // =====================================
+
+                let photoUrl =
+                    player.photoUrl ||
+                    "";
+
+
+                /*
+                 * Vivek special photo
+                 *
+                 * Firestore photoUrl is currently
+                 * empty, so Vivek will use vivek.jpg
+                 */
+
+                if(
+                    player.fullName &&
+                    player.fullName
+                        .trim()
+                        .toLowerCase() ===
+                    "vivek"
+                ){
+
+                    photoUrl =
+                        "vivek.jpg";
+
+                }
+
+
+                // =====================================
+                // CARD HTML
+                // =====================================
+
                 card.innerHTML = `
+
+                    <div class="new-member-badge">
+
+                        🆕 NEW TEAM MEMBER
+
+                    </div>
+
+
+                    ${
+                        photoUrl
+                        ?
+                        `
+                        <img
+                            src="${escapeHtml(photoUrl)}"
+                            alt="${escapeHtml(
+                                player.fullName ||
+                                "Player"
+                            )}"
+                            class="firebase-player-photo"
+                        >
+                        `
+                        :
+                        `
+                        <div
+                            class="firebase-player-photo"
+                            style="
+                                display:flex;
+                                align-items:center;
+                                justify-content:center;
+                                color:#ff8800;
+                                font-size:40px;
+                            "
+                        >
+                            🏏
+                        </div>
+                        `
+                    }
+
 
                     <div class="firebase-player-name">
 
@@ -780,6 +962,10 @@ async function loadApprovedPlayers(){
         );
 
 
+        // =========================================
+        // MESSAGE
+        // =========================================
+
         if(
             approvedCount === 0
         ){
@@ -820,7 +1006,7 @@ async function loadApprovedPlayers(){
 
 
 // =====================================================
-// SAFE HTML
+// ESCAPE HTML
 // =====================================================
 
 function escapeHtml(value){
