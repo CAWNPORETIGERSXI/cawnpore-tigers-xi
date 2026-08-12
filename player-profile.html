@@ -17,43 +17,33 @@
     href="style.css"
 >
 
+
 <style>
-
-/* =========================================
-   PLAYER PROFILE
-========================================= */
-
-body{
-    background:#000;
-}
-
 
 /* =========================================
    PROFILE CARD
 ========================================= */
 
-.profile-card{
+.profile-card {
 
-    width:92%;
-    max-width:520px;
+    max-width:520px !important;
 
-    margin:40px auto;
+    margin:40px auto !important;
 
-    padding:28px;
+    padding:28px !important;
 
-    box-sizing:border-box;
+    background:#111 !important;
 
-    background:#111;
+    border:3px solid #ff8800 !important;
 
-    border:3px solid #ff8800;
-
-    border-radius:22px;
+    border-radius:22px !important;
 
     text-align:center;
 
     box-shadow:
         0 0 18px rgba(255,136,0,.45),
         0 0 35px rgba(255,136,0,.15);
+
 }
 
 
@@ -61,9 +51,10 @@ body{
    PLAYER PHOTO
 ========================================= */
 
-.player-photo{
+.player-photo {
 
     width:250px;
+
     height:250px;
 
     object-fit:cover;
@@ -76,18 +67,17 @@ body{
 
     display:block;
 
-    background:#000;
-
     box-shadow:
-        0 0 15px rgba(255,136,0,.6);
+        0 0 12px rgba(255,136,0,.6);
+
 }
 
 
 /* =========================================
-   PLAYER NAME
+   NAME
 ========================================= */
 
-.profile-card h1{
+.profile-card h1 {
 
     margin:5px 0 12px;
 
@@ -96,14 +86,15 @@ body{
     font-size:38px;
 
     font-weight:900;
+
 }
 
 
 /* =========================================
-   ROLE BADGE
+   ROLE
 ========================================= */
 
-.badge{
+.badge {
 
     display:inline-block;
 
@@ -121,16 +112,14 @@ body{
 
     margin:5px 0 10px;
 
-    box-shadow:
-        0 0 12px rgba(255,136,0,.6);
 }
 
 
 /* =========================================
-   TEAM NAME
+   TEAM
 ========================================= */
 
-.profile-card h3{
+.profile-card h3 {
 
     color:#ff8800;
 
@@ -138,15 +127,14 @@ body{
 
     margin:10px 0 18px;
 
-    font-weight:900;
 }
 
 
 /* =========================================
-   DESCRIPTION
+   BIO
 ========================================= */
 
-.player-description{
+.player-description {
 
     color:#fff;
 
@@ -157,28 +145,26 @@ body{
     margin:0 auto 25px;
 
     max-width:460px;
+
 }
 
 
 /* =========================================
-   PLAYER INFORMATION TITLE
+   PLAYER INFORMATION
 ========================================= */
 
-.player-nav h2{
+.player-nav h2 {
 
     color:#fff;
 
     font-size:26px;
 
     margin:10px 0 20px;
+
 }
 
 
-/* =========================================
-   INFORMATION BOXES
-========================================= */
-
-.stats{
+.stats {
 
     display:flex;
 
@@ -187,14 +173,11 @@ body{
     gap:12px;
 
     width:100%;
+
 }
 
 
-/* =========================================
-   INFORMATION BOX
-========================================= */
-
-.stat-card{
+.stat-card {
 
     width:100%;
 
@@ -220,10 +203,11 @@ body{
 
     box-shadow:
         0 0 8px rgba(255,136,0,.35);
+
 }
 
 
-.stat-card h4{
+.stat-card h4 {
 
     margin:0 0 5px;
 
@@ -233,17 +217,17 @@ body{
 
     font-weight:900;
 
-    word-break:break-word;
 }
 
 
-.stat-card p{
+.stat-card p {
 
     margin:0;
 
     color:#fff;
 
     font-size:13px;
+
 }
 
 
@@ -251,7 +235,7 @@ body{
    NAVIGATION
 ========================================= */
 
-.player-navigation{
+.player-navigation {
 
     width:100%;
 
@@ -264,10 +248,11 @@ body{
     gap:8px;
 
     margin-top:22px;
+
 }
 
 
-.player-navigation .btn{
+.player-navigation .btn {
 
     flex:1;
 
@@ -283,8 +268,6 @@ body{
 
     justify-content:center;
 
-    box-sizing:border-box;
-
     background:#000;
 
     color:#fff;
@@ -299,29 +282,10 @@ body{
 
     font-weight:900;
 
-    white-space:nowrap;
-
-    box-shadow:
-        0 0 8px rgba(255,136,0,.3);
 }
 
 
-.player-navigation .btn:hover{
-
-    background:#111;
-
-    color:#fff;
-
-    box-shadow:
-        0 0 15px rgba(255,136,0,.65);
-}
-
-
-/* =========================================
-   LOADING
-========================================= */
-
-#loadingMessage{
+#loadingMessage {
 
     text-align:center;
 
@@ -329,15 +293,12 @@ body{
 
     font-size:16px;
 
-    margin:60px 20px;
+    margin:40px 0;
+
 }
 
 
-/* =========================================
-   ERROR
-========================================= */
-
-#errorMessage{
+#errorMessage {
 
     display:none;
 
@@ -347,7 +308,8 @@ body{
 
     font-size:16px;
 
-    margin:60px 20px;
+    margin:40px 0;
+
 }
 
 
@@ -355,15 +317,13 @@ body{
    FOOTER
 ========================================= */
 
-footer{
+footer {
 
     width:100%;
 
     padding:20px;
 
     margin-top:30px;
-
-    box-sizing:border-box;
 
     background:#000;
 
@@ -374,6 +334,7 @@ footer{
     text-align:center;
 
     font-size:13px;
+
 }
 
 
@@ -381,19 +342,20 @@ footer{
    MOBILE
 ========================================= */
 
-@media(max-width:600px){
+@media(max-width:600px) {
 
-    .profile-card{
+    .profile-card {
 
         width:calc(100% - 28px);
 
-        margin:25px auto;
+        margin:25px auto !important;
 
-        padding:18px;
+        padding:18px !important;
+
     }
 
 
-    .player-photo{
+    .player-photo {
 
         width:180px;
 
@@ -402,90 +364,67 @@ footer{
         border-width:4px;
 
         border-radius:20px;
+
     }
 
 
-    .profile-card h1{
+    .profile-card h1 {
 
         font-size:30px;
+
     }
 
 
-    .profile-card h3{
+    .profile-card h3 {
 
         font-size:17px;
+
     }
 
 
-    .badge{
-
-        font-size:14px;
-
-        padding:8px 17px;
-    }
-
-
-    .player-description{
+    .player-description {
 
         font-size:14px;
 
         line-height:1.55;
+
     }
 
 
-    .player-nav h2{
+    .player-nav h2 {
 
         font-size:23px;
+
     }
 
 
-    .stat-card{
+    .stat-card {
 
         min-height:70px;
+
     }
 
 
-    .stat-card h4{
+    .stat-card h4 {
 
         font-size:16px;
+
     }
 
 
-    .stat-card p{
+    .stat-card p {
 
         font-size:12px;
+
     }
 
 
-    .player-navigation{
-
-        gap:6px;
-    }
-
-
-    .player-navigation .btn{
+    .player-navigation .btn {
 
         min-height:46px;
 
-        padding:7px 4px;
-
         font-size:11px;
-    }
 
-}
-
-
-/* =========================================
-   VERY SMALL MOBILE
-========================================= */
-
-@media(max-width:370px){
-
-    .player-navigation .btn{
-
-        font-size:10px;
-
-        padding:6px 3px;
     }
 
 }
@@ -521,7 +460,7 @@ footer{
 
 
 <!-- =========================================
-     PLAYER PROFILE
+     PROFILE
 ========================================= -->
 
 <section
@@ -531,9 +470,7 @@ footer{
 >
 
 
-    <!-- =====================================
-         PLAYER PHOTO
-    ====================================== -->
+    <!-- PHOTO -->
 
     <img
         id="playerPhoto"
@@ -543,9 +480,7 @@ footer{
     >
 
 
-    <!-- =====================================
-         PLAYER NAME
-    ====================================== -->
+    <!-- NAME -->
 
     <h1 id="playerName">
 
@@ -554,9 +489,7 @@ footer{
     </h1>
 
 
-    <!-- =====================================
-         PLAYER ROLE
-    ====================================== -->
+    <!-- ROLE -->
 
     <span
         id="playerRole"
@@ -568,9 +501,7 @@ footer{
     </span>
 
 
-    <!-- =====================================
-         TEAM
-    ====================================== -->
+    <!-- TEAM -->
 
     <h3>
 
@@ -579,22 +510,18 @@ footer{
     </h3>
 
 
-    <!-- =====================================
-         PLAYER DESCRIPTION
-    ====================================== -->
+    <!-- BIO -->
 
     <p
         id="playerDescription"
         class="player-description"
     >
 
-        A proud member of CAWNPORE TIGERS XI.
-
     </p>
 
 
     <!-- =====================================
-         PLAYER INFORMATION
+         ONLY FOUR INFORMATION BOXES
     ====================================== -->
 
     <section class="player-nav">
@@ -615,9 +542,7 @@ footer{
             <div class="stat-card">
 
                 <h4 id="jerseyValue">
-
                     🏷️ -
-
                 </h4>
 
                 <p>
@@ -632,9 +557,7 @@ footer{
             <div class="stat-card">
 
                 <h4 id="roleValue">
-
                     👑 -
-
                 </h4>
 
                 <p>
@@ -649,9 +572,7 @@ footer{
             <div class="stat-card">
 
                 <h4 id="battingValue">
-
                     🏏 -
-
                 </h4>
 
                 <p>
@@ -666,9 +587,7 @@ footer{
             <div class="stat-card">
 
                 <h4 id="bowlingValue">
-
                     🎳 -
-
                 </h4>
 
                 <p>
@@ -678,46 +597,10 @@ footer{
             </div>
 
 
-            <!-- CITY -->
-
-            <div class="stat-card">
-
-                <h4 id="cityValue">
-
-                    📍 -
-
-                </h4>
-
-                <p>
-                    City
-                </p>
-
-            </div>
-
-
-            <!-- EXPERIENCE -->
-
-            <div class="stat-card">
-
-                <h4 id="experienceValue">
-
-                    ⭐ -
-
-                </h4>
-
-                <p>
-                    Experience
-                </p>
-
-            </div>
-
-
         </div>
 
 
-        <!-- =================================
-             NAVIGATION
-        ================================== -->
+        <!-- NAVIGATION -->
 
         <div class="player-navigation">
 
@@ -727,7 +610,7 @@ footer{
                 class="btn"
             >
 
-                ⬅ PLAYERS
+                ⬅ Players
 
             </a>
 
@@ -737,7 +620,7 @@ footer{
                 class="btn"
             >
 
-                🏠 HOME
+                🏠 Home
 
             </a>
 
@@ -773,12 +656,13 @@ import { db } from "./firebase.js";
 import {
     doc,
     getDoc
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-// =====================================================
-// GET PLAYER ID
-// =====================================================
+/* =========================================
+   GET PLAYER ID
+========================================= */
 
 const params =
     new URLSearchParams(
@@ -790,9 +674,9 @@ const playerId =
     params.get("id");
 
 
-// =====================================================
-// ELEMENTS
-// =====================================================
+/* =========================================
+   ELEMENTS
+========================================= */
 
 const loadingMessage =
     document.getElementById(
@@ -812,16 +696,11 @@ const profileCard =
     );
 
 
-// =====================================================
-// LOAD PLAYER PROFILE
-// =====================================================
+/* =========================================
+   LOAD PLAYER
+========================================= */
 
 async function loadPlayerProfile(){
-
-
-    // -----------------------------------------------
-    // CHECK PLAYER ID
-    // -----------------------------------------------
 
     if(!playerId){
 
@@ -833,11 +712,6 @@ async function loadPlayerProfile(){
 
 
     try{
-
-
-        // -------------------------------------------
-        // FIRESTORE DOCUMENT
-        // -------------------------------------------
 
         const playerRef =
             doc(
@@ -852,10 +726,6 @@ async function loadPlayerProfile(){
                 playerRef
             );
 
-
-        // -------------------------------------------
-        // PLAYER NOT FOUND
-        // -------------------------------------------
 
         if(
             !playerSnapshot.exists()
@@ -872,9 +742,7 @@ async function loadPlayerProfile(){
             playerSnapshot.data();
 
 
-        // -------------------------------------------
-        // ONLY APPROVED PLAYERS
-        // -------------------------------------------
+        /* ONLY APPROVED */
 
         if(
             player.status !==
@@ -888,9 +756,9 @@ async function loadPlayerProfile(){
         }
 
 
-        // =========================================
-        // TITLE
-        // =========================================
+        /* =====================================
+           NAME
+        ===================================== */
 
         const playerName =
             player.fullName ||
@@ -902,10 +770,6 @@ async function loadPlayerProfile(){
             " | CAWNPORE TIGERS XI";
 
 
-        // =========================================
-        // NAME
-        // =========================================
-
         document.getElementById(
             "playerName"
         ).innerText =
@@ -913,34 +777,31 @@ async function loadPlayerProfile(){
             playerName;
 
 
-        // =========================================
-        // ROLE
-        // =========================================
+        /* =====================================
+           ROLE
+        ===================================== */
 
         document.getElementById(
             "playerRole"
         ).innerText =
             player.playingRole ||
-            "PLAYER";
+            "Player";
 
 
-        // =========================================
-        // DESCRIPTION
-        // =========================================
+        /* =====================================
+           BIO
+        ===================================== */
 
         document.getElementById(
             "playerDescription"
         ).innerText =
             player.profile ||
-            (
-                playerName +
-                " is a proud member of CAWNPORE TIGERS XI."
-            );
+            "A proud member of CAWNPORE TIGERS XI.";
 
 
-        // =========================================
-        // JERSEY
-        // =========================================
+        /* =====================================
+           FOUR INFORMATION BOXES ONLY
+        ===================================== */
 
         document.getElementById(
             "jerseyValue"
@@ -952,10 +813,6 @@ async function loadPlayerProfile(){
             );
 
 
-        // =========================================
-        // ROLE
-        // =========================================
-
         document.getElementById(
             "roleValue"
         ).innerText =
@@ -965,10 +822,6 @@ async function loadPlayerProfile(){
                 "-"
             );
 
-
-        // =========================================
-        // BATTING
-        // =========================================
 
         document.getElementById(
             "battingValue"
@@ -980,10 +833,6 @@ async function loadPlayerProfile(){
             );
 
 
-        // =========================================
-        // BOWLING
-        // =========================================
-
         document.getElementById(
             "bowlingValue"
         ).innerText =
@@ -994,37 +843,12 @@ async function loadPlayerProfile(){
             );
 
 
-        // =========================================
-        // CITY
-        // =========================================
-
-        document.getElementById(
-            "cityValue"
-        ).innerText =
-            "📍 " +
-            (
-                player.city ||
-                "-"
-            );
-
-
-        // =========================================
-        // EXPERIENCE
-        // =========================================
-
-        document.getElementById(
-            "experienceValue"
-        ).innerText =
-            "⭐ " +
-            (
-                player.experience ||
-                "-"
-            );
-
-
-        // =========================================
-        // PLAYER PHOTO
-        // =========================================
+        /* =====================================
+           VIVEK PHOTO
+           
+           IMPORTANT:
+           Vivek will ALWAYS use vivek.jpg
+        ===================================== */
 
         const photo =
             document.getElementById(
@@ -1032,15 +856,17 @@ async function loadPlayerProfile(){
             );
 
 
-        /*
-         * फिलहाल approved player के लिए
-         * vivek.jpg इस्तेमाल होगा।
-         *
-         * बाद में अगर Firebase में photoUrl
-         * save होगा तो वही photo दिखाई जाएगी।
-         */
-
         if(
+            playerName.trim().toLowerCase()
+            ===
+            "vivek"
+        ){
+
+            photo.src =
+                "vivek.jpg";
+
+        }
+        else if(
             player.photoUrl &&
             player.photoUrl.trim() !== ""
         ){
@@ -1052,7 +878,7 @@ async function loadPlayerProfile(){
         else{
 
             photo.src =
-                "vivek.jpg";
+                "logo.png";
 
         }
 
@@ -1061,21 +887,16 @@ async function loadPlayerProfile(){
             playerName;
 
 
-        // =========================================
-        // SHOW PROFILE
-        // =========================================
+        /* =====================================
+           SHOW PROFILE
+        ===================================== */
 
         loadingMessage.style.display =
             "none";
 
 
-        errorMessage.style.display =
-            "none";
-
-
         profileCard.style.display =
             "block";
-
 
     }
     catch(error){
@@ -1093,9 +914,9 @@ async function loadPlayerProfile(){
 }
 
 
-// =====================================================
-// ERROR FUNCTION
-// =====================================================
+/* =========================================
+   ERROR
+========================================= */
 
 function showError(){
 
@@ -1113,9 +934,9 @@ function showError(){
 }
 
 
-// =====================================================
-// START
-// =====================================================
+/* =========================================
+   START
+========================================= */
 
 loadPlayerProfile();
 
