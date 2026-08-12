@@ -17,33 +17,43 @@
     href="style.css"
 >
 
-
 <style>
 
 /* =========================================
-   DYNAMIC PLAYER PROFILE
+   PLAYER PROFILE
 ========================================= */
 
-.profile-card {
+body{
+    background:#000;
+}
 
-    max-width:520px !important;
 
-    margin:40px auto !important;
+/* =========================================
+   PROFILE CARD
+========================================= */
 
-    padding:28px !important;
+.profile-card{
 
-    background:#111 !important;
+    width:92%;
+    max-width:520px;
 
-    border:3px solid #ff8800 !important;
+    margin:40px auto;
 
-    border-radius:22px !important;
+    padding:28px;
+
+    box-sizing:border-box;
+
+    background:#111;
+
+    border:3px solid #ff8800;
+
+    border-radius:22px;
 
     text-align:center;
 
     box-shadow:
         0 0 18px rgba(255,136,0,.45),
         0 0 35px rgba(255,136,0,.15);
-
 }
 
 
@@ -51,10 +61,9 @@
    PLAYER PHOTO
 ========================================= */
 
-.player-photo {
+.player-photo{
 
     width:250px;
-
     height:250px;
 
     object-fit:cover;
@@ -67,17 +76,18 @@
 
     display:block;
 
-    box-shadow:
-        0 0 12px rgba(255,136,0,.6);
+    background:#000;
 
+    box-shadow:
+        0 0 15px rgba(255,136,0,.6);
 }
 
 
 /* =========================================
-   NAME
+   PLAYER NAME
 ========================================= */
 
-.profile-card h1 {
+.profile-card h1{
 
     margin:5px 0 12px;
 
@@ -86,15 +96,14 @@
     font-size:38px;
 
     font-weight:900;
-
 }
 
 
 /* =========================================
-   ROLE
+   ROLE BADGE
 ========================================= */
 
-.badge {
+.badge{
 
     display:inline-block;
 
@@ -114,15 +123,14 @@
 
     box-shadow:
         0 0 12px rgba(255,136,0,.6);
-
 }
 
 
 /* =========================================
-   TEAM
+   TEAM NAME
 ========================================= */
 
-.profile-card h3 {
+.profile-card h3{
 
     color:#ff8800;
 
@@ -130,6 +138,7 @@
 
     margin:10px 0 18px;
 
+    font-weight:900;
 }
 
 
@@ -137,7 +146,7 @@
    DESCRIPTION
 ========================================= */
 
-.player-description {
+.player-description{
 
     color:#fff;
 
@@ -148,26 +157,28 @@
     margin:0 auto 25px;
 
     max-width:460px;
-
 }
 
 
 /* =========================================
-   INFORMATION
+   PLAYER INFORMATION TITLE
 ========================================= */
 
-.player-nav h2 {
+.player-nav h2{
 
     color:#fff;
 
     font-size:26px;
 
     margin:10px 0 20px;
-
 }
 
 
-.stats {
+/* =========================================
+   INFORMATION BOXES
+========================================= */
+
+.stats{
 
     display:flex;
 
@@ -176,11 +187,14 @@
     gap:12px;
 
     width:100%;
-
 }
 
 
-.stat-card {
+/* =========================================
+   INFORMATION BOX
+========================================= */
+
+.stat-card{
 
     width:100%;
 
@@ -206,11 +220,10 @@
 
     box-shadow:
         0 0 8px rgba(255,136,0,.35);
-
 }
 
 
-.stat-card h4 {
+.stat-card h4{
 
     margin:0 0 5px;
 
@@ -220,17 +233,17 @@
 
     font-weight:900;
 
+    word-break:break-word;
 }
 
 
-.stat-card p {
+.stat-card p{
 
     margin:0;
 
     color:#fff;
 
     font-size:13px;
-
 }
 
 
@@ -238,7 +251,7 @@
    NAVIGATION
 ========================================= */
 
-.player-navigation {
+.player-navigation{
 
     width:100%;
 
@@ -251,11 +264,10 @@
     gap:8px;
 
     margin-top:22px;
-
 }
 
 
-.player-navigation .btn {
+.player-navigation .btn{
 
     flex:1;
 
@@ -270,6 +282,8 @@
     align-items:center;
 
     justify-content:center;
+
+    box-sizing:border-box;
 
     background:#000;
 
@@ -289,25 +303,25 @@
 
     box-shadow:
         0 0 8px rgba(255,136,0,.3);
-
 }
 
 
-.player-navigation .btn:hover {
+.player-navigation .btn:hover{
 
     background:#111;
 
+    color:#fff;
+
     box-shadow:
         0 0 15px rgba(255,136,0,.65);
-
 }
 
 
 /* =========================================
-   LOADING / ERROR
+   LOADING
 ========================================= */
 
-#loadingMessage {
+#loadingMessage{
 
     text-align:center;
 
@@ -315,12 +329,15 @@
 
     font-size:16px;
 
-    margin:40px 0;
-
+    margin:60px 20px;
 }
 
 
-#errorMessage {
+/* =========================================
+   ERROR
+========================================= */
+
+#errorMessage{
 
     display:none;
 
@@ -330,8 +347,7 @@
 
     font-size:16px;
 
-    margin:40px 0;
-
+    margin:60px 20px;
 }
 
 
@@ -339,13 +355,15 @@
    FOOTER
 ========================================= */
 
-footer {
+footer{
 
     width:100%;
 
     padding:20px;
 
     margin-top:30px;
+
+    box-sizing:border-box;
 
     background:#000;
 
@@ -356,7 +374,6 @@ footer {
     text-align:center;
 
     font-size:13px;
-
 }
 
 
@@ -364,20 +381,19 @@ footer {
    MOBILE
 ========================================= */
 
-@media(max-width:600px) {
+@media(max-width:600px){
 
-    .profile-card {
+    .profile-card{
 
         width:calc(100% - 28px);
 
-        margin:25px auto !important;
+        margin:25px auto;
 
-        padding:18px !important;
-
+        padding:18px;
     }
 
 
-    .player-photo {
+    .player-photo{
 
         width:180px;
 
@@ -386,76 +402,74 @@ footer {
         border-width:4px;
 
         border-radius:20px;
-
     }
 
 
-    .profile-card h1 {
+    .profile-card h1{
 
         font-size:30px;
-
     }
 
 
-    .profile-card h3 {
+    .profile-card h3{
 
         font-size:17px;
-
     }
 
 
-    .player-description {
+    .badge{
+
+        font-size:14px;
+
+        padding:8px 17px;
+    }
+
+
+    .player-description{
 
         font-size:14px;
 
         line-height:1.55;
-
     }
 
 
-    .player-nav h2 {
+    .player-nav h2{
 
         font-size:23px;
-
     }
 
 
-    .stat-card {
+    .stat-card{
 
         min-height:70px;
-
     }
 
 
-    .stat-card h4 {
+    .stat-card h4{
 
         font-size:16px;
-
     }
 
 
-    .stat-card p {
+    .stat-card p{
 
         font-size:12px;
-
     }
 
 
-    .player-navigation {
+    .player-navigation{
 
         gap:6px;
-
     }
 
 
-    .player-navigation .btn {
+    .player-navigation .btn{
 
         min-height:46px;
 
         padding:7px 4px;
 
         font-size:11px;
-
     }
 
 }
@@ -465,14 +479,13 @@ footer {
    VERY SMALL MOBILE
 ========================================= */
 
-@media(max-width:370px) {
+@media(max-width:370px){
 
-    .player-navigation .btn {
+    .player-navigation .btn{
 
         font-size:10px;
 
         padding:6px 3px;
-
     }
 
 }
@@ -508,7 +521,7 @@ footer {
 
 
 <!-- =========================================
-     PROFILE
+     PLAYER PROFILE
 ========================================= -->
 
 <section
@@ -518,17 +531,21 @@ footer {
 >
 
 
-    <!-- PLAYER PHOTO -->
+    <!-- =====================================
+         PLAYER PHOTO
+    ====================================== -->
 
     <img
         id="playerPhoto"
         class="player-photo"
-        src="logo.png"
+        src="vivek.jpg"
         alt="Player"
     >
 
 
-    <!-- PLAYER NAME -->
+    <!-- =====================================
+         PLAYER NAME
+    ====================================== -->
 
     <h1 id="playerName">
 
@@ -537,7 +554,9 @@ footer {
     </h1>
 
 
-    <!-- ROLE -->
+    <!-- =====================================
+         PLAYER ROLE
+    ====================================== -->
 
     <span
         id="playerRole"
@@ -549,7 +568,9 @@ footer {
     </span>
 
 
-    <!-- TEAM -->
+    <!-- =====================================
+         TEAM
+    ====================================== -->
 
     <h3>
 
@@ -558,12 +579,16 @@ footer {
     </h3>
 
 
-    <!-- DESCRIPTION -->
+    <!-- =====================================
+         PLAYER DESCRIPTION
+    ====================================== -->
 
     <p
         id="playerDescription"
         class="player-description"
     >
+
+        A proud member of CAWNPORE TIGERS XI.
 
     </p>
 
@@ -702,7 +727,7 @@ footer {
                 class="btn"
             >
 
-                ⬅ Players
+                ⬅ PLAYERS
 
             </a>
 
@@ -712,7 +737,7 @@ footer {
                 class="btn"
             >
 
-                🏠 Home
+                🏠 HOME
 
             </a>
 
@@ -726,7 +751,6 @@ footer {
 </section>
 
 
-
 <!-- =========================================
      FOOTER
 ========================================= -->
@@ -736,7 +760,6 @@ footer {
     © 2026 CAWNPORE TIGERS XI
 
 </footer>
-
 
 
 <!-- =========================================
@@ -754,7 +777,7 @@ import {
 
 
 // =====================================================
-// GET PLAYER ID FROM URL
+// GET PLAYER ID
 // =====================================================
 
 const params =
@@ -790,10 +813,15 @@ const profileCard =
 
 
 // =====================================================
-// LOAD PLAYER
+// LOAD PLAYER PROFILE
 // =====================================================
 
 async function loadPlayerProfile(){
+
+
+    // -----------------------------------------------
+    // CHECK PLAYER ID
+    // -----------------------------------------------
 
     if(!playerId){
 
@@ -805,6 +833,11 @@ async function loadPlayerProfile(){
 
 
     try{
+
+
+        // -------------------------------------------
+        // FIRESTORE DOCUMENT
+        // -------------------------------------------
 
         const playerRef =
             doc(
@@ -819,6 +852,10 @@ async function loadPlayerProfile(){
                 playerRef
             );
 
+
+        // -------------------------------------------
+        // PLAYER NOT FOUND
+        // -------------------------------------------
 
         if(
             !playerSnapshot.exists()
@@ -835,9 +872,9 @@ async function loadPlayerProfile(){
             playerSnapshot.data();
 
 
-        // =========================================
+        // -------------------------------------------
         // ONLY APPROVED PLAYERS
-        // =========================================
+        // -------------------------------------------
 
         if(
             player.status !==
@@ -852,43 +889,57 @@ async function loadPlayerProfile(){
 
 
         // =========================================
-        // BASIC INFORMATION
+        // TITLE
         // =========================================
 
+        const playerName =
+            player.fullName ||
+            "Player";
+
+
         document.title =
-            (
-                player.fullName ||
-                "Player"
-            ) +
+            playerName +
             " | CAWNPORE TIGERS XI";
 
+
+        // =========================================
+        // NAME
+        // =========================================
 
         document.getElementById(
             "playerName"
         ).innerText =
             "🏏 " +
-            (
-                player.fullName ||
-                "Player"
-            );
+            playerName;
 
+
+        // =========================================
+        // ROLE
+        // =========================================
 
         document.getElementById(
             "playerRole"
         ).innerText =
             player.playingRole ||
-            "Player";
+            "PLAYER";
 
+
+        // =========================================
+        // DESCRIPTION
+        // =========================================
 
         document.getElementById(
             "playerDescription"
         ).innerText =
             player.profile ||
-            "A proud member of CAWNPORE TIGERS XI.";
+            (
+                playerName +
+                " is a proud member of CAWNPORE TIGERS XI."
+            );
 
 
         // =========================================
-        // INFORMATION
+        // JERSEY
         // =========================================
 
         document.getElementById(
@@ -901,6 +952,10 @@ async function loadPlayerProfile(){
             );
 
 
+        // =========================================
+        // ROLE
+        // =========================================
+
         document.getElementById(
             "roleValue"
         ).innerText =
@@ -910,6 +965,10 @@ async function loadPlayerProfile(){
                 "-"
             );
 
+
+        // =========================================
+        // BATTING
+        // =========================================
 
         document.getElementById(
             "battingValue"
@@ -921,6 +980,10 @@ async function loadPlayerProfile(){
             );
 
 
+        // =========================================
+        // BOWLING
+        // =========================================
+
         document.getElementById(
             "bowlingValue"
         ).innerText =
@@ -931,6 +994,10 @@ async function loadPlayerProfile(){
             );
 
 
+        // =========================================
+        // CITY
+        // =========================================
+
         document.getElementById(
             "cityValue"
         ).innerText =
@@ -940,6 +1007,10 @@ async function loadPlayerProfile(){
                 "-"
             );
 
+
+        // =========================================
+        // EXPERIENCE
+        // =========================================
 
         document.getElementById(
             "experienceValue"
@@ -952,7 +1023,7 @@ async function loadPlayerProfile(){
 
 
         // =========================================
-        // PHOTO
+        // PLAYER PHOTO
         // =========================================
 
         const photo =
@@ -960,6 +1031,14 @@ async function loadPlayerProfile(){
                 "playerPhoto"
             );
 
+
+        /*
+         * फिलहाल approved player के लिए
+         * vivek.jpg इस्तेमाल होगा।
+         *
+         * बाद में अगर Firebase में photoUrl
+         * save होगा तो वही photo दिखाई जाएगी।
+         */
 
         if(
             player.photoUrl &&
@@ -973,14 +1052,13 @@ async function loadPlayerProfile(){
         else{
 
             photo.src =
-                "logo.png";
+                "vivek.jpg";
 
         }
 
 
         photo.alt =
-            player.fullName ||
-            "Player";
+            playerName;
 
 
         // =========================================
@@ -988,6 +1066,10 @@ async function loadPlayerProfile(){
         // =========================================
 
         loadingMessage.style.display =
+            "none";
+
+
+        errorMessage.style.display =
             "none";
 
 
@@ -1012,7 +1094,7 @@ async function loadPlayerProfile(){
 
 
 // =====================================================
-// ERROR
+// ERROR FUNCTION
 // =====================================================
 
 function showError(){
