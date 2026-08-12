@@ -64,35 +64,40 @@
 
 }
 
-.firebase-player-bar:hover{
-
-    background:#ff8800;
-    color:#000;
-    transform:translateY(-2px);
-
+.firebase-player-bar{
+    display:block;
+    width:100%;
+    box-sizing:border-box;
+    text-decoration:none;
+    background:#080808;
+    border:2px solid #ff8800;
+    border-radius:10px;
+    padding:10px 14px;
+    margin:10px 0;
+    color:#fff;
+    text-align:center;
+    transition:0.3s ease;
 }
 
 .firebase-player-bar span{
-
     font-size:15px;
-
-    margin-right:8px;
-
+    margin-right:6px;
 }
 
 .firebase-player-bar strong{
-
-    font-size:21px;
-
+    font-size:18px;
     font-weight:800;
+}
 
+.firebase-player-bar:hover{
+    background:#ff8800;
+    color:#000;
 }
 
 .firebase-player-bar:hover strong{
-
     color:#000;
-
 }
+
 
 #approvedPlayerMessage{
 
