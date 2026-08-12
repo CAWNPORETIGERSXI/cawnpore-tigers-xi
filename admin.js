@@ -103,7 +103,7 @@ async function loadPlayerRegistrations() {
     registrationList.innerHTML = "";
 
     registrationMsg.innerText =
-        "⏳ Loading registrations...";
+        "⏳ Loading pending registrations...";
 
 
     try {
@@ -120,7 +120,7 @@ async function loadPlayerRegistrations() {
         if (snapshot.empty) {
 
             registrationMsg.innerText =
-                "No player registrations found.";
+                "No pending player registrations.";
 
             return;
 
@@ -136,6 +136,19 @@ async function loadPlayerRegistrations() {
                 registrationDoc.data();
 
 
+            // ==================================================
+            // ONLY PENDING PLAYERS WILL BE SHOWN
+            // ==================================================
+
+            if (
+                player.status !== "Pending"
+            ) {
+
+                return;
+
+            }
+
+
             count++;
 
 
@@ -147,9 +160,9 @@ async function loadPlayerRegistrations() {
                 "registration-card";
 
 
-            // --------------------------------------
+            // ==================================================
             // TITLE
-            // --------------------------------------
+            // ==================================================
 
             const title =
                 document.createElement("h3");
@@ -163,9 +176,9 @@ async function loadPlayerRegistrations() {
             card.appendChild(title);
 
 
-            // --------------------------------------
+            // ==================================================
             // REGISTRATION ID
-            // --------------------------------------
+            // ==================================================
 
             const idText =
                 document.createElement("div");
@@ -185,9 +198,9 @@ async function loadPlayerRegistrations() {
             card.appendChild(idText);
 
 
-            // --------------------------------------
+            // ==================================================
             // DETAILS
-            // --------------------------------------
+            // ==================================================
 
             const details =
                 document.createElement("div");
@@ -248,9 +261,9 @@ async function loadPlayerRegistrations() {
             card.appendChild(details);
 
 
-            // --------------------------------------
+            // ==================================================
             // STATUS
-            // --------------------------------------
+            // ==================================================
 
             const status =
                 document.createElement("span");
@@ -260,50 +273,21 @@ async function loadPlayerRegistrations() {
                 "registration-status";
 
 
-            const currentStatus =
-                player.status || "Pending";
-
-
-            if (
-                currentStatus ===
-                "Approved"
-            ) {
-
-                status.classList.add(
-                    "status-approved"
-                );
-
-            }
-            else if (
-                currentStatus ===
-                "Rejected"
-            ) {
-
-                status.classList.add(
-                    "status-rejected"
-                );
-
-            }
-            else {
-
-                status.classList.add(
-                    "status-pending"
-                );
-
-            }
+            status.classList.add(
+                "status-pending"
+            );
 
 
             status.innerText =
-                "Status: " +
-                currentStatus;
+                "Status: Pending";
 
 
             card.appendChild(status);
 
 
-            // --------------------------------------
+            // ==================================================
             // ACTION BUTTONS
-            // --------------------------------------
+            // ==================================================
 
             const actions =
                 document.createElement("div");
@@ -312,6 +296,10 @@ async function loadPlayerRegistrations() {
             actions.className =
                 "registration-actions";
 
+
+            // ==================================================
+            // APPROVE
+            // ==================================================
 
             const approveButton =
                 document.createElement("button");
@@ -335,6 +323,10 @@ async function loadPlayerRegistrations() {
 
                 };
 
+
+            // ==================================================
+            // REJECT
+            // ==================================================
 
             const rejectButton =
                 document.createElement("button");
@@ -377,9 +369,23 @@ async function loadPlayerRegistrations() {
         });
 
 
-        registrationMsg.innerText =
-            "Total Registrations: " +
-            count;
+        // ==================================================
+        // MESSAGE
+        // ==================================================
+
+        if (count === 0) {
+
+            registrationMsg.innerText =
+                "No pending player registrations.";
+
+        }
+        else {
+
+            registrationMsg.innerText =
+                "Total Pending Registrations: " +
+                count;
+
+        }
 
 
     } catch (error) {
@@ -425,6 +431,10 @@ async function updateRegistrationStatus(
 
     try {
 
+        // ==================================================
+        // UPDATE FIRESTORE
+        // ==================================================
+
         await updateDoc(
 
             doc(
@@ -446,12 +456,23 @@ async function updateRegistrationStatus(
         );
 
 
+        // ==================================================
+        // SUCCESS
+        // ==================================================
+
         alert(
             "Registration " +
             newStatus +
             " successfully!"
         );
 
+
+        // ==================================================
+        // RELOAD
+        //
+        // Because only Pending players are loaded,
+        // approved/rejected player will disappear.
+        // ==================================================
 
         loadPlayerRegistrations();
 
@@ -482,15 +503,30 @@ function escapeHtml(value) {
 
     return String(value)
 
-        .replaceAll("&", "&amp;")
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
 
-        .replaceAll("<", "&lt;")
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
 
-        .replaceAll(">", "&gt;")
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
 
-        .replaceAll('"', "&quot;")
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
 
-        .replaceAll("'", "&#039;");
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
 
 }
 
@@ -566,224 +602,228 @@ const saveEventBtn =
     );
 
 
-saveEventBtn.onclick =
-async function () {
+if (saveEventBtn) {
 
-    const eventId =
-        document.getElementById(
-            "eventId"
-        ).value.trim();
+    saveEventBtn.onclick =
+    async function () {
 
-
-    const eventType =
-        document.getElementById(
-            "eventType"
-        ).value;
+        const eventId =
+            document.getElementById(
+                "eventId"
+            ).value.trim();
 
 
-    const eventName =
-        document.getElementById(
-            "eventName"
-        ).value.trim();
+        const eventType =
+            document.getElementById(
+                "eventType"
+            ).value;
 
 
-    const eventImage =
-        document.getElementById(
-            "eventImage"
-        ).files[0];
+        const eventName =
+            document.getElementById(
+                "eventName"
+            ).value.trim();
 
 
-    const eventStatus =
-        document.getElementById(
-            "eventStatus"
-        ).value;
+        const eventImage =
+            document.getElementById(
+                "eventImage"
+            ).files[0];
 
 
-    if (
-        eventId === "" ||
-        eventType === "" ||
-        eventName === ""
-    ) {
+        const eventStatus =
+            document.getElementById(
+                "eventStatus"
+            ).value;
 
-        alert(
-            "Please fill all Event details"
-        );
-
-        return;
-
-    }
-
-
-    if (
-        (
-            eventType === "Tournament" ||
-            eventType === "Series"
-        ) &&
-        !eventImage
-    ) {
-
-        alert(
-            "Please select Tournament / Series Logo"
-        );
-
-        return;
-
-    }
-
-
-    if (eventImage) {
 
         if (
-            eventImage.type !==
-            "image/jpeg"
+            eventId === "" ||
+            eventType === "" ||
+            eventName === ""
         ) {
 
             alert(
-                "Please upload JPG or JPEG image only."
+                "Please fill all Event details"
             );
 
             return;
 
         }
 
-    }
 
+        if (
+            (
+                eventType === "Tournament" ||
+                eventType === "Series"
+            ) &&
+            !eventImage
+        ) {
 
-    try {
-
-        const eventMsg =
-            document.getElementById(
-                "eventMsg"
+            alert(
+                "Please select Tournament / Series Logo"
             );
 
-
-        eventMsg.innerHTML =
-            "⏳ Saving Event...";
-
-
-        eventMsg.style.display =
-            "block";
-
-
-        eventMsg.style.color =
-            "#ff9800";
-
-
-        let imageUrl = "";
-
-
-        if (eventImage) {
-
-            eventMsg.innerHTML =
-                "⏳ Uploading image...";
-
-
-            imageUrl =
-                await uploadImageToCloudinary(
-                    eventImage
-                );
+            return;
 
         }
 
 
-        eventMsg.innerHTML =
-            "⏳ Saving Event to Firebase...";
+        if (eventImage) {
 
+            if (
+                eventImage.type !==
+                "image/jpeg"
+            ) {
 
-        await addDoc(
+                alert(
+                    "Please upload JPG or JPEG image only."
+                );
 
-            collection(
-                db,
-                "events"
-            ),
-
-            {
-
-                eventId:
-                    eventId,
-
-                eventType:
-                    eventType,
-
-                eventName:
-                    eventName,
-
-                imageUrl:
-                    imageUrl,
-
-                status:
-                    eventStatus
+                return;
 
             }
 
-        );
+        }
 
 
-        eventMsg.innerHTML =
-            "✅ Event saved successfully!";
+        try {
+
+            const eventMsg =
+                document.getElementById(
+                    "eventMsg"
+                );
 
 
-        eventMsg.style.color =
-            "#00ff88";
+            eventMsg.innerHTML =
+                "⏳ Saving Event...";
 
 
-        document.getElementById(
-            "eventId"
-        ).value = "";
+            eventMsg.style.display =
+                "block";
 
 
-        document.getElementById(
-            "eventType"
-        ).value = "";
+            eventMsg.style.color =
+                "#ff9800";
 
 
-        document.getElementById(
-            "eventName"
-        ).value = "";
+            let imageUrl = "";
 
 
-        document.getElementById(
-            "eventImage"
-        ).value = "";
+            if (eventImage) {
+
+                eventMsg.innerHTML =
+                    "⏳ Uploading image...";
 
 
-        document.getElementById(
-            "eventStatus"
-        ).value = "Active";
+                imageUrl =
+                    await uploadImageToCloudinary(
+                        eventImage
+                    );
+
+            }
 
 
-        loadEvents();
+            eventMsg.innerHTML =
+                "⏳ Saving Event to Firebase...";
 
 
-    } catch (error) {
+            await addDoc(
 
-        console.error(
-            "EVENT SAVE ERROR:",
-            error
-        );
+                collection(
+                    db,
+                    "events"
+                ),
 
+                {
 
-        const eventMsg =
-            document.getElementById(
-                "eventMsg"
+                    eventId:
+                        eventId,
+
+                    eventType:
+                        eventType,
+
+                    eventName:
+                        eventName,
+
+                    imageUrl:
+                        imageUrl,
+
+                    status:
+                        eventStatus
+
+                }
+
             );
 
 
-        eventMsg.style.display =
-            "block";
+            eventMsg.innerHTML =
+                "✅ Event saved successfully!";
 
 
-        eventMsg.style.color =
-            "#ff4444";
+            eventMsg.style.color =
+                "#00ff88";
 
 
-        eventMsg.innerHTML =
-            "❌ ERROR:<br>" +
-            error.message;
+            document.getElementById(
+                "eventId"
+            ).value = "";
 
-    }
 
-};
+            document.getElementById(
+                "eventType"
+            ).value = "";
+
+
+            document.getElementById(
+                "eventName"
+            ).value = "";
+
+
+            document.getElementById(
+                "eventImage"
+            ).value = "";
+
+
+            document.getElementById(
+                "eventStatus"
+            ).value = "Active";
+
+
+            loadEvents();
+
+
+        } catch (error) {
+
+            console.error(
+                "EVENT SAVE ERROR:",
+                error
+            );
+
+
+            const eventMsg =
+                document.getElementById(
+                    "eventMsg"
+                );
+
+
+            eventMsg.style.display =
+                "block";
+
+
+            eventMsg.style.color =
+                "#ff4444";
+
+
+            eventMsg.innerHTML =
+                "❌ ERROR:<br>" +
+                error.message;
+
+        }
+
+    };
+
+}
 
 
 // ======================================================
@@ -842,7 +882,7 @@ async function loadEvents() {
                     ?
                     `
                     <img
-                        src="${event.imageUrl}"
+                        src="${escapeHtml(event.imageUrl)}"
                         style="
                             width:100%;
                             max-height:180px;
@@ -922,34 +962,38 @@ const matchForm =
     );
 
 
-addMatchBtn.onclick =
-function () {
+if (addMatchBtn && matchForm) {
 
-    if (
-        matchForm.style.display ===
-        "none"
-    ) {
+    addMatchBtn.onclick =
+    function () {
 
-        matchForm.style.display =
-            "block";
+        if (
+            matchForm.style.display ===
+            "none"
+        ) {
 
-
-        addMatchBtn.innerText =
-            "➖ CLOSE MATCH FORM";
-
-    }
-    else {
-
-        matchForm.style.display =
-            "none";
+            matchForm.style.display =
+                "block";
 
 
-        addMatchBtn.innerText =
-            "➕ ADD NEW MATCH";
+            addMatchBtn.innerText =
+                "➖ CLOSE MATCH FORM";
 
-    }
+        }
+        else {
 
-};
+            matchForm.style.display =
+                "none";
+
+
+            addMatchBtn.innerText =
+                "➕ ADD NEW MATCH";
+
+        }
+
+    };
+
+}
 
 
 // ======================================================
@@ -974,158 +1018,166 @@ const eventSelect =
     );
 
 
-matchEventType.onchange =
-async function () {
+if (
+    matchEventType &&
+    eventSelectBox &&
+    eventSelect
+) {
 
-    const selectedType =
-        matchEventType.value;
+    matchEventType.onchange =
+    async function () {
+
+        const selectedType =
+            matchEventType.value;
 
 
-    if (
-        selectedType ===
-        "Individual Matches"
-    ) {
+        if (
+            selectedType ===
+            "Individual Matches"
+        ) {
+
+            eventSelectBox.style.display =
+                "none";
+
+
+            eventSelect.innerHTML =
+                `<option value="">
+                    Select Tournament / Series
+                </option>`;
+
+
+            return;
+
+        }
+
+
+        if (
+            selectedType !== "Tournament" &&
+            selectedType !== "Series"
+        ) {
+
+            eventSelectBox.style.display =
+                "none";
+
+
+            eventSelect.innerHTML =
+                `<option value="">
+                    Select Tournament / Series
+                </option>`;
+
+
+            return;
+
+        }
+
 
         eventSelectBox.style.display =
-            "none";
+            "block";
 
 
         eventSelect.innerHTML =
             `<option value="">
-                Select Tournament / Series
+                Loading...
             </option>`;
 
 
-        return;
+        try {
 
-    }
+            const snapshot =
+                await getDocs(
+                    collection(
+                        db,
+                        "events"
+                    )
+                );
 
-
-    if (
-        selectedType !== "Tournament" &&
-        selectedType !== "Series"
-    ) {
-
-        eventSelectBox.style.display =
-            "none";
-
-
-        eventSelect.innerHTML =
-            `<option value="">
-                Select Tournament / Series
-            </option>`;
-
-
-        return;
-
-    }
-
-
-    eventSelectBox.style.display =
-        "block";
-
-
-    eventSelect.innerHTML =
-        `<option value="">
-            Loading...
-        </option>`;
-
-
-    try {
-
-        const snapshot =
-            await getDocs(
-                collection(
-                    db,
-                    "events"
-                )
-            );
-
-
-        eventSelect.innerHTML = `
-
-            <option value="">
-                Select ${selectedType}
-            </option>
-
-        `;
-
-
-        let found = false;
-
-
-        snapshot.forEach(
-            (eventDoc) => {
-
-                const event =
-                    eventDoc.data();
-
-
-                if (
-                    event.eventType ===
-                    selectedType
-                ) {
-
-                    found = true;
-
-
-                    const option =
-                        document.createElement(
-                            "option"
-                        );
-
-
-                    option.value =
-                        eventDoc.id;
-
-
-                    option.textContent =
-                        event.eventName;
-
-
-                    option.dataset.eventId =
-                        event.eventId;
-
-
-                    eventSelect.appendChild(
-                        option
-                    );
-
-                }
-
-            }
-        );
-
-
-        if (!found) {
 
             eventSelect.innerHTML = `
 
                 <option value="">
-                    No ${selectedType} found
+                    Select ${selectedType}
+                </option>
+
+            `;
+
+
+            let found = false;
+
+
+            snapshot.forEach(
+                (eventDoc) => {
+
+                    const event =
+                        eventDoc.data();
+
+
+                    if (
+                        event.eventType ===
+                        selectedType
+                    ) {
+
+                        found = true;
+
+
+                        const option =
+                            document.createElement(
+                                "option"
+                            );
+
+
+                        option.value =
+                            eventDoc.id;
+
+
+                        option.textContent =
+                            event.eventName;
+
+
+                        option.dataset.eventId =
+                            event.eventId;
+
+
+                        eventSelect.appendChild(
+                            option
+                        );
+
+                    }
+
+                }
+            );
+
+
+            if (!found) {
+
+                eventSelect.innerHTML = `
+
+                    <option value="">
+                        No ${selectedType} found
+                    </option>
+
+                `;
+
+            }
+
+
+        } catch (error) {
+
+            console.error(error);
+
+
+            eventSelect.innerHTML = `
+
+                <option value="">
+                    Error loading events
                 </option>
 
             `;
 
         }
 
+    };
 
-    } catch (error) {
-
-        console.error(error);
-
-
-        eventSelect.innerHTML = `
-
-            <option value="">
-                Error loading events
-            </option>
-
-        `;
-
-    }
-
-};
+}
 
 
 // ======================================================
@@ -1138,105 +1190,129 @@ const saveMatchBtn =
     );
 
 
-saveMatchBtn.onclick =
-async function () {
+if (saveMatchBtn) {
 
-    const matchId =
-        document.getElementById(
-            "matchId"
-        ).value.trim();
+    saveMatchBtn.onclick =
+    async function () {
 
-
-    const eventType =
-        document.getElementById(
-            "matchEventType"
-        ).value;
+        const matchId =
+            document.getElementById(
+                "matchId"
+            ).value.trim();
 
 
-    const matchDate =
-        document.getElementById(
-            "matchDate"
-        ).value;
+        const eventType =
+            document.getElementById(
+                "matchEventType"
+            ).value;
 
 
-    const matchPlace =
-        document.getElementById(
-            "matchPlace"
-        ).value.trim();
+        const matchDate =
+            document.getElementById(
+                "matchDate"
+            ).value;
 
 
-    const opponent =
-        document.getElementById(
-            "opponent"
-        ).value.trim();
+        const matchPlace =
+            document.getElementById(
+                "matchPlace"
+            ).value.trim();
 
 
-    const overs =
-        document.getElementById(
-            "overs"
-        ).value.trim();
+        const opponent =
+            document.getElementById(
+                "opponent"
+            ).value.trim();
 
 
-    const result =
-        document.getElementById(
-            "result"
-        ).value.trim();
+        const overs =
+            document.getElementById(
+                "overs"
+            ).value.trim();
 
 
-    const playerOfMatch =
-        document.getElementById(
-            "playerOfMatch"
-        ).value.trim();
+        const result =
+            document.getElementById(
+                "result"
+            ).value.trim();
 
 
-    const bestBowler =
-        document.getElementById(
-            "bestBowler"
-        ).value.trim();
+        const playerOfMatch =
+            document.getElementById(
+                "playerOfMatch"
+            ).value.trim();
 
 
-    const bestBatter =
-        document.getElementById(
-            "bestBatter"
-        ).value.trim();
+        const bestBowler =
+            document.getElementById(
+                "bestBowler"
+            ).value.trim();
 
 
-    const fighterOfMatch =
-        document.getElementById(
-            "fighterOfMatch"
-        ).value.trim();
+        const bestBatter =
+            document.getElementById(
+                "bestBatter"
+            ).value.trim();
 
 
-    const cricHeroesLink =
-        document.getElementById(
-            "cricHeroesLink"
-        ).value.trim();
+        const fighterOfMatch =
+            document.getElementById(
+                "fighterOfMatch"
+            ).value.trim();
 
 
-    let eventId = "";
+        const cricHeroesLink =
+            document.getElementById(
+                "cricHeroesLink"
+            ).value.trim();
 
-    let eventName = "";
 
+        let eventId = "";
 
-    if (
-        eventType === "Tournament" ||
-        eventType === "Series"
-    ) {
-
-        const selectedOption =
-            eventSelect.options[
-                eventSelect.selectedIndex
-            ];
+        let eventName = "";
 
 
         if (
-            !selectedOption ||
-            selectedOption.value === ""
+            eventType === "Tournament" ||
+            eventType === "Series"
         ) {
 
+            const selectedOption =
+                eventSelect.options[
+                    eventSelect.selectedIndex
+                ];
+
+
+            if (
+                !selectedOption ||
+                selectedOption.value === ""
+            ) {
+
+                alert(
+                    "Please select " +
+                    eventType
+                );
+
+                return;
+
+            }
+
+
+            eventId =
+                selectedOption.dataset.eventId ||
+                "";
+
+
+            eventName =
+                selectedOption.textContent.trim();
+
+        }
+
+
+        if (matchId === "") {
+
             alert(
-                "Please select " +
-                eventType
+                "Please enter Match ID"
             );
 
             return;
@@ -1244,238 +1320,218 @@ async function () {
         }
 
 
-        eventId =
-            selectedOption.dataset.eventId ||
-            "";
+        if (eventType === "") {
 
+            alert(
+                "Please select Event Type"
+            );
 
-        eventName =
-            selectedOption.textContent.trim();
+            return;
 
-    }
+        }
 
 
-    if (matchId === "") {
+        if (matchDate === "") {
 
-        alert(
-            "Please enter Match ID"
-        );
+            alert(
+                "Please select Match Date"
+            );
 
-        return;
+            return;
 
-    }
+        }
 
 
-    if (eventType === "") {
+        if (matchPlace === "") {
 
-        alert(
-            "Please select Event Type"
-        );
+            alert(
+                "Please enter Place"
+            );
 
-        return;
+            return;
 
-    }
+        }
 
 
-    if (matchDate === "") {
+        if (opponent === "") {
 
-        alert(
-            "Please select Match Date"
-        );
+            alert(
+                "Please enter Opponent"
+            );
 
-        return;
+            return;
 
-    }
+        }
 
 
-    if (matchPlace === "") {
+        if (result === "") {
 
-        alert(
-            "Please enter Place"
-        );
+            alert(
+                "Please enter Result"
+            );
 
-        return;
+            return;
 
-    }
+        }
 
 
-    if (opponent === "") {
+        if (cricHeroesLink === "") {
 
-        alert(
-            "Please enter Opponent"
-        );
+            alert(
+                "Please enter CricHeroes Link"
+            );
 
-        return;
+            return;
 
-    }
+        }
 
 
-    if (result === "") {
+        try {
 
-        alert(
-            "Please enter Result"
-        );
+            await addDoc(
 
-        return;
+                collection(
+                    db,
+                    "matches"
+                ),
 
-    }
+                {
 
+                    matchId:
+                        matchId,
 
-    if (cricHeroesLink === "") {
+                    eventId:
+                        eventId,
 
-        alert(
-            "Please enter CricHeroes Link"
-        );
+                    eventType:
+                        eventType,
 
-        return;
+                    eventName:
+                        eventName,
 
-    }
+                    matchDate:
+                        matchDate,
 
+                    place:
+                        matchPlace,
 
-    try {
+                    opponent:
+                        opponent,
 
-        await addDoc(
+                    overs:
+                        overs,
 
-            collection(
-                db,
-                "matches"
-            ),
+                    result:
+                        result,
 
-            {
+                    playerOfMatch:
+                        playerOfMatch,
 
-                matchId:
-                    matchId,
+                    bestBowler:
+                        bestBowler,
 
-                eventId:
-                    eventId,
+                    bestBatter:
+                        bestBatter,
 
-                eventType:
-                    eventType,
+                    fighterOfMatch:
+                        fighterOfMatch,
 
-                eventName:
-                    eventName,
+                    cricHeroesLink:
+                        cricHeroesLink
 
-                matchDate:
-                    matchDate,
+                }
 
-                place:
-                    matchPlace,
+            );
 
-                opponent:
-                    opponent,
 
-                overs:
-                    overs,
+            alert(
+                "Match saved successfully!"
+            );
 
-                result:
-                    result,
 
-                playerOfMatch:
-                    playerOfMatch,
+            document.getElementById(
+                "matchId"
+            ).value = "";
 
-                bestBowler:
-                    bestBowler,
 
-                bestBatter:
-                    bestBatter,
+            document.getElementById(
+                "matchEventType"
+            ).value = "";
 
-                fighterOfMatch:
-                    fighterOfMatch,
 
-                cricHeroesLink:
-                    cricHeroesLink
+            document.getElementById(
+                "matchDate"
+            ).value = "";
 
-            }
 
-        );
+            document.getElementById(
+                "matchPlace"
+            ).value = "";
 
 
-        alert(
-            "Match saved successfully!"
-        );
+            document.getElementById(
+                "opponent"
+            ).value = "";
 
 
-        document.getElementById(
-            "matchId"
-        ).value = "";
+            document.getElementById(
+                "overs"
+            ).value = "";
 
 
-        document.getElementById(
-            "matchEventType"
-        ).value = "";
+            document.getElementById(
+                "result"
+            ).value = "";
 
 
-        document.getElementById(
-            "matchDate"
-        ).value = "";
+            document.getElementById(
+                "playerOfMatch"
+            ).value = "";
 
 
-        document.getElementById(
-            "matchPlace"
-        ).value = "";
+            document.getElementById(
+                "bestBowler"
+            ).value = "";
 
 
-        document.getElementById(
-            "opponent"
-        ).value = "";
+            document.getElementById(
+                "bestBatter"
+            ).value = "";
 
 
-        document.getElementById(
-            "overs"
-        ).value = "";
+            document.getElementById(
+                "fighterOfMatch"
+            ).value = "";
 
 
-        document.getElementById(
-            "result"
-        ).value = "";
+            document.getElementById(
+                "cricHeroesLink"
+            ).value = "";
 
 
-        document.getElementById(
-            "playerOfMatch"
-        ).value = "";
+            eventSelectBox.style.display =
+                "none";
 
 
-        document.getElementById(
-            "bestBowler"
-        ).value = "";
+            eventSelect.innerHTML = `
+                <option value="">
+                    Select Tournament / Series
+                </option>
+            `;
 
 
-        document.getElementById(
-            "bestBatter"
-        ).value = "";
+        } catch (error) {
 
+            console.error(error);
 
-        document.getElementById(
-            "fighterOfMatch"
-        ).value = "";
 
+            alert(
+                "Error saving match: " +
+                error.message
+            );
 
-        document.getElementById(
-            "cricHeroesLink"
-        ).value = "";
+        }
 
+    };
 
-        eventSelectBox.style.display =
-            "none";
-
-
-        eventSelect.innerHTML = `
-            <option value="">
-                Select Tournament / Series
-            </option>
-        `;
-
-
-    } catch (error) {
-
-        console.error(error);
-
-
-        alert(
-            "Error saving match: " +
-            error.message
-        );
-
-    }
-
-};
+}
