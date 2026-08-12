@@ -62,12 +62,20 @@ window.login = async function () {
             .style.display = "block";
 
 
+        // LOAD EVENTS
         loadEvents();
 
+        // LOAD PLAYER REGISTRATIONS
         loadPlayerRegistrations();
 
 
-    } catch (error) {
+    }
+    catch (error) {
+
+        console.error(
+            "LOGIN ERROR:",
+            error
+        );
 
         alert(error.message);
 
@@ -87,6 +95,7 @@ async function loadPlayerRegistrations() {
             "registrationList"
         );
 
+
     const registrationMsg =
         document.getElementById(
             "registrationMsg"
@@ -102,8 +111,13 @@ async function loadPlayerRegistrations() {
 
     registrationList.innerHTML = "";
 
-    registrationMsg.innerText =
-        "⏳ Loading pending registrations...";
+
+    if (registrationMsg) {
+
+        registrationMsg.innerText =
+            "⏳ Loading pending registrations...";
+
+    }
 
 
     try {
@@ -117,278 +131,332 @@ async function loadPlayerRegistrations() {
             );
 
 
-        if (snapshot.empty) {
-
-            registrationMsg.innerText =
-                "No pending player registrations.";
-
-            return;
-
-        }
-
-
         let count = 0;
 
 
-        snapshot.forEach((registrationDoc) => {
+        snapshot.forEach(
+            (registrationDoc) => {
 
-            const player =
-                registrationDoc.data();
-
-
-            // ==================================================
-            // ONLY PENDING PLAYERS WILL BE SHOWN
-            // ==================================================
-
-            if (
-                player.status !== "Pending"
-            ) {
-
-                return;
-
-            }
+                const player =
+                    registrationDoc.data();
 
 
-            count++;
+                // ==================================================
+                // ONLY PENDING PLAYERS
+                // ==================================================
+
+                if (
+                    player.status !== "Pending"
+                ) {
+
+                    return;
+
+                }
 
 
-            const card =
-                document.createElement("div");
+                count++;
 
 
-            card.className =
-                "registration-card";
+                // ==================================================
+                // CARD
+                // ==================================================
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
 
 
-            // ==================================================
-            // TITLE
-            // ==================================================
-
-            const title =
-                document.createElement("h3");
+                card.className =
+                    "registration-card";
 
 
-            title.innerText =
-                player.fullName ||
-                "Unnamed Player";
+                // IMPORTANT:
+                // Store Firebase document ID
+                // directly on the card.
+
+                card.dataset.registrationId =
+                    registrationDoc.id;
 
 
-            card.appendChild(title);
+                // ==================================================
+                // TITLE
+                // ==================================================
+
+                const title =
+                    document.createElement(
+                        "h3"
+                    );
 
 
-            // ==================================================
-            // REGISTRATION ID
-            // ==================================================
-
-            const idText =
-                document.createElement("div");
+                title.innerText =
+                    player.fullName ||
+                    "Unnamed Player";
 
 
-            idText.className =
-                "registration-info";
-
-
-            idText.innerHTML =
-                "<strong>Registration ID:</strong> " +
-                escapeHtml(
-                    player.registrationId || ""
+                card.appendChild(
+                    title
                 );
 
 
-            card.appendChild(idText);
+                // ==================================================
+                // REGISTRATION ID
+                // ==================================================
 
-
-            // ==================================================
-            // DETAILS
-            // ==================================================
-
-            const details =
-                document.createElement("div");
-
-
-            details.className =
-                "registration-info";
-
-
-            details.innerHTML = `
-
-                <strong>Mobile:</strong>
-                ${escapeHtml(player.mobile || "-")}
-
-                <br>
-
-                <strong>Date of Birth:</strong>
-                ${escapeHtml(player.dateOfBirth || "-")}
-
-                <br>
-
-                <strong>City:</strong>
-                ${escapeHtml(player.city || "-")}
-
-                <br>
-
-                <strong>Playing Role:</strong>
-                ${escapeHtml(player.playingRole || "-")}
-
-                <br>
-
-                <strong>Batting Style:</strong>
-                ${escapeHtml(player.battingStyle || "-")}
-
-                <br>
-
-                <strong>Bowling Style:</strong>
-                ${escapeHtml(player.bowlingStyle || "-")}
-
-                <br>
-
-                <strong>Jersey Number:</strong>
-                ${escapeHtml(player.jerseyNumber || "-")}
-
-                <br>
-
-                <strong>Experience:</strong>
-                ${escapeHtml(player.experience || "-")}
-
-                <br>
-
-                <strong>Profile:</strong>
-                ${escapeHtml(player.profile || "-")}
-
-            `;
-
-
-            card.appendChild(details);
-
-
-            // ==================================================
-            // STATUS
-            // ==================================================
-
-            const status =
-                document.createElement("span");
-
-
-            status.className =
-                "registration-status";
-
-
-            status.classList.add(
-                "status-pending"
-            );
-
-
-            status.innerText =
-                "Status: Pending";
-
-
-            card.appendChild(status);
-
-
-            // ==================================================
-            // ACTION BUTTONS
-            // ==================================================
-
-            const actions =
-                document.createElement("div");
-
-
-            actions.className =
-                "registration-actions";
-
-
-            // ==================================================
-            // APPROVE
-            // ==================================================
-
-            const approveButton =
-                document.createElement("button");
-
-
-            approveButton.className =
-                "approve-btn";
-
-
-            approveButton.innerText =
-                "✅ APPROVE";
-
-
-            approveButton.onclick =
-                function () {
-
-                    updateRegistrationStatus(
-                        registrationDoc.id,
-                        "Approved"
+                const idText =
+                    document.createElement(
+                        "div"
                     );
 
-                };
+
+                idText.className =
+                    "registration-info";
 
 
-            // ==================================================
-            // REJECT
-            // ==================================================
-
-            const rejectButton =
-                document.createElement("button");
-
-
-            rejectButton.className =
-                "reject-btn";
-
-
-            rejectButton.innerText =
-                "❌ REJECT";
-
-
-            rejectButton.onclick =
-                function () {
-
-                    updateRegistrationStatus(
-                        registrationDoc.id,
-                        "Rejected"
+                idText.innerHTML =
+                    "<strong>Registration ID:</strong> " +
+                    escapeHtml(
+                        player.registrationId || "-"
                     );
 
-                };
+
+                card.appendChild(
+                    idText
+                );
 
 
-            actions.appendChild(
-                approveButton
-            );
+                // ==================================================
+                // PLAYER DETAILS
+                // ==================================================
+
+                const details =
+                    document.createElement(
+                        "div"
+                    );
 
 
-            actions.appendChild(
-                rejectButton
-            );
+                details.className =
+                    "registration-info";
 
 
-            card.appendChild(actions);
+                details.innerHTML = `
+
+                    <strong>Mobile:</strong>
+                    ${escapeHtml(
+                        player.mobile || "-"
+                    )}
+
+                    <br>
+
+                    <strong>Date of Birth:</strong>
+                    ${escapeHtml(
+                        player.dateOfBirth || "-"
+                    )}
+
+                    <br>
+
+                    <strong>City:</strong>
+                    ${escapeHtml(
+                        player.city || "-"
+                    )}
+
+                    <br>
+
+                    <strong>Playing Role:</strong>
+                    ${escapeHtml(
+                        player.playingRole || "-"
+                    )}
+
+                    <br>
+
+                    <strong>Batting Style:</strong>
+                    ${escapeHtml(
+                        player.battingStyle || "-"
+                    )}
+
+                    <br>
+
+                    <strong>Bowling Style:</strong>
+                    ${escapeHtml(
+                        player.bowlingStyle || "-"
+                    )}
+
+                    <br>
+
+                    <strong>Jersey Number:</strong>
+                    ${escapeHtml(
+                        player.jerseyNumber || "-"
+                    )}
+
+                    <br>
+
+                    <strong>Experience:</strong>
+                    ${escapeHtml(
+                        player.experience || "-"
+                    )}
+
+                    <br>
+
+                    <strong>Profile:</strong>
+                    ${escapeHtml(
+                        player.profile || "-"
+                    )}
+
+                `;
 
 
-            registrationList.appendChild(card);
+                card.appendChild(
+                    details
+                );
 
-        });
+
+                // ==================================================
+                // STATUS
+                // ==================================================
+
+                const status =
+                    document.createElement(
+                        "span"
+                    );
+
+
+                status.className =
+                    "registration-status status-pending";
+
+
+                status.innerText =
+                    "Status: Pending";
+
+
+                card.appendChild(
+                    status
+                );
+
+
+                // ==================================================
+                // ACTIONS
+                // ==================================================
+
+                const actions =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                actions.className =
+                    "registration-actions";
+
+
+                // ==================================================
+                // APPROVE BUTTON
+                // ==================================================
+
+                const approveButton =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                approveButton.className =
+                    "approve-btn";
+
+
+                approveButton.type =
+                    "button";
+
+
+                approveButton.innerText =
+                    "✅ APPROVE";
+
+
+                approveButton.onclick =
+                    function () {
+
+                        updateRegistrationStatus(
+                            registrationDoc.id,
+                            "Approved",
+                            card,
+                            approveButton,
+                            rejectButton
+                        );
+
+                    };
+
+
+                // ==================================================
+                // REJECT BUTTON
+                // ==================================================
+
+                const rejectButton =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                rejectButton.className =
+                    "reject-btn";
+
+
+                rejectButton.type =
+                    "button";
+
+
+                rejectButton.innerText =
+                    "❌ REJECT";
+
+
+                rejectButton.onclick =
+                    function () {
+
+                        updateRegistrationStatus(
+                            registrationDoc.id,
+                            "Rejected",
+                            card,
+                            approveButton,
+                            rejectButton
+                        );
+
+                    };
+
+
+                actions.appendChild(
+                    approveButton
+                );
+
+
+                actions.appendChild(
+                    rejectButton
+                );
+
+
+                card.appendChild(
+                    actions
+                );
+
+
+                // ==================================================
+                // ADD CARD
+                // ==================================================
+
+                registrationList.appendChild(
+                    card
+                );
+
+            }
+        );
 
 
         // ==================================================
         // MESSAGE
         // ==================================================
 
-        if (count === 0) {
-
-            registrationMsg.innerText =
-                "No pending player registrations.";
-
-        }
-        else {
-
-            registrationMsg.innerText =
-                "Total Pending Registrations: " +
-                count;
-
-        }
+        updateRegistrationMessage(
+            count
+        );
 
 
-    } catch (error) {
+    }
+    catch (error) {
 
         console.error(
             "REGISTRATION LOAD ERROR:",
@@ -396,9 +464,13 @@ async function loadPlayerRegistrations() {
         );
 
 
-        registrationMsg.innerText =
-            "❌ Error loading registrations: " +
-            error.message;
+        if (registrationMsg) {
+
+            registrationMsg.innerText =
+                "❌ Error loading registrations: " +
+                error.message;
+
+        }
 
     }
 
@@ -411,7 +483,10 @@ async function loadPlayerRegistrations() {
 
 async function updateRegistrationStatus(
     documentId,
-    newStatus
+    newStatus,
+    card,
+    approveButton,
+    rejectButton
 ) {
 
     const confirmation =
@@ -430,6 +505,24 @@ async function updateRegistrationStatus(
 
 
     try {
+
+        // ==================================================
+        // DISABLE BUTTONS
+        // ==================================================
+
+        if (approveButton) {
+
+            approveButton.disabled = true;
+
+        }
+
+
+        if (rejectButton) {
+
+            rejectButton.disabled = true;
+
+        }
+
 
         // ==================================================
         // UPDATE FIRESTORE
@@ -457,6 +550,24 @@ async function updateRegistrationStatus(
 
 
         // ==================================================
+        // REMOVE CARD IMMEDIATELY
+        // ==================================================
+
+        if (card) {
+
+            card.remove();
+
+        }
+
+
+        // ==================================================
+        // UPDATE PENDING COUNT
+        // ==================================================
+
+        updateRegistrationMessage();
+
+
+        // ==================================================
         // SUCCESS
         // ==================================================
 
@@ -467,17 +578,8 @@ async function updateRegistrationStatus(
         );
 
 
-        // ==================================================
-        // RELOAD
-        //
-        // Because only Pending players are loaded,
-        // approved/rejected player will disappear.
-        // ==================================================
-
-        loadPlayerRegistrations();
-
-
-    } catch (error) {
+    }
+    catch (error) {
 
         console.error(
             "STATUS UPDATE ERROR:",
@@ -485,10 +587,85 @@ async function updateRegistrationStatus(
         );
 
 
+        // Re-enable buttons if update failed
+
+        if (approveButton) {
+
+            approveButton.disabled = false;
+
+        }
+
+
+        if (rejectButton) {
+
+            rejectButton.disabled = false;
+
+        }
+
+
         alert(
             "Error updating status:\n" +
             error.message
         );
+
+    }
+
+}
+
+
+// ======================================================
+// UPDATE REGISTRATION MESSAGE
+// ======================================================
+
+function updateRegistrationMessage(
+    suppliedCount
+) {
+
+    const registrationList =
+        document.getElementById(
+            "registrationList"
+        );
+
+
+    const registrationMsg =
+        document.getElementById(
+            "registrationMsg"
+        );
+
+
+    if (
+        !registrationList ||
+        !registrationMsg
+    ) {
+
+        return;
+
+    }
+
+
+    const cards =
+        registrationList.querySelectorAll(
+            ".registration-card"
+        );
+
+
+    const count =
+        typeof suppliedCount === "number"
+            ? suppliedCount
+            : cards.length;
+
+
+    if (count === 0) {
+
+        registrationMsg.innerText =
+            "No pending player registrations.";
+
+    }
+    else {
+
+        registrationMsg.innerText =
+            "Total Pending Registrations: " +
+            count;
 
     }
 
@@ -535,7 +712,9 @@ function escapeHtml(value) {
 // CLOUDINARY IMAGE UPLOAD
 // ======================================================
 
-async function uploadImageToCloudinary(file) {
+async function uploadImageToCloudinary(
+    file
+) {
 
     const url =
         `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
@@ -561,8 +740,11 @@ async function uploadImageToCloudinary(file) {
         await fetch(
             url,
             {
+
                 method: "POST",
+
                 body: formData
+
             }
         );
 
@@ -652,6 +834,10 @@ if (saveEventBtn) {
         }
 
 
+        // ==================================================
+        // IMAGE REQUIRED FOR TOURNAMENT / SERIES
+        // ==================================================
+
         if (
             (
                 eventType === "Tournament" ||
@@ -668,6 +854,10 @@ if (saveEventBtn) {
 
         }
 
+
+        // ==================================================
+        // JPG ONLY
+        // ==================================================
 
         if (eventImage) {
 
@@ -710,6 +900,10 @@ if (saveEventBtn) {
             let imageUrl = "";
 
 
+            // ==================================================
+            // UPLOAD IMAGE
+            // ==================================================
+
             if (eventImage) {
 
                 eventMsg.innerHTML =
@@ -723,6 +917,10 @@ if (saveEventBtn) {
 
             }
 
+
+            // ==================================================
+            // SAVE EVENT
+            // ==================================================
 
             eventMsg.innerHTML =
                 "⏳ Saving Event to Firebase...";
@@ -757,6 +955,10 @@ if (saveEventBtn) {
             );
 
 
+            // ==================================================
+            // SUCCESS
+            // ==================================================
+
             eventMsg.innerHTML =
                 "✅ Event saved successfully!";
 
@@ -764,6 +966,10 @@ if (saveEventBtn) {
             eventMsg.style.color =
                 "#00ff88";
 
+
+            // ==================================================
+            // CLEAR FORM
+            // ==================================================
 
             document.getElementById(
                 "eventId"
@@ -790,10 +996,15 @@ if (saveEventBtn) {
             ).value = "Active";
 
 
+            // ==================================================
+            // REFRESH EVENTS
+            // ==================================================
+
             loadEvents();
 
 
-        } catch (error) {
+        }
+        catch (error) {
 
             console.error(
                 "EVENT SAVE ERROR:",
@@ -859,87 +1070,118 @@ async function loadEvents() {
         eventList.innerHTML = "";
 
 
-        snapshot.forEach((docSnapshot) => {
+        if (snapshot.empty) {
 
-            const event =
-                docSnapshot.data();
+            eventList.innerHTML =
+                `
+                <p style="
+                    text-align:center;
+                    color:#aaa;
+                ">
+                    No events found.
+                </p>
+                `;
+
+            return;
+
+        }
 
 
-            const div =
-                document.createElement(
-                    "div"
+        snapshot.forEach(
+            (docSnapshot) => {
+
+                const event =
+                    docSnapshot.data();
+
+
+                const div =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                div.className =
+                    "event-card";
+
+
+                div.innerHTML = `
+
+                    ${
+                        event.imageUrl
+                        ?
+                        `
+                        <img
+                            src="${escapeHtml(
+                                event.imageUrl
+                            )}"
+                            style="
+                                width:100%;
+                                max-height:180px;
+                                object-fit:contain;
+                                border-radius:10px;
+                                margin-bottom:10px;
+                            "
+                        >
+                        `
+                        :
+                        ""
+                    }
+
+                    <strong>
+                        ${escapeHtml(
+                            event.eventName || ""
+                        )}
+                    </strong>
+
+                    <br>
+
+                    Event ID:
+                    ${escapeHtml(
+                        event.eventId || ""
+                    )}
+
+                    <br>
+
+                    Type:
+                    ${escapeHtml(
+                        event.eventType || ""
+                    )}
+
+                    <br>
+
+                    Status:
+                    ${
+                        event.status === "Completed"
+                        ? "🔴 Completed"
+                        : "🟢 Going On"
+                    }
+
+                `;
+
+
+                eventList.appendChild(
+                    div
                 );
 
-
-            div.className =
-                "event-card";
-
-
-            div.innerHTML = `
-
-                ${
-                    event.imageUrl
-                    ?
-                    `
-                    <img
-                        src="${escapeHtml(event.imageUrl)}"
-                        style="
-                            width:100%;
-                            max-height:180px;
-                            object-fit:contain;
-                            border-radius:10px;
-                            margin-bottom:10px;
-                        "
-                    >
-                    `
-                    :
-                    ""
-                }
-
-                <strong>
-                    ${escapeHtml(
-                        event.eventName || ""
-                    )}
-                </strong>
-
-                <br>
-
-                Event ID:
-                ${escapeHtml(
-                    event.eventId || ""
-                )}
-
-                <br>
-
-                Type:
-                ${escapeHtml(
-                    event.eventType || ""
-                )}
-
-                <br>
-
-                Status:
-                ${
-                    event.status === "Completed"
-                    ? "🔴 Completed"
-                    : "🟢 Going On"
-                }
-
-            `;
+            }
+        );
 
 
-            eventList.appendChild(div);
+    }
+    catch (error) {
 
-        });
-
-
-    } catch (error) {
-
-        console.error(error);
+        console.error(
+            "EVENT LOAD ERROR:",
+            error
+        );
 
 
         eventList.innerHTML =
-            "Error loading events.";
+            `
+            <p style="color:#ff4444;">
+                ❌ Error loading events.
+            </p>
+            `;
 
     }
 
@@ -962,7 +1204,10 @@ const matchForm =
     );
 
 
-if (addMatchBtn && matchForm) {
+if (
+    addMatchBtn &&
+    matchForm
+) {
 
     addMatchBtn.onclick =
     function () {
@@ -1031,6 +1276,10 @@ if (
             matchEventType.value;
 
 
+        // ==================================================
+        // INDIVIDUAL MATCH
+        // ==================================================
+
         if (
             selectedType ===
             "Individual Matches"
@@ -1041,15 +1290,21 @@ if (
 
 
             eventSelect.innerHTML =
-                `<option value="">
+                `
+                <option value="">
                     Select Tournament / Series
-                </option>`;
+                </option>
+                `;
 
 
             return;
 
         }
 
+
+        // ==================================================
+        // EMPTY SELECTION
+        // ==================================================
 
         if (
             selectedType !== "Tournament" &&
@@ -1061,9 +1316,11 @@ if (
 
 
             eventSelect.innerHTML =
-                `<option value="">
+                `
+                <option value="">
                     Select Tournament / Series
-                </option>`;
+                </option>
+                `;
 
 
             return;
@@ -1071,14 +1328,20 @@ if (
         }
 
 
+        // ==================================================
+        // SHOW EVENT SELECT
+        // ==================================================
+
         eventSelectBox.style.display =
             "block";
 
 
         eventSelect.innerHTML =
-            `<option value="">
+            `
+            <option value="">
                 Loading...
-            </option>`;
+            </option>
+            `;
 
 
         try {
@@ -1092,13 +1355,12 @@ if (
                 );
 
 
-            eventSelect.innerHTML = `
-
+            eventSelect.innerHTML =
+                `
                 <option value="">
                     Select ${selectedType}
                 </option>
-
-            `;
+                `;
 
 
             let found = false;
@@ -1130,11 +1392,14 @@ if (
 
 
                         option.textContent =
-                            event.eventName;
+                            event.eventName ||
+                            event.eventId ||
+                            "Unnamed Event";
 
 
                         option.dataset.eventId =
-                            event.eventId;
+                            event.eventId ||
+                            "";
 
 
                         eventSelect.appendChild(
@@ -1149,29 +1414,30 @@ if (
 
             if (!found) {
 
-                eventSelect.innerHTML = `
-
+                eventSelect.innerHTML =
+                    `
                     <option value="">
                         No ${selectedType} found
                     </option>
-
-                `;
+                    `;
 
             }
 
+        }
+        catch (error) {
 
-        } catch (error) {
+            console.error(
+                "EVENT SELECT ERROR:",
+                error
+            );
 
-            console.error(error);
 
-
-            eventSelect.innerHTML = `
-
+            eventSelect.innerHTML =
+                `
                 <option value="">
                     Error loading events
                 </option>
-
-            `;
+                `;
 
         }
 
@@ -1272,6 +1538,10 @@ if (saveMatchBtn) {
         let eventName = "";
 
 
+        // ==================================================
+        // TOURNAMENT / SERIES EVENT
+        // ==================================================
+
         if (
             eventType === "Tournament" ||
             eventType === "Series"
@@ -1308,6 +1578,10 @@ if (saveMatchBtn) {
 
         }
 
+
+        // ==================================================
+        // VALIDATION
+        // ==================================================
 
         if (matchId === "") {
 
@@ -1388,6 +1662,10 @@ if (saveMatchBtn) {
 
         try {
 
+            // ==================================================
+            // SAVE MATCH
+            // ==================================================
+
             await addDoc(
 
                 collection(
@@ -1449,6 +1727,10 @@ if (saveMatchBtn) {
             );
 
 
+            // ==================================================
+            // CLEAR MATCH FORM
+            // ==================================================
+
             document.getElementById(
                 "matchId"
             ).value = "";
@@ -1509,24 +1791,41 @@ if (saveMatchBtn) {
             ).value = "";
 
 
-            eventSelectBox.style.display =
-                "none";
+            // ==================================================
+            // RESET EVENT SELECT
+            // ==================================================
+
+            if (eventSelectBox) {
+
+                eventSelectBox.style.display =
+                    "none";
+
+            }
 
 
-            eventSelect.innerHTML = `
-                <option value="">
-                    Select Tournament / Series
-                </option>
-            `;
+            if (eventSelect) {
+
+                eventSelect.innerHTML =
+                    `
+                    <option value="">
+                        Select Tournament / Series
+                    </option>
+                    `;
+
+            }
 
 
-        } catch (error) {
+        }
+        catch (error) {
 
-            console.error(error);
+            console.error(
+                "MATCH SAVE ERROR:",
+                error
+            );
 
 
             alert(
-                "Error saving match: " +
+                "Error saving match:\n" +
                 error.message
             );
 
