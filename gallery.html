@@ -17,7 +17,6 @@
     href="style.css"
 >
 
-
 <style>
 
 /* =====================================================
@@ -69,6 +68,23 @@
 
 
 /* =====================================================
+   LOADING
+===================================================== */
+
+#galleryLoading{
+
+    text-align:center;
+
+    color:#ff9800;
+
+    font-size:18px;
+
+    padding:20px;
+
+}
+
+
+/* =====================================================
    LIGHTBOX
 ===================================================== */
 
@@ -79,7 +95,7 @@
     inset:0;
 
     background:
-        rgba(0,0,0,.94);
+        rgba(0,0,0,.95);
 
     display:none;
 
@@ -119,7 +135,7 @@
 
 
 /* =====================================================
-   CLOSE BUTTON
+   CLOSE
 ===================================================== */
 
 #closeLightbox{
@@ -176,7 +192,7 @@
 
     color:#fff;
 
-    font-size:28px;
+    font-size:30px;
 
     cursor:pointer;
 
@@ -247,7 +263,7 @@
 
         height:42px;
 
-        font-size:22px;
+        font-size:24px;
 
     }
 
@@ -332,8 +348,35 @@ Together We Roar, Together We Win
 </h2>
 
 
-<div class="gallery">
+<!-- =====================================================
+     ADMIN UPLOADED PHOTOS
+===================================================== -->
 
+<div
+id="galleryLoading"
+>
+⏳ Loading Gallery...
+</div>
+
+
+<div
+class="gallery"
+id="firebaseGallery"
+>
+</div>
+
+
+
+<!-- =====================================================
+     OLD / STATIC TEAM PHOTOS
+===================================================== -->
+
+<h2 style="margin-top:50px;">
+🏏 Team Photos
+</h2>
+
+
+<div class="gallery">
 
 <img
 src="Image.jpg"
@@ -350,20 +393,20 @@ src="images/team.jpg"
 alt="Team Photo"
 >
 
-
 </div>
 
 
 
+<!-- =====================================================
+     JERSEY LAUNCH
+===================================================== -->
+
 <h2 style="margin-top:50px;">
-
 🏏 Jersey Launching Ceremony 2026
-
 </h2>
 
 
 <div class="gallery">
-
 
 <img
 src="beo-jl.png"
@@ -410,10 +453,18 @@ src="sachin-jl.jpg"
 alt="Sachin"
 >
 
-
 </div>
 
+
 </section>
+
+
+
+<footer>
+
+© 2026 CAWNPORE TIGERS XI
+
+</footer>
 
 
 
@@ -442,7 +493,7 @@ class="lightbox-btn"
 <img
 id="lightboxImage"
 src=""
-alt="Large Gallery Photo"
+alt="Gallery Photo"
 >
 
 
@@ -458,196 +509,315 @@ class="lightbox-btn"
 
 
 
-<footer>
+<!-- =====================================================
+     FIREBASE GALLERY
+===================================================== -->
 
-© 2026 CAWNPORE TIGERS XI
+<script type="module">
 
-</footer>
+import { db } from "./firebase.js";
 
+import {
 
+    collection,
+    getDocs
 
-<script>
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-/* =====================================================
-   GALLERY LIGHTBOX
-===================================================== */
-
-const galleryImages =
-    document.querySelectorAll(
-        ".gallery img"
-    );
-
-
-const lightbox =
-    document.getElementById(
-        "lightbox"
-    );
-
-
-const lightboxImage =
-    document.getElementById(
-        "lightboxImage"
-    );
-
-
-const closeLightbox =
-    document.getElementById(
-        "closeLightbox"
-    );
-
-
-const prevBtn =
-    document.getElementById(
-        "prevBtn"
-    );
-
-
-const nextBtn =
-    document.getElementById(
-        "nextBtn"
-    );
-
-
-let currentIndex = 0;
 
 
 /* =====================================================
-   OPEN PHOTO
+   ELEMENTS
 ===================================================== */
 
-galleryImages.forEach(
-    (image,index) => {
+const firebaseGallery =
+    document.getElementById(
+        "firebaseGallery"
+    );
 
-        image.addEventListener(
-            "click",
-            function(){
 
-                currentIndex =
-                    index;
+const galleryLoading =
+    document.getElementById(
+        "galleryLoading"
+    );
 
-                showImage();
 
-                lightbox.classList.add(
-                    "show"
+
+/* =====================================================
+   LOAD FIREBASE GALLERY
+===================================================== */
+
+async function loadFirebaseGallery(){
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "gallery"
+                )
+            );
+
+
+        firebaseGallery.innerHTML = "";
+
+
+        if(snapshot.empty){
+
+            galleryLoading.innerText =
+                "No new photos uploaded yet.";
+
+            return;
+
+        }
+
+
+        snapshot.forEach(
+            (galleryDoc)=>{
+
+                const data =
+                    galleryDoc.data();
+
+
+                if(!data.imageUrl){
+
+                    return;
+
+                }
+
+
+                const image =
+                    document.createElement(
+                        "img"
+                    );
+
+
+                image.src =
+                    data.imageUrl;
+
+
+                image.alt =
+                    "CAWNPORE TIGERS XI";
+
+
+                image.loading =
+                    "lazy";
+
+
+                firebaseGallery.appendChild(
+                    image
                 );
 
             }
         );
 
+
+        galleryLoading.style.display =
+            "none";
+
+
+        /*
+         * Re-initialize Lightbox
+         * after Firebase photos load.
+         */
+
+        setupLightbox();
+
     }
-);
+
+    catch(error){
+
+        console.error(
+            "GALLERY LOAD ERROR:",
+            error
+        );
 
 
-/* =====================================================
-   SHOW IMAGE
-===================================================== */
+        galleryLoading.innerText =
+            "❌ Unable to load gallery.";
 
-function showImage(){
-
-    lightboxImage.src =
-        galleryImages[
-            currentIndex
-        ].src;
-
-    lightboxImage.alt =
-        galleryImages[
-            currentIndex
-        ].alt;
+    }
 
 }
 
 
-/* =====================================================
-   NEXT
-===================================================== */
-
-nextBtn.addEventListener(
-    "click",
-    function(event){
-
-        event.stopPropagation();
-
-        currentIndex++;
-
-        if(
-            currentIndex >=
-            galleryImages.length
-        ){
-
-            currentIndex = 0;
-
-        }
-
-        showImage();
-
-    }
-);
-
 
 /* =====================================================
-   PREVIOUS
+   LIGHTBOX
 ===================================================== */
 
-prevBtn.addEventListener(
-    "click",
-    function(event){
+let galleryImages = [];
 
-        event.stopPropagation();
-
-        currentIndex--;
-
-        if(
-            currentIndex < 0
-        ){
-
-            currentIndex =
-                galleryImages.length - 1;
-
-        }
-
-        showImage();
-
-    }
-);
+let currentIndex = 0;
 
 
-/* =====================================================
-   CLOSE
-===================================================== */
+function setupLightbox(){
 
-closeLightbox.addEventListener(
-    "click",
-    function(){
-
-        lightbox.classList.remove(
-            "show"
+    galleryImages =
+        Array.from(
+            document.querySelectorAll(
+                ".gallery img"
+            )
         );
 
-    }
-);
+
+    const lightbox =
+        document.getElementById(
+            "lightbox"
+        );
 
 
-/* =====================================================
-   CLICK OUTSIDE PHOTO
-===================================================== */
+    const lightboxImage =
+        document.getElementById(
+            "lightboxImage"
+        );
 
-lightbox.addEventListener(
-    "click",
-    function(event){
+
+    const closeLightbox =
+        document.getElementById(
+            "closeLightbox"
+        );
+
+
+    const prevBtn =
+        document.getElementById(
+            "prevBtn"
+        );
+
+
+    const nextBtn =
+        document.getElementById(
+            "nextBtn"
+        );
+
+
+    galleryImages.forEach(
+        (image,index)=>{
+
+            /*
+             * Avoid duplicate listeners
+             */
+
+            image.onclick =
+                function(){
+
+                    currentIndex =
+                        index;
+
+                    showImage();
+
+                    lightbox.classList.add(
+                        "show"
+                    );
+
+                };
+
+        }
+    );
+
+
+    function showImage(){
 
         if(
-            event.target ===
-            lightbox
+            !galleryImages.length
         ){
+
+            return;
+
+        }
+
+
+        lightboxImage.src =
+            galleryImages[
+                currentIndex
+            ].src;
+
+
+        lightboxImage.alt =
+            galleryImages[
+                currentIndex
+            ].alt;
+
+    }
+
+
+    nextBtn.onclick =
+        function(event){
+
+            event.stopPropagation();
+
+
+            currentIndex++;
+
+
+            if(
+                currentIndex >=
+                galleryImages.length
+            ){
+
+                currentIndex = 0;
+
+            }
+
+
+            showImage();
+
+        };
+
+
+    prevBtn.onclick =
+        function(event){
+
+            event.stopPropagation();
+
+
+            currentIndex--;
+
+
+            if(
+                currentIndex < 0
+            ){
+
+                currentIndex =
+                    galleryImages.length - 1;
+
+            }
+
+
+            showImage();
+
+        };
+
+
+    closeLightbox.onclick =
+        function(){
 
             lightbox.classList.remove(
                 "show"
             );
 
-        }
+        };
 
-    }
-);
+
+    lightbox.onclick =
+        function(event){
+
+            if(
+                event.target ===
+                lightbox
+            ){
+
+                lightbox.classList.remove(
+                    "show"
+                );
+
+            }
+
+        };
+
+}
 
 
 /* =====================================================
@@ -657,6 +827,12 @@ lightbox.addEventListener(
 document.addEventListener(
     "keydown",
     function(event){
+
+        const lightbox =
+            document.getElementById(
+                "lightbox"
+            );
+
 
         if(
             !lightbox.classList.contains(
@@ -684,7 +860,11 @@ document.addEventListener(
             event.key === "ArrowRight"
         ){
 
-            nextBtn.click();
+            document
+                .getElementById(
+                    "nextBtn"
+                )
+                .click();
 
         }
 
@@ -693,12 +873,24 @@ document.addEventListener(
             event.key === "ArrowLeft"
         ){
 
-            prevBtn.click();
+            document
+                .getElementById(
+                    "prevBtn"
+                )
+                .click();
 
         }
 
     }
 );
+
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadFirebaseGallery();
 
 </script>
 
