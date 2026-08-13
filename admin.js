@@ -141,10 +141,6 @@ async function loadPlayerRegistrations() {
                     registrationDoc.data();
 
 
-                // ==================================================
-                // ONLY PENDING PLAYERS
-                // ==================================================
-
                 if (
                     player.status !== "Pending"
                 ) {
@@ -157,10 +153,6 @@ async function loadPlayerRegistrations() {
                 count++;
 
 
-                // ==================================================
-                // CARD
-                // ==================================================
-
                 const card =
                     document.createElement(
                         "div"
@@ -171,17 +163,9 @@ async function loadPlayerRegistrations() {
                     "registration-card";
 
 
-                // IMPORTANT:
-                // Store Firebase document ID
-                // directly on the card.
-
                 card.dataset.registrationId =
                     registrationDoc.id;
 
-
-                // ==================================================
-                // TITLE
-                // ==================================================
 
                 const title =
                     document.createElement(
@@ -198,10 +182,6 @@ async function loadPlayerRegistrations() {
                     title
                 );
 
-
-                // ==================================================
-                // REGISTRATION ID
-                // ==================================================
 
                 const idText =
                     document.createElement(
@@ -224,10 +204,6 @@ async function loadPlayerRegistrations() {
                     idText
                 );
 
-
-                // ==================================================
-                // PLAYER DETAILS
-                // ==================================================
 
                 const details =
                     document.createElement(
@@ -310,10 +286,6 @@ async function loadPlayerRegistrations() {
                 );
 
 
-                // ==================================================
-                // STATUS
-                // ==================================================
-
                 const status =
                     document.createElement(
                         "span"
@@ -333,10 +305,6 @@ async function loadPlayerRegistrations() {
                 );
 
 
-                // ==================================================
-                // ACTIONS
-                // ==================================================
-
                 const actions =
                     document.createElement(
                         "div"
@@ -346,10 +314,6 @@ async function loadPlayerRegistrations() {
                 actions.className =
                     "registration-actions";
 
-
-                // ==================================================
-                // APPROVE BUTTON
-                // ==================================================
 
                 const approveButton =
                     document.createElement(
@@ -382,10 +346,6 @@ async function loadPlayerRegistrations() {
 
                     };
 
-
-                // ==================================================
-                // REJECT BUTTON
-                // ==================================================
 
                 const rejectButton =
                     document.createElement(
@@ -434,10 +394,6 @@ async function loadPlayerRegistrations() {
                 );
 
 
-                // ==================================================
-                // ADD CARD
-                // ==================================================
-
                 registrationList.appendChild(
                     card
                 );
@@ -445,10 +401,6 @@ async function loadPlayerRegistrations() {
             }
         );
 
-
-        // ==================================================
-        // MESSAGE
-        // ==================================================
 
         updateRegistrationMessage(
             count
@@ -506,10 +458,6 @@ async function updateRegistrationStatus(
 
     try {
 
-        // ==================================================
-        // DISABLE BUTTONS
-        // ==================================================
-
         if (approveButton) {
 
             approveButton.disabled = true;
@@ -523,10 +471,6 @@ async function updateRegistrationStatus(
 
         }
 
-
-        // ==================================================
-        // UPDATE FIRESTORE
-        // ==================================================
 
         await updateDoc(
 
@@ -549,10 +493,6 @@ async function updateRegistrationStatus(
         );
 
 
-        // ==================================================
-        // REMOVE CARD IMMEDIATELY
-        // ==================================================
-
         if (card) {
 
             card.remove();
@@ -560,16 +500,8 @@ async function updateRegistrationStatus(
         }
 
 
-        // ==================================================
-        // UPDATE PENDING COUNT
-        // ==================================================
-
         updateRegistrationMessage();
 
-
-        // ==================================================
-        // SUCCESS
-        // ==================================================
 
         alert(
             "Registration " +
@@ -586,8 +518,6 @@ async function updateRegistrationStatus(
             error
         );
 
-
-        // Re-enable buttons if update failed
 
         if (approveButton) {
 
@@ -775,6 +705,270 @@ async function uploadImageToCloudinary(
 
 
 // ======================================================
+// GALLERY IMAGE PREVIEW
+// ======================================================
+
+const galleryImage =
+    document.getElementById(
+        "galleryImage"
+    );
+
+
+const galleryPreview =
+    document.getElementById(
+        "galleryPreview"
+    );
+
+
+if (
+    galleryImage &&
+    galleryPreview
+) {
+
+    galleryImage.addEventListener(
+        "change",
+        function () {
+
+            const file =
+                galleryImage.files[0];
+
+
+            if (!file) {
+
+                galleryPreview.style.display =
+                    "none";
+
+                galleryPreview.src =
+                    "";
+
+                return;
+
+            }
+
+
+            // JPG / JPEG ONLY
+
+            if (
+                file.type !==
+                "image/jpeg"
+            ) {
+
+                alert(
+                    "Please select JPG or JPEG image only."
+                );
+
+
+                galleryImage.value =
+                    "";
+
+
+                galleryPreview.style.display =
+                    "none";
+
+                return;
+
+            }
+
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function (event) {
+
+                    galleryPreview.src =
+                        event.target.result;
+
+
+                    galleryPreview.style.display =
+                        "block";
+
+                };
+
+
+            reader.readAsDataURL(
+                file
+            );
+
+        }
+    );
+
+}
+
+
+// ======================================================
+// GALLERY UPLOAD
+// ======================================================
+
+const uploadGalleryBtn =
+    document.getElementById(
+        "uploadGalleryBtn"
+    );
+
+
+if (uploadGalleryBtn) {
+
+    uploadGalleryBtn.onclick =
+    async function () {
+
+        const file =
+            document.getElementById(
+                "galleryImage"
+            ).files[0];
+
+
+        const galleryMsg =
+            document.getElementById(
+                "galleryMsg"
+            );
+
+
+        if (!file) {
+
+            alert(
+                "Please select an image first."
+            );
+
+            return;
+
+        }
+
+
+        if (
+            file.type !==
+            "image/jpeg"
+        ) {
+
+            alert(
+                "Please upload JPG or JPEG image only."
+            );
+
+            return;
+
+        }
+
+
+        try {
+
+            uploadGalleryBtn.disabled =
+                true;
+
+
+            uploadGalleryBtn.innerText =
+                "⏳ UPLOADING...";
+
+
+            galleryMsg.innerHTML =
+                "⏳ Uploading image to Cloudinary...";
+
+
+            galleryMsg.style.color =
+                "#ff9800";
+
+
+            // ==================================================
+            // CLOUDINARY UPLOAD
+            // ==================================================
+
+            const imageUrl =
+                await uploadImageToCloudinary(
+                    file
+                );
+
+
+            galleryMsg.innerHTML =
+                "⏳ Saving image to Firebase...";
+
+
+            // ==================================================
+            // FIRESTORE
+            // ==================================================
+
+            await addDoc(
+
+                collection(
+                    db,
+                    "gallery"
+                ),
+
+                {
+
+                    imageUrl:
+                        imageUrl,
+
+                    createdAt:
+                        serverTimestamp()
+
+                }
+
+            );
+
+
+            galleryMsg.innerHTML =
+                "✅ Photo uploaded successfully!";
+
+
+            galleryMsg.style.color =
+                "#00ff88";
+
+
+            // ==================================================
+            // CLEAR
+            // ==================================================
+
+            document.getElementById(
+                "galleryImage"
+            ).value =
+                "";
+
+
+            if (galleryPreview) {
+
+                galleryPreview.src =
+                    "";
+
+                galleryPreview.style.display =
+                    "none";
+
+            }
+
+
+        }
+        catch (error) {
+
+            console.error(
+                "GALLERY UPLOAD ERROR:",
+                error
+            );
+
+
+            galleryMsg.innerHTML =
+                "❌ Upload failed:<br>" +
+                error.message;
+
+
+            galleryMsg.style.color =
+                "#ff4444";
+
+        }
+        finally {
+
+            uploadGalleryBtn.disabled =
+                false;
+
+
+            uploadGalleryBtn.innerText =
+                "⬆️ UPLOAD PHOTO";
+
+        }
+
+    };
+
+}
+
+
+// ======================================================
 // ADD NEW EVENT
 // ======================================================
 
@@ -834,10 +1028,6 @@ if (saveEventBtn) {
         }
 
 
-        // ==================================================
-        // IMAGE REQUIRED FOR TOURNAMENT / SERIES
-        // ==================================================
-
         if (
             (
                 eventType === "Tournament" ||
@@ -854,10 +1044,6 @@ if (saveEventBtn) {
 
         }
 
-
-        // ==================================================
-        // JPG ONLY
-        // ==================================================
 
         if (eventImage) {
 
@@ -900,10 +1086,6 @@ if (saveEventBtn) {
             let imageUrl = "";
 
 
-            // ==================================================
-            // UPLOAD IMAGE
-            // ==================================================
-
             if (eventImage) {
 
                 eventMsg.innerHTML =
@@ -917,10 +1099,6 @@ if (saveEventBtn) {
 
             }
 
-
-            // ==================================================
-            // SAVE EVENT
-            // ==================================================
 
             eventMsg.innerHTML =
                 "⏳ Saving Event to Firebase...";
@@ -955,10 +1133,6 @@ if (saveEventBtn) {
             );
 
 
-            // ==================================================
-            // SUCCESS
-            // ==================================================
-
             eventMsg.innerHTML =
                 "✅ Event saved successfully!";
 
@@ -966,10 +1140,6 @@ if (saveEventBtn) {
             eventMsg.style.color =
                 "#00ff88";
 
-
-            // ==================================================
-            // CLEAR FORM
-            // ==================================================
 
             document.getElementById(
                 "eventId"
@@ -995,10 +1165,6 @@ if (saveEventBtn) {
                 "eventStatus"
             ).value = "Active";
 
-
-            // ==================================================
-            // REFRESH EVENTS
-            // ==================================================
 
             loadEvents();
 
@@ -1276,10 +1442,6 @@ if (
             matchEventType.value;
 
 
-        // ==================================================
-        // INDIVIDUAL MATCH
-        // ==================================================
-
         if (
             selectedType ===
             "Individual Matches"
@@ -1302,10 +1464,6 @@ if (
         }
 
 
-        // ==================================================
-        // EMPTY SELECTION
-        // ==================================================
-
         if (
             selectedType !== "Tournament" &&
             selectedType !== "Series"
@@ -1327,10 +1485,6 @@ if (
 
         }
 
-
-        // ==================================================
-        // SHOW EVENT SELECT
-        // ==================================================
 
         eventSelectBox.style.display =
             "block";
@@ -1538,10 +1692,6 @@ if (saveMatchBtn) {
         let eventName = "";
 
 
-        // ==================================================
-        // TOURNAMENT / SERIES EVENT
-        // ==================================================
-
         if (
             eventType === "Tournament" ||
             eventType === "Series"
@@ -1578,10 +1728,6 @@ if (saveMatchBtn) {
 
         }
 
-
-        // ==================================================
-        // VALIDATION
-        // ==================================================
 
         if (matchId === "") {
 
@@ -1662,10 +1808,6 @@ if (saveMatchBtn) {
 
         try {
 
-            // ==================================================
-            // SAVE MATCH
-            // ==================================================
-
             await addDoc(
 
                 collection(
@@ -1727,10 +1869,6 @@ if (saveMatchBtn) {
             );
 
 
-            // ==================================================
-            // CLEAR MATCH FORM
-            // ==================================================
-
             document.getElementById(
                 "matchId"
             ).value = "";
@@ -1790,10 +1928,6 @@ if (saveMatchBtn) {
                 "cricHeroesLink"
             ).value = "";
 
-
-            // ==================================================
-            // RESET EVENT SELECT
-            // ==================================================
 
             if (eventSelectBox) {
 
