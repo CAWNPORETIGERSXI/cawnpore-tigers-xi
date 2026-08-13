@@ -77,13 +77,74 @@ body{
 
     background:#111;
 
-    border-bottom:2px solid #ff9800;
-
-    padding:12px 15px;
+    padding:10px 14px;
 
     border-radius:12px;
 
     margin-bottom:20px;
+
+    position:relative;
+
+}
+
+
+/* ORANGE LINE */
+
+.admin-header::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    bottom:-7px;
+
+    height:3px;
+
+    background:#ff9800;
+
+    border-radius:10px;
+
+    box-shadow:
+        0 0 8px rgba(255,152,0,.45);
+
+}
+
+
+/* =====================================================
+   LOGO + TEAM NAME
+===================================================== */
+
+.admin-brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    min-width:0;
+
+}
+
+
+.admin-logo-img{
+
+    width:48px;
+
+    height:48px;
+
+    object-fit:contain;
+
+    flex-shrink:0;
+
+    border-radius:50%;
+
+    filter:
+        drop-shadow(0 0 5px rgba(255,152,0,.35));
 
 }
 
@@ -96,22 +157,38 @@ body{
 
     font-weight:bold;
 
+    line-height:1.2;
+
+    white-space:nowrap;
+
 }
 
 
+/* =====================================================
+   HAMBURGER BUTTON
+===================================================== */
+
 .menu-btn{
 
-    width:50px;
+    width:54px;
 
-    height:45px;
+    height:48px;
 
     padding:0;
 
     background:#ff9800;
 
-    border-radius:8px;
+    color:#111;
 
-    font-size:28px;
+    border:none;
+
+    border-radius:9px;
+
+    font-size:31px;
+
+    font-weight:bold;
+
+    line-height:1;
 
     display:flex;
 
@@ -119,12 +196,26 @@ body{
 
     justify-content:center;
 
+    cursor:pointer;
+
+    flex-shrink:0;
+
+    box-shadow:
+        0 0 10px rgba(255,152,0,.25);
+
 }
 
 
 .menu-btn:hover{
 
     background:#e68900;
+
+}
+
+
+.menu-btn:active{
+
+    transform:scale(.96);
 
 }
 
@@ -174,9 +265,12 @@ body{
 
     border-radius:12px;
 
-    padding:10px;
+    padding:12px;
 
     margin-bottom:20px;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.35);
 
 }
 
@@ -188,6 +282,31 @@ body{
 }
 
 
+/* =====================================================
+   MENU TITLE
+===================================================== */
+
+.menu-title{
+
+    color:#ff9800;
+
+    font-weight:bold;
+
+    font-size:18px;
+
+    padding:10px 8px 12px;
+
+    text-align:center;
+
+    letter-spacing:.5px;
+
+}
+
+
+/* =====================================================
+   MENU ITEMS
+===================================================== */
+
 .menu-item{
 
     width:100%;
@@ -198,15 +317,25 @@ body{
 
     border:1px solid #333;
 
-    margin:5px 0;
+    margin:7px 0;
 
-    padding:13px;
+    padding:15px 14px;
 
     text-align:left;
 
-    border-radius:8px;
+    border-radius:9px;
 
-    font-size:16px;
+    font-size:18px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    box-sizing:border-box;
+
+    transition:
+        background .2s ease,
+        transform .15s ease;
 
 }
 
@@ -220,13 +349,9 @@ body{
 }
 
 
-.menu-title{
+.menu-item:active{
 
-    color:#ff9800;
-
-    font-weight:bold;
-
-    padding:8px;
+    transform:scale(.98);
 
 }
 
@@ -670,6 +795,22 @@ button:disabled{
     }
 
 
+    .admin-header{
+
+        padding:9px 10px;
+
+    }
+
+
+    .admin-logo-img{
+
+        width:42px;
+
+        height:42px;
+
+    }
+
+
     .admin-logo{
 
         font-size:16px;
@@ -679,11 +820,27 @@ button:disabled{
 
     .menu-btn{
 
-        width:45px;
+        width:52px;
 
-        height:42px;
+        height:46px;
 
-        font-size:25px;
+        font-size:30px;
+
+    }
+
+
+    .menu-title{
+
+        font-size:17px;
+
+    }
+
+
+    .menu-item{
+
+        font-size:17px;
+
+        padding:14px 13px;
 
     }
 
@@ -715,8 +872,18 @@ button:disabled{
 
     <div class="admin-header">
 
-        <div class="admin-logo">
-            🏏 CAWNPORE TIGERS XI
+        <div class="admin-brand">
+
+            <img
+                src="logo.png"
+                class="admin-logo-img"
+                alt="CAWNPORE TIGERS XI Logo"
+            >
+
+            <div class="admin-logo">
+                CAWNPORE TIGERS XI
+            </div>
+
         </div>
 
     </div>
@@ -770,8 +937,18 @@ button:disabled{
 
 <div class="admin-header">
 
-    <div class="admin-logo">
-        🏏 CAWNPORE TIGERS XI
+    <div class="admin-brand">
+
+        <img
+            src="logo.png"
+            class="admin-logo-img"
+            alt="CAWNPORE TIGERS XI Logo"
+        >
+
+        <div class="admin-logo">
+            CAWNPORE TIGERS XI
+        </div>
+
     </div>
 
 
@@ -853,516 +1030,4 @@ button:disabled{
 
 <!-- =====================================================
      DASHBOARD
-===================================================== -->
-
-<section
-    id="dashboardSection"
-    class="admin-section active"
->
-
-
-<h2 class="section-title">
-    ADMIN DASHBOARD
-</h2>
-
-
-<div class="dashboard-box">
-
-    <h3>
-        🏏 Welcome Admin
-    </h3>
-
-    <p>
-        CAWNPORE TIGERS XI
-    </p>
-
-    <p>
-        Use the ☰ menu to manage
-        Players, Events, Matches and Gallery.
-    </p>
-
-</div>
-
-</section>
-
-
-
-<!-- =====================================================
-     PLAYER REGISTRATIONS
-===================================================== -->
-
-<section
-    id="registrationSection"
-    class="admin-section"
->
-
-
-<h2 class="section-title">
-    🧑‍🏏 PLAYER REGISTRATIONS
-</h2>
-
-
-<p id="registrationMsg">
-    Loading registrations...
-</p>
-
-
-<div id="registrationList"></div>
-
-
-</section>
-
-
-
-<!-- =====================================================
-     EVENTS
-===================================================== -->
-
-<section
-    id="eventSection"
-    class="admin-section"
->
-
-
-<h2 class="section-title">
-    📅 EVENTS
-</h2>
-
-
-<hr class="section-divider">
-
-
-<h3 style="color:#ff9800;">
-    ➕ Add New Event
-</h3>
-
-
-<input
-    type="text"
-    id="eventId"
-    placeholder="Event ID"
->
-
-
-<select id="eventType">
-
-    <option value="">
-        Select Event Type
-    </option>
-
-    <option value="Tournament">
-        Tournament
-    </option>
-
-    <option value="Series">
-        Series
-    </option>
-
-    <option value="Individual Matches">
-        Individual Matches
-    </option>
-
-</select>
-
-
-<input
-    type="text"
-    id="eventName"
-    placeholder="Event Name"
->
-
-
-<label>
-    Event Logo / Image (JPG)
-</label>
-
-
-<input
-    type="file"
-    id="eventImage"
-    accept=".jpg,.jpeg,image/jpeg"
->
-
-
-<label>
-    Event Status
-</label>
-
-
-<select id="eventStatus">
-
-    <option value="Active">
-        🟢 Going On
-    </option>
-
-    <option value="Completed">
-        🔴 Completed
-    </option>
-
-</select>
-
-
-<button
-    type="button"
-    id="saveEventBtn"
->
-    SAVE EVENT
-</button>
-
-
-<p id="eventMsg"></p>
-
-
-<hr class="section-divider">
-
-
-<h3 style="color:#ff9800;">
-    📋 Existing Events
-</h3>
-
-
-<div id="eventList"></div>
-
-
-</section>
-
-
-
-<!-- =====================================================
-     MATCHES
-===================================================== -->
-
-<section
-    id="matchSection"
-    class="admin-section"
->
-
-
-<h2 class="section-title">
-    🏏 MATCHES
-</h2>
-
-
-<button
-    type="button"
-    id="addMatchBtn"
->
-    ➕ ADD NEW MATCH
-</button>
-
-
-<div id="matchForm">
-
-
-<h3 style="color:#ff9800;">
-    Match Details
-</h3>
-
-
-<input
-    type="text"
-    id="matchId"
-    placeholder="Match ID"
->
-
-
-<select id="matchEventType">
-
-    <option value="">
-        Select Event Type
-    </option>
-
-    <option value="Tournament">
-        Tournament
-    </option>
-
-    <option value="Series">
-        Series
-    </option>
-
-    <option value="Individual Matches">
-        Individual Matches
-    </option>
-
-</select>
-
-
-<div
-    id="eventSelectBox"
-    style="display:none;"
->
-
-
-<select id="eventSelect">
-
-    <option value="">
-        Select Tournament / Series
-    </option>
-
-</select>
-
-
-</div>
-
-
-<input
-    type="date"
-    id="matchDate"
->
-
-
-<input
-    type="text"
-    id="matchPlace"
-    placeholder="Place"
->
-
-
-<input
-    type="text"
-    id="opponent"
-    placeholder="Opponent"
->
-
-
-<input
-    type="text"
-    id="overs"
-    placeholder="Overs"
->
-
-
-<input
-    type="text"
-    id="result"
-    placeholder="Result"
->
-
-
-<input
-    type="text"
-    id="playerOfMatch"
-    placeholder="Player of the Match"
->
-
-
-<input
-    type="text"
-    id="bestBowler"
-    placeholder="Best Bowler (Winning Side)"
->
-
-
-<input
-    type="text"
-    id="bestBatter"
-    placeholder="Best Batter (Winning Side)"
->
-
-
-<input
-    type="text"
-    id="fighterOfMatch"
-    placeholder="Fighter of Match (Losing Side)"
->
-
-
-<input
-    type="url"
-    id="cricHeroesLink"
-    placeholder="CricHeroes Link"
->
-
-
-<button
-    type="button"
-    id="saveMatchBtn"
->
-    SAVE MATCH
-</button>
-
-
-</div>
-
-
-</section>
-
-
-
-<!-- =====================================================
-     GALLERY
-===================================================== -->
-
-<section
-    id="gallerySection"
-    class="admin-section"
->
-
-
-<h2 class="section-title">
-    📸 GALLERY
-</h2>
-
-
-<div class="gallery-admin-card">
-
-
-<h3>
-    Upload New Gallery Photos
-</h3>
-
-
-<label>
-    Select Images
-</label>
-
-
-<input
-    type="file"
-    id="galleryImage"
-    accept=".jpg,.jpeg,image/jpeg"
-    multiple
->
-
-
-<img
-    id="galleryPreview"
-    class="gallery-preview"
-    alt="Gallery Preview"
->
-
-
-<p id="galleryMsg"></p>
-
-
-<button
-    type="button"
-    id="uploadGalleryBtn"
->
-    ⬆️ UPLOAD PHOTOS
-</button>
-
-
-</div>
-
-
-</section>
-
-
-
-</div>
-
-
-</div>
-
-
-
-<!-- =====================================================
-     HAMBURGER MENU SCRIPT
-===================================================== -->
-
-<script>
-
-const menuBtn =
-    document.getElementById("menuBtn");
-
-const adminMenu =
-    document.getElementById("adminMenu");
-
-const menuItems =
-    document.querySelectorAll(".menu-item");
-
-const sections =
-    document.querySelectorAll(".admin-section");
-
-
-if(menuBtn){
-
-    menuBtn.addEventListener(
-        "click",
-        function(){
-
-            adminMenu.classList.toggle(
-                "show"
-            );
-
-        }
-    );
-
-}
-
-
-menuItems.forEach(
-    function(item){
-
-        item.addEventListener(
-            "click",
-            function(){
-
-                const targetId =
-                    item.dataset.section;
-
-
-                sections.forEach(
-                    function(section){
-
-                        section.classList.remove(
-                            "active"
-                        );
-
-                    }
-                );
-
-
-                const target =
-                    document.getElementById(
-                        targetId
-                    );
-
-
-                if(target){
-
-                    target.classList.add(
-                        "active"
-                    );
-
-                }
-
-
-                adminMenu.classList.remove(
-                    "show"
-                );
-
-            }
-        );
-
-    }
-);
-
-</script>
-
-
-
-<!-- =====================================================
-     FIREBASE
-===================================================== -->
-
-<script
-    type="module"
-    src="firebase.js"
-></script>
-
-
-<!-- =====================================================
-     ADMIN JAVASCRIPT
-===================================================== -->
-
-<script
-    type="module"
-    src="admin.js"
-></script>
-
-
-</body>
-
-</html>
+================================================
