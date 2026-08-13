@@ -15,7 +15,7 @@ import {
 
 
 // ======================================================
-// CLOUDINARY SETTINGS
+// CLOUDINARY
 // ======================================================
 
 const CLOUDINARY_CLOUD_NAME = "ax0fx3uh";
@@ -36,25 +36,26 @@ if (loginBtn) {
 
     loginBtn.addEventListener("click", async function () {
 
-        const emailInput =
+        const emailElement =
             document.getElementById("email");
 
-        const passwordInput =
+        const passwordElement =
             document.getElementById("password");
 
 
         const email =
-            emailInput
-                ? emailInput.value.trim()
+            emailElement
+                ? emailElement.value.trim()
                 : "";
 
 
         const password =
-            passwordInput
-                ? passwordInput.value
+            passwordElement
+                ? passwordElement.value
                 : "";
 
 
+        // EMPTY CHECK
         if (!email || !password) {
 
             if (loginMsg) {
@@ -91,7 +92,9 @@ if (loginBtn) {
             }
 
 
-            // FIREBASE LOGIN
+            // ==========================================
+            // FIREBASE AUTHENTICATION
+            // ==========================================
 
             const userCredential =
                 await signInWithEmailAndPassword(
@@ -118,7 +121,9 @@ if (loginBtn) {
             }
 
 
+            // ==========================================
             // HIDE LOGIN
+            // ==========================================
 
             if (loginBox) {
 
@@ -128,7 +133,9 @@ if (loginBtn) {
             }
 
 
+            // ==========================================
             // SHOW ADMIN PANEL
+            // ==========================================
 
             if (adminPanel) {
 
@@ -138,14 +145,16 @@ if (loginBtn) {
             }
 
 
-            // LOAD ADMIN DATA
+            // ==========================================
+            // LOAD DATA
+            // ==========================================
 
             loadEvents();
 
             loadPlayerRegistrations();
 
-
         }
+
 
         catch (error) {
 
@@ -155,12 +164,40 @@ if (loginBtn) {
             );
 
 
+            console.log(
+                "FIREBASE ERROR CODE:",
+                error.code
+            );
+
+
+            console.log(
+                "FIREBASE ERROR MESSAGE:",
+                error.message
+            );
+
+
+            // ==========================================
+            // EXACT ERROR POPUP
+            // ==========================================
+
+            alert(
+                "Firebase Login Error\n\n" +
+                "Code: " +
+                (error.code || "Unknown") +
+                "\n\n" +
+                "Message: " +
+                (error.message || "Unknown error")
+            );
+
+
             let message =
                 error.message ||
                 "Login failed";
 
 
-            // Firebase error messages
+            // ==========================================
+            // FRIENDLY ERROR MESSAGES
+            // ==========================================
 
             if (
                 error.code ===
@@ -172,6 +209,7 @@ if (loginBtn) {
 
             }
 
+
             else if (
                 error.code ===
                 "auth/invalid-email"
@@ -181,6 +219,7 @@ if (loginBtn) {
                     "Invalid Email Address.";
 
             }
+
 
             else if (
                 error.code ===
@@ -192,6 +231,7 @@ if (loginBtn) {
 
             }
 
+
             else if (
                 error.code ===
                 "auth/wrong-password"
@@ -202,15 +242,17 @@ if (loginBtn) {
 
             }
 
+
             else if (
                 error.code ===
                 "auth/too-many-requests"
             ) {
 
                 message =
-                    "Too many attempts. Please try again later.";
+                    "Too many login attempts. Please try again later.";
 
             }
+
 
             else if (
                 error.code ===
@@ -218,10 +260,47 @@ if (loginBtn) {
             ) {
 
                 message =
-                    "Network error. Please check your internet.";
+                    "Network error. Please check your internet connection.";
 
             }
 
+
+            else if (
+                error.code ===
+                "auth/operation-not-allowed"
+            ) {
+
+                message =
+                    "Email/Password login is disabled in Firebase.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/unauthorized-domain"
+            ) {
+
+                message =
+                    "This website domain is not authorized in Firebase.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/api-key-not-valid"
+            ) {
+
+                message =
+                    "Firebase API Key is not valid.";
+
+            }
+
+
+            // ==========================================
+            // SHOW ERROR ON PAGE
+            // ==========================================
 
             if (loginMsg) {
 
@@ -257,6 +336,7 @@ async function loadPlayerRegistrations() {
         document.getElementById(
             "registrationList"
         );
+
 
     const registrationMsg =
         document.getElementById(
@@ -322,10 +402,6 @@ async function loadPlayerRegistrations() {
 
                 card.className =
                     "registration-card";
-
-
-                card.dataset.registrationId =
-                    registrationDoc.id;
 
 
                 const title =
@@ -456,11 +532,11 @@ async function loadPlayerRegistrations() {
                     );
 
 
-                approveButton.className =
-                    "approve-btn";
-
                 approveButton.type =
                     "button";
+
+                approveButton.className =
+                    "approve-btn";
 
                 approveButton.innerText =
                     "✅ APPROVE";
@@ -472,11 +548,11 @@ async function loadPlayerRegistrations() {
                     );
 
 
-                rejectButton.className =
-                    "reject-btn";
-
                 rejectButton.type =
                     "button";
+
+                rejectButton.className =
+                    "reject-btn";
 
                 rejectButton.innerText =
                     "❌ REJECT";
@@ -514,6 +590,7 @@ async function loadPlayerRegistrations() {
                     approveButton
                 );
 
+
                 actions.appendChild(
                     rejectButton
                 );
@@ -522,20 +599,25 @@ async function loadPlayerRegistrations() {
                 card.appendChild(actions);
 
 
-                registrationList.appendChild(card);
+                registrationList.appendChild(
+                    card
+                );
 
             }
         );
 
 
-        updateRegistrationMessage(count);
+        updateRegistrationMessage(
+            count
+        );
 
     }
+
 
     catch (error) {
 
         console.error(
-            "REGISTRATION LOAD ERROR:",
+            "REGISTRATION ERROR:",
             error
         );
 
@@ -543,8 +625,7 @@ async function loadPlayerRegistrations() {
         if (registrationMsg) {
 
             registrationMsg.innerText =
-                "❌ Error loading registrations: " +
-                error.message;
+                "❌ Error loading registrations";
 
             registrationMsg.style.color =
                 "#ff4444";
@@ -557,7 +638,7 @@ async function loadPlayerRegistrations() {
 
 
 // ======================================================
-// UPDATE REGISTRATION STATUS
+// UPDATE REGISTRATION
 // ======================================================
 
 async function updateRegistrationStatus(
@@ -568,28 +649,26 @@ async function updateRegistrationStatus(
     rejectButton
 ) {
 
-    const confirmation =
-        confirm(
+    if (
+        !confirm(
             "Change registration status to " +
             newStatus +
             "?"
-        );
+        )
+    ) {
 
-
-    if (!confirmation) {
         return;
+
     }
 
 
     try {
 
-        if (approveButton) {
-            approveButton.disabled = true;
-        }
+        approveButton.disabled =
+            true;
 
-        if (rejectButton) {
-            rejectButton.disabled = true;
-        }
+        rejectButton.disabled =
+            true;
 
 
         await updateDoc(
@@ -601,10 +680,13 @@ async function updateRegistrationStatus(
             ),
 
             {
-                status: newStatus,
+
+                status:
+                    newStatus,
 
                 statusUpdatedAt:
                     serverTimestamp()
+
             }
 
         );
@@ -626,21 +708,20 @@ async function updateRegistrationStatus(
 
     }
 
+
     catch (error) {
 
         console.error(
-            "STATUS UPDATE ERROR:",
+            "STATUS ERROR:",
             error
         );
 
 
-        if (approveButton) {
-            approveButton.disabled = false;
-        }
+        approveButton.disabled =
+            false;
 
-        if (rejectButton) {
-            rejectButton.disabled = false;
-        }
+        rejectButton.disabled =
+            false;
 
 
         alert(
@@ -661,27 +742,25 @@ function updateRegistrationMessage(
     suppliedCount
 ) {
 
-    const registrationList =
+    const list =
         document.getElementById(
             "registrationList"
         );
 
-    const registrationMsg =
+
+    const msg =
         document.getElementById(
             "registrationMsg"
         );
 
 
-    if (
-        !registrationList ||
-        !registrationMsg
-    ) {
+    if (!list || !msg) {
         return;
     }
 
 
     const cards =
-        registrationList.querySelectorAll(
+        list.querySelectorAll(
             ".registration-card"
         );
 
@@ -694,14 +773,14 @@ function updateRegistrationMessage(
 
     if (count === 0) {
 
-        registrationMsg.innerText =
+        msg.innerText =
             "No pending player registrations.";
 
     }
 
     else {
 
-        registrationMsg.innerText =
+        msg.innerText =
             "Total Pending Registrations: " +
             count;
 
@@ -732,10 +811,12 @@ function escapeHtml(value) {
 
 
 // ======================================================
-// CLOUDINARY IMAGE UPLOAD
+// CLOUDINARY UPLOAD
 // ======================================================
 
-async function uploadImageToCloudinary(file) {
+async function uploadImageToCloudinary(
+    file
+) {
 
     const url =
         `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
@@ -773,15 +854,9 @@ async function uploadImageToCloudinary(file) {
 
     if (!response.ok) {
 
-        console.error(
-            "CLOUDINARY ERROR:",
-            data
-        );
-
-
         throw new Error(
             data.error?.message ||
-            "Image upload failed"
+            "Cloudinary upload failed"
         );
 
     }
@@ -793,7 +868,7 @@ async function uploadImageToCloudinary(file) {
 
 
 // ======================================================
-// GALLERY PREVIEW
+// GALLERY
 // ======================================================
 
 const galleryImage =
@@ -801,15 +876,18 @@ const galleryImage =
         "galleryImage"
     );
 
+
 const galleryPreview =
     document.getElementById(
         "galleryPreview"
     );
 
+
 const galleryMsg =
     document.getElementById(
         "galleryMsg"
     );
+
 
 const uploadGalleryBtn =
     document.getElementById(
@@ -831,20 +909,12 @@ if (galleryImage) {
 
             if (!files.length) {
 
-                if (galleryPreview) {
+                galleryPreview.src = "";
 
-                    galleryPreview.src = "";
+                galleryPreview.style.display =
+                    "none";
 
-                    galleryPreview.style.display =
-                        "none";
-
-                }
-
-                if (galleryMsg) {
-
-                    galleryMsg.innerText = "";
-
-                }
+                galleryMsg.innerText = "";
 
                 return;
 
@@ -862,7 +932,8 @@ if (galleryImage) {
                         "Please select JPG or JPEG images only."
                     );
 
-                    galleryImage.value = "";
+                    galleryImage.value =
+                        "";
 
                     return;
 
@@ -871,42 +942,34 @@ if (galleryImage) {
             }
 
 
-            if (galleryPreview) {
-
-                const reader =
-                    new FileReader();
+            const reader =
+                new FileReader();
 
 
-                reader.onload =
-                    function (event) {
+            reader.onload =
+                function (event) {
 
-                        galleryPreview.src =
-                            event.target.result;
+                    galleryPreview.src =
+                        event.target.result;
 
-                        galleryPreview.style.display =
-                            "block";
+                    galleryPreview.style.display =
+                        "block";
 
-                    };
-
-
-                reader.readAsDataURL(
-                    files[0]
-                );
-
-            }
+                };
 
 
-            if (galleryMsg) {
+            reader.readAsDataURL(
+                files[0]
+            );
 
-                galleryMsg.innerText =
-                    "📸 " +
-                    files.length +
-                    " photo(s) selected.";
 
-                galleryMsg.style.color =
-                    "#ff9800";
+            galleryMsg.innerText =
+                "📸 " +
+                files.length +
+                " photo(s) selected.";
 
-            }
+            galleryMsg.style.color =
+                "#ff9800";
 
         }
     );
@@ -949,7 +1012,7 @@ if (uploadGalleryBtn) {
                 "⏳ UPLOADING...";
 
 
-            let uploadedCount = 0;
+            let count = 0;
 
 
             for (const file of files) {
@@ -968,68 +1031,61 @@ if (uploadGalleryBtn) {
                     ),
 
                     {
+
                         imageUrl:
                             imageUrl,
 
                         createdAt:
                             serverTimestamp()
+
                     }
 
                 );
 
 
-                uploadedCount++;
+                count++;
 
             }
 
 
-            if (galleryMsg) {
+            galleryMsg.innerText =
+                "✅ " +
+                count +
+                " photos uploaded successfully!";
 
-                galleryMsg.innerText =
-                    "✅ " +
-                    uploadedCount +
-                    " photos uploaded successfully!";
 
-                galleryMsg.style.color =
-                    "#00ff88";
-
-            }
+            galleryMsg.style.color =
+                "#00ff88";
 
 
             galleryImage.value = "";
 
 
-            if (galleryPreview) {
+            galleryPreview.src = "";
 
-                galleryPreview.src = "";
-
-                galleryPreview.style.display =
-                    "none";
-
-            }
+            galleryPreview.style.display =
+                "none";
 
         }
+
 
         catch (error) {
 
             console.error(
-                "GALLERY UPLOAD ERROR:",
+                "GALLERY ERROR:",
                 error
             );
 
 
-            if (galleryMsg) {
+            galleryMsg.innerText =
+                "❌ Upload failed: " +
+                error.message;
 
-                galleryMsg.innerText =
-                    "❌ Upload failed: " +
-                    error.message;
-
-                galleryMsg.style.color =
-                    "#ff4444";
-
-            }
+            galleryMsg.style.color =
+                "#ff4444";
 
         }
+
 
         finally {
 
@@ -1047,7 +1103,7 @@ if (uploadGalleryBtn) {
 
 
 // ======================================================
-// ADD NEW EVENT
+// ADD EVENT
 // ======================================================
 
 const saveEventBtn =
@@ -1066,20 +1122,24 @@ if (saveEventBtn) {
                 "eventId"
             ).value.trim();
 
+
         const eventType =
             document.getElementById(
                 "eventType"
             ).value;
+
 
         const eventName =
             document.getElementById(
                 "eventName"
             ).value.trim();
 
+
         const eventImage =
             document.getElementById(
                 "eventImage"
             ).files[0];
+
 
         const eventStatus =
             document.getElementById(
@@ -1094,7 +1154,7 @@ if (saveEventBtn) {
         ) {
 
             alert(
-                "Please fill all Event details"
+                "Please fill all Event details."
             );
 
             return;
@@ -1139,6 +1199,7 @@ if (saveEventBtn) {
                 ),
 
                 {
+
                     eventId:
                         eventId,
 
@@ -1184,17 +1245,19 @@ if (saveEventBtn) {
 
             document.getElementById(
                 "eventStatus"
-            ).value = "Active";
+            ).value =
+                "Active";
 
 
             loadEvents();
 
         }
 
+
         catch (error) {
 
             console.error(
-                "EVENT SAVE ERROR:",
+                "EVENT ERROR:",
                 error
             );
 
@@ -1292,13 +1355,7 @@ async function loadEvents() {
                         `
                         <img
                             src="${escapeHtml(event.imageUrl)}"
-                            style="
-                                width:100%;
-                                max-height:180px;
-                                object-fit:contain;
-                                border-radius:10px;
-                                margin-bottom:10px;
-                            "
+                            alt="Event Image"
                         >
                         `
                         :
@@ -1329,20 +1386,26 @@ async function loadEvents() {
 
                     Status:
                     ${
-                        event.status === "Completed"
-                        ? "🔴 Completed"
-                        : "🟢 Going On"
+                        event.status ===
+                        "Completed"
+                        ?
+                        "🔴 Completed"
+                        :
+                        "🟢 Going On"
                     }
 
                 `;
 
 
-                eventList.appendChild(div);
+                eventList.appendChild(
+                    div
+                );
 
             }
         );
 
     }
+
 
     catch (error) {
 
@@ -1365,13 +1428,14 @@ async function loadEvents() {
 
 
 // ======================================================
-// ADD MATCH FORM
+// MATCH FORM
 // ======================================================
 
 const addMatchBtn =
     document.getElementById(
         "addMatchBtn"
     );
+
 
 const matchForm =
     document.getElementById(
@@ -1424,10 +1488,12 @@ const matchEventType =
         "matchEventType"
     );
 
+
 const eventSelectBox =
     document.getElementById(
         "eventSelectBox"
     );
+
 
 const eventSelect =
     document.getElementById(
@@ -1548,6 +1614,7 @@ if (
 
         }
 
+
         catch (error) {
 
             console.error(
@@ -1590,55 +1657,66 @@ if (saveMatchBtn) {
                 "matchId"
             ).value.trim();
 
+
         const eventType =
             document.getElementById(
                 "matchEventType"
             ).value;
+
 
         const matchDate =
             document.getElementById(
                 "matchDate"
             ).value;
 
+
         const matchPlace =
             document.getElementById(
                 "matchPlace"
             ).value.trim();
+
 
         const opponent =
             document.getElementById(
                 "opponent"
             ).value.trim();
 
+
         const overs =
             document.getElementById(
                 "overs"
             ).value.trim();
+
 
         const result =
             document.getElementById(
                 "result"
             ).value.trim();
 
+
         const playerOfMatch =
             document.getElementById(
                 "playerOfMatch"
             ).value.trim();
+
 
         const bestBowler =
             document.getElementById(
                 "bestBowler"
             ).value.trim();
 
+
         const bestBatter =
             document.getElementById(
                 "bestBatter"
             ).value.trim();
 
+
         const fighterOfMatch =
             document.getElementById(
                 "fighterOfMatch"
             ).value.trim();
+
 
         const cricHeroesLink =
             document.getElementById(
@@ -1679,6 +1757,7 @@ if (saveMatchBtn) {
             eventId =
                 selectedOption.dataset.eventId ||
                 "";
+
 
             eventName =
                 selectedOption.textContent.trim();
@@ -1888,6 +1967,7 @@ if (saveMatchBtn) {
 
         }
 
+
         catch (error) {
 
             console.error(
@@ -1904,6 +1984,5 @@ if (saveMatchBtn) {
         }
 
     };
-
 
 }
