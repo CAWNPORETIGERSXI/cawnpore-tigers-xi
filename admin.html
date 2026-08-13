@@ -17,838 +17,307 @@
     href="style.css"
 >
 
-
 <style>
 
-/* =====================================================
-   BODY
-===================================================== */
-
 body{
-
     margin:0;
-
     background:#111;
-
     color:#fff;
-
     font-family:Arial,sans-serif;
-
 }
-
-
-/* =====================================================
-   MAIN CONTAINER
-===================================================== */
 
 .container{
-
     width:94%;
-
     max-width:850px;
-
     margin:20px auto;
-
     background:#181818;
-
     padding:20px;
-
     border-radius:15px;
-
     box-sizing:border-box;
-
-    box-shadow:
-        0 0 20px rgba(255,152,0,.15);
-
+    box-shadow:0 0 20px rgba(255,152,0,.15);
 }
-
-
-/* =====================================================
-   HEADER
-===================================================== */
 
 .admin-header{
-
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
     background:#111;
-
     padding:10px 14px;
-
     border-radius:12px;
-
     margin-bottom:20px;
-
     position:relative;
-
 }
-
-
-/* ORANGE LINE */
 
 .admin-header::after{
-
     content:"";
-
     position:absolute;
-
     left:0;
-
     right:0;
-
     bottom:-7px;
-
     height:3px;
-
     background:#ff9800;
-
     border-radius:10px;
-
-    box-shadow:
-        0 0 8px rgba(255,152,0,.45);
-
 }
-
-
-/* =====================================================
-   LOGO + TEAM NAME
-===================================================== */
 
 .admin-brand{
-
     display:flex;
-
     align-items:center;
-
     gap:10px;
-
     min-width:0;
-
 }
-
 
 .admin-logo-img{
-
     width:48px;
-
     height:48px;
-
     object-fit:contain;
-
     flex-shrink:0;
-
     border-radius:50%;
-
-    filter:
-        drop-shadow(0 0 5px rgba(255,152,0,.35));
-
 }
-
 
 .admin-logo{
-
     color:#ff9800;
-
     font-size:20px;
-
     font-weight:bold;
-
     line-height:1.2;
-
     white-space:nowrap;
-
 }
-
-
-/* =====================================================
-   HAMBURGER BUTTON
-===================================================== */
 
 .menu-btn{
-
     width:54px;
-
     height:48px;
-
     padding:0;
-
     background:#ff9800;
-
     color:#111;
-
     border:none;
-
     border-radius:9px;
-
     font-size:31px;
-
     font-weight:bold;
-
-    line-height:1;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     cursor:pointer;
-
-    flex-shrink:0;
-
-    box-shadow:
-        0 0 10px rgba(255,152,0,.25);
-
 }
-
-
-.menu-btn:hover{
-
-    background:#e68900;
-
-}
-
-
-.menu-btn:active{
-
-    transform:scale(.96);
-
-}
-
-
-/* =====================================================
-   LOGIN
-===================================================== */
 
 #loginBox{
-
     padding:10px;
-
 }
-
 
 #loginBox h2{
-
     text-align:center;
-
     color:#ff9800;
-
 }
-
-
-/* =====================================================
-   ADMIN PANEL
-===================================================== */
 
 #adminPanel{
-
     display:none;
-
 }
-
-
-/* =====================================================
-   HAMBURGER MENU
-===================================================== */
 
 .admin-menu{
-
     display:none;
-
     background:#222;
-
     border:1px solid #444;
-
     border-radius:12px;
-
     padding:12px;
-
     margin-bottom:20px;
-
-    box-shadow:
-        0 5px 15px rgba(0,0,0,.35);
-
 }
-
 
 .admin-menu.show{
-
     display:block;
-
 }
-
-
-/* =====================================================
-   MENU TITLE
-===================================================== */
 
 .menu-title{
-
     color:#ff9800;
-
     font-weight:bold;
-
     font-size:18px;
-
     padding:10px 8px 12px;
-
     text-align:center;
-
-    letter-spacing:.5px;
-
 }
-
-
-/* =====================================================
-   MENU ITEMS
-===================================================== */
 
 .menu-item{
-
     width:100%;
-
     background:#181818;
-
     color:#fff;
-
     border:1px solid #333;
-
     margin:7px 0;
-
     padding:15px 14px;
-
     text-align:left;
-
     border-radius:9px;
-
     font-size:18px;
-
     font-weight:600;
-
     cursor:pointer;
-
     box-sizing:border-box;
-
-    transition:
-        background .2s ease,
-        transform .15s ease;
-
 }
-
 
 .menu-item:hover{
-
     background:#ff9800;
-
-    color:#fff;
-
 }
-
-
-.menu-item:active{
-
-    transform:scale(.98);
-
-}
-
-
-/* =====================================================
-   SECTIONS
-===================================================== */
 
 .admin-section{
-
     display:none;
-
 }
-
 
 .admin-section.active{
-
     display:block;
-
 }
-
 
 .section-title{
-
     color:#ff9800;
-
     text-align:center;
-
-    margin-top:5px;
-
 }
-
-
-/* =====================================================
-   INPUTS
-===================================================== */
 
 input,
 textarea,
 select{
-
     width:100%;
-
     padding:12px;
-
     margin:10px 0;
-
     border:none;
-
     border-radius:8px;
-
     font-size:16px;
-
     box-sizing:border-box;
-
 }
-
 
 label{
-
     color:#ddd;
-
     font-weight:bold;
-
     display:block;
-
     margin-top:12px;
-
 }
-
-
-/* =====================================================
-   BUTTON
-===================================================== */
 
 button{
-
     width:100%;
-
     padding:13px;
-
     background:#ff9800;
-
     color:#fff;
-
     border:none;
-
     border-radius:8px;
-
     font-size:17px;
-
     cursor:pointer;
-
 }
-
 
 button:hover{
-
     background:#e68900;
-
 }
-
 
 button:disabled{
-
     opacity:.6;
-
     cursor:not-allowed;
-
 }
 
-
-/* =====================================================
-   DASHBOARD
-===================================================== */
-
-.dashboard-box{
-
-    background:#222;
-
-    border-left:5px solid #ff9800;
-
-    padding:20px;
-
-    border-radius:12px;
-
-    margin-top:15px;
-
-    text-align:center;
-
-}
-
-
-.dashboard-box h3{
-
+#resetPasswordBtn{
+    margin-top:10px;
+    background:#333;
+    border:1px solid #ff9800;
     color:#ff9800;
-
 }
 
+#resetPasswordBtn:hover{
+    background:#ff9800;
+    color:#fff;
+}
 
-/* =====================================================
-   MATCH FORM
-===================================================== */
-
-#matchForm{
-
-    display:none;
-
+.dashboard-box,
+.event-card,
+.gallery-admin-card,
+.registration-card{
     background:#222;
-
-    padding:15px;
-
+    padding:18px;
     border-radius:12px;
-
-    margin-top:15px;
-
-}
-
-
-/* =====================================================
-   EVENT CARD
-===================================================== */
-
-.event-card{
-
-    background:#222;
-
-    padding:15px;
-
-    margin:12px 0;
-
-    border-radius:10px;
-
+    margin:15px 0;
     border-left:5px solid #ff9800;
-
 }
-
 
 .event-card img{
-
     width:100%;
-
     max-height:180px;
-
     object-fit:contain;
-
     border-radius:10px;
-
-    margin-bottom:10px;
-
 }
-
-
-/* =====================================================
-   GALLERY
-===================================================== */
-
-.gallery-admin-card{
-
-    background:#222;
-
-    border:2px solid #333;
-
-    border-left:5px solid #ff9800;
-
-    padding:18px;
-
-    margin:15px 0;
-
-    border-radius:12px;
-
-}
-
-
-.gallery-admin-card h3{
-
-    color:#ff9800;
-
-    text-align:center;
-
-    margin-top:0;
-
-}
-
 
 .gallery-preview{
-
     width:100%;
-
     max-height:300px;
-
     object-fit:contain;
-
     background:#111;
-
     border-radius:10px;
-
     margin-top:10px;
-
     display:none;
-
 }
 
-
-#galleryMsg{
-
-    text-align:center;
-
-    margin:15px 0;
-
-    font-weight:bold;
-
-}
-
-
-/* =====================================================
-   PLAYER REGISTRATION
-===================================================== */
-
-.registration-card{
-
-    background:#222;
-
-    border:2px solid #444;
-
-    border-left:5px solid #ff9800;
-
-    padding:18px;
-
-    margin:15px 0;
-
-    border-radius:12px;
-
-}
-
-
-.registration-card h3{
-
-    color:#ff9800;
-
-    margin-top:0;
-
-    margin-bottom:12px;
-
-}
-
-
-.registration-info{
-
-    line-height:1.7;
-
-    color:#ddd;
-
-}
-
-
-.registration-info strong{
-
-    color:#fff;
-
-}
-
-
-/* =====================================================
-   REGISTRATION STATUS
-===================================================== */
-
-.registration-status{
-
-    display:inline-block;
-
-    padding:6px 12px;
-
-    border-radius:20px;
-
-    font-weight:bold;
-
-    margin:8px 0;
-
-}
-
-
-.status-pending{
-
-    background:#ff9800;
-
-    color:#000;
-
-}
-
-
-.status-approved{
-
-    background:#00c853;
-
-    color:#fff;
-
-}
-
-
-.status-rejected{
-
-    background:#e53935;
-
-    color:#fff;
-
-}
-
-
-/* =====================================================
-   REGISTRATION ACTIONS
-===================================================== */
-
-.registration-actions{
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:12px;
-
-    margin-top:15px;
-
-}
-
-
-.approve-btn{
-
-    background:#00a844;
-
-}
-
-
-.approve-btn:hover{
-
-    background:#008f3a;
-
-}
-
-
-.reject-btn{
-
-    background:#d32f2f;
-
-}
-
-
-.reject-btn:hover{
-
-    background:#b71c1c;
-
-}
-
-
-/* =====================================================
-   MESSAGES
-===================================================== */
-
+#galleryMsg,
 #loginMsg,
 #eventMsg,
 #registrationMsg{
-
     text-align:center;
-
     margin:15px 0;
-
     font-weight:bold;
-
 }
 
+#matchForm{
+    display:none;
+    background:#222;
+    padding:15px;
+    border-radius:12px;
+    margin-top:15px;
+}
 
-/* =====================================================
-   DIVIDER
-===================================================== */
+.registration-info{
+    line-height:1.7;
+    color:#ddd;
+}
+
+.registration-status{
+    display:inline-block;
+    padding:6px 12px;
+    border-radius:20px;
+    font-weight:bold;
+    margin:8px 0;
+}
+
+.status-pending{
+    background:#ff9800;
+    color:#000;
+}
+
+.registration-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:15px;
+}
+
+.approve-btn{
+    background:#00a844;
+}
+
+.reject-btn{
+    background:#d32f2f;
+}
 
 .section-divider{
-
     border:none;
-
     border-top:1px solid #444;
-
     margin:20px 0;
-
 }
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
 
 @media(max-width:600px){
 
     .container{
-
         width:96%;
-
         margin:10px auto;
-
         padding:12px;
-
     }
-
-
-    .admin-header{
-
-        padding:9px 10px;
-
-    }
-
 
     .admin-logo-img{
-
         width:42px;
-
         height:42px;
-
     }
-
 
     .admin-logo{
-
         font-size:16px;
-
     }
-
-
-    .menu-btn{
-
-        width:52px;
-
-        height:46px;
-
-        font-size:30px;
-
-    }
-
-
-    .menu-title{
-
-        font-size:17px;
-
-    }
-
-
-    .menu-item{
-
-        font-size:17px;
-
-        padding:14px 13px;
-
-    }
-
 
     .registration-actions{
-
         grid-template-columns:1fr;
-
     }
 
 }
@@ -865,7 +334,7 @@ button:disabled{
 
 
 <!-- =====================================================
-     LOGIN
+LOGIN
 ===================================================== -->
 
 <div id="loginBox">
@@ -889,9 +358,7 @@ button:disabled{
     </div>
 
 
-    <h2>
-        🔐 ADMIN LOGIN
-    </h2>
+    <h2>🔐 ADMIN LOGIN</h2>
 
 
     <input
@@ -918,6 +385,14 @@ button:disabled{
     </button>
 
 
+    <button
+        type="button"
+        id="resetPasswordBtn"
+    >
+        🔑 RESET PASSWORD
+    </button>
+
+
     <p id="loginMsg"></p>
 
 </div>
@@ -925,15 +400,11 @@ button:disabled{
 
 
 <!-- =====================================================
-     ADMIN PANEL
+ADMIN PANEL
 ===================================================== -->
 
 <div id="adminPanel">
 
-
-<!-- =====================================================
-     ADMIN HEADER
-===================================================== -->
 
 <div class="admin-header">
 
@@ -956,7 +427,6 @@ button:disabled{
         type="button"
         class="menu-btn"
         id="menuBtn"
-        aria-label="Open Menu"
     >
         ☰
     </button>
@@ -965,15 +435,10 @@ button:disabled{
 
 
 
-<!-- =====================================================
-     HAMBURGER MENU
-===================================================== -->
-
 <div
     class="admin-menu"
     id="adminMenu"
 >
-
 
     <div class="menu-title">
         ADMIN MENU
@@ -1029,5 +494,496 @@ button:disabled{
 
 
 <!-- =====================================================
-     DASHBOARD
-================================================
+DASHBOARD
+===================================================== -->
+
+<section
+    id="dashboardSection"
+    class="admin-section active"
+>
+
+    <h2 class="section-title">
+        🏠 ADMIN DASHBOARD
+    </h2>
+
+    <div class="dashboard-box">
+
+        <h3>
+            CAWNPORE TIGERS XI
+        </h3>
+
+        <p>
+            Welcome to the Official Admin Panel.
+        </p>
+
+        <p>
+            Use the menu above to manage
+            players, events, matches and gallery.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+PLAYER REGISTRATIONS
+===================================================== -->
+
+<section
+    id="registrationSection"
+    class="admin-section"
+>
+
+    <h2 class="section-title">
+        🧑‍🏏 PLAYER REGISTRATIONS
+    </h2>
+
+    <p id="registrationMsg">
+        Loading registrations...
+    </p>
+
+    <div id="registrationList"></div>
+
+</section>
+
+
+
+<!-- =====================================================
+EVENTS
+===================================================== -->
+
+<section
+    id="eventSection"
+    class="admin-section"
+>
+
+    <h2 class="section-title">
+        📅 EVENTS
+    </h2>
+
+
+    <label>Event ID</label>
+
+    <input
+        type="text"
+        id="eventId"
+        placeholder="Example: UTPL2026"
+    >
+
+
+    <label>Event Type</label>
+
+    <select id="eventType">
+
+        <option value="">
+            Select Event Type
+        </option>
+
+        <option value="Tournament">
+            Tournament
+        </option>
+
+        <option value="Series">
+            Series
+        </option>
+
+        <option value="Individual Matches">
+            Individual Matches
+        </option>
+
+    </select>
+
+
+    <label>Event Name</label>
+
+    <input
+        type="text"
+        id="eventName"
+        placeholder="Event Name"
+    >
+
+
+    <label>Event Image</label>
+
+    <input
+        type="file"
+        id="eventImage"
+        accept="image/jpeg,image/jpg,image/png"
+    >
+
+
+    <label>Status</label>
+
+    <select id="eventStatus">
+
+        <option value="Active">
+            Active
+        </option>
+
+        <option value="Completed">
+            Completed
+        </option>
+
+    </select>
+
+
+    <button
+        type="button"
+        id="saveEventBtn"
+    >
+        💾 SAVE EVENT
+    </button>
+
+
+    <p id="eventMsg"></p>
+
+
+    <hr class="section-divider">
+
+
+    <h3 class="section-title">
+        SAVED EVENTS
+    </h3>
+
+
+    <div id="eventList"></div>
+
+</section>
+
+
+
+<!-- =====================================================
+MATCHES
+===================================================== -->
+
+<section
+    id="matchSection"
+    class="admin-section"
+>
+
+    <h2 class="section-title">
+        🏏 MATCHES
+    </h2>
+
+
+    <button
+        type="button"
+        id="addMatchBtn"
+    >
+        ➕ ADD NEW MATCH
+    </button>
+
+
+    <div id="matchForm">
+
+
+        <label>Match ID</label>
+
+        <input
+            type="text"
+            id="matchId"
+            placeholder="Example: M001"
+        >
+
+
+        <label>Match Event Type</label>
+
+        <select id="matchEventType">
+
+            <option value="">
+                Select Event Type
+            </option>
+
+            <option value="Individual Matches">
+                Individual Matches
+            </option>
+
+            <option value="Tournament">
+                Tournament
+            </option>
+
+            <option value="Series">
+                Series
+            </option>
+
+        </select>
+
+
+        <div
+            id="eventSelectBox"
+            style="display:none;"
+        >
+
+            <label>Select Tournament / Series</label>
+
+            <select id="eventSelect">
+
+                <option value="">
+                    Select Tournament / Series
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <label>Match Date</label>
+
+        <input
+            type="date"
+            id="matchDate"
+        >
+
+
+        <label>Place</label>
+
+        <input
+            type="text"
+            id="matchPlace"
+            placeholder="Ground / Venue"
+        >
+
+
+        <label>Opponent</label>
+
+        <input
+            type="text"
+            id="opponent"
+            placeholder="Opponent Team"
+        >
+
+
+        <label>Overs</label>
+
+        <input
+            type="text"
+            id="overs"
+            placeholder="Example: 20"
+        >
+
+
+        <label>Result</label>
+
+        <input
+            type="text"
+            id="result"
+            placeholder="Example: Won by 6 wickets"
+        >
+
+
+        <label>Player of the Match</label>
+
+        <input
+            type="text"
+            id="playerOfMatch"
+        >
+
+
+        <label>Best Bowler</label>
+
+        <input
+            type="text"
+            id="bestBowler"
+        >
+
+
+        <label>Best Batsman</label>
+
+        <input
+            type="text"
+            id="bestBatter"
+        >
+
+
+        <label>Fighter of the Match</label>
+
+        <input
+            type="text"
+            id="fighterOfMatch"
+        >
+
+
+        <label>CricHeroes URL</label>
+
+        <input
+            type="url"
+            id="cricHeroesLink"
+            placeholder="https://..."
+        >
+
+
+        <button
+            type="button"
+            id="saveMatchBtn"
+        >
+            💾 SAVE MATCH
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+GALLERY
+===================================================== -->
+
+<section
+    id="gallerySection"
+    class="admin-section"
+>
+
+    <h2 class="section-title">
+        📸 GALLERY
+    </h2>
+
+
+    <div class="gallery-admin-card">
+
+        <h3>
+            UPLOAD PHOTOS
+        </h3>
+
+
+        <input
+            type="file"
+            id="galleryImage"
+            accept="image/jpeg,image/jpg"
+            multiple
+        >
+
+
+        <img
+            id="galleryPreview"
+            class="gallery-preview"
+            alt="Gallery Preview"
+        >
+
+
+        <p id="galleryMsg"></p>
+
+
+        <button
+            type="button"
+            id="uploadGalleryBtn"
+        >
+            ⬆️ UPLOAD PHOTOS
+        </button>
+
+    </div>
+
+</section>
+
+
+</div>
+
+</div>
+
+
+
+<script type="module" src="admin.js"></script>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        const menuBtn =
+            document.getElementById("menuBtn");
+
+        const adminMenu =
+            document.getElementById("adminMenu");
+
+
+        if(menuBtn){
+
+            menuBtn.addEventListener(
+                "click",
+                function(){
+
+                    adminMenu.classList.toggle(
+                        "show"
+                    );
+
+                }
+            );
+
+        }
+
+
+        const menuItems =
+            document.querySelectorAll(
+                ".menu-item"
+            );
+
+
+        const sections =
+            document.querySelectorAll(
+                ".admin-section"
+            );
+
+
+        menuItems.forEach(
+            function(button){
+
+                button.addEventListener(
+                    "click",
+                    function(){
+
+                        const target =
+                            button.dataset.section;
+
+
+                        sections.forEach(
+                            function(section){
+
+                                section.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+
+                        const targetSection =
+                            document.getElementById(
+                                target
+                            );
+
+
+                        if(targetSection){
+
+                            targetSection.classList.add(
+                                "active"
+                            );
+
+                        }
+
+
+                        if(adminMenu){
+
+                            adminMenu.classList.remove(
+                                "show"
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
