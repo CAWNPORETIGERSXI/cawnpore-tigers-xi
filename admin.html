@@ -38,18 +38,18 @@ body{
 
 
 /* =====================================================
-   CONTAINER
+   MAIN CONTAINER
 ===================================================== */
 
 .container{
 
-    width:90%;
+    width:94%;
 
-    max-width:800px;
+    max-width:850px;
 
-    margin:30px auto;
+    margin:20px auto;
 
-    background:#1b1b1b;
+    background:#181818;
 
     padding:20px;
 
@@ -57,19 +57,205 @@ body{
 
     box-sizing:border-box;
 
+    box-shadow:
+        0 0 20px rgba(255,152,0,.15);
+
 }
 
 
 /* =====================================================
-   HEADINGS
+   HEADER
 ===================================================== */
 
-h1,
-h2{
+.admin-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    background:#111;
+
+    border-bottom:2px solid #ff9800;
+
+    padding:12px 15px;
+
+    border-radius:12px;
+
+    margin-bottom:20px;
+
+}
+
+
+.admin-logo{
+
+    color:#ff9800;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+
+.menu-btn{
+
+    width:50px;
+
+    height:45px;
+
+    padding:0;
+
+    background:#ff9800;
+
+    border-radius:8px;
+
+    font-size:28px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+.menu-btn:hover{
+
+    background:#e68900;
+
+}
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+#loginBox{
+
+    padding:10px;
+
+}
+
+
+#loginBox h2{
 
     text-align:center;
 
     color:#ff9800;
+
+}
+
+
+/* =====================================================
+   ADMIN PANEL
+===================================================== */
+
+#adminPanel{
+
+    display:none;
+
+}
+
+
+/* =====================================================
+   HAMBURGER MENU
+===================================================== */
+
+.admin-menu{
+
+    display:none;
+
+    background:#222;
+
+    border:1px solid #444;
+
+    border-radius:12px;
+
+    padding:10px;
+
+    margin-bottom:20px;
+
+}
+
+
+.admin-menu.show{
+
+    display:block;
+
+}
+
+
+.menu-item{
+
+    width:100%;
+
+    background:#181818;
+
+    color:#fff;
+
+    border:1px solid #333;
+
+    margin:5px 0;
+
+    padding:13px;
+
+    text-align:left;
+
+    border-radius:8px;
+
+    font-size:16px;
+
+}
+
+
+.menu-item:hover{
+
+    background:#ff9800;
+
+    color:#fff;
+
+}
+
+
+.menu-title{
+
+    color:#ff9800;
+
+    font-weight:bold;
+
+    padding:8px;
+
+}
+
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+.admin-section{
+
+    display:none;
+
+}
+
+
+.admin-section.active{
+
+    display:block;
+
+}
+
+
+.section-title{
+
+    color:#ff9800;
+
+    text-align:center;
+
+    margin-top:5px;
 
 }
 
@@ -99,6 +285,19 @@ select{
 }
 
 
+label{
+
+    color:#ddd;
+
+    font-weight:bold;
+
+    display:block;
+
+    margin-top:12px;
+
+}
+
+
 /* =====================================================
    BUTTON
 ===================================================== */
@@ -107,27 +306,29 @@ button{
 
     width:100%;
 
-    padding:14px;
+    padding:13px;
 
     background:#ff9800;
 
-    color:white;
+    color:#fff;
 
     border:none;
 
     border-radius:8px;
 
-    font-size:18px;
+    font-size:17px;
 
     cursor:pointer;
 
 }
+
 
 button:hover{
 
     background:#e68900;
 
 }
+
 
 button:disabled{
 
@@ -139,12 +340,29 @@ button:disabled{
 
 
 /* =====================================================
-   LOGIN
+   DASHBOARD
 ===================================================== */
 
-#adminPanel{
+.dashboard-box{
 
-    display:none;
+    background:#222;
+
+    border-left:5px solid #ff9800;
+
+    padding:20px;
+
+    border-radius:12px;
+
+    margin-top:15px;
+
+    text-align:center;
+
+}
+
+
+.dashboard-box h3{
+
+    color:#ff9800;
 
 }
 
@@ -156,6 +374,14 @@ button:disabled{
 #matchForm{
 
     display:none;
+
+    background:#222;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    margin-top:15px;
 
 }
 
@@ -170,15 +396,32 @@ button:disabled{
 
     padding:15px;
 
-    margin:10px 0;
+    margin:12px 0;
 
     border-radius:10px;
+
+    border-left:5px solid #ff9800;
+
+}
+
+
+.event-card img{
+
+    width:100%;
+
+    max-height:180px;
+
+    object-fit:contain;
+
+    border-radius:10px;
+
+    margin-bottom:10px;
 
 }
 
 
 /* =====================================================
-   GALLERY ADMIN
+   GALLERY
 ===================================================== */
 
 .gallery-admin-card{
@@ -191,26 +434,23 @@ button:disabled{
 
     padding:18px;
 
-    margin:20px 0;
+    margin:15px 0;
 
     border-radius:12px;
 
 }
 
-.gallery-admin-card h3{
 
-    margin-top:0;
+.gallery-admin-card h3{
 
     color:#ff9800;
 
     text-align:center;
 
+    margin-top:0;
+
 }
 
-
-/* =====================================================
-   GALLERY PREVIEW
-===================================================== */
 
 .gallery-preview{
 
@@ -230,10 +470,6 @@ button:disabled{
 
 }
 
-
-/* =====================================================
-   GALLERY MESSAGE
-===================================================== */
 
 #galleryMsg{
 
@@ -266,6 +502,7 @@ button:disabled{
 
 }
 
+
 .registration-card h3{
 
     color:#ff9800;
@@ -276,6 +513,7 @@ button:disabled{
 
 }
 
+
 .registration-info{
 
     line-height:1.7;
@@ -283,6 +521,7 @@ button:disabled{
     color:#ddd;
 
 }
+
 
 .registration-info strong{
 
@@ -309,6 +548,7 @@ button:disabled{
 
 }
 
+
 .status-pending{
 
     background:#ff9800;
@@ -317,6 +557,7 @@ button:disabled{
 
 }
 
+
 .status-approved{
 
     background:#00c853;
@@ -324,6 +565,7 @@ button:disabled{
     color:#fff;
 
 }
+
 
 .status-rejected{
 
@@ -350,11 +592,13 @@ button:disabled{
 
 }
 
+
 .approve-btn{
 
     background:#00a844;
 
 }
+
 
 .approve-btn:hover{
 
@@ -362,11 +606,13 @@ button:disabled{
 
 }
 
+
 .reject-btn{
 
     background:#d32f2f;
 
 }
+
 
 .reject-btn:hover{
 
@@ -376,9 +622,11 @@ button:disabled{
 
 
 /* =====================================================
-   REGISTRATION MESSAGE
+   MESSAGES
 ===================================================== */
 
+#loginMsg,
+#eventMsg,
 #registrationMsg{
 
     text-align:center;
@@ -391,30 +639,16 @@ button:disabled{
 
 
 /* =====================================================
-   GENERAL MESSAGES
+   DIVIDER
 ===================================================== */
 
-#loginMsg,
-#eventMsg{
+.section-divider{
 
-    text-align:center;
+    border:none;
 
-    margin:15px 0;
+    border-top:1px solid #444;
 
-    font-weight:bold;
-
-}
-
-
-/* =====================================================
-   LABEL
-===================================================== */
-
-label{
-
-    color:#ddd;
-
-    font-weight:bold;
+    margin:20px 0;
 
 }
 
@@ -425,19 +659,38 @@ label{
 
 @media(max-width:600px){
 
-    .registration-actions{
+    .container{
 
-        grid-template-columns:1fr;
+        width:96%;
+
+        margin:10px auto;
+
+        padding:12px;
 
     }
 
-    .container{
 
-        width:94%;
+    .admin-logo{
 
-        margin:15px auto;
+        font-size:16px;
 
-        padding:15px;
+    }
+
+
+    .menu-btn{
+
+        width:45px;
+
+        height:42px;
+
+        font-size:25px;
+
+    }
+
+
+    .registration-actions{
+
+        grid-template-columns:1fr;
 
     }
 
@@ -455,54 +708,50 @@ label{
 
 
 <!-- =====================================================
-     HEADER
-===================================================== -->
-
-<h1>
-    🏏 CAWNPORE TIGERS XI
-</h1>
-
-
-<!-- =====================================================
-     LOGIN BOX
+     LOGIN
 ===================================================== -->
 
 <div id="loginBox">
 
+    <div class="admin-header">
 
-<h2>
-    Admin Login
-</h2>
+        <div class="admin-logo">
+            🏏 CAWNPORE TIGERS XI
+        </div>
 
-
-<input
-    type="email"
-    id="email"
-    placeholder="Admin Email"
-    autocomplete="username"
->
+    </div>
 
 
-<input
-    type="password"
-    id="password"
-    placeholder="Password"
-    autocomplete="current-password"
->
+    <h2>
+        🔐 ADMIN LOGIN
+    </h2>
 
 
-<button
-    type="button"
-    id="loginBtn"
->
-
-    Login
-
-</button>
+    <input
+        type="email"
+        id="email"
+        placeholder="Admin Email"
+        autocomplete="username"
+    >
 
 
-<p id="loginMsg"></p>
+    <input
+        type="password"
+        id="password"
+        placeholder="Password"
+        autocomplete="current-password"
+    >
 
+
+    <button
+        type="button"
+        id="loginBtn"
+    >
+        LOGIN
+    </button>
+
+
+    <p id="loginMsg"></p>
 
 </div>
 
@@ -515,9 +764,126 @@ label{
 <div id="adminPanel">
 
 
-<h2>
-    Admin Dashboard
+<!-- =====================================================
+     ADMIN HEADER
+===================================================== -->
+
+<div class="admin-header">
+
+    <div class="admin-logo">
+        🏏 CAWNPORE TIGERS XI
+    </div>
+
+
+    <button
+        type="button"
+        class="menu-btn"
+        id="menuBtn"
+        aria-label="Open Menu"
+    >
+        ☰
+    </button>
+
+</div>
+
+
+
+<!-- =====================================================
+     HAMBURGER MENU
+===================================================== -->
+
+<div
+    class="admin-menu"
+    id="adminMenu"
+>
+
+
+    <div class="menu-title">
+        ADMIN MENU
+    </div>
+
+
+    <button
+        type="button"
+        class="menu-item"
+        data-section="dashboardSection"
+    >
+        🏠 Dashboard
+    </button>
+
+
+    <button
+        type="button"
+        class="menu-item"
+        data-section="registrationSection"
+    >
+        🧑‍🏏 Player Registrations
+    </button>
+
+
+    <button
+        type="button"
+        class="menu-item"
+        data-section="eventSection"
+    >
+        📅 Events
+    </button>
+
+
+    <button
+        type="button"
+        class="menu-item"
+        data-section="matchSection"
+    >
+        🏏 Matches
+    </button>
+
+
+    <button
+        type="button"
+        class="menu-item"
+        data-section="gallerySection"
+    >
+        📸 Gallery
+    </button>
+
+</div>
+
+
+
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<section
+    id="dashboardSection"
+    class="admin-section active"
+>
+
+
+<h2 class="section-title">
+    ADMIN DASHBOARD
 </h2>
+
+
+<div class="dashboard-box">
+
+    <h3>
+        🏏 Welcome Admin
+    </h3>
+
+    <p>
+        CAWNPORE TIGERS XI
+    </p>
+
+    <p>
+        Use the ☰ menu to manage
+        Players, Events, Matches and Gallery.
+    </p>
+
+</div>
+
+</section>
 
 
 
@@ -525,11 +891,14 @@ label{
      PLAYER REGISTRATIONS
 ===================================================== -->
 
-<hr>
+<section
+    id="registrationSection"
+    class="admin-section"
+>
 
 
-<h2>
-    🧑‍🏏 Player Registrations
+<h2 class="section-title">
+    🧑‍🏏 PLAYER REGISTRATIONS
 </h2>
 
 
@@ -541,74 +910,31 @@ label{
 <div id="registrationList"></div>
 
 
+</section>
+
+
 
 <!-- =====================================================
-     GALLERY
+     EVENTS
 ===================================================== -->
 
-<hr>
+<section
+    id="eventSection"
+    class="admin-section"
+>
 
 
-<h2>
-    📸 Gallery
+<h2 class="section-title">
+    📅 EVENTS
 </h2>
 
 
-<div class="gallery-admin-card">
+<hr class="section-divider">
 
 
-<h3>
-    Upload New Gallery Photos
+<h3 style="color:#ff9800;">
+    ➕ Add New Event
 </h3>
-
-
-<label>
-    Select Images
-</label>
-
-
-<input
-    type="file"
-    id="galleryImage"
-    accept=".jpg,.jpeg,image/jpeg"
-    multiple
->
-
-
-<img
-    id="galleryPreview"
-    class="gallery-preview"
-    alt="Gallery Preview"
->
-
-
-<p id="galleryMsg"></p>
-
-
-<button
-    type="button"
-    id="uploadGalleryBtn"
->
-
-    ⬆️ UPLOAD PHOTOS
-
-</button>
-
-
-</div>
-
-
-
-<!-- =====================================================
-     ADD NEW EVENT
-===================================================== -->
-
-<hr>
-
-
-<h2>
-    Add New Event
-</h2>
 
 
 <input
@@ -646,15 +972,8 @@ label{
 >
 
 
-<label
-    style="
-        display:block;
-        margin-top:15px;
-    "
->
-
+<label>
     Event Logo / Image (JPG)
-
 </label>
 
 
@@ -665,15 +984,8 @@ label{
 >
 
 
-<label
-    style="
-        display:block;
-        margin-top:15px;
-    "
->
-
+<label>
     Event Status
-
 </label>
 
 
@@ -694,25 +1006,40 @@ label{
     type="button"
     id="saveEventBtn"
 >
-
     SAVE EVENT
-
 </button>
 
 
 <p id="eventMsg"></p>
 
 
+<hr class="section-divider">
+
+
+<h3 style="color:#ff9800;">
+    📋 Existing Events
+</h3>
+
+
+<div id="eventList"></div>
+
+
+</section>
+
+
 
 <!-- =====================================================
-     ADD NEW MATCH
+     MATCHES
 ===================================================== -->
 
-<hr>
+<section
+    id="matchSection"
+    class="admin-section"
+>
 
 
-<h2>
-    Add New Match
+<h2 class="section-title">
+    🏏 MATCHES
 </h2>
 
 
@@ -720,23 +1047,16 @@ label{
     type="button"
     id="addMatchBtn"
 >
-
     ➕ ADD NEW MATCH
-
 </button>
 
-
-
-<!-- =====================================================
-     MATCH FORM
-===================================================== -->
 
 <div id="matchForm">
 
 
-<h2>
+<h3 style="color:#ff9800;">
     Match Details
-</h2>
+</h3>
 
 
 <input
@@ -858,10 +1178,79 @@ label{
     type="button"
     id="saveMatchBtn"
 >
-
     SAVE MATCH
-
 </button>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     GALLERY
+===================================================== -->
+
+<section
+    id="gallerySection"
+    class="admin-section"
+>
+
+
+<h2 class="section-title">
+    📸 GALLERY
+</h2>
+
+
+<div class="gallery-admin-card">
+
+
+<h3>
+    Upload New Gallery Photos
+</h3>
+
+
+<label>
+    Select Images
+</label>
+
+
+<input
+    type="file"
+    id="galleryImage"
+    accept=".jpg,.jpeg,image/jpeg"
+    multiple
+>
+
+
+<img
+    id="galleryPreview"
+    class="gallery-preview"
+    alt="Gallery Preview"
+>
+
+
+<p id="galleryMsg"></p>
+
+
+<button
+    type="button"
+    id="uploadGalleryBtn"
+>
+    ⬆️ UPLOAD PHOTOS
+</button>
+
+
+</div>
+
+
+</section>
+
+
+
+</div>
 
 
 </div>
@@ -869,24 +1258,88 @@ label{
 
 
 <!-- =====================================================
-     EXISTING EVENTS
+     HAMBURGER MENU SCRIPT
 ===================================================== -->
 
-<hr>
+<script>
+
+const menuBtn =
+    document.getElementById("menuBtn");
+
+const adminMenu =
+    document.getElementById("adminMenu");
+
+const menuItems =
+    document.querySelectorAll(".menu-item");
+
+const sections =
+    document.querySelectorAll(".admin-section");
 
 
-<h2>
-    Existing Events
-</h2>
+if(menuBtn){
+
+    menuBtn.addEventListener(
+        "click",
+        function(){
+
+            adminMenu.classList.toggle(
+                "show"
+            );
+
+        }
+    );
+
+}
 
 
-<div id="eventList"></div>
+menuItems.forEach(
+    function(item){
+
+        item.addEventListener(
+            "click",
+            function(){
+
+                const targetId =
+                    item.dataset.section;
 
 
-</div>
+                sections.forEach(
+                    function(section){
+
+                        section.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
 
 
-</div>
+                const target =
+                    document.getElementById(
+                        targetId
+                    );
+
+
+                if(target){
+
+                    target.classList.add(
+                        "active"
+                    );
+
+                }
+
+
+                adminMenu.classList.remove(
+                    "show"
+                );
+
+            }
+        );
+
+    }
+);
+
+</script>
 
 
 
