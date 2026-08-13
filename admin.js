@@ -1,7 +1,8 @@
 import { auth, db } from "./firebase.js";
 
 import {
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    sendPasswordResetEmail
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 import {
@@ -23,305 +24,447 @@ const CLOUDINARY_UPLOAD_PRESET = "tigers_images";
 
 
 // ======================================================
+// LOGIN ELEMENTS
+// ======================================================
+
+const loginBtn =
+    document.getElementById("loginBtn");
+
+const loginBox =
+    document.getElementById("loginBox");
+
+const adminPanel =
+    document.getElementById("adminPanel");
+
+const loginMsg =
+    document.getElementById("loginMsg");
+
+
+// ======================================================
 // LOGIN
 // ======================================================
 
-const loginBtn = document.getElementById("loginBtn");
-const loginBox = document.getElementById("loginBox");
-const adminPanel = document.getElementById("adminPanel");
-const loginMsg = document.getElementById("loginMsg");
-
-
 if (loginBtn) {
 
-    loginBtn.addEventListener("click", async function () {
+    loginBtn.addEventListener(
+        "click",
+        async function () {
 
-        const emailElement =
-            document.getElementById("email");
+            const emailElement =
+                document.getElementById("email");
 
-        const passwordElement =
-            document.getElementById("password");
+            const passwordElement =
+                document.getElementById("password");
 
+            const email =
+                emailElement
+                    ? emailElement.value.trim()
+                    : "";
 
-        const email =
-            emailElement
-                ? emailElement.value.trim()
-                : "";
-
-
-        const password =
-            passwordElement
-                ? passwordElement.value
-                : "";
-
-
-        // EMPTY CHECK
-        if (!email || !password) {
-
-            if (loginMsg) {
-
-                loginMsg.innerText =
-                    "⚠️ Enter Email & Password";
-
-                loginMsg.style.color =
-                    "#ff9800";
-
-            }
-
-            return;
-
-        }
+            const password =
+                passwordElement
+                    ? passwordElement.value
+                    : "";
 
 
-        try {
+            if (!email || !password) {
 
-            loginBtn.disabled = true;
+                if (loginMsg) {
 
-            loginBtn.innerText =
-                "⏳ LOGGING IN...";
+                    loginMsg.innerText =
+                        "⚠️ Enter Email & Password";
 
+                    loginMsg.style.color =
+                        "#ff9800";
+                }
 
-            if (loginMsg) {
-
-                loginMsg.innerText =
-                    "Checking login...";
-
-                loginMsg.style.color =
-                    "#ff9800";
-
+                return;
             }
 
 
-            // ==========================================
-            // FIREBASE AUTHENTICATION
-            // ==========================================
+            try {
 
-            const userCredential =
-                await signInWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
+                loginBtn.disabled = true;
+
+                loginBtn.innerText =
+                    "⏳ LOGGING IN...";
+
+
+                if (loginMsg) {
+
+                    loginMsg.innerText =
+                        "Checking login...";
+
+                    loginMsg.style.color =
+                        "#ff9800";
+                }
+
+
+                const userCredential =
+                    await signInWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
+                    );
+
+
+                console.log(
+                    "LOGIN SUCCESS:",
+                    userCredential.user.email
                 );
 
 
-            console.log(
-                "LOGIN SUCCESS:",
-                userCredential.user.email
-            );
+                if (loginMsg) {
+
+                    loginMsg.innerText =
+                        "✅ Login successful!";
+
+                    loginMsg.style.color =
+                        "#00ff88";
+                }
 
 
-            if (loginMsg) {
+                if (loginBox) {
 
-                loginMsg.innerText =
-                    "✅ Login successful!";
-
-                loginMsg.style.color =
-                    "#00ff88";
-
-            }
+                    loginBox.style.display =
+                        "none";
+                }
 
 
-            // ==========================================
-            // HIDE LOGIN
-            // ==========================================
+                if (adminPanel) {
 
-            if (loginBox) {
-
-                loginBox.style.display =
-                    "none";
-
-            }
+                    adminPanel.style.display =
+                        "block";
+                }
 
 
-            // ==========================================
-            // SHOW ADMIN PANEL
-            // ==========================================
+                loadEvents();
 
-            if (adminPanel) {
-
-                adminPanel.style.display =
-                    "block";
+                loadPlayerRegistrations();
 
             }
 
 
-            // ==========================================
-            // LOAD DATA
-            // ==========================================
+            catch (error) {
 
-            loadEvents();
+                console.error(
+                    "LOGIN ERROR:",
+                    error
+                );
 
-            loadPlayerRegistrations();
+
+                console.log(
+                    "FIREBASE ERROR CODE:",
+                    error.code
+                );
+
+
+                console.log(
+                    "FIREBASE ERROR MESSAGE:",
+                    error.message
+                );
+
+
+                let message =
+                    error.message ||
+                    "Login failed";
+
+
+                if (
+                    error.code ===
+                    "auth/invalid-credential"
+                ) {
+
+                    message =
+                        "Invalid Email or Password.";
+
+                }
+
+
+                else if (
+                    error.code ===
+                    "auth/invalid-email"
+                ) {
+
+                    message =
+                        "Invalid Email Address.";
+
+                }
+
+
+                else if (
+                    error.code ===
+                    "auth/user-not-found"
+                ) {
+
+                    message =
+                        "Admin account not found.";
+
+                }
+
+
+                else if (
+                    error.code ===
+                    "auth/wrong-password"
+                ) {
+
+                    message =
+                        "Incorrect Password.";
+
+                }
+
+
+                else if (
+                    error.code ===
+                    "auth/too-many-requests"
+                ) {
+
+                    message =
+                        "Too many login attempts. Please try again later.";
+
+                }
+
+
+                else if (
+                    error.code ===
+                    "auth/network-request-failed"
+                ) {
+
+                    message =
+                        "Network error. Please check your internet connection.";
+
+                }
+
+
+                else if (
+                    error.code ===
+                    "auth/operation-not-allowed"
+                ) {
+
+                    message =
+                        "Email/Password login is disabled in Firebase.";
+
+                }
+
+
+                else if (
+                    error.code ===
+                    "auth/unauthorized-domain"
+                ) {
+
+                    message =
+                        "This website domain is not authorized in Firebase.";
+
+                }
+
+
+                else if (
+                    error.code ===
+                    "auth/api-key-not-valid"
+                ) {
+
+                    message =
+                        "Firebase API Key is not valid.";
+
+                }
+
+
+                alert(
+                    "Firebase Login Error\n\n" +
+                    "Code: " +
+                    (error.code || "Unknown") +
+                    "\n\n" +
+                    "Message: " +
+                    (error.message || "Unknown error")
+                );
+
+
+                if (loginMsg) {
+
+                    loginMsg.innerText =
+                        "❌ " + message;
+
+                    loginMsg.style.color =
+                        "#ff4444";
+                }
+
+
+                loginBtn.disabled =
+                    false;
+
+                loginBtn.innerText =
+                    "LOGIN";
+            }
 
         }
+    );
+
+}
 
 
-        catch (error) {
+// ======================================================
+// PASSWORD RESET
+// ======================================================
 
-            console.error(
-                "LOGIN ERROR:",
-                error
-            );
-
-
-            console.log(
-                "FIREBASE ERROR CODE:",
-                error.code
-            );
+const resetPasswordBtn =
+    document.getElementById(
+        "resetPasswordBtn"
+    );
 
 
-            console.log(
-                "FIREBASE ERROR MESSAGE:",
-                error.message
-            );
+if (resetPasswordBtn) {
+
+    resetPasswordBtn.addEventListener(
+        "click",
+        async function () {
+
+            const emailElement =
+                document.getElementById("email");
 
 
-            // ==========================================
-            // EXACT ERROR POPUP
-            // ==========================================
-
-            alert(
-                "Firebase Login Error\n\n" +
-                "Code: " +
-                (error.code || "Unknown") +
-                "\n\n" +
-                "Message: " +
-                (error.message || "Unknown error")
-            );
+            const email =
+                emailElement
+                    ? emailElement.value.trim()
+                    : "";
 
 
-            let message =
-                error.message ||
-                "Login failed";
+            if (!email) {
+
+                alert(
+                    "Please enter your email address first."
+                );
+
+                return;
+            }
 
 
-            // ==========================================
-            // FRIENDLY ERROR MESSAGES
-            // ==========================================
+            try {
 
-            if (
-                error.code ===
-                "auth/invalid-credential"
-            ) {
+                resetPasswordBtn.disabled =
+                    true;
 
-                message =
-                    "Invalid Email or Password.";
+                resetPasswordBtn.innerText =
+                    "⏳ SENDING...";
+
+
+                await sendPasswordResetEmail(
+                    auth,
+                    email
+                );
+
+
+                alert(
+                    "✅ Password reset email sent successfully!\n\n" +
+                    "Please check:\n" +
+                    "• Inbox\n" +
+                    "• Spam / Junk\n" +
+                    "• Promotions"
+                );
+
+
+                if (loginMsg) {
+
+                    loginMsg.innerText =
+                        "✅ Password reset email sent.";
+
+                    loginMsg.style.color =
+                        "#00ff88";
+                }
 
             }
 
 
-            else if (
-                error.code ===
-                "auth/invalid-email"
-            ) {
+            catch (error) {
 
-                message =
-                    "Invalid Email Address.";
-
-            }
+                console.error(
+                    "PASSWORD RESET ERROR:",
+                    error
+                );
 
 
-            else if (
-                error.code ===
-                "auth/user-not-found"
-            ) {
-
-                message =
-                    "Admin account not found.";
-
-            }
+                let message =
+                    error.message ||
+                    "Password reset failed";
 
 
-            else if (
-                error.code ===
-                "auth/wrong-password"
-            ) {
+                if (
+                    error.code ===
+                    "auth/user-not-found"
+                ) {
 
-                message =
-                    "Incorrect Password.";
+                    message =
+                        "No Firebase account found with this email.";
 
-            }
-
-
-            else if (
-                error.code ===
-                "auth/too-many-requests"
-            ) {
-
-                message =
-                    "Too many login attempts. Please try again later.";
-
-            }
+                }
 
 
-            else if (
-                error.code ===
-                "auth/network-request-failed"
-            ) {
+                else if (
+                    error.code ===
+                    "auth/invalid-email"
+                ) {
 
-                message =
-                    "Network error. Please check your internet connection.";
+                    message =
+                        "Invalid email address.";
 
-            }
-
-
-            else if (
-                error.code ===
-                "auth/operation-not-allowed"
-            ) {
-
-                message =
-                    "Email/Password login is disabled in Firebase.";
-
-            }
+                }
 
 
-            else if (
-                error.code ===
-                "auth/unauthorized-domain"
-            ) {
+                else if (
+                    error.code ===
+                    "auth/too-many-requests"
+                ) {
 
-                message =
-                    "This website domain is not authorized in Firebase.";
+                    message =
+                        "Too many requests. Please wait and try again later.";
 
-            }
+                }
 
 
-            else if (
-                error.code ===
-                "auth/api-key-not-valid"
-            ) {
+                else if (
+                    error.code ===
+                    "auth/network-request-failed"
+                ) {
 
-                message =
-                    "Firebase API Key is not valid.";
+                    message =
+                        "Network error. Please check your internet connection.";
+
+                }
+
+
+                else if (
+                    error.code ===
+                    "auth/unauthorized-continue-uri"
+                ) {
+
+                    message =
+                        "Firebase password reset domain configuration needs to be checked.";
+
+                }
+
+
+                alert(
+                    "❌ Password Reset Error\n\n" +
+                    "Code: " +
+                    (error.code || "Unknown") +
+                    "\n\n" +
+                    message
+                );
 
             }
 
 
-            // ==========================================
-            // SHOW ERROR ON PAGE
-            // ==========================================
+            finally {
 
-            if (loginMsg) {
+                resetPasswordBtn.disabled =
+                    false;
 
-                loginMsg.innerText =
-                    "❌ " + message;
-
-                loginMsg.style.color =
-                    "#ff4444";
+                resetPasswordBtn.innerText =
+                    "RESET PASSWORD";
 
             }
-
-
-            loginBtn.disabled =
-                false;
-
-            loginBtn.innerText =
-                "LOGIN";
 
         }
-
-    });
+    );
 
 }
 
@@ -387,7 +530,6 @@ async function loadPlayerRegistrations() {
                 ) {
 
                     return;
-
                 }
 
 
@@ -658,7 +800,6 @@ async function updateRegistrationStatus(
     ) {
 
         return;
-
     }
 
 
@@ -917,7 +1058,6 @@ if (galleryImage) {
                 galleryMsg.innerText = "";
 
                 return;
-
             }
 
 
@@ -936,7 +1076,6 @@ if (galleryImage) {
                         "";
 
                     return;
-
                 }
 
             }
@@ -999,7 +1138,6 @@ if (uploadGalleryBtn) {
             );
 
             return;
-
         }
 
 
@@ -1059,7 +1197,6 @@ if (uploadGalleryBtn) {
 
 
             galleryImage.value = "";
-
 
             galleryPreview.src = "";
 
@@ -1158,7 +1295,6 @@ if (saveEventBtn) {
             );
 
             return;
-
         }
 
 
@@ -1193,796 +1329,4 @@ if (saveEventBtn) {
 
             await addDoc(
 
-                collection(
-                    db,
-                    "events"
-                ),
-
-                {
-
-                    eventId:
-                        eventId,
-
-                    eventType:
-                        eventType,
-
-                    eventName:
-                        eventName,
-
-                    imageUrl:
-                        imageUrl,
-
-                    status:
-                        eventStatus
-
-                }
-
-            );
-
-
-            eventMsg.innerText =
-                "✅ Event saved successfully!";
-
-            eventMsg.style.color =
-                "#00ff88";
-
-
-            document.getElementById(
-                "eventId"
-            ).value = "";
-
-            document.getElementById(
-                "eventType"
-            ).value = "";
-
-            document.getElementById(
-                "eventName"
-            ).value = "";
-
-            document.getElementById(
-                "eventImage"
-            ).value = "";
-
-            document.getElementById(
-                "eventStatus"
-            ).value =
-                "Active";
-
-
-            loadEvents();
-
-        }
-
-
-        catch (error) {
-
-            console.error(
-                "EVENT ERROR:",
-                error
-            );
-
-
-            const eventMsg =
-                document.getElementById(
-                    "eventMsg"
-                );
-
-
-            eventMsg.innerText =
-                "❌ ERROR: " +
-                error.message;
-
-            eventMsg.style.color =
-                "#ff4444";
-
-        }
-
-    };
-
-}
-
-
-// ======================================================
-// LOAD EVENTS
-// ======================================================
-
-async function loadEvents() {
-
-    const eventList =
-        document.getElementById(
-            "eventList"
-        );
-
-
-    if (!eventList) {
-        return;
-    }
-
-
-    try {
-
-        const snapshot =
-            await getDocs(
-                collection(
-                    db,
-                    "events"
-                )
-            );
-
-
-        eventList.innerHTML = "";
-
-
-        if (snapshot.empty) {
-
-            eventList.innerHTML =
-                `
-                <p style="
-                    text-align:center;
-                    color:#aaa;
-                ">
-                    No events found.
-                </p>
-                `;
-
-            return;
-
-        }
-
-
-        snapshot.forEach(
-            (eventDoc) => {
-
-                const event =
-                    eventDoc.data();
-
-
-                const div =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                div.className =
-                    "event-card";
-
-
-                div.innerHTML = `
-
-                    ${
-                        event.imageUrl
-                        ?
-                        `
-                        <img
-                            src="${escapeHtml(event.imageUrl)}"
-                            alt="Event Image"
-                        >
-                        `
-                        :
-                        ""
-                    }
-
-                    <strong>
-                        ${escapeHtml(
-                            event.eventName || ""
-                        )}
-                    </strong>
-
-                    <br>
-
-                    Event ID:
-                    ${escapeHtml(
-                        event.eventId || ""
-                    )}
-
-                    <br>
-
-                    Type:
-                    ${escapeHtml(
-                        event.eventType || ""
-                    )}
-
-                    <br>
-
-                    Status:
-                    ${
-                        event.status ===
-                        "Completed"
-                        ?
-                        "🔴 Completed"
-                        :
-                        "🟢 Going On"
-                    }
-
-                `;
-
-
-                eventList.appendChild(
-                    div
-                );
-
-            }
-        );
-
-    }
-
-
-    catch (error) {
-
-        console.error(
-            "EVENT LOAD ERROR:",
-            error
-        );
-
-
-        eventList.innerHTML =
-            `
-            <p style="color:#ff4444;">
-                ❌ Error loading events.
-            </p>
-            `;
-
-    }
-
-}
-
-
-// ======================================================
-// MATCH FORM
-// ======================================================
-
-const addMatchBtn =
-    document.getElementById(
-        "addMatchBtn"
-    );
-
-
-const matchForm =
-    document.getElementById(
-        "matchForm"
-    );
-
-
-if (
-    addMatchBtn &&
-    matchForm
-) {
-
-    addMatchBtn.onclick =
-    function () {
-
-        if (
-            matchForm.style.display ===
-            "none"
-        ) {
-
-            matchForm.style.display =
-                "block";
-
-            addMatchBtn.innerText =
-                "➖ CLOSE MATCH FORM";
-
-        }
-
-        else {
-
-            matchForm.style.display =
-                "none";
-
-            addMatchBtn.innerText =
-                "➕ ADD NEW MATCH";
-
-        }
-
-    };
-
-}
-
-
-// ======================================================
-// MATCH EVENT TYPE
-// ======================================================
-
-const matchEventType =
-    document.getElementById(
-        "matchEventType"
-    );
-
-
-const eventSelectBox =
-    document.getElementById(
-        "eventSelectBox"
-    );
-
-
-const eventSelect =
-    document.getElementById(
-        "eventSelect"
-    );
-
-
-if (
-    matchEventType &&
-    eventSelectBox &&
-    eventSelect
-) {
-
-    matchEventType.onchange =
-    async function () {
-
-        const selectedType =
-            matchEventType.value;
-
-
-        if (
-            selectedType ===
-            "Individual Matches"
-        ) {
-
-            eventSelectBox.style.display =
-                "none";
-
-            return;
-
-        }
-
-
-        if (
-            selectedType !== "Tournament" &&
-            selectedType !== "Series"
-        ) {
-
-            eventSelectBox.style.display =
-                "none";
-
-            return;
-
-        }
-
-
-        eventSelectBox.style.display =
-            "block";
-
-
-        eventSelect.innerHTML =
-            `
-            <option value="">
-                Loading...
-            </option>
-            `;
-
-
-        try {
-
-            const snapshot =
-                await getDocs(
-                    collection(
-                        db,
-                        "events"
-                    )
-                );
-
-
-            eventSelect.innerHTML =
-                `
-                <option value="">
-                    Select ${selectedType}
-                </option>
-                `;
-
-
-            snapshot.forEach(
-                (eventDoc) => {
-
-                    const event =
-                        eventDoc.data();
-
-
-                    if (
-                        event.eventType ===
-                        selectedType
-                    ) {
-
-                        const option =
-                            document.createElement(
-                                "option"
-                            );
-
-
-                        option.value =
-                            eventDoc.id;
-
-
-                        option.textContent =
-                            event.eventName ||
-                            event.eventId ||
-                            "Unnamed Event";
-
-
-                        option.dataset.eventId =
-                            event.eventId || "";
-
-
-                        eventSelect.appendChild(
-                            option
-                        );
-
-                    }
-
-                }
-            );
-
-        }
-
-
-        catch (error) {
-
-            console.error(
-                "EVENT SELECT ERROR:",
-                error
-            );
-
-
-            eventSelect.innerHTML =
-                `
-                <option value="">
-                    Error loading events
-                </option>
-                `;
-
-        }
-
-    };
-
-}
-
-
-// ======================================================
-// SAVE MATCH
-// ======================================================
-
-const saveMatchBtn =
-    document.getElementById(
-        "saveMatchBtn"
-    );
-
-
-if (saveMatchBtn) {
-
-    saveMatchBtn.onclick =
-    async function () {
-
-        const matchId =
-            document.getElementById(
-                "matchId"
-            ).value.trim();
-
-
-        const eventType =
-            document.getElementById(
-                "matchEventType"
-            ).value;
-
-
-        const matchDate =
-            document.getElementById(
-                "matchDate"
-            ).value;
-
-
-        const matchPlace =
-            document.getElementById(
-                "matchPlace"
-            ).value.trim();
-
-
-        const opponent =
-            document.getElementById(
-                "opponent"
-            ).value.trim();
-
-
-        const overs =
-            document.getElementById(
-                "overs"
-            ).value.trim();
-
-
-        const result =
-            document.getElementById(
-                "result"
-            ).value.trim();
-
-
-        const playerOfMatch =
-            document.getElementById(
-                "playerOfMatch"
-            ).value.trim();
-
-
-        const bestBowler =
-            document.getElementById(
-                "bestBowler"
-            ).value.trim();
-
-
-        const bestBatter =
-            document.getElementById(
-                "bestBatter"
-            ).value.trim();
-
-
-        const fighterOfMatch =
-            document.getElementById(
-                "fighterOfMatch"
-            ).value.trim();
-
-
-        const cricHeroesLink =
-            document.getElementById(
-                "cricHeroesLink"
-            ).value.trim();
-
-
-        let eventId = "";
-        let eventName = "";
-
-
-        if (
-            eventType === "Tournament" ||
-            eventType === "Series"
-        ) {
-
-            const selectedOption =
-                eventSelect.options[
-                    eventSelect.selectedIndex
-                ];
-
-
-            if (
-                !selectedOption ||
-                selectedOption.value === ""
-            ) {
-
-                alert(
-                    "Please select " +
-                    eventType
-                );
-
-                return;
-
-            }
-
-
-            eventId =
-                selectedOption.dataset.eventId ||
-                "";
-
-
-            eventName =
-                selectedOption.textContent.trim();
-
-        }
-
-
-        if (!matchId) {
-
-            alert(
-                "Please enter Match ID"
-            );
-
-            return;
-
-        }
-
-
-        if (!eventType) {
-
-            alert(
-                "Please select Event Type"
-            );
-
-            return;
-
-        }
-
-
-        if (!matchDate) {
-
-            alert(
-                "Please select Match Date"
-            );
-
-            return;
-
-        }
-
-
-        if (!matchPlace) {
-
-            alert(
-                "Please enter Place"
-            );
-
-            return;
-
-        }
-
-
-        if (!opponent) {
-
-            alert(
-                "Please enter Opponent"
-            );
-
-            return;
-
-        }
-
-
-        if (!result) {
-
-            alert(
-                "Please enter Result"
-            );
-
-            return;
-
-        }
-
-
-        if (!cricHeroesLink) {
-
-            alert(
-                "Please enter CricHeroes Link"
-            );
-
-            return;
-
-        }
-
-
-        try {
-
-            await addDoc(
-
-                collection(
-                    db,
-                    "matches"
-                ),
-
-                {
-
-                    matchId:
-                        matchId,
-
-                    eventId:
-                        eventId,
-
-                    eventType:
-                        eventType,
-
-                    eventName:
-                        eventName,
-
-                    matchDate:
-                        matchDate,
-
-                    place:
-                        matchPlace,
-
-                    opponent:
-                        opponent,
-
-                    overs:
-                        overs,
-
-                    result:
-                        result,
-
-                    playerOfMatch:
-                        playerOfMatch,
-
-                    bestBowler:
-                        bestBowler,
-
-                    bestBatter:
-                        bestBatter,
-
-                    fighterOfMatch:
-                        fighterOfMatch,
-
-                    cricHeroesLink:
-                        cricHeroesLink
-
-                }
-
-            );
-
-
-            alert(
-                "✅ Match saved successfully!"
-            );
-
-
-            document.getElementById(
-                "matchId"
-            ).value = "";
-
-            document.getElementById(
-                "matchEventType"
-            ).value = "";
-
-            document.getElementById(
-                "matchDate"
-            ).value = "";
-
-            document.getElementById(
-                "matchPlace"
-            ).value = "";
-
-            document.getElementById(
-                "opponent"
-            ).value = "";
-
-            document.getElementById(
-                "overs"
-            ).value = "";
-
-            document.getElementById(
-                "result"
-            ).value = "";
-
-            document.getElementById(
-                "playerOfMatch"
-            ).value = "";
-
-            document.getElementById(
-                "bestBowler"
-            ).value = "";
-
-            document.getElementById(
-                "bestBatter"
-            ).value = "";
-
-            document.getElementById(
-                "fighterOfMatch"
-            ).value = "";
-
-            document.getElementById(
-                "cricHeroesLink"
-            ).value = "";
-
-
-            eventSelectBox.style.display =
-                "none";
-
-
-            eventSelect.innerHTML =
-                `
-                <option value="">
-                    Select Tournament / Series
-                </option>
-                `;
-
-        }
-
-
-        catch (error) {
-
-            console.error(
-                "MATCH SAVE ERROR:",
-                error
-            );
-
-
-            alert(
-                "Error saving match:\n" +
-                error.message
-            );
-
-        }
-
-    };
-
-}
+               
