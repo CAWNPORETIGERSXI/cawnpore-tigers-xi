@@ -77,6 +77,65 @@ button:hover{
 
 
 /* =====================================================
+   GALLERY
+===================================================== */
+
+.gallery-admin-card{
+
+    background:#222;
+
+    border:2px solid #333;
+
+    border-left:5px solid #ff9800;
+
+    padding:18px;
+
+    margin:20px 0;
+
+    border-radius:12px;
+
+}
+
+.gallery-admin-card h3{
+
+    margin-top:0;
+
+    color:#ff9800;
+
+    text-align:center;
+
+}
+
+.gallery-preview{
+
+    width:100%;
+
+    max-height:300px;
+
+    object-fit:contain;
+
+    background:#111;
+
+    border-radius:10px;
+
+    margin-top:10px;
+
+    display:none;
+
+}
+
+#galleryMsg{
+
+    text-align:center;
+
+    margin:15px 0;
+
+    font-weight:bold;
+
+}
+
+
+/* =====================================================
    PLAYER REGISTRATION
 ===================================================== */
 
@@ -275,13 +334,60 @@ Login
 
 <h2>🧑‍🏏 Player Registrations</h2>
 
-<p
-id="registrationMsg"
->
+<p id="registrationMsg">
 Loading registrations...
 </p>
 
 <div id="registrationList"></div>
+
+
+
+<!-- =====================================================
+     GALLERY UPLOAD
+===================================================== -->
+
+<hr>
+
+<h2>📸 Gallery</h2>
+
+<div class="gallery-admin-card">
+
+<h3>
+Upload New Gallery Photo
+</h3>
+
+
+<label>
+Select Image
+</label>
+
+<input
+type="file"
+id="galleryImage"
+accept=".jpg,.jpeg,image/jpeg"
+>
+
+
+<img
+id="galleryPreview"
+class="gallery-preview"
+alt="Gallery Preview"
+>
+
+
+<p id="galleryMsg"></p>
+
+
+<button
+type="button"
+id="uploadGalleryBtn"
+>
+
+⬆️ UPLOAD PHOTO
+
+</button>
+
+</div>
 
 
 
