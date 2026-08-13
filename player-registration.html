@@ -17,7 +17,6 @@
     href="style.css"
 >
 
-
 <style>
 
 /* =====================================================
@@ -212,6 +211,7 @@ body{
 }
 
 .photo-upload label{
+    display:block;
     color:#fff;
     font-weight:600;
     margin-bottom:8px;
@@ -417,7 +417,6 @@ Together We Roar, Together We Win
 </header>
 
 
-
 <!-- =====================================================
      REGISTRATION
 ===================================================== -->
@@ -441,7 +440,6 @@ CAWNPORE TIGERS XI
 <p class="registration-subtitle">
 Player Registration Form
 </p>
-
 
 
 <!-- =====================================================
@@ -473,7 +471,6 @@ Full Name *
 >
 
 </div>
-
 
 
 <div class="form-row">
@@ -512,7 +509,6 @@ Mobile Number *
 </div>
 
 
-
 <div class="form-group">
 
 <label>
@@ -526,7 +522,6 @@ City
 >
 
 </div>
-
 
 
 <!-- ===================================================
@@ -569,7 +564,6 @@ Wicket-Keeper
 </select>
 
 </div>
-
 
 
 <div class="form-row">
@@ -647,7 +641,6 @@ Does Not Bowl
 </div>
 
 
-
 <div class="form-row">
 
 
@@ -680,7 +673,6 @@ Short Cricket Profile
 </div>
 
 </div>
-
 
 
 <div class="form-group">
@@ -724,7 +716,6 @@ Other
 </div>
 
 
-
 <!-- ===================================================
      PLAYER PHOTO
 =================================================== -->
@@ -749,13 +740,12 @@ Upload Player Photo
 >
 
 <p class="photo-note">
-Photo upload will be enabled later.
+JPG, JPEG or PNG • Maximum 5 MB
 </p>
 
 </div>
 
 </div>
-
 
 
 <!-- ===================================================
@@ -792,7 +782,6 @@ CAWNPORE TIGERS XI management.
 </main>
 
 
-
 <!-- =====================================================
      FOOTER
 ===================================================== -->
@@ -804,9 +793,8 @@ CAWNPORE TIGERS XI management.
 </footer>
 
 
-
 <!-- =====================================================
-     FIREBASE REGISTRATION SCRIPT
+     FIREBASE + CLOUDINARY REGISTRATION SCRIPT
 ===================================================== -->
 
 <script type="module">
@@ -820,19 +808,86 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-// =====================================================
-// SUBMIT REGISTRATION
-// =====================================================
+// ======================================================
+// CLOUDINARY SETTINGS
+// ======================================================
 
-window.submitRegistration = async function(){
+const CLOUDINARY_CLOUD_NAME =
+    "ax0fx3uh";
+
+const CLOUDINARY_UPLOAD_PRESET =
+    "tigers_images";
+
+
+// ======================================================
+// CLOUDINARY IMAGE UPLOAD
+// ======================================================
+
+async function uploadImageToCloudinary(file){
+
+    const url =
+        `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
+
+    const formData =
+        new FormData();
+
+    formData.append(
+        "file",
+        file
+    );
+
+    formData.append(
+        "upload_preset",
+        CLOUDINARY_UPLOAD_PRESET
+    );
+
+    const response =
+        await fetch(
+            url,
+            {
+                method:"POST",
+                body:formData
+            }
+        );
+
+    const data =
+        await response.json();
+
+    if(!response.ok){
+
+        console.error(
+            "CLOUDINARY ERROR:",
+            data
+        );
+
+        throw new Error(
+            data.error?.message ||
+            "Player photo upload failed."
+        );
+
+    }
+
+    return data.secure_url;
+
+}
+
+
+// ======================================================
+// SUBMIT REGISTRATION
+// ======================================================
+
+window.submitRegistration =
+async function(){
 
     const submitButton =
-        document.querySelector(".submit-btn");
+        document.querySelector(
+            ".submit-btn"
+        );
 
 
-    // -----------------------------------------------
+    // ==================================================
     // GET VALUES
-    // -----------------------------------------------
+    // ==================================================
 
     const name =
         document
@@ -899,9 +954,23 @@ window.submitRegistration = async function(){
         .trim();
 
 
-    // -----------------------------------------------
+    // ==================================================
+    // PLAYER PHOTO
+    // ==================================================
+
+    const photoInput =
+        document.getElementById(
+            "playerPhoto"
+        );
+
+
+    const photoFile =
+        photoInput.files[0] || null;
+
+
+    // ==================================================
     // VALIDATION
-    // -----------------------------------------------
+    // ==================================================
 
     if(name === ""){
 
@@ -947,9 +1016,52 @@ window.submitRegistration = async function(){
     }
 
 
-    // -----------------------------------------------
-    // CREATE REGISTRATION ID
-    // -----------------------------------------------
+    // ==================================================
+    // PHOTO VALIDATION
+    // ==================================================
+
+    if(photoFile){
+
+        const allowedTypes = [
+            "image/jpeg",
+            "image/png"
+        ];
+
+
+        if(
+            !allowedTypes.includes(
+                photoFile.type
+            )
+        ){
+
+            alert(
+                "Please upload JPG, JPEG or PNG photo only."
+            );
+
+            return;
+
+        }
+
+
+        if(
+            photoFile.size >
+            5 * 1024 * 1024
+        ){
+
+            alert(
+                "Player photo must be smaller than 5 MB."
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    // ==================================================
+    // REGISTRATION ID
+    // ==================================================
 
     const year =
         new Date().getFullYear();
@@ -965,22 +1077,54 @@ window.submitRegistration = async function(){
         `CTXI-${year}-${uniqueNumber}`;
 
 
-    // -----------------------------------------------
+    // ==================================================
     // DISABLE BUTTON
-    // -----------------------------------------------
+    // ==================================================
 
-    submitButton.disabled = true;
+    submitButton.disabled =
+        true;
 
     submitButton.innerText =
-        "⏳ SAVING REGISTRATION...";
+        "⏳ PROCESSING...";
 
 
     try{
 
 
-        // -------------------------------------------
+        // =================================================
+        // UPLOAD PHOTO
+        // =================================================
+
+        let photoUrl = "";
+
+
+        if(photoFile){
+
+            submitButton.innerText =
+                "⏳ UPLOADING PLAYER PHOTO...";
+
+
+            photoUrl =
+                await uploadImageToCloudinary(
+                    photoFile
+                );
+
+
+            console.log(
+                "PLAYER PHOTO URL:",
+                photoUrl
+            );
+
+        }
+
+
+        // =================================================
         // SAVE TO FIRESTORE
-        // -------------------------------------------
+        // =================================================
+
+        submitButton.innerText =
+            "⏳ SAVING REGISTRATION...";
+
 
         await addDoc(
 
@@ -1025,7 +1169,7 @@ window.submitRegistration = async function(){
                     profile,
 
                 photoUrl:
-                    "",
+                    photoUrl,
 
                 status:
                     "Pending",
@@ -1038,9 +1182,9 @@ window.submitRegistration = async function(){
         );
 
 
-        // -------------------------------------------
+        // =================================================
         // SUCCESS
-        // -------------------------------------------
+        // =================================================
 
         alert(
 
@@ -1055,54 +1199,53 @@ window.submitRegistration = async function(){
         );
 
 
-        // -------------------------------------------
+        // =================================================
         // CLEAR FORM
-        // -------------------------------------------
+        // =================================================
 
         document
-            .getElementById("fullName")
-            .value = "";
+        .getElementById("fullName")
+        .value = "";
 
         document
-            .getElementById("mobile")
-            .value = "";
+        .getElementById("mobile")
+        .value = "";
 
         document
-            .getElementById("dob")
-            .value = "";
+        .getElementById("dob")
+        .value = "";
 
         document
-            .getElementById("city")
-            .value = "";
+        .getElementById("city")
+        .value = "";
 
         document
-            .getElementById("playingRole")
-            .value = "";
+        .getElementById("playingRole")
+        .value = "";
 
         document
-            .getElementById("battingStyle")
-            .value = "";
+        .getElementById("battingStyle")
+        .value = "";
 
         document
-            .getElementById("bowlingStyle")
-            .value = "";
+        .getElementById("bowlingStyle")
+        .value = "";
 
         document
-            .getElementById("jerseyNumber")
-            .value = "";
+        .getElementById("jerseyNumber")
+        .value = "";
 
         document
-            .getElementById("experience")
-            .value = "";
+        .getElementById("experience")
+        .value = "";
 
         document
-            .getElementById("profile")
-            .value = "";
+        .getElementById("profile")
+        .value = "";
 
         document
-            .getElementById("playerPhoto")
-            .value = "";
-
+        .getElementById("playerPhoto")
+        .value = "";
 
     }
 
@@ -1128,7 +1271,8 @@ window.submitRegistration = async function(){
 
     finally{
 
-        submitButton.disabled = false;
+        submitButton.disabled =
+            false;
 
         submitButton.innerText =
             "🐾 SUBMIT PLAYER REGISTRATION";
