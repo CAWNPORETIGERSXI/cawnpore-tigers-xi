@@ -10,7 +10,6 @@ import {
     addDoc,
     getDocs,
     updateDoc,
-    deleteDoc,
     doc,
     query,
     orderBy,
@@ -22,16 +21,17 @@ import {
 // ELEMENTS
 // ======================================================
 
-const loginBtn = document.getElementById("loginBtn");
-const resetPasswordBtn = document.getElementById("resetPasswordBtn");
+const $ = (id) => document.getElementById(id);
 
-const loginBox = document.getElementById("loginBox");
-const adminPanel = document.getElementById("adminPanel");
+const loginBtn = $("loginBtn");
+const resetPasswordBtn = $("resetPasswordBtn");
 
-const loginMsg = document.getElementById("loginMsg");
+const loginBox = $("loginBox");
+const adminPanel = $("adminPanel");
+const loginMsg = $("loginMsg");
 
-const menuBtn = document.getElementById("menuBtn");
-const adminMenu = document.getElementById("adminMenu");
+const menuBtn = $("menuBtn");
+const adminMenu = $("adminMenu");
 
 
 // ======================================================
@@ -42,68 +42,68 @@ if (loginBtn) {
 
     loginBtn.addEventListener("click", async () => {
 
-        const email =
-            document.getElementById("email")?.value.trim();
-
-        const password =
-            document.getElementById("password")?.value || "";
-
+        const email = $("email")?.value.trim();
+        const password = $("password")?.value || "";
 
         if (!email || !password) {
 
-            loginMsg.innerText =
-                "⚠️ Please enter Email and Password.";
+            if (loginMsg) {
+                loginMsg.innerText =
+                    "⚠️ Please enter Email and Password.";
 
-            loginMsg.style.color = "#ff9800";
+                loginMsg.style.color =
+                    "#ff9800";
+            }
 
             return;
         }
 
-
         loginBtn.disabled = true;
         loginBtn.innerText = "⏳ LOGGING IN...";
 
+        if (loginMsg) {
+            loginMsg.innerText = "Checking login...";
+            loginMsg.style.color = "#ff9800";
+        }
+
         try {
 
-            const userCredential =
+            const result =
                 await signInWithEmailAndPassword(
                     auth,
                     email,
                     password
                 );
 
-
             console.log(
                 "LOGIN SUCCESS:",
-                userCredential.user.email
+                result.user.email
             );
 
+            if (loginMsg) {
+                loginMsg.innerText =
+                    "✅ Login successful!";
 
-            loginMsg.innerText =
-                "✅ Login successful!";
+                loginMsg.style.color =
+                    "#00ff88";
+            }
 
-            loginMsg.style.color =
-                "#00ff88";
+            if (loginBox) {
+                loginBox.style.display = "none";
+            }
 
-
-            loginBox.style.display =
-                "none";
-
-            adminPanel.style.display =
-                "block";
-
+            if (adminPanel) {
+                adminPanel.style.display = "block";
+            }
 
         } catch (error) {
 
             console.error(
-                "LOGIN ERROR:",
+                "FIREBASE LOGIN ERROR:",
                 error
             );
 
-
-            let message =
-                "❌ Login failed.";
-
+            let message = "❌ Login failed.";
 
             switch (error.code) {
 
@@ -144,7 +144,7 @@ if (loginBtn) {
 
                 case "auth/unauthorized-domain":
                     message =
-                        "❌ Website domain is not authorized in Firebase.";
+                        "❌ This website domain is not authorized in Firebase.";
                     break;
 
                 default:
@@ -153,25 +153,17 @@ if (loginBtn) {
                         (error.message || "Login failed.");
             }
 
-
-            loginMsg.innerText =
-                message;
-
-            loginMsg.style.color =
-                "#ff4444";
-
+            if (loginMsg) {
+                loginMsg.innerText = message;
+                loginMsg.style.color = "#ff4444";
+            }
 
         } finally {
 
-            loginBtn.disabled =
-                false;
-
-            loginBtn.innerText =
-                "LOGIN";
+            loginBtn.disabled = false;
+            loginBtn.innerText = "LOGIN";
         }
-
     });
-
 }
 
 
@@ -186,8 +178,7 @@ if (resetPasswordBtn) {
         async () => {
 
             const email =
-                document.getElementById("email")?.value.trim();
-
+                $("email")?.value.trim();
 
             if (!email) {
 
@@ -198,13 +189,8 @@ if (resetPasswordBtn) {
                 return;
             }
 
-
-            resetPasswordBtn.disabled =
-                true;
-
-            resetPasswordBtn.innerText =
-                "⏳ SENDING...";
-
+            resetPasswordBtn.disabled = true;
+            resetPasswordBtn.innerText = "⏳ SENDING...";
 
             try {
 
@@ -213,19 +199,19 @@ if (resetPasswordBtn) {
                     email
                 );
 
-
                 alert(
                     "✅ Password reset email sent!\n\n" +
-                    "Please check your Inbox, Spam/Junk and Promotions."
+                    "Please check Inbox, Spam/Junk and Promotions."
                 );
 
+                if (loginMsg) {
 
-                loginMsg.innerText =
-                    "✅ Password reset email sent.";
+                    loginMsg.innerText =
+                        "✅ Password reset email sent.";
 
-                loginMsg.style.color =
-                    "#00ff88";
-
+                    loginMsg.style.color =
+                        "#00ff88";
+                }
 
             } catch (error) {
 
@@ -233,7 +219,6 @@ if (resetPasswordBtn) {
                     "PASSWORD RESET ERROR:",
                     error
                 );
-
 
                 alert(
                     "Password Reset Error\n\n" +
@@ -244,26 +229,24 @@ if (resetPasswordBtn) {
                     (error.message || "Unknown error")
                 );
 
+                if (loginMsg) {
 
-                loginMsg.innerText =
-                    "❌ Password reset failed.";
+                    loginMsg.innerText =
+                        "❌ Password reset failed.";
 
-                loginMsg.style.color =
-                    "#ff4444";
-
+                    loginMsg.style.color =
+                        "#ff4444";
+                }
 
             } finally {
 
-                resetPasswordBtn.disabled =
-                    false;
+                resetPasswordBtn.disabled = false;
 
                 resetPasswordBtn.innerText =
                     "🔑 RESET PASSWORD";
             }
-
         }
     );
-
 }
 
 
@@ -278,7 +261,6 @@ if (menuBtn && adminMenu) {
         adminMenu.classList.toggle("show");
 
     });
-
 }
 
 
@@ -286,14 +268,14 @@ if (menuBtn && adminMenu) {
 // SECTION NAVIGATION
 // ======================================================
 
-document.querySelectorAll(".menu-item")
+document
+    .querySelectorAll(".menu-item")
     .forEach(button => {
 
-        button.addEventListener("click", () => {
+        button.addEventListener("click", async () => {
 
             const sectionId =
                 button.dataset.section;
-
 
             document
                 .querySelectorAll(".admin-section")
@@ -303,10 +285,8 @@ document.querySelectorAll(".menu-item")
 
                 });
 
-
             const section =
-                document.getElementById(sectionId);
-
+                $(sectionId);
 
             if (section) {
 
@@ -314,31 +294,27 @@ document.querySelectorAll(".menu-item")
 
             }
 
-
             if (adminMenu) {
 
                 adminMenu.classList.remove("show");
 
             }
 
-
             if (sectionId === "eventSection") {
 
-                loadEvents();
+                await loadEvents();
 
             }
-
 
             if (sectionId === "matchSection") {
 
-                loadEventOptions();
+                await loadEventOptions();
 
             }
 
-
             if (sectionId === "registrationSection") {
 
-                loadRegistrations();
+                await loadRegistrations();
 
             }
 
@@ -352,8 +328,7 @@ document.querySelectorAll(".menu-item")
 // ======================================================
 
 const saveEventBtn =
-    document.getElementById("saveEventBtn");
-
+    $("saveEventBtn");
 
 if (saveEventBtn) {
 
@@ -368,79 +343,66 @@ if (saveEventBtn) {
 async function saveEvent() {
 
     const eventId =
-        document.getElementById("eventId")?.value.trim();
+        $("eventId")?.value.trim();
 
     const eventType =
-        document.getElementById("eventType")?.value;
+        $("eventType")?.value;
 
     const eventName =
-        document.getElementById("eventName")?.value.trim();
+        $("eventName")?.value.trim();
 
     const eventStatus =
-        document.getElementById("eventStatus")?.value;
-
+        $("eventStatus")?.value || "Active";
 
     const eventMsg =
-        document.getElementById("eventMsg");
-
+        $("eventMsg");
 
     if (!eventId || !eventType || !eventName) {
 
-        eventMsg.innerText =
-            "⚠️ Please fill all Event fields.";
+        if (eventMsg) {
 
-        eventMsg.style.color =
-            "#ff9800";
+            eventMsg.innerText =
+                "⚠️ Please fill all Event fields.";
+
+            eventMsg.style.color =
+                "#ff9800";
+        }
 
         return;
     }
 
-
-    saveEventBtn.disabled =
-        true;
-
-    saveEventBtn.innerText =
-        "⏳ SAVING...";
-
+    saveEventBtn.disabled = true;
+    saveEventBtn.innerText = "⏳ SAVING...";
 
     try {
 
         await addDoc(
             collection(db, "events"),
             {
-
-                eventId: eventId,
-
-                eventType: eventType,
-
-                eventName: eventName,
-
-                status: eventStatus || "Active",
-
+                eventId,
+                eventType,
+                eventName,
+                status: eventStatus,
                 imageUrl: "",
-
-                createdAt:
-                    serverTimestamp()
-
+                createdAt: serverTimestamp()
             }
         );
 
+        if (eventMsg) {
 
-        eventMsg.innerText =
-            "✅ Event saved successfully.";
+            eventMsg.innerText =
+                "✅ Event saved successfully.";
 
-        eventMsg.style.color =
-            "#00ff88";
+            eventMsg.style.color =
+                "#00ff88";
+        }
 
-
-        document.getElementById("eventId").value = "";
-        document.getElementById("eventType").value = "";
-        document.getElementById("eventName").value = "";
-
+        $("eventId").value = "";
+        $("eventType").value = "";
+        $("eventName").value = "";
 
         await loadEvents();
         await loadEventOptions();
-
 
     } catch (error) {
 
@@ -449,22 +411,20 @@ async function saveEvent() {
             error
         );
 
+        if (eventMsg) {
 
-        eventMsg.innerText =
-            "❌ Event could not be saved.";
+            eventMsg.innerText =
+                "❌ Event could not be saved.";
 
-        eventMsg.style.color =
-            "#ff4444";
+            eventMsg.style.color =
+                "#ff4444";
+        }
 
     } finally {
 
-        saveEventBtn.disabled =
-            false;
-
-        saveEventBtn.innerText =
-            "💾 SAVE EVENT";
+        saveEventBtn.disabled = false;
+        saveEventBtn.innerText = "💾 SAVE EVENT";
     }
-
 }
 
 
@@ -475,15 +435,12 @@ async function saveEvent() {
 async function loadEvents() {
 
     const eventList =
-        document.getElementById("eventList");
-
+        $("eventList");
 
     if (!eventList) return;
 
-
     eventList.innerHTML =
         "⏳ Loading events...";
-
 
     try {
 
@@ -492,9 +449,7 @@ async function loadEvents() {
                 collection(db, "events")
             );
 
-
         eventList.innerHTML = "";
-
 
         if (snapshot.empty) {
 
@@ -504,12 +459,10 @@ async function loadEvents() {
             return;
         }
 
-
         snapshot.forEach(eventDoc => {
 
             const data =
                 eventDoc.data();
-
 
             const card =
                 document.createElement("div");
@@ -517,35 +470,41 @@ async function loadEvents() {
             card.className =
                 "event-card";
 
-
             card.innerHTML = `
 
                 <h3>
-                    ${escapeHTML(data.eventName || "Unnamed Event")}
+                    ${escapeHTML(
+                        data.eventName ||
+                        "Unnamed Event"
+                    )}
                 </h3>
 
                 <p>
                     <strong>Event ID:</strong>
-                    ${escapeHTML(data.eventId || "-")}
+                    ${escapeHTML(
+                        data.eventId || "-"
+                    )}
                 </p>
 
                 <p>
                     <strong>Type:</strong>
-                    ${escapeHTML(data.eventType || "-")}
+                    ${escapeHTML(
+                        data.eventType || "-"
+                    )}
                 </p>
 
                 <p>
                     <strong>Status:</strong>
-                    ${escapeHTML(data.status || "-")}
+                    ${escapeHTML(
+                        data.status || "-"
+                    )}
                 </p>
 
             `;
 
-
             eventList.appendChild(card);
 
         });
-
 
     } catch (error) {
 
@@ -554,11 +513,9 @@ async function loadEvents() {
             error
         );
 
-
         eventList.innerHTML =
             "<p>❌ Unable to load events.</p>";
     }
-
 }
 
 
@@ -567,38 +524,35 @@ async function loadEvents() {
 // ======================================================
 
 const addMatchBtn =
-    document.getElementById("addMatchBtn");
+    $("addMatchBtn");
 
 const matchForm =
-    document.getElementById("matchForm");
-
+    $("matchForm");
 
 if (addMatchBtn && matchForm) {
 
     addMatchBtn.addEventListener(
         "click",
-        () => {
+        async () => {
 
-            if (
+            const hidden =
                 matchForm.style.display === "none" ||
-                !matchForm.style.display
-            ) {
+                !matchForm.style.display;
+
+            if (hidden) {
 
                 matchForm.style.display =
                     "block";
 
-                loadEventOptions();
+                await loadEventOptions();
 
             } else {
 
                 matchForm.style.display =
                     "none";
-
             }
-
         }
     );
-
 }
 
 
@@ -607,42 +561,51 @@ if (addMatchBtn && matchForm) {
 // ======================================================
 
 const matchEventType =
-    document.getElementById("matchEventType");
+    $("matchEventType");
 
 const eventSelectBox =
-    document.getElementById("eventSelectBox");
-
+    $("eventSelectBox");
 
 if (matchEventType) {
 
     matchEventType.addEventListener(
         "change",
-        () => {
+        async () => {
 
             const type =
                 matchEventType.value;
-
 
             if (
                 type === "Tournament" ||
                 type === "Series"
             ) {
 
-                eventSelectBox.style.display =
-                    "block";
+                if (eventSelectBox) {
 
-                loadEventOptions(type);
+                    eventSelectBox.style.display =
+                        "block";
+                }
+
+                await loadEventOptions(type);
 
             } else {
 
-                eventSelectBox.style.display =
-                    "none";
+                if (eventSelectBox) {
 
+                    eventSelectBox.style.display =
+                        "none";
+                }
+
+                const eventSelect =
+                    $("eventSelect");
+
+                if (eventSelect) {
+
+                    eventSelect.value = "";
+                }
             }
-
         }
     );
-
 }
 
 
@@ -650,21 +613,20 @@ if (matchEventType) {
 // LOAD EVENT OPTIONS
 // ======================================================
 
-async function loadEventOptions(filterType = "") {
+async function loadEventOptions(
+    filterType = ""
+) {
 
     const select =
-        document.getElementById("eventSelect");
-
+        $("eventSelect");
 
     if (!select) return;
-
 
     select.innerHTML = `
         <option value="">
             Select Tournament / Series
         </option>
     `;
-
 
     try {
 
@@ -673,12 +635,10 @@ async function loadEventOptions(filterType = "") {
                 collection(db, "events")
             );
 
-
         snapshot.forEach(eventDoc => {
 
             const data =
                 eventDoc.data();
-
 
             if (
                 filterType &&
@@ -687,7 +647,6 @@ async function loadEventOptions(filterType = "") {
                 return;
             }
 
-
             if (
                 data.eventType !== "Tournament" &&
                 data.eventType !== "Series"
@@ -695,25 +654,20 @@ async function loadEventOptions(filterType = "") {
                 return;
             }
 
-
             const option =
                 document.createElement("option");
 
-
             option.value =
                 data.eventId || "";
-
 
             option.textContent =
                 data.eventName ||
                 data.eventId ||
                 "Unnamed Event";
 
-
             select.appendChild(option);
 
         });
-
 
     } catch (error) {
 
@@ -722,7 +676,6 @@ async function loadEventOptions(filterType = "") {
             error
         );
     }
-
 }
 
 
@@ -731,8 +684,7 @@ async function loadEventOptions(filterType = "") {
 // ======================================================
 
 const saveMatchBtn =
-    document.getElementById("saveMatchBtn");
-
+    $("saveMatchBtn");
 
 if (saveMatchBtn) {
 
@@ -740,61 +692,60 @@ if (saveMatchBtn) {
         "click",
         saveMatch
     );
-
 }
 
 
 async function saveMatch() {
 
     const matchId =
-        document.getElementById("matchId")?.value.trim();
+        $("matchId")?.value.trim();
 
-    const matchEventType =
-        document.getElementById("matchEventType")?.value;
+    const eventType =
+        $("matchEventType")?.value;
 
-    const eventSelect =
-        document.getElementById("eventSelect")?.value;
+    const eventId =
+        $("eventSelect")?.value || "";
 
     const matchDate =
-        document.getElementById("matchDate")?.value;
+        $("matchDate")?.value;
 
     const matchPlace =
-        document.getElementById("matchPlace")?.value.trim();
+        $("matchPlace")?.value.trim();
 
     const opponent =
-        document.getElementById("opponent")?.value.trim();
+        $("opponent")?.value.trim();
 
     const overs =
-        document.getElementById("overs")?.value.trim();
+        $("overs")?.value.trim();
 
     const result =
-        document.getElementById("result")?.value.trim();
+        $("result")?.value.trim();
 
     const playerOfMatch =
-        document.getElementById("playerOfMatch")?.value.trim();
+        $("playerOfMatch")?.value.trim();
 
     const bestBowler =
-        document.getElementById("bestBowler")?.value.trim();
+        $("bestBowler")?.value.trim();
 
     const bestBatter =
-        document.getElementById("bestBatter")?.value.trim();
+        $("bestBatter")?.value.trim();
 
     const fighterOfMatch =
-        document.getElementById("fighterOfMatch")?.value.trim();
+        $("fighterOfMatch")?.value.trim();
 
     const cricHeroesLink =
-        document.getElementById("cricHeroesLink")?.value.trim();
+        $("cricHeroesLink")?.value.trim();
 
 
     if (
         !matchId ||
-        !matchEventType ||
+        !eventType ||
         !matchDate ||
         !opponent
     ) {
 
         alert(
-            "Please fill Match ID, Event Type, Date and Opponent."
+            "⚠️ Please fill Match ID, Event Type, Date and Opponent."
         );
 
         return;
@@ -803,25 +754,22 @@ async function saveMatch() {
 
     if (
         (
-            matchEventType === "Tournament" ||
-            matchEventType === "Series"
+            eventType === "Tournament" ||
+            eventType === "Series"
         ) &&
-        !eventSelect
+        !eventId
     ) {
 
         alert(
-            "Please select Tournament / Series."
+            "⚠️ Please select Tournament / Series."
         );
 
         return;
     }
 
 
-    saveMatchBtn.disabled =
-        true;
-
-    saveMatchBtn.innerText =
-        "⏳ SAVING...";
+    saveMatchBtn.disabled = true;
+    saveMatchBtn.innerText = "⏳ SAVING...";
 
 
     try {
@@ -832,14 +780,14 @@ async function saveMatch() {
 
                 matchId: matchId,
 
-                eventType: matchEventType,
+                eventType: eventType,
 
                 eventId:
                     (
-                        matchEventType === "Tournament" ||
-                        matchEventType === "Series"
+                        eventType === "Tournament" ||
+                        eventType === "Series"
                     )
-                        ? eventSelect
+                        ? eventId
                         : "",
 
                 date: matchDate,
@@ -869,7 +817,6 @@ async function saveMatch() {
 
                 createdAt:
                     serverTimestamp()
-
             }
         );
 
@@ -879,19 +826,7 @@ async function saveMatch() {
         );
 
 
-        document.getElementById("matchId").value = "";
-        document.getElementById("matchEventType").value = "";
-        document.getElementById("eventSelect").value = "";
-        document.getElementById("matchDate").value = "";
-        document.getElementById("matchPlace").value = "";
-        document.getElementById("opponent").value = "";
-        document.getElementById("overs").value = "";
-        document.getElementById("result").value = "";
-        document.getElementById("playerOfMatch").value = "";
-        document.getElementById("bestBowler").value = "";
-        document.getElementById("bestBatter").value = "";
-        document.getElementById("fighterOfMatch").value = "";
-        document.getElementById("cricHeroesLink").value = "";
+        clearMatchForm();
 
 
     } catch (error) {
@@ -901,22 +836,61 @@ async function saveMatch() {
             error
         );
 
-
         alert(
             "❌ Match could not be saved.\n\n" +
             error.message
         );
 
-
     } finally {
 
-        saveMatchBtn.disabled =
-            false;
-
+        saveMatchBtn.disabled = false;
         saveMatchBtn.innerText =
             "💾 SAVE MATCH";
     }
+}
 
+
+// ======================================================
+// CLEAR MATCH FORM
+// ======================================================
+
+function clearMatchForm() {
+
+    const ids = [
+
+        "matchId",
+        "matchEventType",
+        "eventSelect",
+        "matchDate",
+        "matchPlace",
+        "opponent",
+        "overs",
+        "result",
+        "playerOfMatch",
+        "bestBowler",
+        "bestBatter",
+        "fighterOfMatch",
+        "cricHeroesLink"
+
+    ];
+
+    ids.forEach(id => {
+
+        const element =
+            $(id);
+
+        if (element) {
+
+            element.value = "";
+        }
+    });
+
+
+    if (eventSelectBox) {
+
+        eventSelectBox.style.display =
+            "none";
+    }
 }
 
 
@@ -927,14 +901,12 @@ async function saveMatch() {
 async function loadRegistrations() {
 
     const list =
-        document.getElementById("registrationList");
+        $("registrationList");
 
     const msg =
-        document.getElementById("registrationMsg");
-
+        $("registrationMsg");
 
     if (!list) return;
-
 
     list.innerHTML = "";
 
@@ -942,9 +914,7 @@ async function loadRegistrations() {
 
         msg.innerText =
             "⏳ Loading registrations...";
-
     }
-
 
     try {
 
@@ -953,32 +923,26 @@ async function loadRegistrations() {
                 collection(db, "registrations")
             );
 
-
         if (snapshot.empty) {
 
             if (msg) {
 
                 msg.innerText =
                     "No registrations found.";
-
             }
 
             return;
         }
 
-
         if (msg) {
 
-            msg.innerText =
-                "";
+            msg.innerText = "";
         }
-
 
         snapshot.forEach(regDoc => {
 
             const data =
                 regDoc.data();
-
 
             const card =
                 document.createElement("div");
@@ -986,11 +950,8 @@ async function loadRegistrations() {
             card.className =
                 "registration-card";
 
-
             const status =
-                data.status ||
-                "Pending";
-
+                data.status || "Pending";
 
             card.innerHTML = `
 
@@ -1021,6 +982,7 @@ async function loadRegistrations() {
                     <br>
 
                     Status:
+
                     <span class="registration-status
                         ${
                             status === "Approved"
@@ -1036,7 +998,6 @@ async function loadRegistrations() {
 
                 </div>
 
-
                 <div class="registration-actions">
 
                     <button
@@ -1047,7 +1008,6 @@ async function loadRegistrations() {
                         ✅ APPROVE
                     </button>
 
-
                     <button
                         type="button"
                         class="reject-btn"
@@ -1057,16 +1017,14 @@ async function loadRegistrations() {
                     </button>
 
                 </div>
-
             `;
 
-
             list.appendChild(card);
-
         });
 
 
-        list.querySelectorAll(".approve-btn")
+        list
+            .querySelectorAll(".approve-btn")
             .forEach(button => {
 
                 button.addEventListener(
@@ -1077,11 +1035,11 @@ async function loadRegistrations() {
                             "Approved"
                         )
                 );
-
             });
 
 
-        list.querySelectorAll(".reject-btn")
+        list
+            .querySelectorAll(".reject-btn")
             .forEach(button => {
 
                 button.addEventListener(
@@ -1092,7 +1050,6 @@ async function loadRegistrations() {
                             "Rejected"
                         )
                 );
-
             });
 
 
@@ -1103,16 +1060,12 @@ async function loadRegistrations() {
             error
         );
 
-
         if (msg) {
 
             msg.innerText =
                 "❌ Unable to load registrations.";
-
         }
-
     }
-
 }
 
 
@@ -1135,18 +1088,14 @@ async function updateRegistration(
             ),
             {
 
-                status:
-                    status,
+                status: status,
 
                 updatedAt:
                     serverTimestamp()
-
             }
         );
 
-
         await loadRegistrations();
-
 
     } catch (error) {
 
@@ -1155,32 +1104,23 @@ async function updateRegistration(
             error
         );
 
-
         alert(
             "❌ Could not update registration.\n\n" +
             error.message
         );
-
     }
-
 }
 
 
 // ======================================================
-// GALLERY
+// GALLERY PREVIEW
 // ======================================================
 
 const galleryImage =
-    document.getElementById("galleryImage");
-
+    $("galleryImage");
 
 const galleryPreview =
-    document.getElementById("galleryPreview");
-
-
-const galleryMsg =
-    document.getElementById("galleryMsg");
-
+    $("galleryPreview");
 
 if (galleryImage && galleryPreview) {
 
@@ -1191,19 +1131,29 @@ if (galleryImage && galleryPreview) {
             const file =
                 galleryImage.files?.[0];
 
-
             if (!file) {
 
                 galleryPreview.style.display =
                     "none";
 
+                galleryPreview.src = "";
+
                 return;
             }
 
+            if (!file.type.startsWith("image/")) {
+
+                alert(
+                    "⚠️ Please select an image file."
+                );
+
+                galleryImage.value = "";
+
+                return;
+            }
 
             const reader =
                 new FileReader();
-
 
             reader.onload =
                 event => {
@@ -1213,15 +1163,11 @@ if (galleryImage && galleryPreview) {
 
                     galleryPreview.style.display =
                         "block";
-
                 };
 
-
             reader.readAsDataURL(file);
-
         }
     );
-
 }
 
 
@@ -1237,14 +1183,13 @@ function escapeHTML(value) {
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#039;");
-
 }
 
 
 // ======================================================
-// INITIAL STATE
+// FINAL
 // ======================================================
 
 console.log(
-    "✅ CAWNPORE TIGERS XI Admin JS Loaded"
+    "✅ CAWNPORE TIGERS XI ADMIN.JS LOADED SUCCESSFULLY"
 );
