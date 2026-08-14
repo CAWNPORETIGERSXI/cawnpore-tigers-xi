@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>LIVE MATCH | CAWNPORE TIGERS XI</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    background:#0b0b0b;
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+.container{
+    width:94%;
+    max-width:1000px;
+    margin:20px auto;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+    background:#111;
+    border-radius:15px;
+    padding:14px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:3px solid #ff9800;
+    box-shadow:0 0 18px rgba(255,152,0,.15);
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo{
+    width:50px;
+    height:50px;
+    object-fit:contain;
+    border-radius:50%;
+}
+
+.brand-name{
+    color:#ff9800;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.live-badge{
+    background:#e53935;
+    color:#fff;
+    padding:9px 13px;
+    border-radius:20px;
+    font-weight:bold;
+    animation:pulse 1.4s infinite;
+}
+
+@keyframes pulse{
+
+    0%{
+        box-shadow:0 0 0 0 rgba(229,57,53,.7);
+    }
+
+    70%{
+        box-shadow:0 0 0 10px rgba(229,57,53,0);
+    }
+
+    100%{
+        box-shadow:0 0 0 0 rgba(229,57,53,0);
+    }
+
+}
+
+/* ================= TITLE ================= */
+
+.title{
+    text-align:center;
+    margin:25px 0 15px;
+}
+
+.title h1{
+    margin:0;
+    color:#ff9800;
+    font-size:30px;
+}
+
+.title p{
+    color:#aaa;
+}
+
+/* ================= MATCH CARD ================= */
+
+.match-card{
+    background:#181818;
+    border-radius:16px;
+    padding:20px;
+    margin-top:18px;
+    border:1px solid #333;
+}
+
+.teams{
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    align-items:center;
+    gap:12px;
+    text-align:center;
+}
+
+.team{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.vs{
+    color:#ff9800;
+    font-size:24px;
+    font-weight:bold;
+}
+
+/* ================= SCORE ================= */
+
+.score-box{
+    margin-top:20px;
+    background:#101010;
+    border-radius:12px;
+    padding:18px;
+    text-align:center;
+    border-left:4px solid #ff9800;
+}
+
+.score{
+    font-size:38px;
+    font-weight:bold;
+    color:#fff;
+}
+
+.overs{
+    color:#aaa;
+    margin-top:5px;
+}
+
+/* ================= VIDEO ================= */
+
+.video-title{
+    color:#ff9800;
+    margin-top:25px;
+}
+
+.video-wrapper{
+    position:relative;
+    width:100%;
+    padding-top:56.25%;
+    background:#000;
+    border-radius:14px;
+    overflow:hidden;
+    border:1px solid #333;
+}
+
+.video-wrapper iframe{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    border:0;
+}
+
+/* ================= GRAPHICS ================= */
+
+.graphics{
+    margin-top:20px;
+    background:#151515;
+    border-radius:14px;
+    padding:18px;
+}
+
+.graphics-title{
+    color:#ff9800;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+/* BATTER */
+
+.batter{
+    background:linear-gradient(
+        90deg,
+        #ff9800,
+        #222
+    );
+
+    padding:14px;
+    border-radius:10px;
+    margin-bottom:10px;
+}
+
+.batter-name{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.batter-role{
+    color:#111;
+    font-weight:bold;
+}
+
+/* BOWLER */
+
+.bowler{
+    background:#222;
+    padding:14px;
+    border-radius:10px;
+    border-left:4px solid #ff9800;
+}
+
+.bowler-name{
+    font-size:19px;
+    font-weight:bold;
+}
+
+/* ================= EVENT EFFECT ================= */
+
+.event-effect{
+    display:none;
+    margin-top:20px;
+    padding:18px;
+    text-align:center;
+    border-radius:12px;
+    font-size:30px;
+    font-weight:bold;
+    background:#ff9800;
+    color:#111;
+    animation:eventPop .5s ease;
+}
+
+@keyframes eventPop{
+
+    0%{
+        transform:scale(.5);
+        opacity:0;
+    }
+
+    70%{
+        transform:scale(1.1);
+        opacity:1;
+    }
+
+    100%{
+        transform:scale(1);
+        opacity:1;
+    }
+
+}
+
+/* ================= NO LIVE ================= */
+
+.no-live{
+    background:#181818;
+    padding:40px 20px;
+    text-align:center;
+    border-radius:16px;
+    border:1px solid #333;
+}
+
+.no-live h2{
+    color:#ff9800;
+}
+
+.no-live p{
+    color:#aaa;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+    text-align:center;
+    color:#777;
+    padding:30px 10px;
+    font-size:14px;
+}
+
+@media(max-width:600px){
+
+    .brand-name{
+        font-size:15px;
+    }
+
+    .logo{
+        width:42px;
+        height:42px;
+    }
+
+    .live-badge{
+        font-size:13px;
+        padding:8px 10px;
+    }
+
+    .title h1{
+        font-size:25px;
+    }
+
+    .team{
+        font-size:17px;
+    }
+
+    .vs{
+        font-size:19px;
+    }
+
+    .score{
+        font-size:30px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="brand">
+
+        <img
+            src="logo.png"
+            class="logo"
+            alt="CAWNPORE TIGERS XI"
+        >
+
+        <div class="brand-name">
+            CAWNPORE TIGERS XI
+        </div>
+
+    </div>
+
+    <div class="live-badge">
+        🔴 LIVE
+    </div>
+
+</header>
+
+
+<!-- ================= TITLE ================= -->
+
+<div class="title">
+
+    <h1>
+        🔴 LIVE MATCH
+    </h1>
+
+    <p>
+        CAWNPORE TIGERS XI Live Coverage
+    </p>
+
+</div>
+
+
+<!-- ================= MATCH ================= -->
+
+<div class="match-card">
+
+    <div class="teams">
+
+        <div class="team"
+             id="team1">
+            CAWNPORE TIGERS XI
+        </div>
+
+        <div class="vs">
+            VS
+        </div>
+
+        <div class="team"
+             id="team2">
+            OPPONENT
+        </div>
+
+    </div>
+
+
+    <!-- SCORE -->
+
+    <div class="score-box">
+
+        <div class="score"
+             id="score">
+            0/0
+        </div>
+
+        <div class="overs"
+             id="overs">
+            0.0 Overs
+        </div>
+
+    </div>
+
+
+    <!-- VIDEO -->
+
+    <h3 class="video-title">
+        🎥 LIVE STREAMING
+    </h3>
+
+    <div class="video-wrapper">
+
+        <iframe
+            id="liveVideo"
+            src=""
+            title="CAWNPORE TIGERS XI Live Match"
+            allow="autoplay; encrypted-media"
+            allowfullscreen>
+        </iframe>
+
+    </div>
+
+
+    <!-- GRAPHICS -->
+
+    <div class="graphics">
+
+        <div class="graphics-title">
+            🏏 LIVE MATCH GRAPHICS
+        </div>
+
+
+        <!-- BATTER -->
+
+        <div class="batter">
+
+            <div class="batter-role">
+                BATTER
+            </div>
+
+            <div class="batter-name"
+                 id="batter">
+                —
+            </div>
+
+        </div>
+
+
+        <!-- BOWLER -->
+
+        <div class="bowler">
+
+            <div>
+                🎯 BOWLER
+            </div>
+
+            <div class="bowler-name"
+                 id="bowler">
+                —
+            </div>
+
+        </div>
+
+
+        <!-- EVENT -->
+
+        <div
+            class="event-effect"
+            id="eventEffect">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<div class="footer">
+
+    © CAWNPORE TIGERS XI
+
+</div>
+
+</div>
+
+
+<script>
+
+/*
+==========================================================
+DEMO LIVE GRAPHICS
+==========================================================
+
+अभी यह केवल demo है।
+
+बाद में Admin Panel से ये values आएँगी:
+
+team1
+team2
+score
+overs
+batter
+bowler
+event
+
+==========================================================
+*/
+
+
+function showEvent(text){
+
+    const effect =
+        document.getElementById(
+            "eventEffect"
+        );
+
+    effect.innerText =
+        text;
+
+    effect.style.display =
+        "block";
+
+
+    setTimeout(
+        function(){
+
+            effect.style.display =
+                "none";
+
+        },
+        3000
+    );
+
+}
+
+
+/* DEMO */
+
+setTimeout(
+    function(){
+
+        showEvent(
+            "🏏 NEW BATTER"
+        );
+
+    },
+    3000
+);
+
+
+setTimeout(
+    function(){
+
+        showEvent(
+            "🔥 FOUR!"
+        );
+
+    },
+    8000
+);
+
+</script>
+
+</body>
+
+</html>
